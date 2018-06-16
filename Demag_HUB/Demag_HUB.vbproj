@@ -84,6 +84,12 @@
       <DependentUpon>frmMaininterface.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmPartner.Designer.vb">
+      <DependentUpon>frmPartner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPartner.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -99,10 +105,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Watermark.vb">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmMaininterface.resx">
       <DependentUpon>frmMaininterface.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPartner.resx">
+      <DependentUpon>frmPartner.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
