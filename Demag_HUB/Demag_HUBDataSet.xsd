@@ -1347,7 +1347,7 @@
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT Purchase_Order, Alias_Purchase_Order, Created, Supplier, Service, Incoterm, Incoterm_Location, Latest_On_Board, Latest_Arrival, Forwarding_Agent, Acceptance_Status FROM poOrder</CommandText>
                     <Parameters />
                   </DbCommand>

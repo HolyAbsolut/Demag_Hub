@@ -73,7 +73,13 @@ Partial Class frmMaininterface
         Me.Label1 = New System.Windows.Forms.Label()
         Me.subTabShipments = New System.Windows.Forms.TabControl()
         Me.tabBooking = New System.Windows.Forms.TabPage()
-        Me.DsShipmentsdsInvoiceBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PoOrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsShipment_OrderDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DsShipment_OrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.btnDeletePO = New System.Windows.Forms.Button()
         Me.btnAddPO = New System.Windows.Forms.Button()
         Me.txtPoNo = New System.Windows.Forms.TextBox()
@@ -82,6 +88,7 @@ Partial Class frmMaininterface
         Me.InvoiceNoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LinkDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.CreatedDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DsShipmentsdsInvoiceBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsCommentDataGridView = New System.Windows.Forms.DataGridView()
         Me.TxtCommentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PublicDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
@@ -166,6 +173,8 @@ Partial Class frmMaininterface
         Me.DsInvoiceTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsInvoiceTableAdapter()
         Me.dlgFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.dsInvoiceBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsShipment_OrderTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsShipment_OrderTableAdapter()
+        Me.PoOrderTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.poOrderTableAdapter()
         DtnETALabel = New System.Windows.Forms.Label()
         DtnETDLabel = New System.Windows.Forms.Label()
         DtnCRDLabel = New System.Windows.Forms.Label()
@@ -199,8 +208,11 @@ Partial Class frmMaininterface
         Me.DsShipmentsBindingNavigator.SuspendLayout()
         Me.subTabShipments.SuspendLayout()
         Me.tabBooking.SuspendLayout()
-        CType(Me.DsShipmentsdsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsShipment_OrderDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsShipment_OrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsInvoiceDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsShipmentsdsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsCommentDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipmentsdsCommentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.UNLOCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -653,6 +665,7 @@ Partial Class frmMaininterface
         'tabBooking
         '
         Me.tabBooking.AutoScroll = True
+        Me.tabBooking.Controls.Add(Me.DsShipment_OrderDataGridView)
         Me.tabBooking.Controls.Add(Me.btnDeletePO)
         Me.tabBooking.Controls.Add(Me.btnAddPO)
         Me.tabBooking.Controls.Add(Label3)
@@ -717,10 +730,50 @@ Partial Class frmMaininterface
         Me.tabBooking.Text = "Booking"
         Me.tabBooking.UseVisualStyleBackColor = True
         '
-        'DsShipmentsdsInvoiceBindingSource
+        'PoOrderBindingSource
         '
-        Me.DsShipmentsdsInvoiceBindingSource.DataMember = "dsShipmentsdsInvoice"
-        Me.DsShipmentsdsInvoiceBindingSource.DataSource = Me.DsShipmentsBindingSource
+        Me.PoOrderBindingSource.DataMember = "poOrder"
+        Me.PoOrderBindingSource.DataSource = Me.DsDemag_HUB
+        '
+        'DsShipment_OrderDataGridView
+        '
+        Me.DsShipment_OrderDataGridView.AutoGenerateColumns = False
+        Me.DsShipment_OrderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DsShipment_OrderDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn20, Me.DataGridViewTextBoxColumn21, Me.DataGridViewTextBoxColumn22, Me.DataGridViewTextBoxColumn23})
+        Me.DsShipment_OrderDataGridView.DataSource = Me.DsShipment_OrderBindingSource
+        Me.DsShipment_OrderDataGridView.Location = New System.Drawing.Point(7, 369)
+        Me.DsShipment_OrderDataGridView.Name = "DsShipment_OrderDataGridView"
+        Me.DsShipment_OrderDataGridView.Size = New System.Drawing.Size(460, 95)
+        Me.DsShipment_OrderDataGridView.TabIndex = 95
+        '
+        'DataGridViewTextBoxColumn20
+        '
+        Me.DataGridViewTextBoxColumn20.DataPropertyName = "Shipment_Order_ID"
+        Me.DataGridViewTextBoxColumn20.HeaderText = "Shipment_Order_ID"
+        Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
+        '
+        'DataGridViewTextBoxColumn21
+        '
+        Me.DataGridViewTextBoxColumn21.DataPropertyName = "Shipment_ID"
+        Me.DataGridViewTextBoxColumn21.HeaderText = "Shipment_ID"
+        Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
+        '
+        'DataGridViewTextBoxColumn22
+        '
+        Me.DataGridViewTextBoxColumn22.DataPropertyName = "Purchase_Order"
+        Me.DataGridViewTextBoxColumn22.HeaderText = "Purchase_Order"
+        Me.DataGridViewTextBoxColumn22.Name = "DataGridViewTextBoxColumn22"
+        '
+        'DataGridViewTextBoxColumn23
+        '
+        Me.DataGridViewTextBoxColumn23.DataPropertyName = "Created"
+        Me.DataGridViewTextBoxColumn23.HeaderText = "Created"
+        Me.DataGridViewTextBoxColumn23.Name = "DataGridViewTextBoxColumn23"
+        '
+        'DsShipment_OrderBindingSource
+        '
+        Me.DsShipment_OrderBindingSource.DataMember = "dsShipmentsdsShipment_Order"
+        Me.DsShipment_OrderBindingSource.DataSource = Me.DsShipmentsBindingSource
         '
         'btnDeletePO
         '
@@ -799,6 +852,11 @@ Partial Class frmMaininterface
         Me.CreatedDataGridViewTextBoxColumn1.Name = "CreatedDataGridViewTextBoxColumn1"
         Me.CreatedDataGridViewTextBoxColumn1.ReadOnly = True
         '
+        'DsShipmentsdsInvoiceBindingSource
+        '
+        Me.DsShipmentsdsInvoiceBindingSource.DataMember = "dsShipmentsdsInvoice"
+        Me.DsShipmentsdsInvoiceBindingSource.DataSource = Me.DsShipmentsBindingSource
+        '
         'DsCommentDataGridView
         '
         Me.DsCommentDataGridView.AllowUserToDeleteRows = False
@@ -808,9 +866,9 @@ Partial Class frmMaininterface
         Me.DsCommentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DsCommentDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TxtCommentDataGridViewTextBoxColumn, Me.PublicDataGridViewCheckBoxColumn, Me.CreatedDataGridViewTextBoxColumn})
         Me.DsCommentDataGridView.DataSource = Me.DsShipmentsdsCommentBindingSource
-        Me.DsCommentDataGridView.Location = New System.Drawing.Point(7, 531)
+        Me.DsCommentDataGridView.Location = New System.Drawing.Point(6, 565)
         Me.DsCommentDataGridView.Name = "DsCommentDataGridView"
-        Me.DsCommentDataGridView.Size = New System.Drawing.Size(914, 78)
+        Me.DsCommentDataGridView.Size = New System.Drawing.Size(752, 78)
         Me.DsCommentDataGridView.TabIndex = 89
         '
         'TxtCommentDataGridViewTextBoxColumn
@@ -1527,6 +1585,14 @@ Partial Class frmMaininterface
         Me.dsInvoiceBindingSource.DataMember = "dsShipmentsdsInvoice"
         Me.dsInvoiceBindingSource.DataSource = Me.DsShipmentsBindingSource
         '
+        'DsShipment_OrderTableAdapter
+        '
+        Me.DsShipment_OrderTableAdapter.ClearBeforeFill = True
+        '
+        'PoOrderTableAdapter
+        '
+        Me.PoOrderTableAdapter.ClearBeforeFill = True
+        '
         'frmMaininterface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1549,8 +1615,11 @@ Partial Class frmMaininterface
         Me.subTabShipments.ResumeLayout(False)
         Me.tabBooking.ResumeLayout(False)
         Me.tabBooking.PerformLayout()
-        CType(Me.DsShipmentsdsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsShipment_OrderDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsShipment_OrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsInvoiceDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsShipmentsdsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsCommentDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsShipmentsdsCommentBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.UNLOCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1687,4 +1756,13 @@ Partial Class frmMaininterface
     Friend WithEvents txtPoNo As TextBox
     Friend WithEvents dlgFileDialog As OpenFileDialog
     Friend WithEvents dsInvoiceBindingSource As BindingSource
+    Friend WithEvents DsShipment_OrderBindingSource As BindingSource
+    Friend WithEvents DsShipment_OrderTableAdapter As dsDemag_HUBTableAdapters.dsShipment_OrderTableAdapter
+    Friend WithEvents DsShipment_OrderDataGridView As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn20 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn21 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn22 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn23 As DataGridViewTextBoxColumn
+    Friend WithEvents PoOrderBindingSource As BindingSource
+    Friend WithEvents PoOrderTableAdapter As dsDemag_HUBTableAdapters.poOrderTableAdapter
 End Class

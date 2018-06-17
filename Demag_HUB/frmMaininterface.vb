@@ -12,6 +12,10 @@ Public Class frmMaininterface
     End Sub
 
     Private Sub frmMaininterface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.poOrder". Sie können sie bei Bedarf verschieben oder entfernen.
+        Me.PoOrderTableAdapter.Fill(Me.DsDemag_HUB.poOrder)
+        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsShipment_Order". Sie können sie bei Bedarf verschieben oder entfernen.
+        Me.DsShipment_OrderTableAdapter.Fill(Me.DsDemag_HUB.dsShipment_Order)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsInvoice". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.DsInvoiceTableAdapter.Fill(Me.DsDemag_HUB.dsInvoice)
 
@@ -120,7 +124,7 @@ Public Class frmMaininterface
         Me.DsPartnerBindingSource.EndEdit()
         Me.DsContactBindingSource.EndEdit()
         Me.DsAddressBindingSource.EndEdit()
-        'Me.DsShipment_OrderBindingSource.EndEdit()
+        Me.DsShipment_OrderBindingSource.EndEdit()
         MsgBox("Arbeite")
 
         Me.DsShipmentsTableAdapter.Update(Me.DsDemag_HUB.dsShipments)
@@ -128,7 +132,7 @@ Public Class frmMaininterface
         Me.DsPartnerTableAdapter.Update(Me.DsDemag_HUB.dsPartner)
         Me.DsContactTableAdapter.Update(Me.DsDemag_HUB.dsContact)
         Me.DsAddressTableAdapter.Update(Me.DsDemag_HUB.dsAddress)
-        'Me.DsShipment_OrderTableAdapter.Update(Me.DsDemag_HUB.dsShipment_Order)
+        Me.DsShipment_OrderTableAdapter.Update(Me.DsDemag_HUB.dsShipment_Order)
         MsgBox("Fertig")
 
     End Sub
@@ -245,6 +249,51 @@ Public Class frmMaininterface
         Else
             btnaddDocument.Enabled = False
         End If
+    End Sub
+
+
+    Private Sub btnAddPO_Click(sender As Object, e As EventArgs) Handles btnAddPO.Click
+        'Prüfen ob PO bereits in der Sendung ist
+        'For Each row As DataGridViewRow In Me.dvPoNo.Rows
+        '    If txtPoNo.Text = row.Cells(1).Value.ToString Then
+        '        txtPoNo.BackColor = Color.LightGoldenrodYellow
+        '        Exit Sub
+        '    End If
+        'Next
+
+        'Prüfen ob PO exisitiert und ggf. einfügen
+        PoOrderBindingSource.Filter = "Purchase_Order = '" & txtPoNo.Text & "'"
+        If PoOrderBindingSource.Count = 0 Then
+            Dim newPORow As dsDemag_HUB.poOrderRow
+            newPORow = DsDemag_HUB.poOrder.NewpoOrderRow
+            newPORow.Purchase_Order = txtPoNo.Text
+            newPORow.Created = Date.Now
+            'newPORow.Supplier = Convert.ToDateTime("01.01.2000")
+            newPORow.Service = ServiceTextBox.Text
+            newPORow.Incoterm = IncotermTextBox.Text
+            newPORow.Incoterm_Location = Incoterm_LocTextBox.Text
+            DsDemag_HUB.poOrder.Rows.Add(newPORow)
+            Me.PoOrderBindingSource.EndEdit()
+            Me.PoOrderTableAdapter.Update(Me.DsDemag_HUB.poOrder)
+            txtPoNo.BackColor = Color.YellowGreen
+        Else
+            txtPoNo.BackColor = Color.White
+        End If
+
+
+        'PO mit Shipment verknüpfen
+        Dim newShipmentPO As dsDemag_HUB.dsShipment_OrderRow
+        newShipmentPO = DsDemag_HUB.dsShipment_Order.NewdsShipment_OrderRow
+        newShipmentPO.Shipment_ID = Shipment_IDTextBox.Text
+        newShipmentPO.Purchase_Order = txtPoNo.Text
+        newShipmentPO.Created = Date.Now
+        DsDemag_HUB.dsShipment_Order.Rows.Add(newShipmentPO)
+
+
+        txtPoNo.Clear()
+        txtPoNo.Focus()
+
+
     End Sub
 
 
