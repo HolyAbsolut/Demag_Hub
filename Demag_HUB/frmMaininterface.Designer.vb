@@ -57,23 +57,48 @@ Partial Class frmMaininterface
         Me.TableAdapterManager = New Demag_HUB.dsDemag_HUBTableAdapters.TableAdapterManager()
         Me.DsPartnerTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsPartnerTableAdapter()
         Me.IncotermTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.IncotermTableAdapter()
-        Me.DsShipmentsBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
-        Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
-        Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator()
-        Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox()
-        Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.DsShipmentsBindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.subTabShipments = New System.Windows.Forms.TabControl()
+        Me.tabOverview = New System.Windows.Forms.TabPage()
+        Me.DsShipmentsDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn24 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn26 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn27 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn28 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn29 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn31 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn32 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn34 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn35 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn36 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn37 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn38 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn39 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn40 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn41 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn42 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn43 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn44 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn45 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn46 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn47 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn48 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn49 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn50 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn51 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn52 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn53 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn54 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn55 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn56 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn57 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.DataGridViewCheckBoxColumn2 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.txtSearch = New Demag_HUB.Watermark()
+        Me.cmbField = New System.Windows.Forms.ComboBox()
         Me.tabBooking = New System.Windows.Forms.TabPage()
-        Me.PoOrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsShipment_OrderDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -126,14 +151,13 @@ Partial Class frmMaininterface
         Me.tabShipping = New System.Windows.Forms.TabPage()
         Me.tabDispo = New System.Windows.Forms.TabPage()
         Me.tabDocuments = New System.Windows.Forms.TabPage()
+        Me.PoOrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsCommentBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tabSettings = New System.Windows.Forms.TabPage()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.btnNew = New System.Windows.Forms.Button()
-        Me.txtSearch = New Demag_HUB.Watermark()
-        Me.cmbField = New System.Windows.Forms.ComboBox()
         Me.cmbFilter = New System.Windows.Forms.ComboBox()
         Me.TabControl3 = New System.Windows.Forms.TabControl()
         Me.tabShipments = New System.Windows.Forms.TabPage()
@@ -204,11 +228,10 @@ Partial Class frmMaininterface
         Label3 = New System.Windows.Forms.Label()
         CType(Me.DsDemag_HUB, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipmentsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DsShipmentsBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.DsShipmentsBindingNavigator.SuspendLayout()
         Me.subTabShipments.SuspendLayout()
+        Me.tabOverview.SuspendLayout()
+        CType(Me.DsShipmentsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabBooking.SuspendLayout()
-        CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipment_OrderDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipment_OrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsInvoiceDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -218,6 +241,7 @@ Partial Class frmMaininterface
         CType(Me.UNLOCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsPartnerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsCommentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl3.SuspendLayout()
         Me.tabShipments.SuspendLayout()
@@ -527,117 +551,6 @@ Partial Class frmMaininterface
         '
         Me.IncotermTableAdapter.ClearBeforeFill = True
         '
-        'DsShipmentsBindingNavigator
-        '
-        Me.DsShipmentsBindingNavigator.AddNewItem = Me.BindingNavigatorAddNewItem
-        Me.DsShipmentsBindingNavigator.BindingSource = Me.DsShipmentsBindingSource
-        Me.DsShipmentsBindingNavigator.CountItem = Me.BindingNavigatorCountItem
-        Me.DsShipmentsBindingNavigator.DeleteItem = Me.BindingNavigatorDeleteItem
-        Me.DsShipmentsBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.DsShipmentsBindingNavigatorSaveItem})
-        Me.DsShipmentsBindingNavigator.Location = New System.Drawing.Point(0, 0)
-        Me.DsShipmentsBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
-        Me.DsShipmentsBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
-        Me.DsShipmentsBindingNavigator.MoveNextItem = Me.BindingNavigatorMoveNextItem
-        Me.DsShipmentsBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
-        Me.DsShipmentsBindingNavigator.Name = "DsShipmentsBindingNavigator"
-        Me.DsShipmentsBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.DsShipmentsBindingNavigator.Size = New System.Drawing.Size(956, 25)
-        Me.DsShipmentsBindingNavigator.TabIndex = 0
-        Me.DsShipmentsBindingNavigator.Text = "BindingNavigator1"
-        '
-        'BindingNavigatorAddNewItem
-        '
-        Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
-        Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorAddNewItem.Text = "Neu hinzufügen"
-        '
-        'BindingNavigatorCountItem
-        '
-        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(44, 22)
-        Me.BindingNavigatorCountItem.Text = "von {0}"
-        Me.BindingNavigatorCountItem.ToolTipText = "Die Gesamtanzahl der Elemente."
-        '
-        'BindingNavigatorDeleteItem
-        '
-        Me.BindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
-        Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorDeleteItem.Text = "Löschen"
-        '
-        'BindingNavigatorMoveFirstItem
-        '
-        Me.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveFirstItem.Image = CType(resources.GetObject("BindingNavigatorMoveFirstItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
-        Me.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveFirstItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMoveFirstItem.Text = "Erste verschieben"
-        '
-        'BindingNavigatorMovePreviousItem
-        '
-        Me.BindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMovePreviousItem.Image = CType(resources.GetObject("BindingNavigatorMovePreviousItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
-        Me.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMovePreviousItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMovePreviousItem.Text = "Vorherige verschieben"
-        '
-        'BindingNavigatorSeparator
-        '
-        Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
-        Me.BindingNavigatorSeparator.Size = New System.Drawing.Size(6, 25)
-        '
-        'BindingNavigatorPositionItem
-        '
-        Me.BindingNavigatorPositionItem.AccessibleName = "Position"
-        Me.BindingNavigatorPositionItem.AutoSize = False
-        Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
-        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(50, 23)
-        Me.BindingNavigatorPositionItem.Text = "0"
-        Me.BindingNavigatorPositionItem.ToolTipText = "Aktuelle Position"
-        '
-        'BindingNavigatorSeparator1
-        '
-        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
-        Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'BindingNavigatorMoveNextItem
-        '
-        Me.BindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveNextItem.Image = CType(resources.GetObject("BindingNavigatorMoveNextItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
-        Me.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveNextItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMoveNextItem.Text = "Nächste verschieben"
-        '
-        'BindingNavigatorMoveLastItem
-        '
-        Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorMoveLastItem.Image = CType(resources.GetObject("BindingNavigatorMoveLastItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
-        Me.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorMoveLastItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorMoveLastItem.Text = "Letzte verschieben"
-        '
-        'BindingNavigatorSeparator2
-        '
-        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
-        Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
-        '
-        'DsShipmentsBindingNavigatorSaveItem
-        '
-        Me.DsShipmentsBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.DsShipmentsBindingNavigatorSaveItem.Image = CType(resources.GetObject("DsShipmentsBindingNavigatorSaveItem.Image"), System.Drawing.Image)
-        Me.DsShipmentsBindingNavigatorSaveItem.Name = "DsShipmentsBindingNavigatorSaveItem"
-        Me.DsShipmentsBindingNavigatorSaveItem.Size = New System.Drawing.Size(23, 22)
-        Me.DsShipmentsBindingNavigatorSaveItem.Text = "Daten speichern"
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -652,6 +565,7 @@ Partial Class frmMaininterface
         Me.subTabShipments.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.subTabShipments.Controls.Add(Me.tabOverview)
         Me.subTabShipments.Controls.Add(Me.tabBooking)
         Me.subTabShipments.Controls.Add(Me.tabShipping)
         Me.subTabShipments.Controls.Add(Me.tabDispo)
@@ -661,6 +575,298 @@ Partial Class frmMaininterface
         Me.subTabShipments.SelectedIndex = 0
         Me.subTabShipments.Size = New System.Drawing.Size(773, 675)
         Me.subTabShipments.TabIndex = 2
+        '
+        'tabOverview
+        '
+        Me.tabOverview.Controls.Add(Me.DsShipmentsDataGridView)
+        Me.tabOverview.Controls.Add(Me.txtSearch)
+        Me.tabOverview.Controls.Add(Me.cmbField)
+        Me.tabOverview.Location = New System.Drawing.Point(4, 22)
+        Me.tabOverview.Name = "tabOverview"
+        Me.tabOverview.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabOverview.Size = New System.Drawing.Size(765, 649)
+        Me.tabOverview.TabIndex = 5
+        Me.tabOverview.Text = "Overview"
+        Me.tabOverview.UseVisualStyleBackColor = True
+        '
+        'DsShipmentsDataGridView
+        '
+        Me.DsShipmentsDataGridView.AllowUserToAddRows = False
+        Me.DsShipmentsDataGridView.AllowUserToDeleteRows = False
+        Me.DsShipmentsDataGridView.AutoGenerateColumns = False
+        Me.DsShipmentsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DsShipmentsDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn24, Me.DataGridViewTextBoxColumn26, Me.DataGridViewTextBoxColumn27, Me.DataGridViewTextBoxColumn28, Me.DataGridViewTextBoxColumn29, Me.DataGridViewTextBoxColumn30, Me.DataGridViewTextBoxColumn31, Me.DataGridViewTextBoxColumn32, Me.DataGridViewTextBoxColumn33, Me.DataGridViewTextBoxColumn34, Me.DataGridViewTextBoxColumn35, Me.DataGridViewTextBoxColumn36, Me.DataGridViewTextBoxColumn37, Me.DataGridViewTextBoxColumn38, Me.DataGridViewTextBoxColumn39, Me.DataGridViewTextBoxColumn40, Me.DataGridViewTextBoxColumn41, Me.DataGridViewTextBoxColumn42, Me.DataGridViewTextBoxColumn43, Me.DataGridViewTextBoxColumn44, Me.DataGridViewTextBoxColumn45, Me.DataGridViewTextBoxColumn46, Me.DataGridViewTextBoxColumn47, Me.DataGridViewTextBoxColumn48, Me.DataGridViewTextBoxColumn49, Me.DataGridViewTextBoxColumn50, Me.DataGridViewTextBoxColumn51, Me.DataGridViewTextBoxColumn52, Me.DataGridViewTextBoxColumn53, Me.DataGridViewTextBoxColumn54, Me.DataGridViewTextBoxColumn55, Me.DataGridViewTextBoxColumn56, Me.DataGridViewTextBoxColumn57, Me.DataGridViewCheckBoxColumn1, Me.DataGridViewCheckBoxColumn2})
+        Me.DsShipmentsDataGridView.DataSource = Me.DsShipmentsBindingSource
+        Me.DsShipmentsDataGridView.Location = New System.Drawing.Point(6, 32)
+        Me.DsShipmentsDataGridView.Name = "DsShipmentsDataGridView"
+        Me.DsShipmentsDataGridView.ReadOnly = True
+        Me.DsShipmentsDataGridView.Size = New System.Drawing.Size(753, 611)
+        Me.DsShipmentsDataGridView.TabIndex = 12
+        '
+        'DataGridViewTextBoxColumn24
+        '
+        Me.DataGridViewTextBoxColumn24.DataPropertyName = "Shipment_ID"
+        Me.DataGridViewTextBoxColumn24.HeaderText = "Shipment_ID"
+        Me.DataGridViewTextBoxColumn24.Name = "DataGridViewTextBoxColumn24"
+        Me.DataGridViewTextBoxColumn24.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn26
+        '
+        Me.DataGridViewTextBoxColumn26.DataPropertyName = "STT_No"
+        Me.DataGridViewTextBoxColumn26.HeaderText = "STT_No"
+        Me.DataGridViewTextBoxColumn26.Name = "DataGridViewTextBoxColumn26"
+        Me.DataGridViewTextBoxColumn26.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn27
+        '
+        Me.DataGridViewTextBoxColumn27.DataPropertyName = "Archive_No"
+        Me.DataGridViewTextBoxColumn27.HeaderText = "Archive_No"
+        Me.DataGridViewTextBoxColumn27.Name = "DataGridViewTextBoxColumn27"
+        Me.DataGridViewTextBoxColumn27.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn28
+        '
+        Me.DataGridViewTextBoxColumn28.DataPropertyName = "HBL_No"
+        Me.DataGridViewTextBoxColumn28.HeaderText = "HBL_No"
+        Me.DataGridViewTextBoxColumn28.Name = "DataGridViewTextBoxColumn28"
+        Me.DataGridViewTextBoxColumn28.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn29
+        '
+        Me.DataGridViewTextBoxColumn29.DataPropertyName = "MBL_No"
+        Me.DataGridViewTextBoxColumn29.HeaderText = "MBL_No"
+        Me.DataGridViewTextBoxColumn29.Name = "DataGridViewTextBoxColumn29"
+        Me.DataGridViewTextBoxColumn29.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn30
+        '
+        Me.DataGridViewTextBoxColumn30.DataPropertyName = "POL_No"
+        Me.DataGridViewTextBoxColumn30.HeaderText = "POL_No"
+        Me.DataGridViewTextBoxColumn30.Name = "DataGridViewTextBoxColumn30"
+        Me.DataGridViewTextBoxColumn30.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn31
+        '
+        Me.DataGridViewTextBoxColumn31.DataPropertyName = "Service"
+        Me.DataGridViewTextBoxColumn31.HeaderText = "Service"
+        Me.DataGridViewTextBoxColumn31.Name = "DataGridViewTextBoxColumn31"
+        Me.DataGridViewTextBoxColumn31.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn32
+        '
+        Me.DataGridViewTextBoxColumn32.DataPropertyName = "Incoterm"
+        Me.DataGridViewTextBoxColumn32.HeaderText = "Incoterm"
+        Me.DataGridViewTextBoxColumn32.Name = "DataGridViewTextBoxColumn32"
+        Me.DataGridViewTextBoxColumn32.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn33
+        '
+        Me.DataGridViewTextBoxColumn33.DataPropertyName = "Incoterm_Loc"
+        Me.DataGridViewTextBoxColumn33.HeaderText = "Incoterm_Loc"
+        Me.DataGridViewTextBoxColumn33.Name = "DataGridViewTextBoxColumn33"
+        Me.DataGridViewTextBoxColumn33.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn34
+        '
+        Me.DataGridViewTextBoxColumn34.DataPropertyName = "Principal"
+        Me.DataGridViewTextBoxColumn34.HeaderText = "Principal"
+        Me.DataGridViewTextBoxColumn34.Name = "DataGridViewTextBoxColumn34"
+        Me.DataGridViewTextBoxColumn34.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn35
+        '
+        Me.DataGridViewTextBoxColumn35.DataPropertyName = "Shipper"
+        Me.DataGridViewTextBoxColumn35.HeaderText = "Shipper"
+        Me.DataGridViewTextBoxColumn35.Name = "DataGridViewTextBoxColumn35"
+        Me.DataGridViewTextBoxColumn35.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn36
+        '
+        Me.DataGridViewTextBoxColumn36.DataPropertyName = "Consignee"
+        Me.DataGridViewTextBoxColumn36.HeaderText = "Consignee"
+        Me.DataGridViewTextBoxColumn36.Name = "DataGridViewTextBoxColumn36"
+        Me.DataGridViewTextBoxColumn36.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn37
+        '
+        Me.DataGridViewTextBoxColumn37.DataPropertyName = "POL"
+        Me.DataGridViewTextBoxColumn37.HeaderText = "POL"
+        Me.DataGridViewTextBoxColumn37.Name = "DataGridViewTextBoxColumn37"
+        Me.DataGridViewTextBoxColumn37.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn38
+        '
+        Me.DataGridViewTextBoxColumn38.DataPropertyName = "POD"
+        Me.DataGridViewTextBoxColumn38.HeaderText = "POD"
+        Me.DataGridViewTextBoxColumn38.Name = "DataGridViewTextBoxColumn38"
+        Me.DataGridViewTextBoxColumn38.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn39
+        '
+        Me.DataGridViewTextBoxColumn39.DataPropertyName = "Terminal"
+        Me.DataGridViewTextBoxColumn39.HeaderText = "Terminal"
+        Me.DataGridViewTextBoxColumn39.Name = "DataGridViewTextBoxColumn39"
+        Me.DataGridViewTextBoxColumn39.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn40
+        '
+        Me.DataGridViewTextBoxColumn40.DataPropertyName = "Vessel"
+        Me.DataGridViewTextBoxColumn40.HeaderText = "Vessel"
+        Me.DataGridViewTextBoxColumn40.Name = "DataGridViewTextBoxColumn40"
+        Me.DataGridViewTextBoxColumn40.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn41
+        '
+        Me.DataGridViewTextBoxColumn41.DataPropertyName = "Carrier"
+        Me.DataGridViewTextBoxColumn41.HeaderText = "Carrier"
+        Me.DataGridViewTextBoxColumn41.Name = "DataGridViewTextBoxColumn41"
+        Me.DataGridViewTextBoxColumn41.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn42
+        '
+        Me.DataGridViewTextBoxColumn42.DataPropertyName = "Contract_No"
+        Me.DataGridViewTextBoxColumn42.HeaderText = "Contract_No"
+        Me.DataGridViewTextBoxColumn42.Name = "DataGridViewTextBoxColumn42"
+        Me.DataGridViewTextBoxColumn42.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn43
+        '
+        Me.DataGridViewTextBoxColumn43.DataPropertyName = "Volume"
+        Me.DataGridViewTextBoxColumn43.HeaderText = "Volume"
+        Me.DataGridViewTextBoxColumn43.Name = "DataGridViewTextBoxColumn43"
+        Me.DataGridViewTextBoxColumn43.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn44
+        '
+        Me.DataGridViewTextBoxColumn44.DataPropertyName = "Weight"
+        Me.DataGridViewTextBoxColumn44.HeaderText = "Weight"
+        Me.DataGridViewTextBoxColumn44.Name = "DataGridViewTextBoxColumn44"
+        Me.DataGridViewTextBoxColumn44.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn45
+        '
+        Me.DataGridViewTextBoxColumn45.DataPropertyName = "TEU"
+        Me.DataGridViewTextBoxColumn45.HeaderText = "TEU"
+        Me.DataGridViewTextBoxColumn45.Name = "DataGridViewTextBoxColumn45"
+        Me.DataGridViewTextBoxColumn45.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn46
+        '
+        Me.DataGridViewTextBoxColumn46.DataPropertyName = "Cont20DC"
+        Me.DataGridViewTextBoxColumn46.HeaderText = "Cont20DC"
+        Me.DataGridViewTextBoxColumn46.Name = "DataGridViewTextBoxColumn46"
+        Me.DataGridViewTextBoxColumn46.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn47
+        '
+        Me.DataGridViewTextBoxColumn47.DataPropertyName = "Cont40DC"
+        Me.DataGridViewTextBoxColumn47.HeaderText = "Cont40DC"
+        Me.DataGridViewTextBoxColumn47.Name = "DataGridViewTextBoxColumn47"
+        Me.DataGridViewTextBoxColumn47.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn48
+        '
+        Me.DataGridViewTextBoxColumn48.DataPropertyName = "Cont40HQ"
+        Me.DataGridViewTextBoxColumn48.HeaderText = "Cont40HQ"
+        Me.DataGridViewTextBoxColumn48.Name = "DataGridViewTextBoxColumn48"
+        Me.DataGridViewTextBoxColumn48.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn49
+        '
+        Me.DataGridViewTextBoxColumn49.DataPropertyName = "dtnCRD"
+        Me.DataGridViewTextBoxColumn49.HeaderText = "dtnCRD"
+        Me.DataGridViewTextBoxColumn49.Name = "DataGridViewTextBoxColumn49"
+        Me.DataGridViewTextBoxColumn49.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn50
+        '
+        Me.DataGridViewTextBoxColumn50.DataPropertyName = "dtnETD"
+        Me.DataGridViewTextBoxColumn50.HeaderText = "dtnETD"
+        Me.DataGridViewTextBoxColumn50.Name = "DataGridViewTextBoxColumn50"
+        Me.DataGridViewTextBoxColumn50.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn51
+        '
+        Me.DataGridViewTextBoxColumn51.DataPropertyName = "dtnATD"
+        Me.DataGridViewTextBoxColumn51.HeaderText = "dtnATD"
+        Me.DataGridViewTextBoxColumn51.Name = "DataGridViewTextBoxColumn51"
+        Me.DataGridViewTextBoxColumn51.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn52
+        '
+        Me.DataGridViewTextBoxColumn52.DataPropertyName = "dtnETA"
+        Me.DataGridViewTextBoxColumn52.HeaderText = "dtnETA"
+        Me.DataGridViewTextBoxColumn52.Name = "DataGridViewTextBoxColumn52"
+        Me.DataGridViewTextBoxColumn52.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn53
+        '
+        Me.DataGridViewTextBoxColumn53.DataPropertyName = "dtnATA"
+        Me.DataGridViewTextBoxColumn53.HeaderText = "dtnATA"
+        Me.DataGridViewTextBoxColumn53.Name = "DataGridViewTextBoxColumn53"
+        Me.DataGridViewTextBoxColumn53.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn54
+        '
+        Me.DataGridViewTextBoxColumn54.DataPropertyName = "dtnETS"
+        Me.DataGridViewTextBoxColumn54.HeaderText = "dtnETS"
+        Me.DataGridViewTextBoxColumn54.Name = "DataGridViewTextBoxColumn54"
+        Me.DataGridViewTextBoxColumn54.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn55
+        '
+        Me.DataGridViewTextBoxColumn55.DataPropertyName = "ECO_Month"
+        Me.DataGridViewTextBoxColumn55.HeaderText = "ECO_Month"
+        Me.DataGridViewTextBoxColumn55.Name = "DataGridViewTextBoxColumn55"
+        Me.DataGridViewTextBoxColumn55.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn56
+        '
+        Me.DataGridViewTextBoxColumn56.DataPropertyName = "dtnSurendered"
+        Me.DataGridViewTextBoxColumn56.HeaderText = "dtnSurendered"
+        Me.DataGridViewTextBoxColumn56.Name = "DataGridViewTextBoxColumn56"
+        Me.DataGridViewTextBoxColumn56.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn57
+        '
+        Me.DataGridViewTextBoxColumn57.DataPropertyName = "dtnDocuments"
+        Me.DataGridViewTextBoxColumn57.HeaderText = "dtnDocuments"
+        Me.DataGridViewTextBoxColumn57.Name = "DataGridViewTextBoxColumn57"
+        Me.DataGridViewTextBoxColumn57.ReadOnly = True
+        '
+        'DataGridViewCheckBoxColumn1
+        '
+        Me.DataGridViewCheckBoxColumn1.DataPropertyName = "Closed"
+        Me.DataGridViewCheckBoxColumn1.HeaderText = "Closed"
+        Me.DataGridViewCheckBoxColumn1.Name = "DataGridViewCheckBoxColumn1"
+        Me.DataGridViewCheckBoxColumn1.ReadOnly = True
+        '
+        'DataGridViewCheckBoxColumn2
+        '
+        Me.DataGridViewCheckBoxColumn2.DataPropertyName = "Cancelled"
+        Me.DataGridViewCheckBoxColumn2.HeaderText = "Cancelled"
+        Me.DataGridViewCheckBoxColumn2.Name = "DataGridViewCheckBoxColumn2"
+        Me.DataGridViewCheckBoxColumn2.ReadOnly = True
+        '
+        'txtSearch
+        '
+        Me.txtSearch.Location = New System.Drawing.Point(6, 6)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.Size = New System.Drawing.Size(215, 20)
+        Me.txtSearch.TabIndex = 11
+        Me.txtSearch.WatermarkColor = System.Drawing.Color.Gray
+        Me.txtSearch.WatermarkText = "Search"
+        '
+        'cmbField
+        '
+        Me.cmbField.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.cmbField.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbField.FormattingEnabled = True
+        Me.cmbField.Items.AddRange(New Object() {"ShipmentID", "STT No.:", "Archive No.:", "HBL No.:", "MBL No.:", "PO No.:", "SO No.:", "Inv No.:", "POL No.:"})
+        Me.cmbField.Location = New System.Drawing.Point(227, 6)
+        Me.cmbField.Name = "cmbField"
+        Me.cmbField.Size = New System.Drawing.Size(121, 21)
+        Me.cmbField.TabIndex = 12
         '
         'tabBooking
         '
@@ -729,11 +935,6 @@ Partial Class frmMaininterface
         Me.tabBooking.TabIndex = 1
         Me.tabBooking.Text = "Booking"
         Me.tabBooking.UseVisualStyleBackColor = True
-        '
-        'PoOrderBindingSource
-        '
-        Me.PoOrderBindingSource.DataMember = "poOrder"
-        Me.PoOrderBindingSource.DataSource = Me.DsDemag_HUB
         '
         'DsShipment_OrderDataGridView
         '
@@ -1212,6 +1413,11 @@ Partial Class frmMaininterface
         Me.tabDocuments.Text = "Documents"
         Me.tabDocuments.UseVisualStyleBackColor = True
         '
+        'PoOrderBindingSource
+        '
+        Me.PoOrderBindingSource.DataMember = "poOrder"
+        Me.PoOrderBindingSource.DataSource = Me.DsDemag_HUB
+        '
         'DsCommentBindingSource
         '
         Me.DsCommentBindingSource.DataMember = "dsShipmentsdsComment"
@@ -1268,26 +1474,6 @@ Partial Class frmMaininterface
         Me.btnNew.TabStop = False
         Me.btnNew.Text = "&New"
         Me.btnNew.UseVisualStyleBackColor = True
-        '
-        'txtSearch
-        '
-        Me.txtSearch.Location = New System.Drawing.Point(154, 46)
-        Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(215, 20)
-        Me.txtSearch.TabIndex = 11
-        Me.txtSearch.WatermarkColor = System.Drawing.Color.Gray
-        Me.txtSearch.WatermarkText = "Search"
-        '
-        'cmbField
-        '
-        Me.cmbField.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
-        Me.cmbField.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbField.FormattingEnabled = True
-        Me.cmbField.Items.AddRange(New Object() {"ShipmentID", "STT No.:", "Archive No.:", "HBL No.:", "MBL No.:", "PO No.:"})
-        Me.cmbField.Location = New System.Drawing.Point(375, 45)
-        Me.cmbField.Name = "cmbField"
-        Me.cmbField.Size = New System.Drawing.Size(121, 21)
-        Me.cmbField.TabIndex = 12
         '
         'cmbFilter
         '
@@ -1600,22 +1786,18 @@ Partial Class frmMaininterface
         Me.ClientSize = New System.Drawing.Size(956, 797)
         Me.Controls.Add(Me.TabControl3)
         Me.Controls.Add(Me.cmbFilter)
-        Me.Controls.Add(Me.cmbField)
-        Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.DsShipmentsBindingNavigator)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMaininterface"
         Me.Text = "Demag HUB"
         CType(Me.DsDemag_HUB, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsShipmentsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DsShipmentsBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.DsShipmentsBindingNavigator.ResumeLayout(False)
-        Me.DsShipmentsBindingNavigator.PerformLayout()
         Me.subTabShipments.ResumeLayout(False)
+        Me.tabOverview.ResumeLayout(False)
+        Me.tabOverview.PerformLayout()
+        CType(Me.DsShipmentsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabBooking.ResumeLayout(False)
         Me.tabBooking.PerformLayout()
-        CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsShipment_OrderDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsShipment_OrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsInvoiceDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1625,6 +1807,7 @@ Partial Class frmMaininterface
         CType(Me.UNLOCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsPartnerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsCommentBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl3.ResumeLayout(False)
         Me.tabShipments.ResumeLayout(False)
@@ -1645,19 +1828,6 @@ Partial Class frmMaininterface
     Friend WithEvents DsShipmentsBindingSource As BindingSource
     Friend WithEvents DsShipmentsTableAdapter As dsDemag_HUBTableAdapters.dsShipmentsTableAdapter
     Friend WithEvents TableAdapterManager As dsDemag_HUBTableAdapters.TableAdapterManager
-    Friend WithEvents DsShipmentsBindingNavigator As BindingNavigator
-    Friend WithEvents BindingNavigatorAddNewItem As ToolStripButton
-    Friend WithEvents BindingNavigatorCountItem As ToolStripLabel
-    Friend WithEvents BindingNavigatorDeleteItem As ToolStripButton
-    Friend WithEvents BindingNavigatorMoveFirstItem As ToolStripButton
-    Friend WithEvents BindingNavigatorMovePreviousItem As ToolStripButton
-    Friend WithEvents BindingNavigatorSeparator As ToolStripSeparator
-    Friend WithEvents BindingNavigatorPositionItem As ToolStripTextBox
-    Friend WithEvents BindingNavigatorSeparator1 As ToolStripSeparator
-    Friend WithEvents BindingNavigatorMoveNextItem As ToolStripButton
-    Friend WithEvents BindingNavigatorMoveLastItem As ToolStripButton
-    Friend WithEvents BindingNavigatorSeparator2 As ToolStripSeparator
-    Friend WithEvents DsShipmentsBindingNavigatorSaveItem As ToolStripButton
     Friend WithEvents Label1 As Label
     Friend WithEvents subTabShipments As TabControl
     Friend WithEvents tabSettings As TabPage
@@ -1765,4 +1935,41 @@ Partial Class frmMaininterface
     Friend WithEvents DataGridViewTextBoxColumn23 As DataGridViewTextBoxColumn
     Friend WithEvents PoOrderBindingSource As BindingSource
     Friend WithEvents PoOrderTableAdapter As dsDemag_HUBTableAdapters.poOrderTableAdapter
+    Friend WithEvents tabOverview As TabPage
+    Friend WithEvents DsShipmentsDataGridView As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn24 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn26 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn27 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn28 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn29 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn30 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn31 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn32 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn33 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn34 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn35 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn36 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn37 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn38 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn39 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn40 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn41 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn42 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn43 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn44 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn45 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn46 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn47 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn48 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn49 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn50 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn51 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn52 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn53 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn54 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn55 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn56 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn57 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewCheckBoxColumn1 As DataGridViewCheckBoxColumn
+    Friend WithEvents DataGridViewCheckBoxColumn2 As DataGridViewCheckBoxColumn
 End Class

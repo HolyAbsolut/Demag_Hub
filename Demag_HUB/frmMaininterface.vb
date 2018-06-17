@@ -4,7 +4,7 @@ Public Class frmMaininterface
     Dim dtnEmpty As String = "01.01.0001 00:00:00"
 
 
-    Private Sub DsShipmentsBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs) Handles DsShipmentsBindingNavigatorSaveItem.Click
+    Private Sub DsShipmentsBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs)
         Me.Validate()
         Me.DsShipmentsBindingSource.EndEdit()
         Me.TableAdapterManager.UpdateAll(Me.DsDemag_HUB)
@@ -296,7 +296,42 @@ Public Class frmMaininterface
 
     End Sub
 
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        Select Case cmbField.Text
+            Case Is = "ShipmentID"
+                DsShipmentsBindingSource.Filter = "Shipment_ID = '" & txtSearch.Text & "'"
+            Case Is = "STT No.:"
+                DsShipmentsBindingSource.Filter = "STT_No = '" & txtSearch.Text & "'"
+            Case Is = "Archive No.:"
+                DsShipmentsBindingSource.Filter = "Archive_No = '" & txtSearch.Text & "'"
+            Case Is = "HBL No.:"
+                DsShipmentsBindingSource.Filter = "HBL_No = '" & txtSearch.Text & "'"
+            Case Is = "MBL No.:"
+                DsShipmentsBindingSource.Filter = "MBL_No = '" & txtSearch.Text & "'"
+            Case Is = "POL No.:"
+                DsShipmentsBindingSource.Filter = "POL_No = '" & txtSearch.Text & "'"
+            Case Is = "PO No.:"
+                HaesslichesEntlein(txtSearch.Text)
+            Case Else
+                MsgBox("Filter unbekannt:" & cmbField.Text)
+        End Select
+    End Sub
 
+    Sub HaesslichesEntlein(ByVal PoNo As String)
+        Dim strFilter As String = ""
+        DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = "Purchase_Order = '" & PoNo & "'"
+        For Each Row As DataRowView In DsDemag_HUB.dsShipment_Order.DefaultView
+            If strFilter = "" Then
+                strFilter += "Shipment_ID = '" & Row.Item("Shipment_ID").ToString & "'"
+            Else
+                strFilter += " OR Shipment_ID = '" & Row.Item("Shipment_ID").ToString & "'"
+            End If
+        Next
+        DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = String.Empty
+        DsShipmentsBindingSource.Filter = strFilter
+    End Sub
 
-
+    Private Sub DsShipmentsDataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DsShipmentsDataGridView.CellDoubleClick
+        Me.subTabShipments.SelectedTab = tabBooking
+    End Sub
 End Class
