@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMaininterface
     Inherits System.Windows.Forms.Form
 
     'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmMaininterface
     'Hinweis: Die folgende Prozedur ist für den Windows Form-Designer erforderlich.
     'Das Bearbeiten ist mit dem Windows Form-Designer möglich.  
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DtnETALabel As System.Windows.Forms.Label
@@ -49,6 +49,7 @@ Partial Class frmMaininterface
         Dim Tango_IDLabel As System.Windows.Forms.Label
         Dim ICM_IDLabel As System.Windows.Forms.Label
         Dim PartnerNameLabel As System.Windows.Forms.Label
+        Dim Label3 As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMaininterface))
         Me.DsDemag_HUB = New Demag_HUB.dsDemag_HUB()
         Me.DsShipmentsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -72,6 +73,20 @@ Partial Class frmMaininterface
         Me.Label1 = New System.Windows.Forms.Label()
         Me.subTabShipments = New System.Windows.Forms.TabControl()
         Me.tabBooking = New System.Windows.Forms.TabPage()
+        Me.DsShipmentsdsInvoiceBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.btnDeletePO = New System.Windows.Forms.Button()
+        Me.btnAddPO = New System.Windows.Forms.Button()
+        Me.txtPoNo = New System.Windows.Forms.TextBox()
+        Me.btnaddDocument = New System.Windows.Forms.Button()
+        Me.DsInvoiceDataGridView = New System.Windows.Forms.DataGridView()
+        Me.InvoiceNoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LinkDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewLinkColumn()
+        Me.CreatedDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DsCommentDataGridView = New System.Windows.Forms.DataGridView()
+        Me.TxtCommentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PublicDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.CreatedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DsShipmentsdsCommentBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.dtnETA = New System.Windows.Forms.TextBox()
         Me.dtnETD = New System.Windows.Forms.TextBox()
         Me.dtnCRD = New System.Windows.Forms.TextBox()
@@ -104,6 +119,7 @@ Partial Class frmMaininterface
         Me.tabShipping = New System.Windows.Forms.TabPage()
         Me.tabDispo = New System.Windows.Forms.TabPage()
         Me.tabDocuments = New System.Windows.Forms.TabPage()
+        Me.DsCommentBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tabSettings = New System.Windows.Forms.TabPage()
         Me.btnSave = New System.Windows.Forms.Button()
@@ -146,14 +162,10 @@ Partial Class frmMaininterface
         Me.DsContactTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsContactTableAdapter()
         Me.DsAddressTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsAddressTableAdapter()
         Me.UNLOCTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.UNLOCTableAdapter()
-        Me.DsCommentBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsCommentTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsCommentTableAdapter()
-        Me.DsCommentDataGridView = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn22 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.DataGridViewTextBoxColumn23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DsInvoiceTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsInvoiceTableAdapter()
+        Me.dlgFileDialog = New System.Windows.Forms.OpenFileDialog()
+        Me.dsInvoiceBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         DtnETALabel = New System.Windows.Forms.Label()
         DtnETDLabel = New System.Windows.Forms.Label()
         DtnCRDLabel = New System.Windows.Forms.Label()
@@ -180,15 +192,21 @@ Partial Class frmMaininterface
         Tango_IDLabel = New System.Windows.Forms.Label()
         ICM_IDLabel = New System.Windows.Forms.Label()
         PartnerNameLabel = New System.Windows.Forms.Label()
+        Label3 = New System.Windows.Forms.Label()
         CType(Me.DsDemag_HUB, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipmentsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipmentsBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DsShipmentsBindingNavigator.SuspendLayout()
         Me.subTabShipments.SuspendLayout()
         Me.tabBooking.SuspendLayout()
+        CType(Me.DsShipmentsdsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsInvoiceDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsCommentDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsShipmentsdsCommentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.UNLOCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsPartnerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsCommentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl3.SuspendLayout()
         Me.tabShipments.SuspendLayout()
         Me.tabPartner.SuspendLayout()
@@ -196,8 +214,7 @@ Partial Class frmMaininterface
         CType(Me.DsAddressBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsContactDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsContactBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DsCommentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DsCommentDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DtnETALabel
@@ -435,6 +452,15 @@ Partial Class frmMaininterface
         PartnerNameLabel.TabIndex = 8
         PartnerNameLabel.Text = "Partner Name:"
         '
+        'Label3
+        '
+        Label3.AutoSize = True
+        Label3.Location = New System.Drawing.Point(25, 300)
+        Label3.Name = "Label3"
+        Label3.Size = New System.Drawing.Size(47, 13)
+        Label3.TabIndex = 93
+        Label3.Text = "Add PO:"
+        '
         'DsDemag_HUB
         '
         Me.DsDemag_HUB.DataSetName = "dsDemag_HUB"
@@ -621,12 +647,18 @@ Partial Class frmMaininterface
         Me.subTabShipments.Location = New System.Drawing.Point(145, 6)
         Me.subTabShipments.Name = "subTabShipments"
         Me.subTabShipments.SelectedIndex = 0
-        Me.subTabShipments.Size = New System.Drawing.Size(773, 453)
+        Me.subTabShipments.Size = New System.Drawing.Size(773, 675)
         Me.subTabShipments.TabIndex = 2
         '
         'tabBooking
         '
         Me.tabBooking.AutoScroll = True
+        Me.tabBooking.Controls.Add(Me.btnDeletePO)
+        Me.tabBooking.Controls.Add(Me.btnAddPO)
+        Me.tabBooking.Controls.Add(Label3)
+        Me.tabBooking.Controls.Add(Me.txtPoNo)
+        Me.tabBooking.Controls.Add(Me.btnaddDocument)
+        Me.tabBooking.Controls.Add(Me.DsInvoiceDataGridView)
         Me.tabBooking.Controls.Add(Me.DsCommentDataGridView)
         Me.tabBooking.Controls.Add(Me.dtnETA)
         Me.tabBooking.Controls.Add(Me.dtnETD)
@@ -680,10 +712,130 @@ Partial Class frmMaininterface
         Me.tabBooking.Location = New System.Drawing.Point(4, 22)
         Me.tabBooking.Name = "tabBooking"
         Me.tabBooking.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabBooking.Size = New System.Drawing.Size(765, 427)
+        Me.tabBooking.Size = New System.Drawing.Size(765, 649)
         Me.tabBooking.TabIndex = 1
         Me.tabBooking.Text = "Booking"
         Me.tabBooking.UseVisualStyleBackColor = True
+        '
+        'DsShipmentsdsInvoiceBindingSource
+        '
+        Me.DsShipmentsdsInvoiceBindingSource.DataMember = "dsShipmentsdsInvoice"
+        Me.DsShipmentsdsInvoiceBindingSource.DataSource = Me.DsShipmentsBindingSource
+        '
+        'btnDeletePO
+        '
+        Me.btnDeletePO.Location = New System.Drawing.Point(271, 294)
+        Me.btnDeletePO.Name = "btnDeletePO"
+        Me.btnDeletePO.Size = New System.Drawing.Size(25, 25)
+        Me.btnDeletePO.TabIndex = 95
+        Me.btnDeletePO.TabStop = False
+        Me.btnDeletePO.Text = "-"
+        Me.btnDeletePO.UseVisualStyleBackColor = True
+        Me.btnDeletePO.Visible = False
+        '
+        'btnAddPO
+        '
+        Me.btnAddPO.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnAddPO.Location = New System.Drawing.Point(240, 294)
+        Me.btnAddPO.Name = "btnAddPO"
+        Me.btnAddPO.Size = New System.Drawing.Size(25, 25)
+        Me.btnAddPO.TabIndex = 94
+        Me.btnAddPO.TabStop = False
+        Me.btnAddPO.Text = "+"
+        Me.btnAddPO.UseVisualStyleBackColor = True
+        '
+        'txtPoNo
+        '
+        Me.txtPoNo.Location = New System.Drawing.Point(134, 297)
+        Me.txtPoNo.Name = "txtPoNo"
+        Me.txtPoNo.Size = New System.Drawing.Size(100, 20)
+        Me.txtPoNo.TabIndex = 92
+        '
+        'btnaddDocument
+        '
+        Me.btnaddDocument.AllowDrop = True
+        Me.btnaddDocument.Location = New System.Drawing.Point(673, 470)
+        Me.btnaddDocument.Name = "btnaddDocument"
+        Me.btnaddDocument.Size = New System.Drawing.Size(86, 89)
+        Me.btnaddDocument.TabIndex = 90
+        Me.btnaddDocument.Text = "Add Document"
+        Me.btnaddDocument.UseVisualStyleBackColor = True
+        '
+        'DsInvoiceDataGridView
+        '
+        Me.DsInvoiceDataGridView.AllowUserToAddRows = False
+        Me.DsInvoiceDataGridView.AllowUserToDeleteRows = False
+        Me.DsInvoiceDataGridView.AutoGenerateColumns = False
+        Me.DsInvoiceDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DsInvoiceDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.InvoiceNoDataGridViewTextBoxColumn, Me.LinkDataGridViewTextBoxColumn, Me.CreatedDataGridViewTextBoxColumn1})
+        Me.DsInvoiceDataGridView.DataSource = Me.DsShipmentsdsInvoiceBindingSource
+        Me.DsInvoiceDataGridView.Location = New System.Drawing.Point(7, 470)
+        Me.DsInvoiceDataGridView.Name = "DsInvoiceDataGridView"
+        Me.DsInvoiceDataGridView.ReadOnly = True
+        Me.DsInvoiceDataGridView.Size = New System.Drawing.Size(660, 89)
+        Me.DsInvoiceDataGridView.TabIndex = 88
+        '
+        'InvoiceNoDataGridViewTextBoxColumn
+        '
+        Me.InvoiceNoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.InvoiceNoDataGridViewTextBoxColumn.DataPropertyName = "Invoice_No"
+        Me.InvoiceNoDataGridViewTextBoxColumn.HeaderText = "Invoice_No"
+        Me.InvoiceNoDataGridViewTextBoxColumn.Name = "InvoiceNoDataGridViewTextBoxColumn"
+        Me.InvoiceNoDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'LinkDataGridViewTextBoxColumn
+        '
+        Me.LinkDataGridViewTextBoxColumn.DataPropertyName = "Link"
+        Me.LinkDataGridViewTextBoxColumn.HeaderText = "Link"
+        Me.LinkDataGridViewTextBoxColumn.Name = "LinkDataGridViewTextBoxColumn"
+        Me.LinkDataGridViewTextBoxColumn.ReadOnly = True
+        Me.LinkDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.LinkDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'CreatedDataGridViewTextBoxColumn1
+        '
+        Me.CreatedDataGridViewTextBoxColumn1.DataPropertyName = "Created"
+        Me.CreatedDataGridViewTextBoxColumn1.HeaderText = "Created"
+        Me.CreatedDataGridViewTextBoxColumn1.Name = "CreatedDataGridViewTextBoxColumn1"
+        Me.CreatedDataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'DsCommentDataGridView
+        '
+        Me.DsCommentDataGridView.AllowUserToDeleteRows = False
+        Me.DsCommentDataGridView.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DsCommentDataGridView.AutoGenerateColumns = False
+        Me.DsCommentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DsCommentDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TxtCommentDataGridViewTextBoxColumn, Me.PublicDataGridViewCheckBoxColumn, Me.CreatedDataGridViewTextBoxColumn})
+        Me.DsCommentDataGridView.DataSource = Me.DsShipmentsdsCommentBindingSource
+        Me.DsCommentDataGridView.Location = New System.Drawing.Point(7, 531)
+        Me.DsCommentDataGridView.Name = "DsCommentDataGridView"
+        Me.DsCommentDataGridView.Size = New System.Drawing.Size(914, 78)
+        Me.DsCommentDataGridView.TabIndex = 89
+        '
+        'TxtCommentDataGridViewTextBoxColumn
+        '
+        Me.TxtCommentDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.TxtCommentDataGridViewTextBoxColumn.DataPropertyName = "txtComment"
+        Me.TxtCommentDataGridViewTextBoxColumn.HeaderText = "txtComment"
+        Me.TxtCommentDataGridViewTextBoxColumn.Name = "TxtCommentDataGridViewTextBoxColumn"
+        '
+        'PublicDataGridViewCheckBoxColumn
+        '
+        Me.PublicDataGridViewCheckBoxColumn.DataPropertyName = "Public"
+        Me.PublicDataGridViewCheckBoxColumn.HeaderText = "Public"
+        Me.PublicDataGridViewCheckBoxColumn.Name = "PublicDataGridViewCheckBoxColumn"
+        '
+        'CreatedDataGridViewTextBoxColumn
+        '
+        Me.CreatedDataGridViewTextBoxColumn.DataPropertyName = "Created"
+        Me.CreatedDataGridViewTextBoxColumn.HeaderText = "Created"
+        Me.CreatedDataGridViewTextBoxColumn.Name = "CreatedDataGridViewTextBoxColumn"
+        '
+        'DsShipmentsdsCommentBindingSource
+        '
+        Me.DsShipmentsdsCommentBindingSource.DataMember = "dsShipmentsdsComment"
+        Me.DsShipmentsdsCommentBindingSource.DataSource = Me.DsShipmentsBindingSource
         '
         'dtnETA
         '
@@ -977,7 +1129,7 @@ Partial Class frmMaininterface
         Me.tabShipping.Location = New System.Drawing.Point(4, 22)
         Me.tabShipping.Name = "tabShipping"
         Me.tabShipping.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabShipping.Size = New System.Drawing.Size(765, 427)
+        Me.tabShipping.Size = New System.Drawing.Size(765, 649)
         Me.tabShipping.TabIndex = 2
         Me.tabShipping.Text = "Shipping"
         Me.tabShipping.UseVisualStyleBackColor = True
@@ -987,7 +1139,7 @@ Partial Class frmMaininterface
         Me.tabDispo.Location = New System.Drawing.Point(4, 22)
         Me.tabDispo.Name = "tabDispo"
         Me.tabDispo.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabDispo.Size = New System.Drawing.Size(765, 427)
+        Me.tabDispo.Size = New System.Drawing.Size(765, 649)
         Me.tabDispo.TabIndex = 3
         Me.tabDispo.Text = "Dispo"
         Me.tabDispo.UseVisualStyleBackColor = True
@@ -997,10 +1149,15 @@ Partial Class frmMaininterface
         Me.tabDocuments.Location = New System.Drawing.Point(4, 22)
         Me.tabDocuments.Name = "tabDocuments"
         Me.tabDocuments.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabDocuments.Size = New System.Drawing.Size(765, 427)
+        Me.tabDocuments.Size = New System.Drawing.Size(765, 649)
         Me.tabDocuments.TabIndex = 4
         Me.tabDocuments.Text = "Documents"
         Me.tabDocuments.UseVisualStyleBackColor = True
+        '
+        'DsCommentBindingSource
+        '
+        Me.DsCommentBindingSource.DataMember = "dsShipmentsdsComment"
+        Me.DsCommentBindingSource.DataSource = Me.DsShipmentsBindingSource
         '
         'Label2
         '
@@ -1016,7 +1173,7 @@ Partial Class frmMaininterface
         Me.tabSettings.Location = New System.Drawing.Point(4, 4)
         Me.tabSettings.Name = "tabSettings"
         Me.tabSettings.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabSettings.Size = New System.Drawing.Size(924, 465)
+        Me.tabSettings.Size = New System.Drawing.Size(924, 687)
         Me.tabSettings.TabIndex = 0
         Me.tabSettings.Text = "Settings"
         Me.tabSettings.UseVisualStyleBackColor = True
@@ -1097,7 +1254,7 @@ Partial Class frmMaininterface
         Me.TabControl3.Multiline = True
         Me.TabControl3.Name = "TabControl3"
         Me.TabControl3.SelectedIndex = 0
-        Me.TabControl3.Size = New System.Drawing.Size(932, 491)
+        Me.TabControl3.Size = New System.Drawing.Size(932, 713)
         Me.TabControl3.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
         Me.TabControl3.TabIndex = 16
         '
@@ -1112,7 +1269,7 @@ Partial Class frmMaininterface
         Me.tabShipments.Location = New System.Drawing.Point(4, 4)
         Me.tabShipments.Name = "tabShipments"
         Me.tabShipments.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabShipments.Size = New System.Drawing.Size(924, 465)
+        Me.tabShipments.Size = New System.Drawing.Size(924, 687)
         Me.tabShipments.TabIndex = 0
         Me.tabShipments.Text = "Shipments"
         Me.tabShipments.UseVisualStyleBackColor = True
@@ -1143,7 +1300,7 @@ Partial Class frmMaininterface
         Me.tabPartner.Location = New System.Drawing.Point(4, 4)
         Me.tabPartner.Name = "tabPartner"
         Me.tabPartner.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabPartner.Size = New System.Drawing.Size(924, 465)
+        Me.tabPartner.Size = New System.Drawing.Size(924, 687)
         Me.tabPartner.TabIndex = 1
         Me.tabPartner.Text = "Partner"
         Me.tabPartner.UseVisualStyleBackColor = True
@@ -1353,64 +1510,28 @@ Partial Class frmMaininterface
         '
         Me.UNLOCTableAdapter.ClearBeforeFill = True
         '
-        'DsCommentBindingSource
-        '
-        Me.DsCommentBindingSource.DataMember = "dsShipmentsdsComment"
-        Me.DsCommentBindingSource.DataSource = Me.DsShipmentsBindingSource
-        '
         'DsCommentTableAdapter
         '
         Me.DsCommentTableAdapter.ClearBeforeFill = True
         '
-        'DsCommentDataGridView
+        'DsInvoiceTableAdapter
         '
-        Me.DsCommentDataGridView.AutoGenerateColumns = False
-        Me.DsCommentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DsCommentDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn20, Me.DataGridViewTextBoxColumn21, Me.DataGridViewTextBoxColumn22, Me.DataGridViewCheckBoxColumn1, Me.DataGridViewTextBoxColumn23})
-        Me.DsCommentDataGridView.DataSource = Me.DsCommentBindingSource
-        Me.DsCommentDataGridView.Location = New System.Drawing.Point(381, 257)
-        Me.DsCommentDataGridView.Name = "DsCommentDataGridView"
-        Me.DsCommentDataGridView.Size = New System.Drawing.Size(281, 150)
-        Me.DsCommentDataGridView.TabIndex = 86
+        Me.DsInvoiceTableAdapter.ClearBeforeFill = True
         '
-        'DataGridViewTextBoxColumn20
+        'dlgFileDialog
         '
-        Me.DataGridViewTextBoxColumn20.DataPropertyName = "Comment_ID"
-        Me.DataGridViewTextBoxColumn20.HeaderText = "Comment_ID"
-        Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
-        Me.DataGridViewTextBoxColumn20.Visible = False
+        Me.dlgFileDialog.FileName = "x"
         '
-        'DataGridViewTextBoxColumn21
+        'dsInvoiceBindingSource
         '
-        Me.DataGridViewTextBoxColumn21.DataPropertyName = "Shipment_ID"
-        Me.DataGridViewTextBoxColumn21.HeaderText = "Shipment_ID"
-        Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
-        Me.DataGridViewTextBoxColumn21.Visible = False
-        '
-        'DataGridViewTextBoxColumn22
-        '
-        Me.DataGridViewTextBoxColumn22.DataPropertyName = "Created"
-        Me.DataGridViewTextBoxColumn22.HeaderText = "Created"
-        Me.DataGridViewTextBoxColumn22.Name = "DataGridViewTextBoxColumn22"
-        '
-        'DataGridViewCheckBoxColumn1
-        '
-        Me.DataGridViewCheckBoxColumn1.DataPropertyName = "Public"
-        Me.DataGridViewCheckBoxColumn1.HeaderText = "Public"
-        Me.DataGridViewCheckBoxColumn1.Name = "DataGridViewCheckBoxColumn1"
-        '
-        'DataGridViewTextBoxColumn23
-        '
-        Me.DataGridViewTextBoxColumn23.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DataGridViewTextBoxColumn23.DataPropertyName = "txtComment"
-        Me.DataGridViewTextBoxColumn23.HeaderText = "txtComment"
-        Me.DataGridViewTextBoxColumn23.Name = "DataGridViewTextBoxColumn23"
+        Me.dsInvoiceBindingSource.DataMember = "dsShipmentsdsInvoice"
+        Me.dsInvoiceBindingSource.DataSource = Me.DsShipmentsBindingSource
         '
         'frmMaininterface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(956, 575)
+        Me.ClientSize = New System.Drawing.Size(956, 797)
         Me.Controls.Add(Me.TabControl3)
         Me.Controls.Add(Me.cmbFilter)
         Me.Controls.Add(Me.cmbField)
@@ -1428,9 +1549,14 @@ Partial Class frmMaininterface
         Me.subTabShipments.ResumeLayout(False)
         Me.tabBooking.ResumeLayout(False)
         Me.tabBooking.PerformLayout()
+        CType(Me.DsShipmentsdsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsInvoiceDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsCommentDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsShipmentsdsCommentBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.UNLOCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsPartnerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsCommentBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl3.ResumeLayout(False)
         Me.tabShipments.ResumeLayout(False)
         Me.tabShipments.PerformLayout()
@@ -1440,8 +1566,7 @@ Partial Class frmMaininterface
         CType(Me.DsAddressBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsContactDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsContactBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DsCommentBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DsCommentDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1545,10 +1670,21 @@ Partial Class frmMaininterface
     Friend WithEvents dtnETD As TextBox
     Friend WithEvents DsCommentBindingSource As BindingSource
     Friend WithEvents DsCommentTableAdapter As dsDemag_HUBTableAdapters.dsCommentTableAdapter
+    Friend WithEvents btnaddDocument As Button
+    Friend WithEvents DsInvoiceDataGridView As DataGridView
     Friend WithEvents DsCommentDataGridView As DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn20 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn21 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn22 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewCheckBoxColumn1 As DataGridViewCheckBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn23 As DataGridViewTextBoxColumn
+    Friend WithEvents DsShipmentsdsCommentBindingSource As BindingSource
+    Friend WithEvents DsShipmentsdsInvoiceBindingSource As BindingSource
+    Friend WithEvents DsInvoiceTableAdapter As dsDemag_HUBTableAdapters.dsInvoiceTableAdapter
+    Friend WithEvents InvoiceNoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents LinkDataGridViewTextBoxColumn As DataGridViewLinkColumn
+    Friend WithEvents CreatedDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents TxtCommentDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PublicDataGridViewCheckBoxColumn As DataGridViewCheckBoxColumn
+    Friend WithEvents CreatedDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents btnDeletePO As Button
+    Friend WithEvents btnAddPO As Button
+    Friend WithEvents txtPoNo As TextBox
+    Friend WithEvents dlgFileDialog As OpenFileDialog
+    Friend WithEvents dsInvoiceBindingSource As BindingSource
 End Class
