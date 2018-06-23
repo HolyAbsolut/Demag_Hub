@@ -1,7 +1,13 @@
-﻿Imports System.Text
+﻿Option Strict On
+
+Imports System.Text
 Imports System.IO
 Public Class frmMaininterface
     Dim dtnEmpty As String = "01.01.0001 00:00:00"
+    Dim CON As New OleDb.OleDbConnection
+    Dim MyConnection As System.Data.OleDb.OleDbConnection
+    Dim MyCommand As System.Data.OleDb.OleDbDataAdapter
+    Dim ImportDS As System.Data.DataSet
 
 
     Private Sub DsShipmentsBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs)
@@ -106,9 +112,10 @@ Public Class frmMaininterface
 
 
 
-    Private Sub dtnConvert(sender As Object, e As EventArgs) Handles dtnCRD.Leave, dtnETD.Leave, dtnETA.Leave
+    Private Sub dtnConvert(ctlButton As Object, e As EventArgs) Handles dtnCRD.Leave, dtnETD.Leave, dtnETA.Leave
+        Dim sender As Control = CType(ctlButton, Control)
         If sender.Text = "" Then
-            DsDemag_HUB.dsShipments.Rows.Find(Shipment_IDTextBox.Text).Item(sender.name) = System.DBNull.Value
+            DsDemag_HUB.dsShipments.Rows.Find(Shipment_IDTextBox.Text).Item(sender.Name) = System.DBNull.Value
         Else
             sender.Text = getDate(sender.Text).ToString
         End If
@@ -231,13 +238,13 @@ Public Class frmMaininterface
         'Datenbank ergänzen
         Dim newDocRow As dsDemag_HUB.dsInvoiceRow
         newDocRow = DsDemag_HUB.dsInvoice.NewdsInvoiceRow
-        newDocRow.Shipment_ID = Shipment_IDTextBox.Text
+        newDocRow.Shipment_ID = Convert.ToInt32(Shipment_IDTextBox.Text)
         newDocRow.Created = Date.Now
         newDocRow.Invoice_No = frmDocument.docNo
         newDocRow.Link = frmDocument.docDirectory
         DsDemag_HUB.dsInvoice.Rows.Add(newDocRow)
 
-        Me.DsInvoiceBindingSource.EndEdit()
+        Me.dsInvoiceBindingSource.EndEdit()
         Me.DsInvoiceTableAdapter.Update(Me.DsDemag_HUB.dsInvoice)
 
 
@@ -284,7 +291,7 @@ Public Class frmMaininterface
         'PO mit Shipment verknüpfen
         Dim newShipmentPO As dsDemag_HUB.dsShipment_OrderRow
         newShipmentPO = DsDemag_HUB.dsShipment_Order.NewdsShipment_OrderRow
-        newShipmentPO.Shipment_ID = Shipment_IDTextBox.Text
+        newShipmentPO.Shipment_ID = Convert.ToInt32(Shipment_IDTextBox.Text)
         newShipmentPO.Purchase_Order = txtPoNo.Text
         newShipmentPO.Created = Date.Now
         DsDemag_HUB.dsShipment_Order.Rows.Add(newShipmentPO)
@@ -334,4 +341,308 @@ Public Class frmMaininterface
     Private Sub DsShipmentsDataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DsShipmentsDataGridView.CellDoubleClick
         Me.subTabShipments.SelectedTab = tabBooking
     End Sub
+
+    Private Sub txtPoNo_Enter(sender As Object, e As EventArgs) Handles txtPoNo.Enter
+        Me.AcceptButton = btnAddPO
+    End Sub
+
+    Private Sub txtPoNo_Leave(sender As Object, e As EventArgs) Handles txtPoNo.Leave
+        Me.AcceptButton = btnSave
+    End Sub
+
+    Private Sub txtSearch_Enter(sender As Object, e As EventArgs) Handles txtSearch.Enter
+        Me.AcceptButton = btnSearch
+    End Sub
+
+    Private Sub txtSearch_Leave(sender As Object, e As EventArgs) Handles txtSearch.Leave
+        Me.AcceptButton = btnSave
+    End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Dim WithEvents bgwImportICM As New System.ComponentModel.BackgroundWorker With {.WorkerReportsProgress = True, .WorkerSupportsCancellation = True}
+
+    'C:\Users\HolyAbsolut\Desktop\view_orders.xlsx
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'searchPartner("DEHAGDPIMSw001", "Tango_ID", "Tester")
+
+        ImportICM("C:\Users\HolyAbsolut\Desktop\view_orders.xlsx", "BM_New_PO")
+
+
+        'If Not bgwImportICM.IsBusy Then
+        '    Button1.Enabled = False
+        '    Label_Result.Text = "Bitte warten..."
+        '    ProgressBar.Maximum = 50
+        '    ProgressBar.Value = 0
+        '    bgwImportICM.RunWorkerAsync(50)
+
+
+        'End If
+
+    End Sub
+
+    'Backgroundworker
+    'https://www.vb-paradise.de/index.php/Thread/61500-Multithreading-mit-BackgroundWorker/#codeLine_4_82b19c
+
+    Function searchPartner(ByVal searchString As String, ByVal searchColum As String, Optional ByVal PartnerName As String = "NewPartner") As Integer
+        DsPartnerBindingSource.Filter = searchColum & " = '" & searchString & "'"
+        Select Case DsPartnerBindingSource.Count
+            Case = 1
+                Dim ptRow As DataRow = DsDemag_HUB.dsPartner.Rows(DsDemag_HUB.dsPartner.Rows.IndexOf(DirectCast(DsPartnerBindingSource.Current, DataRowView).Row))
+                Return Convert.ToInt32(ptRow.Item("Partner_ID"))
+            Case = 0
+                Dim newParter As dsDemag_HUB.dsPartnerRow
+                newParter = DsDemag_HUB.dsPartner.NewdsPartnerRow
+                newParter.Created = Now
+                newParter.PartnerName = PartnerName
+                newParter.Item(searchColum) = searchString
+                DsDemag_HUB.dsPartner.Rows.Add(newParter)
+
+                Return newParter.Partner_ID
+            Case Else
+                'Hier müsste noch ein multiple choice hin
+                Return 4
+        End Select
+
+    End Function
+
+    Function searchUNLOC(ByVal searchString As String, ByVal searchColumn As String) As String
+        UNLOCBindingSource.Filter = searchColumn & " = '" & searchString & "'"
+        If UNLOCBindingSource.Count = 1 Then
+            Dim unRow As DataRow = DsDemag_HUB.UNLOC.Rows(DsDemag_HUB.UNLOC.Rows.IndexOf(DirectCast(UNLOCBindingSource.Current, DataRowView).Row))
+            Return unRow.Item("UNLOC").ToString
+        Else
+            Return "ZZZZZ"
+        End If
+
+    End Function
+
+
+
+
+    Sub ImportICM(ByVal xlsFile As String, ByVal xlsTable As String)
+        'Prüfen ob Datei vorhanden
+        If My.Computer.FileSystem.FileExists(xlsFile) = False Then
+            MsgBox("Keine Datei gefungen")
+            Exit Sub
+        End If
+        'Prüfen ob Datei eine Excel Datei ist
+        Dim blExtension As Boolean = False
+        If Path.GetExtension(xlsFile) = ".xls" Then blExtension = True
+        If Path.GetExtension(xlsFile) = ".XLS" Then blExtension = True
+        If Path.GetExtension(xlsFile) = ".xlsx" Then blExtension = True
+        If Path.GetExtension(xlsFile) = ".XLSX" Then blExtension = True
+        If blExtension = False Then
+            MsgBox("Keine Excel Datei")
+            Exit Sub
+        End If
+
+
+
+
+
+        'ICM xls in DS einspielen
+        Try
+            MyConnection = New System.Data.OleDb.OleDbConnection _
+            ("provider=Microsoft.ACE.OLEDB.12.0;" &
+            " Data Source='" & xlsFile & "'; " &
+             "Extended Properties=Excel 12.0;")
+            MyCommand = New System.Data.OleDb.OleDbDataAdapter _
+                ("select * from [" & xlsTable & "$]", MyConnection)
+            MyCommand.TableMappings.Add("Table", "ICMImport")
+            ImportDS = New System.Data.DataSet
+            MyCommand.Fill(ImportDS)
+            'DataGridView1.DataSource = DtSet.Tables(0)
+            MyConnection.Close()
+        Catch ex As Exception
+            MsgBox("Kritischer Fehler" & ex.ToString)
+            Exit Sub
+        End Try
+
+        Dim countRecord As Integer = 0
+        ProgressBar.Maximum = ImportDS.Tables("ICMImport").Rows.Count
+        ProgressBar.Value = countRecord
+
+
+        'Import Zeile für Zeile bearbeiten
+        For Each Row As DataRow In ImportDS.Tables("ICMImport").Rows
+            Dim PO As String 'PO Bestimmen
+            If Row("Purchase Order").ToString().Length = 21 Then
+                Dim lsPO As String() = Row("Purchase Order").ToString().Split(New Char() {"_"c})
+                'MsgBox(lsPO(0))
+                PO = lsPO(0)
+                PO = PO.Substring(1, PO.Length - 1) ' Um die Null wegzubekomen
+            Else
+                PO = Row("Purchase Order").ToString()
+            End If
+
+            'Prüfen ob Record bereits vorhanden
+            PoOrderBindingSource.Filter = "Purchase_Order = '" & PO & "'"
+            If PoOrderBindingSource.Count = 0 Then
+                Dim newPO As dsDemag_HUB.poOrderRow
+                newPO = DsDemag_HUB.poOrder.NewpoOrderRow
+                newPO.Purchase_Order = PO
+                newPO.Alias_Purchase_Order = Row("Purchase Order").ToString()
+                newPO.Created = Date.Now
+                newPO.Supplier = searchPartner(Row("Supplier Code").ToString(), "ICM_ID", Row("Supplier").ToString())
+                If Row("Planned Mode").ToString() = "Ocean" Then newPO.Service = "SEA"
+                If Row("Planned Mode").ToString() = "Air" Then newPO.Service = "AIR"
+                Select Case Row("Shipping Terms").ToString()
+                    Case Is = "Carriage Paid To"
+                        newPO.Incoterm = "CPT"
+                    Case Is = "Carriage and Insurance Paid To"
+                        newPO.Incoterm = "CIP"
+                    Case Is = "Cost And Freight (CAF)"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Cost and Freight (CFR)"
+                        newPO.Incoterm = "CFR"
+                    Case Is = "Cost, Insurance, And Freight"
+                        newPO.Incoterm = "CIF"
+                    Case Is = "DOCK SIDE DUTY PAID FRT COLLECT"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "DOCK SIDE DUTY PAID FRT PREPAID"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Delivered Duty Paid"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Delivered Ex Quay"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Delivered Ex Ship"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Delivered at Frontier"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Delivered at Place"
+                        newPO.Incoterm = "DAP"
+                    Case Is = "Delivered at Terminal"
+                        newPO.Incoterm = "DAT"
+                    Case Is = "Delivered, Duty Unpaid"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Delivery Duty Paid"
+                        newPO.Incoterm = "DDP"
+                    Case Is = "Domesically Supplied"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Ex Quay"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Ex Ship"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Ex Works"
+                        newPO.Incoterm = "EXW"
+                    Case Is = "Free Alongside Ship"
+                        newPO.Incoterm = "FAS"
+                    Case Is = "Free Carrier"
+                        newPO.Incoterm = "FCA"
+                    Case Is = "Free on Board"
+                        newPO.Incoterm = "FOB"
+                    Case Is = "Free on Rail"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Free on Truck"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Freight Carriage Paid To"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Freight Carriage and Insurance Paid To"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Landed Duty Paid"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Mutually Defined"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Non-privileged Foreign"
+                        newPO.Incoterm = "ZZZ"
+                    Case Is = "Privileged Foreign"
+                        newPO.Incoterm = "ZZZ"
+                    Case Else
+                        newPO.Incoterm = "ZZZ"
+
+                End Select  'Incoterm
+                newPO.Incoterm_Location = searchUNLOC(Row("Planned POL").ToString(), "ICM")
+                If Row("Latest On-Board Date").ToString() <> "" Then newPO.Latest_On_Board = Convert.ToDateTime(Row("Latest On-Board Date").ToString())
+                If Row("Expected Arrival Date").ToString() <> "" Then newPO.Latest_Arrival = Convert.ToDateTime(Row("Expected Arrival Date").ToString())
+                'newPO.Forwarding_Agent = ""
+                If Row("Acceptance Status").ToString() = "Order Accepted" Then newPO.Acceptance_Status = True
+                If Row("SQE Check Approval").ToString() <> "" Then newPO.SQE_Check = Convert.ToDateTime(Row("SQE Check Approval").ToString())
+                newPO.Division = Row("Division").ToString()
+                newPO.Buyer_Mail = Row("Buyer E-Mail Address").ToString()
+                DsDemag_HUB.poOrder.Rows.Add(newPO)
+
+            Else
+                'Update Funktion
+
+            End If
+            countRecord += 1
+            ProgressBar.Value = countRecord
+
+
+
+
+
+
+
+
+        Next
+
+        Me.DsPartnerBindingSource.EndEdit()
+        Me.DsPartnerTableAdapter.Update(Me.DsDemag_HUB.dsPartner)
+        Me.Validate()
+        Me.PoOrderBindingSource.EndEdit()
+        Me.PoOrderTableAdapter.Update(Me.DsDemag_HUB.poOrder)
+        MsgBox("Update successful")
+
+    End Sub
+
+
+
+
+    'Hier die Arbeit eingeben
+    Private Sub BGW_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bgwImportICM.DoWork
+        'Prüfen ob Datei vorhanden
+
+
+
+
+
+
+
+
+
+
+
+        For i As Integer = 0 To CInt(e.Argument) - 1
+            System.Threading.Thread.Sleep(10)
+            bgwImportICM.ReportProgress(i)
+        Next
+    End Sub
+
+    Private Sub BGW_ProgressChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ProgressChangedEventArgs) Handles bgwImportICM.ProgressChanged
+        ProgressBar.Value = e.ProgressPercentage + 1
+    End Sub
+
+    Private Sub BGW_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles bgwImportICM.RunWorkerCompleted
+        Label_Result.Text = "Vorgang abgeschlossen"
+        Button1.Enabled = True
+    End Sub
+
+
+
+
+
 End Class

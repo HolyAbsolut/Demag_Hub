@@ -6835,6 +6835,12 @@ Partial Public Class dsDemag_HUB
         
         Private columnAcceptance_Status As Global.System.Data.DataColumn
         
+        Private columnSQE_Check As Global.System.Data.DataColumn
+        
+        Private columnDivision As Global.System.Data.DataColumn
+        
+        Private columnBuyer_Mail As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -6959,6 +6965,30 @@ Partial Public Class dsDemag_HUB
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SQE_CheckColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSQE_Check
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DivisionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDivision
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Buyer_MailColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBuyer_Mail
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -6995,9 +7025,9 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddpoOrderRow(ByVal Purchase_Order As String, ByVal Alias_Purchase_Order As String, ByVal Created As Date, ByVal parentdsPartnerRowBydsPartnerpoOrder As dsPartnerRow, ByVal Service As String, ByVal parentIncotermRowByIncotermpoOrder As IncotermRow, ByVal parentUNLOCRowByUNLOCpoOrder As UNLOCRow, ByVal Latest_On_Board As Date, ByVal Latest_Arrival As Date, ByVal parentdsPartnerRowBydsPartnerpoOrder1 As dsPartnerRow, ByVal Acceptance_Status As Boolean) As poOrderRow
+        Public Overloads Function AddpoOrderRow(ByVal Purchase_Order As String, ByVal Alias_Purchase_Order As String, ByVal Created As Date, ByVal parentdsPartnerRowBydsPartnerpoOrder As dsPartnerRow, ByVal Service As String, ByVal parentIncotermRowByIncotermpoOrder As IncotermRow, ByVal parentUNLOCRowByUNLOCpoOrder As UNLOCRow, ByVal Latest_On_Board As Date, ByVal Latest_Arrival As Date, ByVal parentdsPartnerRowBydsPartnerpoOrder1 As dsPartnerRow, ByVal Acceptance_Status As Boolean, ByVal SQE_Check As Date, ByVal Division As String, ByVal Buyer_Mail As String) As poOrderRow
             Dim rowpoOrderRow As poOrderRow = CType(Me.NewRow,poOrderRow)
-            Dim columnValuesArray() As Object = New Object() {Purchase_Order, Alias_Purchase_Order, Created, Nothing, Service, Nothing, Nothing, Latest_On_Board, Latest_Arrival, Nothing, Acceptance_Status}
+            Dim columnValuesArray() As Object = New Object() {Purchase_Order, Alias_Purchase_Order, Created, Nothing, Service, Nothing, Nothing, Latest_On_Board, Latest_Arrival, Nothing, Acceptance_Status, SQE_Check, Division, Buyer_Mail}
             If (Not (parentdsPartnerRowBydsPartnerpoOrder) Is Nothing) Then
                 columnValuesArray(3) = parentdsPartnerRowBydsPartnerpoOrder(0)
             End If
@@ -7049,6 +7079,9 @@ Partial Public Class dsDemag_HUB
             Me.columnLatest_Arrival = MyBase.Columns("Latest_Arrival")
             Me.columnForwarding_Agent = MyBase.Columns("Forwarding_Agent")
             Me.columnAcceptance_Status = MyBase.Columns("Acceptance_Status")
+            Me.columnSQE_Check = MyBase.Columns("SQE_Check")
+            Me.columnDivision = MyBase.Columns("Division")
+            Me.columnBuyer_Mail = MyBase.Columns("Buyer_Mail")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7076,6 +7109,12 @@ Partial Public Class dsDemag_HUB
             MyBase.Columns.Add(Me.columnForwarding_Agent)
             Me.columnAcceptance_Status = New Global.System.Data.DataColumn("Acceptance_Status", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnAcceptance_Status)
+            Me.columnSQE_Check = New Global.System.Data.DataColumn("SQE_Check", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSQE_Check)
+            Me.columnDivision = New Global.System.Data.DataColumn("Division", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDivision)
+            Me.columnBuyer_Mail = New Global.System.Data.DataColumn("Buyer_Mail", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBuyer_Mail)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnPurchase_Order}, true))
             Me.columnPurchase_Order.AllowDBNull = false
             Me.columnPurchase_Order.Unique = true
@@ -7084,6 +7123,8 @@ Partial Public Class dsDemag_HUB
             Me.columnService.MaxLength = 255
             Me.columnIncoterm.MaxLength = 3
             Me.columnIncoterm_Location.MaxLength = 5
+            Me.columnDivision.MaxLength = 255
+            Me.columnBuyer_Mail.MaxLength = 255
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11379,6 +11420,8 @@ Partial Public Class dsDemag_HUB
         
         Private columnRemarks As Global.System.Data.DataColumn
         
+        Private columnICM As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -11519,6 +11562,14 @@ Partial Public Class dsDemag_HUB
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property ICMColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnICM
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -11555,9 +11606,9 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddUNLOCRow(ByVal UNLOC As String, ByVal Change As String, ByVal parentCountryCodesRowByCountryCodesUNLOC As CountryCodesRow, ByVal Location As String, ByVal Name As String, ByVal NameWoDiacritics As String, ByVal Subdivision As String, ByVal Status As String, ByVal _Function As String, ByVal _Date As String, ByVal IATA As String, ByVal Coordinates As String, ByVal Remarks As String) As UNLOCRow
+        Public Overloads Function AddUNLOCRow(ByVal UNLOC As String, ByVal Change As String, ByVal parentCountryCodesRowByCountryCodesUNLOC As CountryCodesRow, ByVal Location As String, ByVal Name As String, ByVal NameWoDiacritics As String, ByVal Subdivision As String, ByVal Status As String, ByVal _Function As String, ByVal _Date As String, ByVal IATA As String, ByVal Coordinates As String, ByVal Remarks As String, ByVal ICM As String) As UNLOCRow
             Dim rowUNLOCRow As UNLOCRow = CType(Me.NewRow,UNLOCRow)
-            Dim columnValuesArray() As Object = New Object() {UNLOC, Change, Nothing, Location, Name, NameWoDiacritics, Subdivision, Status, _Function, _Date, IATA, Coordinates, Remarks}
+            Dim columnValuesArray() As Object = New Object() {UNLOC, Change, Nothing, Location, Name, NameWoDiacritics, Subdivision, Status, _Function, _Date, IATA, Coordinates, Remarks, ICM}
             If (Not (parentCountryCodesRowByCountryCodesUNLOC) Is Nothing) Then
                 columnValuesArray(2) = parentCountryCodesRowByCountryCodesUNLOC(0)
             End If
@@ -11602,6 +11653,7 @@ Partial Public Class dsDemag_HUB
             Me.columnIATA = MyBase.Columns("IATA")
             Me.columnCoordinates = MyBase.Columns("Coordinates")
             Me.columnRemarks = MyBase.Columns("Remarks")
+            Me.columnICM = MyBase.Columns("ICM")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11639,6 +11691,8 @@ Partial Public Class dsDemag_HUB
             MyBase.Columns.Add(Me.columnCoordinates)
             Me.columnRemarks = New Global.System.Data.DataColumn("Remarks", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRemarks)
+            Me.columnICM = New Global.System.Data.DataColumn("ICM", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnICM)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnUNLOC}, true))
             Me.columnUNLOC.AllowDBNull = false
             Me.columnUNLOC.Unique = true
@@ -11655,6 +11709,7 @@ Partial Public Class dsDemag_HUB
             Me.columnIATA.MaxLength = 4
             Me.columnCoordinates.MaxLength = 20
             Me.columnRemarks.MaxLength = 536870910
+            Me.columnICM.MaxLength = 255
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -15564,6 +15619,51 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SQE_Check() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablepoOrder.SQE_CheckColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte SQE_Check in Tabelle poOrder ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepoOrder.SQE_CheckColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Division() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablepoOrder.DivisionColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Division in Tabelle poOrder ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepoOrder.DivisionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Buyer_Mail() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablepoOrder.Buyer_MailColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Buyer_Mail in Tabelle poOrder ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepoOrder.Buyer_MailColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property dsPartnerRowBydsPartnerpoOrder() As dsPartnerRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("dsPartnerpoOrder")),dsPartnerRow)
@@ -15724,6 +15824,42 @@ Partial Public Class dsDemag_HUB
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetAcceptance_StatusNull()
             Me(Me.tablepoOrder.Acceptance_StatusColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSQE_CheckNull() As Boolean
+            Return Me.IsNull(Me.tablepoOrder.SQE_CheckColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSQE_CheckNull()
+            Me(Me.tablepoOrder.SQE_CheckColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDivisionNull() As Boolean
+            Return Me.IsNull(Me.tablepoOrder.DivisionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDivisionNull()
+            Me(Me.tablepoOrder.DivisionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsBuyer_MailNull() As Boolean
+            Return Me.IsNull(Me.tablepoOrder.Buyer_MailColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetBuyer_MailNull()
+            Me(Me.tablepoOrder.Buyer_MailColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -19178,6 +19314,21 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ICM() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableUNLOC.ICMColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte ICM in Tabelle UNLOC ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableUNLOC.ICMColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property CountryCodesRow() As CountryCodesRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("CountryCodesUNLOC")),CountryCodesRow)
@@ -19329,6 +19480,18 @@ Partial Public Class dsDemag_HUB
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetRemarksNull()
             Me(Me.tableUNLOC.RemarksColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsICMNull() As Boolean
+            Return Me.IsNull(Me.tableUNLOC.ICMColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetICMNull()
+            Me(Me.tableUNLOC.ICMColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -27875,6 +28038,9 @@ Namespace dsDemag_HUBTableAdapters
             tableMapping.ColumnMappings.Add("Latest_Arrival", "Latest_Arrival")
             tableMapping.ColumnMappings.Add("Forwarding_Agent", "Forwarding_Agent")
             tableMapping.ColumnMappings.Add("Acceptance_Status", "Acceptance_Status")
+            tableMapping.ColumnMappings.Add("SQE_Check", "SQE_Check")
+            tableMapping.ColumnMappings.Add("Division", "Division")
+            tableMapping.ColumnMappings.Add("Buyer_Mail", "Buyer_Mail")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -27886,7 +28052,10 @@ Namespace dsDemag_HUBTableAdapters
                 " OR (`Incoterm_Location` = ?)) AND ((? = 1 AND `Latest_On_Board` IS NULL) OR (`L"& _ 
                 "atest_On_Board` = ?)) AND ((? = 1 AND `Latest_Arrival` IS NULL) OR (`Latest_Arri"& _ 
                 "val` = ?)) AND ((? = 1 AND `Forwarding_Agent` IS NULL) OR (`Forwarding_Agent` = "& _ 
-                "?)) AND ((? = 1 AND `Acceptance_Status` IS NULL) OR (`Acceptance_Status` = ?)))"
+                "?)) AND ((? = 1 AND `Acceptance_Status` IS NULL) OR (`Acceptance_Status` = ?)) A"& _ 
+                "ND ((? = 1 AND `Buyer_Mail` IS NULL) OR (`Buyer_Mail` = ?)) AND ((? = 1 AND `Div"& _ 
+                "ision` IS NULL) OR (`Division` = ?)) AND ((? = 1 AND `SQE_Check` IS NULL) OR (`S"& _ 
+                "QE_Check` = ?)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Purchase_Order", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Purchase_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Alias_Purchase_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Alias_Purchase_Order", Global.System.Data.DataRowVersion.Original, true, Nothing))
@@ -27909,12 +28078,18 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Forwarding_Agent", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Forwarding_Agent", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Acceptance_Status", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Acceptance_Status", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Acceptance_Status", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Acceptance_Status", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Buyer_Mail", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Buyer_Mail", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Buyer_Mail", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Buyer_Mail", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Division", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Division", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Division", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Division", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_SQE_Check", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SQE_Check", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_SQE_Check", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SQE_Check", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO `poOrder` (`Purchase_Order`, `Alias_Purchase_Order`, `Created`, `Supp"& _ 
                 "lier`, `Service`, `Incoterm`, `Incoterm_Location`, `Latest_On_Board`, `Latest_Ar"& _ 
-                "rival`, `Forwarding_Agent`, `Acceptance_Status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?,"& _ 
-                " ?, ?, ?)"
+                "rival`, `Forwarding_Agent`, `Acceptance_Status`, `Buyer_Mail`, `Division`, `SQE_"& _ 
+                "Check`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Purchase_Order", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Purchase_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Alias_Purchase_Order", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Alias_Purchase_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -27927,20 +28102,26 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Latest_Arrival", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Latest_Arrival", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Forwarding_Agent", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Forwarding_Agent", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Acceptance_Status", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Acceptance_Status", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Buyer_Mail", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Buyer_Mail", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Division", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Division", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("SQE_Check", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SQE_Check", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE `poOrder` SET `Purchase_Order` = ?, `Alias_Purchase_Order` = ?, `Created` "& _ 
                 "= ?, `Supplier` = ?, `Service` = ?, `Incoterm` = ?, `Incoterm_Location` = ?, `La"& _ 
                 "test_On_Board` = ?, `Latest_Arrival` = ?, `Forwarding_Agent` = ?, `Acceptance_St"& _ 
-                "atus` = ? WHERE ((`Purchase_Order` = ?) AND ((? = 1 AND `Alias_Purchase_Order` I"& _ 
-                "S NULL) OR (`Alias_Purchase_Order` = ?)) AND ((? = 1 AND `Created` IS NULL) OR ("& _ 
-                "`Created` = ?)) AND ((? = 1 AND `Supplier` IS NULL) OR (`Supplier` = ?)) AND ((?"& _ 
-                " = 1 AND `Service` IS NULL) OR (`Service` = ?)) AND ((? = 1 AND `Incoterm` IS NU"& _ 
-                "LL) OR (`Incoterm` = ?)) AND ((? = 1 AND `Incoterm_Location` IS NULL) OR (`Incot"& _ 
-                "erm_Location` = ?)) AND ((? = 1 AND `Latest_On_Board` IS NULL) OR (`Latest_On_Bo"& _ 
-                "ard` = ?)) AND ((? = 1 AND `Latest_Arrival` IS NULL) OR (`Latest_Arrival` = ?)) "& _ 
-                "AND ((? = 1 AND `Forwarding_Agent` IS NULL) OR (`Forwarding_Agent` = ?)) AND ((?"& _ 
-                " = 1 AND `Acceptance_Status` IS NULL) OR (`Acceptance_Status` = ?)))"
+                "atus` = ?, `Buyer_Mail` = ?, `Division` = ?, `SQE_Check` = ? WHERE ((`Purchase_O"& _ 
+                "rder` = ?) AND ((? = 1 AND `Alias_Purchase_Order` IS NULL) OR (`Alias_Purchase_O"& _ 
+                "rder` = ?)) AND ((? = 1 AND `Created` IS NULL) OR (`Created` = ?)) AND ((? = 1 A"& _ 
+                "ND `Supplier` IS NULL) OR (`Supplier` = ?)) AND ((? = 1 AND `Service` IS NULL) O"& _ 
+                "R (`Service` = ?)) AND ((? = 1 AND `Incoterm` IS NULL) OR (`Incoterm` = ?)) AND "& _ 
+                "((? = 1 AND `Incoterm_Location` IS NULL) OR (`Incoterm_Location` = ?)) AND ((? ="& _ 
+                " 1 AND `Latest_On_Board` IS NULL) OR (`Latest_On_Board` = ?)) AND ((? = 1 AND `L"& _ 
+                "atest_Arrival` IS NULL) OR (`Latest_Arrival` = ?)) AND ((? = 1 AND `Forwarding_A"& _ 
+                "gent` IS NULL) OR (`Forwarding_Agent` = ?)) AND ((? = 1 AND `Acceptance_Status` "& _ 
+                "IS NULL) OR (`Acceptance_Status` = ?)) AND ((? = 1 AND `Buyer_Mail` IS NULL) OR "& _ 
+                "(`Buyer_Mail` = ?)) AND ((? = 1 AND `Division` IS NULL) OR (`Division` = ?)) AND"& _ 
+                " ((? = 1 AND `SQE_Check` IS NULL) OR (`SQE_Check` = ?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Purchase_Order", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Purchase_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Alias_Purchase_Order", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Alias_Purchase_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -27953,6 +28134,9 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Latest_Arrival", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Latest_Arrival", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Forwarding_Agent", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Forwarding_Agent", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Acceptance_Status", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Acceptance_Status", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Buyer_Mail", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Buyer_Mail", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Division", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Division", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("SQE_Check", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SQE_Check", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Purchase_Order", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Purchase_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Alias_Purchase_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Alias_Purchase_Order", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Alias_Purchase_Order", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Alias_Purchase_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
@@ -27974,6 +28158,12 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Forwarding_Agent", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Forwarding_Agent", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Acceptance_Status", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Acceptance_Status", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Acceptance_Status", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Acceptance_Status", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Buyer_Mail", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Buyer_Mail", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Buyer_Mail", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Buyer_Mail", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Division", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Division", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Division", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Division", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_SQE_Check", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SQE_Check", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_SQE_Check", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SQE_Check", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -27991,7 +28181,7 @@ Namespace dsDemag_HUBTableAdapters
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT Purchase_Order, Alias_Purchase_Order, Created, Supplier, Service, Incoterm"& _ 
                 ", Incoterm_Location, Latest_On_Board, Latest_Arrival, Forwarding_Agent, Acceptan"& _ 
-                "ce_Status FROM poOrder"
+                "ce_Status, Buyer_Mail, Division, SQE_Check FROM poOrder"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -28051,7 +28241,7 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_Purchase_Order As String, ByVal Original_Alias_Purchase_Order As String, ByVal Original_Created As Global.System.Nullable(Of Date), ByVal Original_Supplier As Global.System.Nullable(Of Integer), ByVal Original_Service As String, ByVal Original_Incoterm As String, ByVal Original_Incoterm_Location As String, ByVal Original_Latest_On_Board As Global.System.Nullable(Of Date), ByVal Original_Latest_Arrival As Date, ByVal Original_Forwarding_Agent As Global.System.Nullable(Of Integer), ByVal Original_Acceptance_Status As Boolean) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_Purchase_Order As String, ByVal Original_Alias_Purchase_Order As String, ByVal Original_Created As Global.System.Nullable(Of Date), ByVal Original_Supplier As Global.System.Nullable(Of Integer), ByVal Original_Service As String, ByVal Original_Incoterm As String, ByVal Original_Incoterm_Location As String, ByVal Original_Latest_On_Board As Global.System.Nullable(Of Date), ByVal Original_Latest_Arrival As Global.System.Nullable(Of Date), ByVal Original_Forwarding_Agent As Global.System.Nullable(Of Integer), ByVal Original_Acceptance_Status As Boolean, ByVal Original_Buyer_Mail As String, ByVal Original_Division As String, ByVal Original_SQE_Check As Global.System.Nullable(Of Date)) As Integer
             If (Original_Purchase_Order Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Purchase_Order")
             Else
@@ -28105,8 +28295,13 @@ Namespace dsDemag_HUBTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Latest_Arrival,Date)
+            If (Original_Latest_Arrival.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Latest_Arrival.Value,Date)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
             If (Original_Forwarding_Agent.HasValue = true) Then
                 Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
                 Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_Forwarding_Agent.Value,Integer)
@@ -28116,6 +28311,27 @@ Namespace dsDemag_HUBTableAdapters
             End If
             Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
             Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_Acceptance_Status,Boolean)
+            If (Original_Buyer_Mail Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_Buyer_Mail,String)
+            End If
+            If (Original_Division Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(24).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_Division,String)
+            End If
+            If (Original_SQE_Check.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(Original_SQE_Check.Value,Date)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(26).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -28135,7 +28351,7 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Purchase_Order As String, ByVal Alias_Purchase_Order As String, ByVal Created As Global.System.Nullable(Of Date), ByVal Supplier As Global.System.Nullable(Of Integer), ByVal Service As String, ByVal Incoterm As String, ByVal Incoterm_Location As String, ByVal Latest_On_Board As Global.System.Nullable(Of Date), ByVal Latest_Arrival As Date, ByVal Forwarding_Agent As Global.System.Nullable(Of Integer), ByVal Acceptance_Status As Boolean) As Integer
+        Public Overloads Overridable Function Insert(ByVal Purchase_Order As String, ByVal Alias_Purchase_Order As String, ByVal Created As Global.System.Nullable(Of Date), ByVal Supplier As Global.System.Nullable(Of Integer), ByVal Service As String, ByVal Incoterm As String, ByVal Incoterm_Location As String, ByVal Latest_On_Board As Global.System.Nullable(Of Date), ByVal Latest_Arrival As Global.System.Nullable(Of Date), ByVal Forwarding_Agent As Global.System.Nullable(Of Integer), ByVal Acceptance_Status As Boolean, ByVal Buyer_Mail As String, ByVal Division As String, ByVal SQE_Check As Global.System.Nullable(Of Date)) As Integer
             If (Purchase_Order Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Purchase_Order")
             Else
@@ -28176,13 +28392,32 @@ Namespace dsDemag_HUBTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.InsertCommand.Parameters(8).Value = CType(Latest_Arrival,Date)
+            If (Latest_Arrival.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(Latest_Arrival.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
             If (Forwarding_Agent.HasValue = true) Then
                 Me.Adapter.InsertCommand.Parameters(9).Value = CType(Forwarding_Agent.Value,Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
             End If
             Me.Adapter.InsertCommand.Parameters(10).Value = CType(Acceptance_Status,Boolean)
+            If (Buyer_Mail Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(Buyer_Mail,String)
+            End If
+            If (Division Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(Division,String)
+            End If
+            If (SQE_Check.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(SQE_Check.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -28211,9 +28446,12 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal Incoterm As String,  _
                     ByVal Incoterm_Location As String,  _
                     ByVal Latest_On_Board As Global.System.Nullable(Of Date),  _
-                    ByVal Latest_Arrival As Date,  _
+                    ByVal Latest_Arrival As Global.System.Nullable(Of Date),  _
                     ByVal Forwarding_Agent As Global.System.Nullable(Of Integer),  _
                     ByVal Acceptance_Status As Boolean,  _
+                    ByVal Buyer_Mail As String,  _
+                    ByVal Division As String,  _
+                    ByVal SQE_Check As Global.System.Nullable(Of Date),  _
                     ByVal Original_Purchase_Order As String,  _
                     ByVal Original_Alias_Purchase_Order As String,  _
                     ByVal Original_Created As Global.System.Nullable(Of Date),  _
@@ -28222,9 +28460,12 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal Original_Incoterm As String,  _
                     ByVal Original_Incoterm_Location As String,  _
                     ByVal Original_Latest_On_Board As Global.System.Nullable(Of Date),  _
-                    ByVal Original_Latest_Arrival As Date,  _
+                    ByVal Original_Latest_Arrival As Global.System.Nullable(Of Date),  _
                     ByVal Original_Forwarding_Agent As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Acceptance_Status As Boolean) As Integer
+                    ByVal Original_Acceptance_Status As Boolean,  _
+                    ByVal Original_Buyer_Mail As String,  _
+                    ByVal Original_Division As String,  _
+                    ByVal Original_SQE_Check As Global.System.Nullable(Of Date)) As Integer
             If (Purchase_Order Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Purchase_Order")
             Else
@@ -28265,77 +28506,122 @@ Namespace dsDemag_HUBTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Latest_Arrival,Date)
+            If (Latest_Arrival.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Latest_Arrival.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
             If (Forwarding_Agent.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Forwarding_Agent.Value,Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
             End If
             Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Acceptance_Status,Boolean)
+            If (Buyer_Mail Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Buyer_Mail,String)
+            End If
+            If (Division Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Division,String)
+            End If
+            If (SQE_Check.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(SQE_Check.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+            End If
             If (Original_Purchase_Order Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Purchase_Order")
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_Purchase_Order,String)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_Purchase_Order,String)
             End If
             If (Original_Alias_Purchase_Order Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_Alias_Purchase_Order,String)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Alias_Purchase_Order,String)
             End If
             If (Original_Created.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_Created.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_Created.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
             End If
             If (Original_Supplier.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_Supplier.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_Supplier.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
             End If
             If (Original_Service Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_Service,String)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_Service,String)
             End If
             If (Original_Incoterm Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Incoterm")
             Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_Incoterm,String)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_Incoterm,String)
             End If
             If (Original_Incoterm_Location Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_Incoterm_Location,String)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_Incoterm_Location,String)
             End If
             If (Original_Latest_On_Board.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_Latest_On_Board.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_Latest_On_Board.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_Latest_Arrival,Date)
+            If (Original_Latest_Arrival.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_Latest_Arrival.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
+            End If
             If (Original_Forwarding_Agent.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Original_Forwarding_Agent.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_Forwarding_Agent.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_Acceptance_Status,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_Acceptance_Status,Boolean)
+            If (Original_Buyer_Mail Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(36).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_Buyer_Mail,String)
+            End If
+            If (Original_Division Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(38).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(Original_Division,String)
+            End If
+            If (Original_SQE_Check.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(Original_SQE_Check.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(40).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -28363,9 +28649,12 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal Incoterm As String,  _
                     ByVal Incoterm_Location As String,  _
                     ByVal Latest_On_Board As Global.System.Nullable(Of Date),  _
-                    ByVal Latest_Arrival As Date,  _
+                    ByVal Latest_Arrival As Global.System.Nullable(Of Date),  _
                     ByVal Forwarding_Agent As Global.System.Nullable(Of Integer),  _
                     ByVal Acceptance_Status As Boolean,  _
+                    ByVal Buyer_Mail As String,  _
+                    ByVal Division As String,  _
+                    ByVal SQE_Check As Global.System.Nullable(Of Date),  _
                     ByVal Original_Purchase_Order As String,  _
                     ByVal Original_Alias_Purchase_Order As String,  _
                     ByVal Original_Created As Global.System.Nullable(Of Date),  _
@@ -28374,10 +28663,13 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal Original_Incoterm As String,  _
                     ByVal Original_Incoterm_Location As String,  _
                     ByVal Original_Latest_On_Board As Global.System.Nullable(Of Date),  _
-                    ByVal Original_Latest_Arrival As Date,  _
+                    ByVal Original_Latest_Arrival As Global.System.Nullable(Of Date),  _
                     ByVal Original_Forwarding_Agent As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Acceptance_Status As Boolean) As Integer
-            Return Me.Update(Original_Purchase_Order, Alias_Purchase_Order, Created, Supplier, Service, Incoterm, Incoterm_Location, Latest_On_Board, Latest_Arrival, Forwarding_Agent, Acceptance_Status, Original_Purchase_Order, Original_Alias_Purchase_Order, Original_Created, Original_Supplier, Original_Service, Original_Incoterm, Original_Incoterm_Location, Original_Latest_On_Board, Original_Latest_Arrival, Original_Forwarding_Agent, Original_Acceptance_Status)
+                    ByVal Original_Acceptance_Status As Boolean,  _
+                    ByVal Original_Buyer_Mail As String,  _
+                    ByVal Original_Division As String,  _
+                    ByVal Original_SQE_Check As Global.System.Nullable(Of Date)) As Integer
+            Return Me.Update(Original_Purchase_Order, Alias_Purchase_Order, Created, Supplier, Service, Incoterm, Incoterm_Location, Latest_On_Board, Latest_Arrival, Forwarding_Agent, Acceptance_Status, Buyer_Mail, Division, SQE_Check, Original_Purchase_Order, Original_Alias_Purchase_Order, Original_Created, Original_Supplier, Original_Service, Original_Incoterm, Original_Incoterm_Location, Original_Latest_On_Board, Original_Latest_Arrival, Original_Forwarding_Agent, Original_Acceptance_Status, Original_Buyer_Mail, Original_Division, Original_SQE_Check)
         End Function
     End Class
     
@@ -34634,6 +34926,7 @@ Namespace dsDemag_HUBTableAdapters
             tableMapping.ColumnMappings.Add("IATA", "IATA")
             tableMapping.ColumnMappings.Add("Coordinates", "Coordinates")
             tableMapping.ColumnMappings.Add("Remarks", "Remarks")
+            tableMapping.ColumnMappings.Add("ICM", "ICM")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -34645,7 +34938,7 @@ Namespace dsDemag_HUBTableAdapters
                 "1 AND `Status` IS NULL) OR (`Status` = ?)) AND ((? = 1 AND `Function` IS NULL) O"& _ 
                 "R (`Function` = ?)) AND ((? = 1 AND `Date` IS NULL) OR (`Date` = ?)) AND ((? = 1"& _ 
                 " AND `IATA` IS NULL) OR (`IATA` = ?)) AND ((? = 1 AND `Coordinates` IS NULL) OR "& _ 
-                "(`Coordinates` = ?)))"
+                "(`Coordinates` = ?)) AND ((? = 1 AND `ICM` IS NULL) OR (`ICM` = ?)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_UNLOC", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "UNLOC", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Change", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Change", Global.System.Data.DataRowVersion.Original, true, Nothing))
@@ -34670,11 +34963,13 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_IATA", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "IATA", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Coordinates", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coordinates", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Coordinates", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coordinates", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_ICM", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ICM", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ICM", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ICM", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO `UNLOC` (`UNLOC`, `Change`, `Country`, `Location`, `Name`, `NameWoDia"& _ 
                 "critics`, `Subdivision`, `Status`, `Function`, `Date`, `IATA`, `Coordinates`, `R"& _ 
-                "emarks`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                "emarks`, `ICM`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("UNLOC", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "UNLOC", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Change", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Change", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -34689,19 +34984,21 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IATA", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "IATA", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Coordinates", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coordinates", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Remarks", Global.System.Data.OleDb.OleDbType.LongVarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Remarks", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ICM", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ICM", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE `UNLOC` SET `UNLOC` = ?, `Change` = ?, `Country` = ?, `Location` = ?, `Nam"& _ 
                 "e` = ?, `NameWoDiacritics` = ?, `Subdivision` = ?, `Status` = ?, `Function` = ?,"& _ 
-                " `Date` = ?, `IATA` = ?, `Coordinates` = ?, `Remarks` = ? WHERE ((`UNLOC` = ?) A"& _ 
-                "ND ((? = 1 AND `Change` IS NULL) OR (`Change` = ?)) AND ((? = 1 AND `Country` IS"& _ 
-                " NULL) OR (`Country` = ?)) AND ((? = 1 AND `Location` IS NULL) OR (`Location` = "& _ 
-                "?)) AND ((? = 1 AND `Name` IS NULL) OR (`Name` = ?)) AND ((? = 1 AND `NameWoDiac"& _ 
-                "ritics` IS NULL) OR (`NameWoDiacritics` = ?)) AND ((? = 1 AND `Subdivision` IS N"& _ 
-                "ULL) OR (`Subdivision` = ?)) AND ((? = 1 AND `Status` IS NULL) OR (`Status` = ?)"& _ 
-                ") AND ((? = 1 AND `Function` IS NULL) OR (`Function` = ?)) AND ((? = 1 AND `Date"& _ 
-                "` IS NULL) OR (`Date` = ?)) AND ((? = 1 AND `IATA` IS NULL) OR (`IATA` = ?)) AND"& _ 
-                " ((? = 1 AND `Coordinates` IS NULL) OR (`Coordinates` = ?)))"
+                " `Date` = ?, `IATA` = ?, `Coordinates` = ?, `Remarks` = ?, `ICM` = ? WHERE ((`UN"& _ 
+                "LOC` = ?) AND ((? = 1 AND `Change` IS NULL) OR (`Change` = ?)) AND ((? = 1 AND `"& _ 
+                "Country` IS NULL) OR (`Country` = ?)) AND ((? = 1 AND `Location` IS NULL) OR (`L"& _ 
+                "ocation` = ?)) AND ((? = 1 AND `Name` IS NULL) OR (`Name` = ?)) AND ((? = 1 AND "& _ 
+                "`NameWoDiacritics` IS NULL) OR (`NameWoDiacritics` = ?)) AND ((? = 1 AND `Subdiv"& _ 
+                "ision` IS NULL) OR (`Subdivision` = ?)) AND ((? = 1 AND `Status` IS NULL) OR (`S"& _ 
+                "tatus` = ?)) AND ((? = 1 AND `Function` IS NULL) OR (`Function` = ?)) AND ((? = "& _ 
+                "1 AND `Date` IS NULL) OR (`Date` = ?)) AND ((? = 1 AND `IATA` IS NULL) OR (`IATA"& _ 
+                "` = ?)) AND ((? = 1 AND `Coordinates` IS NULL) OR (`Coordinates` = ?)) AND ((? ="& _ 
+                " 1 AND `ICM` IS NULL) OR (`ICM` = ?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("UNLOC", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "UNLOC", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Change", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Change", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -34716,6 +35013,7 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IATA", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "IATA", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Coordinates", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coordinates", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Remarks", Global.System.Data.OleDb.OleDbType.LongVarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Remarks", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ICM", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ICM", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_UNLOC", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "UNLOC", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Change", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Change", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Change", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Change", Global.System.Data.DataRowVersion.Original, false, Nothing))
@@ -34739,6 +35037,8 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_IATA", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "IATA", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Coordinates", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coordinates", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Coordinates", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Coordinates", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_ICM", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ICM", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ICM", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ICM", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -34755,7 +35055,7 @@ Namespace dsDemag_HUBTableAdapters
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT UNLOC, Change, Country, Location, Name, NameWoDiacritics, Subdivision, Sta"& _ 
-                "tus, Function, [Date], IATA, Coordinates, Remarks FROM UNLOC"
+                "tus, Function, [Date], IATA, Coordinates, Remarks, ICM FROM UNLOC"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -34815,7 +35115,7 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_UNLOC As String, ByVal Original_Change As String, ByVal Original_Country As String, ByVal Original_Location As String, ByVal Original_Name As String, ByVal Original_NameWoDiacritics As String, ByVal Original_Subdivision As String, ByVal Original_Status As String, ByVal Original_Function As String, ByVal Original_Date As String, ByVal Original_IATA As String, ByVal Original_Coordinates As String) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_UNLOC As String, ByVal Original_Change As String, ByVal Original_Country As String, ByVal Original_Location As String, ByVal Original_Name As String, ByVal Original_NameWoDiacritics As String, ByVal Original_Subdivision As String, ByVal Original_Status As String, ByVal Original_Function As String, ByVal Original_Date As String, ByVal Original_IATA As String, ByVal Original_Coordinates As String, ByVal Original_ICM As String) As Integer
             If (Original_UNLOC Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_UNLOC")
             Else
@@ -34898,6 +35198,13 @@ Namespace dsDemag_HUBTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
                 Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_Coordinates,String)
             End If
+            If (Original_ICM Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(24).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_ICM,String)
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -34917,7 +35224,7 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal UNLOC As String, ByVal Change As String, ByVal Country As String, ByVal Location As String, ByVal Name As String, ByVal NameWoDiacritics As String, ByVal Subdivision As String, ByVal Status As String, ByVal _Function As String, ByVal _Date As String, ByVal IATA As String, ByVal Coordinates As String, ByVal Remarks As String) As Integer
+        Public Overloads Overridable Function Insert(ByVal UNLOC As String, ByVal Change As String, ByVal Country As String, ByVal Location As String, ByVal Name As String, ByVal NameWoDiacritics As String, ByVal Subdivision As String, ByVal Status As String, ByVal _Function As String, ByVal _Date As String, ByVal IATA As String, ByVal Coordinates As String, ByVal Remarks As String, ByVal ICM As String) As Integer
             If (UNLOC Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("UNLOC")
             Else
@@ -34983,6 +35290,11 @@ Namespace dsDemag_HUBTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(12).Value = CType(Remarks,String)
             End If
+            If (ICM Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(ICM,String)
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -35016,6 +35328,7 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal IATA As String,  _
                     ByVal Coordinates As String,  _
                     ByVal Remarks As String,  _
+                    ByVal ICM As String,  _
                     ByVal Original_UNLOC As String,  _
                     ByVal Original_Change As String,  _
                     ByVal Original_Country As String,  _
@@ -35027,7 +35340,8 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal Original_Function As String,  _
                     ByVal Original_Date As String,  _
                     ByVal Original_IATA As String,  _
-                    ByVal Original_Coordinates As String) As Integer
+                    ByVal Original_Coordinates As String,  _
+                    ByVal Original_ICM As String) As Integer
             If (UNLOC Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("UNLOC")
             Else
@@ -35093,87 +35407,99 @@ Namespace dsDemag_HUBTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Remarks,String)
             End If
+            If (ICM Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(ICM,String)
+            End If
             If (Original_UNLOC Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_UNLOC")
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_UNLOC,String)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_UNLOC,String)
             End If
             If (Original_Change Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_Change,String)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Change,String)
             End If
             If (Original_Country Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_Country,String)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_Country,String)
             End If
             If (Original_Location Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_Location,String)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_Location,String)
             End If
             If (Original_Name Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_Name,String)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_Name,String)
             End If
             If (Original_NameWoDiacritics Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_NameWoDiacritics,String)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_NameWoDiacritics,String)
             End If
             If (Original_Subdivision Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_Subdivision,String)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_Subdivision,String)
             End If
             If (Original_Status Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_Status,String)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_Status,String)
             End If
             If (Original_Function Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Original_Function,String)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_Function,String)
             End If
             If (Original_Date Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_Date,String)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_Date,String)
             End If
             If (Original_IATA Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(34).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_IATA,String)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_IATA,String)
             End If
             If (Original_Coordinates Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(36).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_Coordinates,String)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_Coordinates,String)
+            End If
+            If (Original_ICM Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(38).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(Original_ICM,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -35207,6 +35533,7 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal IATA As String,  _
                     ByVal Coordinates As String,  _
                     ByVal Remarks As String,  _
+                    ByVal ICM As String,  _
                     ByVal Original_UNLOC As String,  _
                     ByVal Original_Change As String,  _
                     ByVal Original_Country As String,  _
@@ -35218,8 +35545,9 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal Original_Function As String,  _
                     ByVal Original_Date As String,  _
                     ByVal Original_IATA As String,  _
-                    ByVal Original_Coordinates As String) As Integer
-            Return Me.Update(Original_UNLOC, Change, Country, Location, Name, NameWoDiacritics, Subdivision, Status, _Function, _Date, IATA, Coordinates, Remarks, Original_UNLOC, Original_Change, Original_Country, Original_Location, Original_Name, Original_NameWoDiacritics, Original_Subdivision, Original_Status, Original_Function, Original_Date, Original_IATA, Original_Coordinates)
+                    ByVal Original_Coordinates As String,  _
+                    ByVal Original_ICM As String) As Integer
+            Return Me.Update(Original_UNLOC, Change, Country, Location, Name, NameWoDiacritics, Subdivision, Status, _Function, _Date, IATA, Coordinates, Remarks, ICM, Original_UNLOC, Original_Change, Original_Country, Original_Location, Original_Name, Original_NameWoDiacritics, Original_Subdivision, Original_Status, Original_Function, Original_Date, Original_IATA, Original_Coordinates, Original_ICM)
         End Function
     End Class
     
