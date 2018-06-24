@@ -67,7 +67,7 @@ Public Class frmMaininterface
         PartnerNameTextBox.Focus()
     End Sub
 
-    Private Sub OnlyNumeric(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles VolumeTextBox.KeyPress, WeightTextBox.KeyPress, Cont20DCTextBox.KeyPress, Cont40DCTextBox.KeyPress, Cont40HQTextBox.KeyPress, STT_NoTextBox.KeyPress
+    Private Sub OnlyNumeric(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles VolumeTextBox.KeyPress, WeightTextBox.KeyPress, Cont20DCTextBox.KeyPress, Cont40DCTextBox.KeyPress, Cont40HQTextBox.KeyPress, STT_NoTextBox.KeyPress, txtSoNo.KeyPress
         Select Case Asc(e.KeyChar)
             Case 48 To 57, 8, 44
                 ' Zahlen, Backspace und Komma zulassen
@@ -131,7 +131,7 @@ Public Class frmMaininterface
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
 
-        MsgBox("Starte")
+        'MsgBox("Starte")
 
         Me.Validate()
         Me.DsShipmentsBindingSource.EndEdit()
@@ -140,7 +140,8 @@ Public Class frmMaininterface
         Me.DsContactBindingSource.EndEdit()
         Me.DsAddressBindingSource.EndEdit()
         Me.DsShipment_OrderBindingSource.EndEdit()
-        MsgBox("Arbeite")
+        Me.DsShipment_SOBindingSource.EndEdit()
+        'MsgBox("Arbeite")
 
         Me.DsShipmentsTableAdapter.Update(Me.DsDemag_HUB.dsShipments)
         Me.DsCommentTableAdapter.Update(Me.DsDemag_HUB.dsComment)
@@ -148,7 +149,8 @@ Public Class frmMaininterface
         Me.DsContactTableAdapter.Update(Me.DsDemag_HUB.dsContact)
         Me.DsAddressTableAdapter.Update(Me.DsDemag_HUB.dsAddress)
         Me.DsShipment_OrderTableAdapter.Update(Me.DsDemag_HUB.dsShipment_Order)
-        MsgBox("Fertig")
+        Me.DsShipment_SOTableAdapter.Update(Me.DsDemag_HUB.dsShipment_SO)
+        'MsgBox("Fertig")
 
     End Sub
 
@@ -326,17 +328,17 @@ Public Class frmMaininterface
             Case Is = "POL No.:"
                 DsShipmentsBindingSource.Filter = "POL_No = '" & txtSearch.Text & "'"
             Case Is = "PO No.:"
-                HaesslichesEntlein(txtSearch.Text)
+                searchPO(txtSearch.Text)
             Case Is = "SO No.:"
-                MsgBox("Läuft noch nicht")
+                searchSO(txtSearch.Text)
             Case Is = "Inv No.:"
-                MsgBox("Läuft noch nicht")
+                searchINV(txtSearch.Text)
             Case Else
                 MsgBox("Filter unbekannt:" & cmbField.Text)
         End Select
     End Sub
 
-    Sub HaesslichesEntlein(ByVal PoNo As String)
+    Sub searchPO(ByVal PoNo As String)
         Dim strFilter As String = ""
         DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = "Purchase_Order = '" & PoNo & "'"
         For Each Row As DataRowView In DsDemag_HUB.dsShipment_Order.DefaultView
@@ -349,6 +351,35 @@ Public Class frmMaininterface
         DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = String.Empty
         DsShipmentsBindingSource.Filter = strFilter
     End Sub
+
+    Sub searchSO(ByVal SoNo As String)
+        Dim strFilter As String = ""
+        DsDemag_HUB.dsShipment_SO.DefaultView.RowFilter = "Shipping_Order = '" & SoNo & "'"
+        For Each Row As DataRowView In DsDemag_HUB.dsShipment_SO.DefaultView
+            If strFilter = "" Then
+                strFilter += "Shipment_ID = '" & Row.Item("Shipment_ID").ToString & "'"
+            Else
+                strFilter += " OR Shipment_ID = '" & Row.Item("Shipment_ID").ToString & "'"
+            End If
+        Next
+        DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = String.Empty
+        DsShipmentsBindingSource.Filter = strFilter
+    End Sub
+
+    Sub searchINV(ByVal INVNo As String)
+        Dim strFilter As String = ""
+        DsDemag_HUB.dsInvoice.DefaultView.RowFilter = "Invoice_No = '" & INVNo & "'"
+        For Each Row As DataRowView In DsDemag_HUB.dsInvoice.DefaultView
+            If strFilter = "" Then
+                strFilter += "Shipment_ID = '" & Row.Item("Shipment_ID").ToString & "'"
+            Else
+                strFilter += " OR Shipment_ID = '" & Row.Item("Shipment_ID").ToString & "'"
+            End If
+        Next
+        DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = String.Empty
+        DsShipmentsBindingSource.Filter = strFilter
+    End Sub
+
 
     Private Sub DsShipmentsDataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DsShipmentsDataGridView.CellDoubleClick
         Me.subTabShipments.SelectedTab = tabBooking
@@ -714,37 +745,41 @@ Public Class frmMaininterface
         'Next
 
         'Prüfen ob SO exisitiert und ggf. einfügen
-        PoShipping_OrderBindingSource.Filter = "Shipping_Order = '" & txts.Text & "'"
-        If PoOrderBindingSource.Count = 0 Then
-            Dim newPORow As dsDemag_HUB.poOrderRow
-            newPORow = DsDemag_HUB.poOrder.NewpoOrderRow
-            newPORow.Purchase_Order = txtPoNo.Text
-            newPORow.Created = Date.Now
-            'newPORow.Supplier = Convert.ToDateTime("01.01.2000")
-            newPORow.Service = ServiceTextBox.Text
-            newPORow.Incoterm = IncotermTextBox.Text
-            newPORow.Incoterm_Location = Incoterm_LocTextBox.Text
-            DsDemag_HUB.poOrder.Rows.Add(newPORow)
-            Me.PoOrderBindingSource.EndEdit()
-            Me.PoOrderTableAdapter.Update(Me.DsDemag_HUB.poOrder)
-            txtPoNo.BackColor = Color.YellowGreen
+        PoShipping_OrderBindingSource.Filter = "Shipping_Order = '" & txtSoNo.Text & "'"
+        If PoShipping_OrderBindingSource.Count = 0 Then
+            Dim newSoRow As dsDemag_HUB.poShipping_OrderRow
+            newSoRow = DsDemag_HUB.poShipping_Order.NewpoShipping_OrderRow
+            newSoRow.Shipping_Order = Convert.ToInt32(txtSoNo.Text)
+            newSoRow.Created = Date.Now
+            DsDemag_HUB.poShipping_Order.Rows.Add(newSoRow)
+            Me.PoShipping_OrderBindingSource.EndEdit()
+            Me.PoShipping_OrderTableAdapter.Update(Me.DsDemag_HUB.poShipping_Order)
+            txtSoNo.BackColor = Color.YellowGreen
         Else
-            txtPoNo.BackColor = Color.White
+            txtSoNo.BackColor = Color.White
         End If
 
 
         'PO mit Shipment verknüpfen
-        Dim newShipmentPO As dsDemag_HUB.dsShipment_OrderRow
-        newShipmentPO = DsDemag_HUB.dsShipment_Order.NewdsShipment_OrderRow
-        newShipmentPO.Shipment_ID = Convert.ToInt32(Shipment_IDTextBox.Text)
-        newShipmentPO.Purchase_Order = txtPoNo.Text
-        newShipmentPO.Created = Date.Now
-        DsDemag_HUB.dsShipment_Order.Rows.Add(newShipmentPO)
+        Dim newShipmentSO As dsDemag_HUB.dsShipment_SORow
+        newShipmentSO = DsDemag_HUB.dsShipment_SO.NewdsShipment_SORow
+        newShipmentSO.Shipment_ID = Convert.ToInt32(Shipment_IDTextBox.Text)
+        newShipmentSO.Shipping_Order = Convert.ToInt32(txtSoNo.Text)
+        newShipmentSO.Created = Date.Now
+        DsDemag_HUB.dsShipment_SO.Rows.Add(newShipmentSO)
 
 
-        txtPoNo.Clear()
-        txtPoNo.Focus()
+        txtSoNo.Clear()
+        txtSoNo.Focus()
 
 
+    End Sub
+
+    Private Sub txtSoNo_Enter(sender As Object, e As EventArgs) Handles txtSoNo.Enter
+        Me.AcceptButton = btnAddSO
+    End Sub
+
+    Private Sub txtSoNo_Leave(sender As Object, e As EventArgs) Handles txtSoNo.Leave
+        Me.AcceptButton = btnSave
     End Sub
 End Class
