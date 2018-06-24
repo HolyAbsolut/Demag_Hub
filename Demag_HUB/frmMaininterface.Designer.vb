@@ -50,6 +50,7 @@ Partial Class frmMaininterface
         Dim ICM_IDLabel As System.Windows.Forms.Label
         Dim PartnerNameLabel As System.Windows.Forms.Label
         Dim Label3 As System.Windows.Forms.Label
+        Dim Label4 As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMaininterface))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.subTabShipments = New System.Windows.Forms.TabControl()
@@ -147,6 +148,20 @@ Partial Class frmMaininterface
         Me.tabShipping = New System.Windows.Forms.TabPage()
         Me.tabDispo = New System.Windows.Forms.TabPage()
         Me.tabDocuments = New System.Windows.Forms.TabPage()
+        Me.UNLOCDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn67 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn68 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn69 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn70 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn71 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn72 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn73 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn74 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn75 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn76 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn77 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn78 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn79 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PoOrderDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn58 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -171,7 +186,6 @@ Partial Class frmMaininterface
         Me.tabShipments = New System.Windows.Forms.TabPage()
         Me.ProgressBar = New System.Windows.Forms.ProgressBar()
         Me.Label_Result = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.tabPartner = New System.Windows.Forms.TabPage()
         Me.btnNewPartner = New System.Windows.Forms.Button()
@@ -214,20 +228,30 @@ Partial Class frmMaininterface
         Me.DsInvoiceTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsInvoiceTableAdapter()
         Me.DsShipment_OrderTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsShipment_OrderTableAdapter()
         Me.PoOrderTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.poOrderTableAdapter()
-        Me.UNLOCDataGridView = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn67 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn68 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn69 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn70 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn71 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn72 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn73 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn74 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn75 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn76 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn77 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn78 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn79 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnDeleteSO = New System.Windows.Forms.Button()
+        Me.btnAddSO = New System.Windows.Forms.Button()
+        Me.txtSO = New System.Windows.Forms.TextBox()
+        Me.DsShipment_SOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsShipment_SOTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsShipment_SOTableAdapter()
+        Me.DsShipment_SODataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn82 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn83 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PoShipping_OrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PoShipping_OrderTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.poShipping_OrderTableAdapter()
+        Me.PoShipping_OrderDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn80 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn81 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn84 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn85 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn86 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn87 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn88 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn89 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn90 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn91 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn92 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn93 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn94 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         DtnETALabel = New System.Windows.Forms.Label()
         DtnETDLabel = New System.Windows.Forms.Label()
         DtnCRDLabel = New System.Windows.Forms.Label()
@@ -255,6 +279,7 @@ Partial Class frmMaininterface
         ICM_IDLabel = New System.Windows.Forms.Label()
         PartnerNameLabel = New System.Windows.Forms.Label()
         Label3 = New System.Windows.Forms.Label()
+        Label4 = New System.Windows.Forms.Label()
         Me.subTabShipments.SuspendLayout()
         Me.tabOverview.SuspendLayout()
         CType(Me.DsShipmentsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -271,6 +296,7 @@ Partial Class frmMaininterface
         CType(Me.DsPartnerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabDocuments.SuspendLayout()
+        CType(Me.UNLOCDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PoOrderDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsCommentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -282,7 +308,10 @@ Partial Class frmMaininterface
         CType(Me.DsContactDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsContactBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.UNLOCDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsShipment_SOBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsShipment_SODataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PoShipping_OrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PoShipping_OrderDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DtnETALabel
@@ -853,7 +882,7 @@ Partial Class frmMaininterface
         Me.cmbField.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
         Me.cmbField.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cmbField.FormattingEnabled = True
-        Me.cmbField.Items.AddRange(New Object() {"ShipmentID", "STT No.:", "Archive No.:", "HBL No.:", "MBL No.:", "PO No.:", "SO No.:", "Inv No.:", "POL No.:"})
+        Me.cmbField.Items.AddRange(New Object() {"ShipmentID", "STT No.:", "Archive No.:", "HBL No.:", "MBL No.:", "POL No.:", "PO No.:", "SO No.:", "Inv No.:"})
         Me.cmbField.Location = New System.Drawing.Point(227, 6)
         Me.cmbField.Name = "cmbField"
         Me.cmbField.Size = New System.Drawing.Size(121, 21)
@@ -862,6 +891,11 @@ Partial Class frmMaininterface
         'tabBooking
         '
         Me.tabBooking.AutoScroll = True
+        Me.tabBooking.Controls.Add(Me.DsShipment_SODataGridView)
+        Me.tabBooking.Controls.Add(Me.btnDeleteSO)
+        Me.tabBooking.Controls.Add(Me.btnAddSO)
+        Me.tabBooking.Controls.Add(Label4)
+        Me.tabBooking.Controls.Add(Me.txtSO)
         Me.tabBooking.Controls.Add(Me.DsShipment_OrderDataGridView)
         Me.tabBooking.Controls.Add(Me.btnDeletePO)
         Me.tabBooking.Controls.Add(Me.btnAddPO)
@@ -937,7 +971,7 @@ Partial Class frmMaininterface
         Me.DsShipment_OrderDataGridView.DataSource = Me.DsShipment_OrderBindingSource
         Me.DsShipment_OrderDataGridView.Location = New System.Drawing.Point(9, 369)
         Me.DsShipment_OrderDataGridView.Name = "DsShipment_OrderDataGridView"
-        Me.DsShipment_OrderDataGridView.Size = New System.Drawing.Size(749, 95)
+        Me.DsShipment_OrderDataGridView.Size = New System.Drawing.Size(343, 95)
         Me.DsShipment_OrderDataGridView.TabIndex = 95
         '
         'DataGridViewTextBoxColumn20
@@ -1400,6 +1434,7 @@ Partial Class frmMaininterface
         'tabDocuments
         '
         Me.tabDocuments.AutoScroll = True
+        Me.tabDocuments.Controls.Add(Me.PoShipping_OrderDataGridView)
         Me.tabDocuments.Controls.Add(Me.UNLOCDataGridView)
         Me.tabDocuments.Controls.Add(Me.PoOrderDataGridView)
         Me.tabDocuments.Location = New System.Drawing.Point(4, 22)
@@ -1409,6 +1444,95 @@ Partial Class frmMaininterface
         Me.tabDocuments.TabIndex = 4
         Me.tabDocuments.Text = "Documents"
         Me.tabDocuments.UseVisualStyleBackColor = True
+        '
+        'UNLOCDataGridView
+        '
+        Me.UNLOCDataGridView.AutoGenerateColumns = False
+        Me.UNLOCDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.UNLOCDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn67, Me.DataGridViewTextBoxColumn68, Me.DataGridViewTextBoxColumn69, Me.DataGridViewTextBoxColumn70, Me.DataGridViewTextBoxColumn71, Me.DataGridViewTextBoxColumn72, Me.DataGridViewTextBoxColumn73, Me.DataGridViewTextBoxColumn74, Me.DataGridViewTextBoxColumn75, Me.DataGridViewTextBoxColumn76, Me.DataGridViewTextBoxColumn77, Me.DataGridViewTextBoxColumn78, Me.DataGridViewTextBoxColumn79})
+        Me.UNLOCDataGridView.DataSource = Me.UNLOCBindingSource
+        Me.UNLOCDataGridView.Location = New System.Drawing.Point(31, 251)
+        Me.UNLOCDataGridView.Name = "UNLOCDataGridView"
+        Me.UNLOCDataGridView.Size = New System.Drawing.Size(300, 220)
+        Me.UNLOCDataGridView.TabIndex = 1
+        '
+        'DataGridViewTextBoxColumn67
+        '
+        Me.DataGridViewTextBoxColumn67.DataPropertyName = "UNLOC"
+        Me.DataGridViewTextBoxColumn67.HeaderText = "UNLOC"
+        Me.DataGridViewTextBoxColumn67.Name = "DataGridViewTextBoxColumn67"
+        '
+        'DataGridViewTextBoxColumn68
+        '
+        Me.DataGridViewTextBoxColumn68.DataPropertyName = "Change"
+        Me.DataGridViewTextBoxColumn68.HeaderText = "Change"
+        Me.DataGridViewTextBoxColumn68.Name = "DataGridViewTextBoxColumn68"
+        '
+        'DataGridViewTextBoxColumn69
+        '
+        Me.DataGridViewTextBoxColumn69.DataPropertyName = "Country"
+        Me.DataGridViewTextBoxColumn69.HeaderText = "Country"
+        Me.DataGridViewTextBoxColumn69.Name = "DataGridViewTextBoxColumn69"
+        '
+        'DataGridViewTextBoxColumn70
+        '
+        Me.DataGridViewTextBoxColumn70.DataPropertyName = "Location"
+        Me.DataGridViewTextBoxColumn70.HeaderText = "Location"
+        Me.DataGridViewTextBoxColumn70.Name = "DataGridViewTextBoxColumn70"
+        '
+        'DataGridViewTextBoxColumn71
+        '
+        Me.DataGridViewTextBoxColumn71.DataPropertyName = "Name"
+        Me.DataGridViewTextBoxColumn71.HeaderText = "Name"
+        Me.DataGridViewTextBoxColumn71.Name = "DataGridViewTextBoxColumn71"
+        '
+        'DataGridViewTextBoxColumn72
+        '
+        Me.DataGridViewTextBoxColumn72.DataPropertyName = "NameWoDiacritics"
+        Me.DataGridViewTextBoxColumn72.HeaderText = "NameWoDiacritics"
+        Me.DataGridViewTextBoxColumn72.Name = "DataGridViewTextBoxColumn72"
+        '
+        'DataGridViewTextBoxColumn73
+        '
+        Me.DataGridViewTextBoxColumn73.DataPropertyName = "Subdivision"
+        Me.DataGridViewTextBoxColumn73.HeaderText = "Subdivision"
+        Me.DataGridViewTextBoxColumn73.Name = "DataGridViewTextBoxColumn73"
+        '
+        'DataGridViewTextBoxColumn74
+        '
+        Me.DataGridViewTextBoxColumn74.DataPropertyName = "Status"
+        Me.DataGridViewTextBoxColumn74.HeaderText = "Status"
+        Me.DataGridViewTextBoxColumn74.Name = "DataGridViewTextBoxColumn74"
+        '
+        'DataGridViewTextBoxColumn75
+        '
+        Me.DataGridViewTextBoxColumn75.DataPropertyName = "Function"
+        Me.DataGridViewTextBoxColumn75.HeaderText = "Function"
+        Me.DataGridViewTextBoxColumn75.Name = "DataGridViewTextBoxColumn75"
+        '
+        'DataGridViewTextBoxColumn76
+        '
+        Me.DataGridViewTextBoxColumn76.DataPropertyName = "Date"
+        Me.DataGridViewTextBoxColumn76.HeaderText = "Date"
+        Me.DataGridViewTextBoxColumn76.Name = "DataGridViewTextBoxColumn76"
+        '
+        'DataGridViewTextBoxColumn77
+        '
+        Me.DataGridViewTextBoxColumn77.DataPropertyName = "IATA"
+        Me.DataGridViewTextBoxColumn77.HeaderText = "IATA"
+        Me.DataGridViewTextBoxColumn77.Name = "DataGridViewTextBoxColumn77"
+        '
+        'DataGridViewTextBoxColumn78
+        '
+        Me.DataGridViewTextBoxColumn78.DataPropertyName = "Coordinates"
+        Me.DataGridViewTextBoxColumn78.HeaderText = "Coordinates"
+        Me.DataGridViewTextBoxColumn78.Name = "DataGridViewTextBoxColumn78"
+        '
+        'DataGridViewTextBoxColumn79
+        '
+        Me.DataGridViewTextBoxColumn79.DataPropertyName = "Remarks"
+        Me.DataGridViewTextBoxColumn79.HeaderText = "Remarks"
+        Me.DataGridViewTextBoxColumn79.Name = "DataGridViewTextBoxColumn79"
         '
         'PoOrderDataGridView
         '
@@ -1580,7 +1704,6 @@ Partial Class frmMaininterface
         '
         Me.tabShipments.Controls.Add(Me.ProgressBar)
         Me.tabShipments.Controls.Add(Me.Label_Result)
-        Me.tabShipments.Controls.Add(Me.Button1)
         Me.tabShipments.Controls.Add(Me.Label2)
         Me.tabShipments.Controls.Add(Me.btnCancel)
         Me.tabShipments.Controls.Add(Me.subTabShipments)
@@ -1597,28 +1720,20 @@ Partial Class frmMaininterface
         '
         'ProgressBar
         '
-        Me.ProgressBar.Location = New System.Drawing.Point(6, 403)
+        Me.ProgressBar.Location = New System.Drawing.Point(7, 624)
         Me.ProgressBar.Name = "ProgressBar"
-        Me.ProgressBar.Size = New System.Drawing.Size(133, 23)
+        Me.ProgressBar.Size = New System.Drawing.Size(133, 11)
         Me.ProgressBar.TabIndex = 81
         '
         'Label_Result
         '
         Me.Label_Result.AutoSize = True
-        Me.Label_Result.Location = New System.Drawing.Point(41, 350)
+        Me.Label_Result.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label_Result.Location = New System.Drawing.Point(6, 608)
         Me.Label_Result.Name = "Label_Result"
-        Me.Label_Result.Size = New System.Drawing.Size(39, 13)
+        Me.Label_Result.Size = New System.Drawing.Size(69, 13)
         Me.Label_Result.TabIndex = 80
-        Me.Label_Result.Text = "Label4"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(41, 432)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 79
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Label_Result.Text = "Import Status"
         '
         'btnCancel
         '
@@ -1926,94 +2041,173 @@ Partial Class frmMaininterface
         '
         Me.PoOrderTableAdapter.ClearBeforeFill = True
         '
-        'UNLOCDataGridView
+        'btnDeleteSO
         '
-        Me.UNLOCDataGridView.AutoGenerateColumns = False
-        Me.UNLOCDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.UNLOCDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn67, Me.DataGridViewTextBoxColumn68, Me.DataGridViewTextBoxColumn69, Me.DataGridViewTextBoxColumn70, Me.DataGridViewTextBoxColumn71, Me.DataGridViewTextBoxColumn72, Me.DataGridViewTextBoxColumn73, Me.DataGridViewTextBoxColumn74, Me.DataGridViewTextBoxColumn75, Me.DataGridViewTextBoxColumn76, Me.DataGridViewTextBoxColumn77, Me.DataGridViewTextBoxColumn78, Me.DataGridViewTextBoxColumn79})
-        Me.UNLOCDataGridView.DataSource = Me.UNLOCBindingSource
-        Me.UNLOCDataGridView.Location = New System.Drawing.Point(31, 251)
-        Me.UNLOCDataGridView.Name = "UNLOCDataGridView"
-        Me.UNLOCDataGridView.Size = New System.Drawing.Size(300, 220)
-        Me.UNLOCDataGridView.TabIndex = 1
+        Me.btnDeleteSO.Location = New System.Drawing.Point(545, 340)
+        Me.btnDeleteSO.Name = "btnDeleteSO"
+        Me.btnDeleteSO.Size = New System.Drawing.Size(25, 25)
+        Me.btnDeleteSO.TabIndex = 100
+        Me.btnDeleteSO.TabStop = False
+        Me.btnDeleteSO.Text = "-"
+        Me.btnDeleteSO.UseVisualStyleBackColor = True
+        Me.btnDeleteSO.Visible = False
         '
-        'DataGridViewTextBoxColumn67
+        'btnAddSO
         '
-        Me.DataGridViewTextBoxColumn67.DataPropertyName = "UNLOC"
-        Me.DataGridViewTextBoxColumn67.HeaderText = "UNLOC"
-        Me.DataGridViewTextBoxColumn67.Name = "DataGridViewTextBoxColumn67"
+        Me.btnAddSO.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnAddSO.Location = New System.Drawing.Point(514, 340)
+        Me.btnAddSO.Name = "btnAddSO"
+        Me.btnAddSO.Size = New System.Drawing.Size(25, 25)
+        Me.btnAddSO.TabIndex = 98
+        Me.btnAddSO.TabStop = False
+        Me.btnAddSO.Text = "+"
+        Me.btnAddSO.UseVisualStyleBackColor = True
         '
-        'DataGridViewTextBoxColumn68
+        'Label4
         '
-        Me.DataGridViewTextBoxColumn68.DataPropertyName = "Change"
-        Me.DataGridViewTextBoxColumn68.HeaderText = "Change"
-        Me.DataGridViewTextBoxColumn68.Name = "DataGridViewTextBoxColumn68"
+        Label4.AutoSize = True
+        Label4.Location = New System.Drawing.Point(355, 346)
+        Label4.Name = "Label4"
+        Label4.Size = New System.Drawing.Size(47, 13)
+        Label4.TabIndex = 97
+        Label4.Text = "Add SO:"
         '
-        'DataGridViewTextBoxColumn69
+        'txtSO
         '
-        Me.DataGridViewTextBoxColumn69.DataPropertyName = "Country"
-        Me.DataGridViewTextBoxColumn69.HeaderText = "Country"
-        Me.DataGridViewTextBoxColumn69.Name = "DataGridViewTextBoxColumn69"
+        Me.txtSO.Location = New System.Drawing.Point(408, 343)
+        Me.txtSO.Name = "txtSO"
+        Me.txtSO.Size = New System.Drawing.Size(100, 20)
+        Me.txtSO.TabIndex = 96
         '
-        'DataGridViewTextBoxColumn70
+        'DsShipment_SOBindingSource
         '
-        Me.DataGridViewTextBoxColumn70.DataPropertyName = "Location"
-        Me.DataGridViewTextBoxColumn70.HeaderText = "Location"
-        Me.DataGridViewTextBoxColumn70.Name = "DataGridViewTextBoxColumn70"
+        Me.DsShipment_SOBindingSource.DataMember = "dsShipmentsdsShipment_SO"
+        Me.DsShipment_SOBindingSource.DataSource = Me.DsShipmentsBindingSource
         '
-        'DataGridViewTextBoxColumn71
+        'DsShipment_SOTableAdapter
         '
-        Me.DataGridViewTextBoxColumn71.DataPropertyName = "Name"
-        Me.DataGridViewTextBoxColumn71.HeaderText = "Name"
-        Me.DataGridViewTextBoxColumn71.Name = "DataGridViewTextBoxColumn71"
+        Me.DsShipment_SOTableAdapter.ClearBeforeFill = True
         '
-        'DataGridViewTextBoxColumn72
+        'DsShipment_SODataGridView
         '
-        Me.DataGridViewTextBoxColumn72.DataPropertyName = "NameWoDiacritics"
-        Me.DataGridViewTextBoxColumn72.HeaderText = "NameWoDiacritics"
-        Me.DataGridViewTextBoxColumn72.Name = "DataGridViewTextBoxColumn72"
+        Me.DsShipment_SODataGridView.AutoGenerateColumns = False
+        Me.DsShipment_SODataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DsShipment_SODataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn82, Me.DataGridViewTextBoxColumn83})
+        Me.DsShipment_SODataGridView.DataSource = Me.DsShipment_SOBindingSource
+        Me.DsShipment_SODataGridView.Location = New System.Drawing.Point(358, 369)
+        Me.DsShipment_SODataGridView.Name = "DsShipment_SODataGridView"
+        Me.DsShipment_SODataGridView.Size = New System.Drawing.Size(400, 95)
+        Me.DsShipment_SODataGridView.TabIndex = 100
         '
-        'DataGridViewTextBoxColumn73
+        'DataGridViewTextBoxColumn82
         '
-        Me.DataGridViewTextBoxColumn73.DataPropertyName = "Subdivision"
-        Me.DataGridViewTextBoxColumn73.HeaderText = "Subdivision"
-        Me.DataGridViewTextBoxColumn73.Name = "DataGridViewTextBoxColumn73"
+        Me.DataGridViewTextBoxColumn82.DataPropertyName = "Shipping_Order"
+        Me.DataGridViewTextBoxColumn82.HeaderText = "Shipping_Order"
+        Me.DataGridViewTextBoxColumn82.Name = "DataGridViewTextBoxColumn82"
         '
-        'DataGridViewTextBoxColumn74
+        'DataGridViewTextBoxColumn83
         '
-        Me.DataGridViewTextBoxColumn74.DataPropertyName = "Status"
-        Me.DataGridViewTextBoxColumn74.HeaderText = "Status"
-        Me.DataGridViewTextBoxColumn74.Name = "DataGridViewTextBoxColumn74"
+        Me.DataGridViewTextBoxColumn83.DataPropertyName = "Created"
+        Me.DataGridViewTextBoxColumn83.HeaderText = "Created"
+        Me.DataGridViewTextBoxColumn83.Name = "DataGridViewTextBoxColumn83"
         '
-        'DataGridViewTextBoxColumn75
+        'PoShipping_OrderBindingSource
         '
-        Me.DataGridViewTextBoxColumn75.DataPropertyName = "Function"
-        Me.DataGridViewTextBoxColumn75.HeaderText = "Function"
-        Me.DataGridViewTextBoxColumn75.Name = "DataGridViewTextBoxColumn75"
+        Me.PoShipping_OrderBindingSource.DataMember = "poShipping_Order"
+        Me.PoShipping_OrderBindingSource.DataSource = Me.DsDemag_HUB
         '
-        'DataGridViewTextBoxColumn76
+        'PoShipping_OrderTableAdapter
         '
-        Me.DataGridViewTextBoxColumn76.DataPropertyName = "Date"
-        Me.DataGridViewTextBoxColumn76.HeaderText = "Date"
-        Me.DataGridViewTextBoxColumn76.Name = "DataGridViewTextBoxColumn76"
+        Me.PoShipping_OrderTableAdapter.ClearBeforeFill = True
         '
-        'DataGridViewTextBoxColumn77
+        'PoShipping_OrderDataGridView
         '
-        Me.DataGridViewTextBoxColumn77.DataPropertyName = "IATA"
-        Me.DataGridViewTextBoxColumn77.HeaderText = "IATA"
-        Me.DataGridViewTextBoxColumn77.Name = "DataGridViewTextBoxColumn77"
+        Me.PoShipping_OrderDataGridView.AutoGenerateColumns = False
+        Me.PoShipping_OrderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.PoShipping_OrderDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn80, Me.DataGridViewTextBoxColumn81, Me.DataGridViewTextBoxColumn84, Me.DataGridViewTextBoxColumn85, Me.DataGridViewTextBoxColumn86, Me.DataGridViewTextBoxColumn87, Me.DataGridViewTextBoxColumn88, Me.DataGridViewTextBoxColumn89, Me.DataGridViewTextBoxColumn90, Me.DataGridViewTextBoxColumn91, Me.DataGridViewTextBoxColumn92, Me.DataGridViewTextBoxColumn93, Me.DataGridViewTextBoxColumn94})
+        Me.PoShipping_OrderDataGridView.DataSource = Me.PoShipping_OrderBindingSource
+        Me.PoShipping_OrderDataGridView.Location = New System.Drawing.Point(379, 256)
+        Me.PoShipping_OrderDataGridView.Name = "PoShipping_OrderDataGridView"
+        Me.PoShipping_OrderDataGridView.Size = New System.Drawing.Size(300, 220)
+        Me.PoShipping_OrderDataGridView.TabIndex = 2
         '
-        'DataGridViewTextBoxColumn78
+        'DataGridViewTextBoxColumn80
         '
-        Me.DataGridViewTextBoxColumn78.DataPropertyName = "Coordinates"
-        Me.DataGridViewTextBoxColumn78.HeaderText = "Coordinates"
-        Me.DataGridViewTextBoxColumn78.Name = "DataGridViewTextBoxColumn78"
+        Me.DataGridViewTextBoxColumn80.DataPropertyName = "Shipping_Order"
+        Me.DataGridViewTextBoxColumn80.HeaderText = "Shipping_Order"
+        Me.DataGridViewTextBoxColumn80.Name = "DataGridViewTextBoxColumn80"
         '
-        'DataGridViewTextBoxColumn79
+        'DataGridViewTextBoxColumn81
         '
-        Me.DataGridViewTextBoxColumn79.DataPropertyName = "Remarks"
-        Me.DataGridViewTextBoxColumn79.HeaderText = "Remarks"
-        Me.DataGridViewTextBoxColumn79.Name = "DataGridViewTextBoxColumn79"
+        Me.DataGridViewTextBoxColumn81.DataPropertyName = "Created"
+        Me.DataGridViewTextBoxColumn81.HeaderText = "Created"
+        Me.DataGridViewTextBoxColumn81.Name = "DataGridViewTextBoxColumn81"
+        '
+        'DataGridViewTextBoxColumn84
+        '
+        Me.DataGridViewTextBoxColumn84.DataPropertyName = "SO_Created"
+        Me.DataGridViewTextBoxColumn84.HeaderText = "SO_Created"
+        Me.DataGridViewTextBoxColumn84.Name = "DataGridViewTextBoxColumn84"
+        '
+        'DataGridViewTextBoxColumn85
+        '
+        Me.DataGridViewTextBoxColumn85.DataPropertyName = "Transport_Mode"
+        Me.DataGridViewTextBoxColumn85.HeaderText = "Transport_Mode"
+        Me.DataGridViewTextBoxColumn85.Name = "DataGridViewTextBoxColumn85"
+        '
+        'DataGridViewTextBoxColumn86
+        '
+        Me.DataGridViewTextBoxColumn86.DataPropertyName = "Incoterm"
+        Me.DataGridViewTextBoxColumn86.HeaderText = "Incoterm"
+        Me.DataGridViewTextBoxColumn86.Name = "DataGridViewTextBoxColumn86"
+        '
+        'DataGridViewTextBoxColumn87
+        '
+        Me.DataGridViewTextBoxColumn87.DataPropertyName = "Supplier"
+        Me.DataGridViewTextBoxColumn87.HeaderText = "Supplier"
+        Me.DataGridViewTextBoxColumn87.Name = "DataGridViewTextBoxColumn87"
+        '
+        'DataGridViewTextBoxColumn88
+        '
+        Me.DataGridViewTextBoxColumn88.DataPropertyName = "Volume"
+        Me.DataGridViewTextBoxColumn88.HeaderText = "Volume"
+        Me.DataGridViewTextBoxColumn88.Name = "DataGridViewTextBoxColumn88"
+        '
+        'DataGridViewTextBoxColumn89
+        '
+        Me.DataGridViewTextBoxColumn89.DataPropertyName = "Weight"
+        Me.DataGridViewTextBoxColumn89.HeaderText = "Weight"
+        Me.DataGridViewTextBoxColumn89.Name = "DataGridViewTextBoxColumn89"
+        '
+        'DataGridViewTextBoxColumn90
+        '
+        Me.DataGridViewTextBoxColumn90.DataPropertyName = "POL"
+        Me.DataGridViewTextBoxColumn90.HeaderText = "POL"
+        Me.DataGridViewTextBoxColumn90.Name = "DataGridViewTextBoxColumn90"
+        '
+        'DataGridViewTextBoxColumn91
+        '
+        Me.DataGridViewTextBoxColumn91.DataPropertyName = "Shipping_Order_Status"
+        Me.DataGridViewTextBoxColumn91.HeaderText = "Shipping_Order_Status"
+        Me.DataGridViewTextBoxColumn91.Name = "DataGridViewTextBoxColumn91"
+        '
+        'DataGridViewTextBoxColumn92
+        '
+        Me.DataGridViewTextBoxColumn92.DataPropertyName = "Last_Update"
+        Me.DataGridViewTextBoxColumn92.HeaderText = "Last_Update"
+        Me.DataGridViewTextBoxColumn92.Name = "DataGridViewTextBoxColumn92"
+        '
+        'DataGridViewTextBoxColumn93
+        '
+        Me.DataGridViewTextBoxColumn93.DataPropertyName = "ETD"
+        Me.DataGridViewTextBoxColumn93.HeaderText = "ETD"
+        Me.DataGridViewTextBoxColumn93.Name = "DataGridViewTextBoxColumn93"
+        '
+        'DataGridViewTextBoxColumn94
+        '
+        Me.DataGridViewTextBoxColumn94.DataPropertyName = "Comment"
+        Me.DataGridViewTextBoxColumn94.HeaderText = "Comment"
+        Me.DataGridViewTextBoxColumn94.Name = "DataGridViewTextBoxColumn94"
         '
         'frmMaininterface
         '
@@ -2044,6 +2238,7 @@ Partial Class frmMaininterface
         CType(Me.DsPartnerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabDocuments.ResumeLayout(False)
+        CType(Me.UNLOCDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PoOrderDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsCommentBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2057,7 +2252,10 @@ Partial Class frmMaininterface
         CType(Me.DsContactDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsContactBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.UNLOCDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsShipment_SOBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsShipment_SODataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PoShipping_OrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PoShipping_OrderDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2212,7 +2410,6 @@ Partial Class frmMaininterface
     Friend WithEvents DataGridViewCheckBoxColumn1 As DataGridViewCheckBoxColumn
     Friend WithEvents DataGridViewCheckBoxColumn2 As DataGridViewCheckBoxColumn
     Friend WithEvents Label_Result As Label
-    Friend WithEvents Button1 As Button
     Friend WithEvents ProgressBar As ProgressBar
     Friend WithEvents PoOrderDataGridView As DataGridView
     Friend WithEvents DataGridViewTextBoxColumn25 As DataGridViewTextBoxColumn
@@ -2240,4 +2437,28 @@ Partial Class frmMaininterface
     Friend WithEvents DataGridViewTextBoxColumn77 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn78 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn79 As DataGridViewTextBoxColumn
+    Friend WithEvents btnDeleteSO As Button
+    Friend WithEvents btnAddSO As Button
+    Friend WithEvents txtSO As TextBox
+    Friend WithEvents DsShipment_SOBindingSource As BindingSource
+    Friend WithEvents DsShipment_SOTableAdapter As dsDemag_HUBTableAdapters.dsShipment_SOTableAdapter
+    Friend WithEvents DsShipment_SODataGridView As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn82 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn83 As DataGridViewTextBoxColumn
+    Friend WithEvents PoShipping_OrderBindingSource As BindingSource
+    Friend WithEvents PoShipping_OrderTableAdapter As dsDemag_HUBTableAdapters.poShipping_OrderTableAdapter
+    Friend WithEvents PoShipping_OrderDataGridView As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn80 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn81 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn84 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn85 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn86 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn87 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn88 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn89 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn90 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn91 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn92 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn93 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn94 As DataGridViewTextBoxColumn
 End Class
