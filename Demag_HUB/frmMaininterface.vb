@@ -2,6 +2,8 @@
 
 Imports System.Text
 Imports System.IO
+Imports System.ComponentModel
+
 Public Class frmMaininterface
     Dim dtnEmpty As String = "01.01.0001 00:00:00"
     Dim CON As New OleDb.OleDbConnection
@@ -10,14 +12,53 @@ Public Class frmMaininterface
     Dim ImportDS As System.Data.DataSet
 
 
-    Private Sub DsShipmentsBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs)
-        Me.Validate()
-        Me.DsShipmentsBindingSource.EndEdit()
-        Me.TableAdapterManager.UpdateAll(Me.DsDemag_HUB)
+    'Private Sub DsShipmentsBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs)
+    '    Me.Validate()
+    '    Me.DsShipmentsBindingSource.EndEdit()
+    '    Me.TableAdapterManager.UpdateAll(Me.DsDemag_HUB)
 
+    'End Sub
+    Private Sub frmMaininterface_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Save()
+        'custom.Default.Save()
+
+        'MyBase.OnFormClosing(e)
     End Sub
 
+
     Private Sub frmMaininterface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        dirDB.DataBindings.Add("Text", My.Settings, "sttDBPath")
+        LoadDB()
+        bgwImportICM.RunWorkerAsync(0)
+    End Sub
+
+    Sub LoadDB()
+        If My.Settings.sttDBPath = "" Then
+            dlgFileDialog.Title = "Bitte Datenbank auswählen"
+            dlgFileDialog.ShowDialog() 'Fileauswählen
+            My.Settings.sttDBPath = dlgFileDialog.FileName
+        End If
+        CON.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & My.Settings.sttDBPath
+
+
+        PoShipping_OrderTableAdapter.Connection = CON
+        DsShipment_SOTableAdapter.Connection = CON
+        PoOrderTableAdapter.Connection = CON
+        DsShipment_OrderTableAdapter.Connection = CON
+        DsInvoiceTableAdapter.Connection = CON
+        DsInvoiceTableAdapter.Connection = CON
+        DsCommentTableAdapter.Connection = CON
+        UNLOCTableAdapter.Connection = CON
+        DsAddressTableAdapter.Connection = CON
+        DsContactTableAdapter.Connection = CON
+        DsPartnerTableAdapter.Connection = CON
+        IncotermTableAdapter.Connection = CON
+        DsShipmentsTableAdapter.Connection = CON
+
+
+
+        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.ptShipments". Sie können sie bei Bedarf verschieben oder entfernen.
+        Me.PtShipmentsTableAdapter.Fill(Me.DsDemag_HUB.ptShipments)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.poShipping_Order". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.PoShipping_OrderTableAdapter.Fill(Me.DsDemag_HUB.poShipping_Order)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsShipment_SO". Sie können sie bei Bedarf verschieben oder entfernen.
@@ -28,14 +69,6 @@ Public Class frmMaininterface
         Me.DsShipment_OrderTableAdapter.Fill(Me.DsDemag_HUB.dsShipment_Order)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsInvoice". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.DsInvoiceTableAdapter.Fill(Me.DsDemag_HUB.dsInvoice)
-
-        If My.Settings.sttDBPath = "" Then
-            dlgFileDialog.Title = "Bitte Datenbank auswählen"
-            dlgFileDialog.ShowDialog() 'Fileauswählen
-            My.Settings.sttDBPath = dlgFileDialog.FileName
-        End If
-
-
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsInvoice". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.DsInvoiceTableAdapter.Fill(Me.DsDemag_HUB.dsInvoice)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsComment". Sie können sie bei Bedarf verschieben oder entfernen.
@@ -52,14 +85,7 @@ Public Class frmMaininterface
         Me.IncotermTableAdapter.Fill(Me.DsDemag_HUB.Incoterm)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsShipments". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.DsShipmentsTableAdapter.Fill(Me.DsDemag_HUB.dsShipments)
-
-
-
-
-        bgwImportICM.RunWorkerAsync(0)
     End Sub
-
-
 
 
     Private Sub btnNewPartner_Click(sender As Object, e As EventArgs) Handles btnNewPartner.Click
@@ -78,14 +104,12 @@ Public Class frmMaininterface
 
     End Sub
 
-
     Public Function GetWeekStartDate(ByVal Year As String, ByVal Week As Integer, Optional FirstDayOfWeek As DayOfWeek = DayOfWeek.Monday) As Date
         Dim dt As Date = New Date(Convert.ToInt32(Year), 1, 1)
         If dt.DayOfWeek > 4 Then dt = dt.AddDays(7 - dt.DayOfWeek) Else dt = dt.AddDays(-dt.DayOfWeek)
         dt = dt.AddDays(FirstDayOfWeek)
         Return dt.AddDays(7 * (Week - 1))
     End Function
-
 
     Function getDate(ByVal dtnString As String) As Date
         Try
@@ -118,8 +142,6 @@ Public Class frmMaininterface
         End Try
     End Function
 
-
-
     Private Sub dtnConvert(ctlButton As Object, e As EventArgs) Handles dtnCRD.Leave, dtnETD.Leave, dtnETA.Leave
         Dim sender As Control = CType(ctlButton, Control)
         If sender.Text = "" Then
@@ -130,7 +152,10 @@ Public Class frmMaininterface
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Save()
+    End Sub
 
+    Sub Save()
         'MsgBox("Starte")
 
         Me.Validate()
@@ -151,7 +176,6 @@ Public Class frmMaininterface
         Me.DsShipment_OrderTableAdapter.Update(Me.DsDemag_HUB.dsShipment_Order)
         Me.DsShipment_SOTableAdapter.Update(Me.DsDemag_HUB.dsShipment_SO)
         'MsgBox("Fertig")
-
     End Sub
 
     Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
@@ -393,11 +417,11 @@ Public Class frmMaininterface
         Me.AcceptButton = btnSave
     End Sub
 
-    Private Sub txtSearch_Enter(sender As Object, e As EventArgs) Handles txtSearch.Enter
+    Private Sub txtSearch_Enter(sender As Object, e As EventArgs) Handles txtSearch.Enter, cmbField.Enter
         Me.AcceptButton = btnSearch
     End Sub
 
-    Private Sub txtSearch_Leave(sender As Object, e As EventArgs) Handles txtSearch.Leave
+    Private Sub txtSearch_Leave(sender As Object, e As EventArgs) Handles txtSearch.Leave, cmbField.Leave
         Me.AcceptButton = btnSave
     End Sub
 
@@ -782,4 +806,227 @@ Public Class frmMaininterface
     Private Sub txtSoNo_Leave(sender As Object, e As EventArgs) Handles txtSoNo.Leave
         Me.AcceptButton = btnSave
     End Sub
+
+    'Ergänzt die Daten sobald sich was ändert. Verbraucht möglichweiser viele Ressourcen
+    Private Sub dvPoNo_DataBindingComplete(sender As Object, e As DataGridViewBindingCompleteEventArgs) Handles DsShipment_OrderDataGridView.DataBindingComplete
+        'Ergänzt die Daten sobald sich was ändert. Verbraucht möglichweiser viele Ressourcen
+        dvPoNoAddData()
+    End Sub
+    Sub dvPoNoAddData()
+        For Each row As DataGridViewRow In DsShipment_OrderDataGridView.Rows
+            'MsgBox(row.Cells(2).Value.ToString)
+            PoOrderBindingSource.Filter = "Purchase_Order = '" & row.Cells(0).Value.ToString & "'"
+            If PoOrderBindingSource.Count = 1 Then
+                'Dim LatestETD As Date = HellwegDataSet.dsPurchaseOrder.FindByPONo(row.Cells(1).Value.ToString).LatestETD
+                If DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).IsSQE_CheckNull Then
+                Else
+                    'MsgBox(DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(2).Value.ToString).SQE_Check)
+                    row.Cells(1).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).Incoterm
+                    row.Cells(2).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).Incoterm_Location
+                    row.Cells(3).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).SQE_Check
+                    row.Cells(4).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).Latest_Arrival
+                    row.Cells(5).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).Buyer_Mail.ToString
+
+
+                End If
+
+                'row.Cells(3).Value = getCalendarWeek(LatestETD)
+                'row.Cells(4).Value = HellwegDataSet.dsPurchaseOrder.FindByPONo(row.Cells(1).Value.ToString).POL
+            End If
+        Next
+    End Sub
+
+    Private Sub ServiceTextBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ServiceTextBox.SelectedIndexChanged
+        Select Case ServiceTextBox.Text
+            Case = "FCL"
+                VolumeTextBox.Enabled = True
+                WeightTextBox.Enabled = True
+                Cont20DCTextBox.Enabled = True
+                Cont40DCTextBox.Enabled = True
+                Cont40HQTextBox.Enabled = True
+            Case = "LCL"
+                VolumeTextBox.Enabled = True
+                WeightTextBox.Enabled = True
+                Cont20DCTextBox.Enabled = False
+                Cont40DCTextBox.Enabled = False
+                Cont40HQTextBox.Enabled = False
+            Case = "AIR"
+                VolumeTextBox.Enabled = True
+                WeightTextBox.Enabled = True
+                Cont20DCTextBox.Enabled = False
+                Cont40DCTextBox.Enabled = False
+                Cont40HQTextBox.Enabled = False
+            Case = "RAIL"
+                VolumeTextBox.Enabled = True
+                WeightTextBox.Enabled = True
+                Cont20DCTextBox.Enabled = True
+                Cont40DCTextBox.Enabled = True
+                Cont40HQTextBox.Enabled = True
+            Case Else
+                VolumeTextBox.Enabled = True
+                WeightTextBox.Enabled = True
+                Cont20DCTextBox.Enabled = True
+                Cont40DCTextBox.Enabled = True
+                Cont40HQTextBox.Enabled = True
+        End Select
+
+    End Sub
+
+    Private Sub calcTEU(sender As Object, e As EventArgs) Handles Cont20DCTextBox.TextChanged, Cont40DCTextBox.TextChanged, Cont40HQTextBox.TextChanged
+        Dim cont20DC As Integer = 0
+        Dim cont40DC As Integer = 0
+        Dim cont40HQ As Integer = 0
+        If Cont20DCTextBox.Text <> "" Then cont20DC = Convert.ToInt32(Cont20DCTextBox.Text)
+        If Cont40DCTextBox.Text <> "" Then cont40DC = Convert.ToInt32(Cont40DCTextBox.Text)
+        If Cont40HQTextBox.Text <> "" Then cont40HQ = Convert.ToInt32(Cont40HQTextBox.Text)
+
+        TEUTextBox.Text = Convert.ToString((cont40DC + cont40HQ) * 2 + cont20DC)
+    End Sub
+
+    Private Sub WeightTextBox_TextChanged(sender As Object, e As EventArgs) Handles WeightTextBox.TextChanged
+        If WeightTextBox.Text = "" Then Exit Sub
+        Select Case Convert.ToInt32(WeightTextBox.Text)
+            Case > 25000
+                WeightTextBox.BackColor = Color.Crimson
+            Case > 18000
+                WeightTextBox.BackColor = Color.Gold
+            Case < 18000
+                WeightTextBox.BackColor = Color.White
+            Case Else
+        End Select
+    End Sub
+
+    Private Sub SQE_Click(sender As Object, e As EventArgs) Handles SQE.Click
+        Dim Subject As String
+        Dim Body As String
+        Dim File As String = ""
+
+        Subject = "DEMAG: Missing SQE Approval - "
+        Subject = Subject & "ID: " & Shipment_IDTextBox.Text
+        If STT_NoTextBox.Text <> "" Then Subject = Subject & " // STT No.: " & STT_NoTextBox.Text
+        If DsShipment_SODataGridView.Rows.Count <> 0 Then
+            Subject = Subject & " // SO No.:"
+            For Each Row As DataGridViewRow In Me.DsShipment_SODataGridView.Rows
+                Subject = Subject & " " & Row.Cells(0).Value.ToString
+            Next
+        End If
+
+        If DsInvoiceDataGridView.Rows.Count <> 0 Then
+            Subject = Subject & " // INV No.:"
+            For Each Row As DataGridViewRow In Me.DsInvoiceDataGridView.Rows
+                Subject = Subject & " " & Row.Cells(0).Value.ToString
+            Next
+        End If
+
+        If DsShipment_OrderDataGridView.Rows.Count <> 0 Then
+            Subject = Subject & " // SO No.:"
+            For Each Row As DataGridViewRow In Me.DsShipment_OrderDataGridView.Rows
+                Subject = Subject & " " & Row.Cells(0).Value.ToString
+            Next
+        End If
+
+        'Dim Signature As HtmlDocument
+
+
+
+
+        Body = "Dear Sir or Madam,<br>please check if for above mentioned shipment the SQE approval was given. <br><br> Many thanks"
+
+        If DsInvoiceDataGridView.Rows.Count = 1 Then
+            'MsgBox(DsInvoiceDataGridView1.Rows(0).Cells(4).Value.ToString)
+            File = DsInvoiceDataGridView1.Rows(0).Cells(4).Value.ToString
+        End If
+
+
+        SendMailOutlook.SendMailHTTP("", Subject, Body, File)
+
+        'Protokoll anlegen
+        Dim newPtRow As dsDemag_HUB.ptShipmentsRow
+        newPtRow = DsDemag_HUB.ptShipments.NewptShipmentsRow
+        newPtRow.ShipmentID = Convert.ToInt32(Shipment_IDTextBox.Text)
+        newPtRow.Created = Date.Now
+        newPtRow.Description = "SQE"
+        newPtRow.Description = "SQE Check aproval was requested"
+        newPtRow.User = Environment.UserName
+        DsDemag_HUB.ptShipments.Rows.Add(newPtRow)
+        Me.PtShipmentsBindingSource.EndEdit()
+        Me.PtShipmentsTableAdapter.Update(Me.DsDemag_HUB.ptShipments)
+    End Sub
+
+    Private Sub btnSchedule_Click(sender As Object, e As EventArgs) Handles btnSchedule.Click
+        If dtnETD.Text = "" Or
+        dtnETA.Text = "" Or
+        IncotermTextBox.Text = "" Or
+        Incoterm_LocTextBox.Text = "" Then
+            MsgBox("Es fehlen noch Daten: ETD,ETA,Incoterm, Incoterm Location")
+            Exit Sub
+        End If
+
+
+        Dim Subject As String
+        Dim Body As String
+        Dim File As String = ""
+        Dim toMail As String = ""
+
+        Subject = "DEMAG: Shipment schedule - "
+        Subject = Subject & "ID: " & Shipment_IDTextBox.Text
+        If STT_NoTextBox.Text <> "" Then Subject = Subject & " // STT No.: " & STT_NoTextBox.Text
+        If DsShipment_SODataGridView.Rows.Count <> 0 Then
+            Subject = Subject & " // SO No.:"
+            For Each Row As DataGridViewRow In Me.DsShipment_SODataGridView.Rows
+                Subject = Subject & " " & Row.Cells(0).Value.ToString
+            Next
+        End If
+
+        If DsInvoiceDataGridView.Rows.Count <> 0 Then
+            Subject = Subject & " // INV No.:"
+            For Each Row As DataGridViewRow In Me.DsInvoiceDataGridView.Rows
+                Subject = Subject & " " & Row.Cells(0).Value.ToString
+            Next
+        End If
+
+        If DsShipment_OrderDataGridView.Rows.Count <> 0 Then
+            Subject = Subject & " // SO No.:"
+            For Each Row As DataGridViewRow In Me.DsShipment_OrderDataGridView.Rows
+                Subject = Subject & " " & Row.Cells(0).Value.ToString
+            Next
+        End If
+
+        If DsShipment_OrderDataGridView.Rows.Count <> 0 Then
+            For Each Row As DataGridViewRow In Me.DsShipment_OrderDataGridView.Rows
+                toMail = toMail & ";" & Row.Cells(5).Value.ToString
+            Next
+        End If
+
+        Body = "Dear Sir or Madam,<br>above mentioned shipment is planned as follow.<br>" &
+                "<br>ETD " & POLTextBox.Text & ": " & dtnETD.Text &
+                "<br>ETA " & PODTextBox.Text & ": " & dtnETD.Text &
+                "<br>Incoterm: " & IncotermTextBox.Text & " - " & Incoterm_LocTextBox.Text &
+                "<br><br>Please let us know if any additional Info is necessary."
+
+        If DsInvoiceDataGridView.Rows.Count = 1 Then
+            File = DsInvoiceDataGridView1.Rows(0).Cells(4).Value.ToString
+        End If
+
+
+        SendMailOutlook.SendMailHTTP(toMail, Subject, Body, File)
+
+        'Protokoll anlegen
+        Dim newPtRow As dsDemag_HUB.ptShipmentsRow
+        newPtRow = DsDemag_HUB.ptShipments.NewptShipmentsRow
+        newPtRow.ShipmentID = Convert.ToInt32(Shipment_IDTextBox.Text)
+        newPtRow.Created = Date.Now
+        newPtRow.Description = "Schedule"
+        newPtRow.Description = "Schedule was announced"
+        newPtRow.User = Environment.UserName
+        DsDemag_HUB.ptShipments.Rows.Add(newPtRow)
+        Me.PtShipmentsBindingSource.EndEdit()
+        Me.PtShipmentsTableAdapter.Update(Me.DsDemag_HUB.ptShipments)
+    End Sub
+
+    Private Sub tabOverview_Enter(sender As Object, e As EventArgs) Handles tabOverview.Enter
+        txtSearch.Focus()
+    End Sub
+
+
 End Class
