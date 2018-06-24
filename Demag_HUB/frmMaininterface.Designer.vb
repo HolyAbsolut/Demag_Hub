@@ -164,16 +164,7 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn58 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tabProtocol = New System.Windows.Forms.TabPage()
         Me.PtShipmentsDataGridView = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn59 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn60 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn61 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn62 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn63 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn64 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn65 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn66 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn67 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn68 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PtShipmentsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PoShipping_OrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PoOrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -1589,27 +1580,13 @@ Partial Class frmMaininterface
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PtShipmentsDataGridView.AutoGenerateColumns = False
         Me.PtShipmentsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.PtShipmentsDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn59, Me.DataGridViewTextBoxColumn60, Me.DataGridViewTextBoxColumn61, Me.DataGridViewTextBoxColumn62, Me.DataGridViewTextBoxColumn63, Me.DataGridViewTextBoxColumn64, Me.DataGridViewTextBoxColumn65, Me.DataGridViewTextBoxColumn66, Me.DataGridViewTextBoxColumn67, Me.DataGridViewTextBoxColumn68})
-        Me.PtShipmentsDataGridView.DataSource = Me.PtShipmentsBindingSource
+        Me.PtShipmentsDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn61})
+        Me.PtShipmentsDataGridView.DataSource = Me.PoOrderBindingSource
         Me.PtShipmentsDataGridView.Location = New System.Drawing.Point(6, 6)
         Me.PtShipmentsDataGridView.Name = "PtShipmentsDataGridView"
         Me.PtShipmentsDataGridView.ReadOnly = True
         Me.PtShipmentsDataGridView.Size = New System.Drawing.Size(1034, 637)
         Me.PtShipmentsDataGridView.TabIndex = 0
-        '
-        'DataGridViewTextBoxColumn59
-        '
-        Me.DataGridViewTextBoxColumn59.DataPropertyName = "ProtocolID"
-        Me.DataGridViewTextBoxColumn59.HeaderText = "ProtocolID"
-        Me.DataGridViewTextBoxColumn59.Name = "DataGridViewTextBoxColumn59"
-        Me.DataGridViewTextBoxColumn59.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn60
-        '
-        Me.DataGridViewTextBoxColumn60.DataPropertyName = "ShipmentID"
-        Me.DataGridViewTextBoxColumn60.HeaderText = "ShipmentID"
-        Me.DataGridViewTextBoxColumn60.Name = "DataGridViewTextBoxColumn60"
-        Me.DataGridViewTextBoxColumn60.ReadOnly = True
         '
         'DataGridViewTextBoxColumn61
         '
@@ -1617,56 +1594,6 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn61.HeaderText = "Created"
         Me.DataGridViewTextBoxColumn61.Name = "DataGridViewTextBoxColumn61"
         Me.DataGridViewTextBoxColumn61.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn62
-        '
-        Me.DataGridViewTextBoxColumn62.DataPropertyName = "Type"
-        Me.DataGridViewTextBoxColumn62.HeaderText = "Type"
-        Me.DataGridViewTextBoxColumn62.Name = "DataGridViewTextBoxColumn62"
-        Me.DataGridViewTextBoxColumn62.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn63
-        '
-        Me.DataGridViewTextBoxColumn63.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DataGridViewTextBoxColumn63.DataPropertyName = "Description"
-        Me.DataGridViewTextBoxColumn63.HeaderText = "Description"
-        Me.DataGridViewTextBoxColumn63.Name = "DataGridViewTextBoxColumn63"
-        Me.DataGridViewTextBoxColumn63.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn64
-        '
-        Me.DataGridViewTextBoxColumn64.DataPropertyName = "Column_Name"
-        Me.DataGridViewTextBoxColumn64.HeaderText = "Column_Name"
-        Me.DataGridViewTextBoxColumn64.Name = "DataGridViewTextBoxColumn64"
-        Me.DataGridViewTextBoxColumn64.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn65
-        '
-        Me.DataGridViewTextBoxColumn65.DataPropertyName = "oldValue"
-        Me.DataGridViewTextBoxColumn65.HeaderText = "oldValue"
-        Me.DataGridViewTextBoxColumn65.Name = "DataGridViewTextBoxColumn65"
-        Me.DataGridViewTextBoxColumn65.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn66
-        '
-        Me.DataGridViewTextBoxColumn66.DataPropertyName = "newValue"
-        Me.DataGridViewTextBoxColumn66.HeaderText = "newValue"
-        Me.DataGridViewTextBoxColumn66.Name = "DataGridViewTextBoxColumn66"
-        Me.DataGridViewTextBoxColumn66.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn67
-        '
-        Me.DataGridViewTextBoxColumn67.DataPropertyName = "User"
-        Me.DataGridViewTextBoxColumn67.HeaderText = "User"
-        Me.DataGridViewTextBoxColumn67.Name = "DataGridViewTextBoxColumn67"
-        Me.DataGridViewTextBoxColumn67.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn68
-        '
-        Me.DataGridViewTextBoxColumn68.DataPropertyName = "Attachment"
-        Me.DataGridViewTextBoxColumn68.HeaderText = "Attachment"
-        Me.DataGridViewTextBoxColumn68.Name = "DataGridViewTextBoxColumn68"
-        Me.DataGridViewTextBoxColumn68.ReadOnly = True
         '
         'PtShipmentsBindingSource
         '
@@ -2380,16 +2307,7 @@ Partial Class frmMaininterface
     Friend WithEvents PtShipmentsBindingSource As BindingSource
     Friend WithEvents PtShipmentsTableAdapter As dsDemag_HUBTableAdapters.ptShipmentsTableAdapter
     Friend WithEvents PtShipmentsDataGridView As DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn59 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn60 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn61 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn62 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn63 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn64 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn65 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn66 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn67 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn68 As DataGridViewTextBoxColumn
     Friend WithEvents btnSchedule As Button
     Friend WithEvents dirDB As TextBox
 End Class

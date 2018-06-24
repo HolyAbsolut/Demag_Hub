@@ -1028,5 +1028,10 @@ Public Class frmMaininterface
         txtSearch.Focus()
     End Sub
 
-
+    Private Sub DsInvoiceDataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DsInvoiceDataGridView1.CellDoubleClick
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then 'Dokument öffnen
+            Dim selectedRow = DsInvoiceDataGridView1.Rows(e.RowIndex)
+            Process.Start(selectedRow.Cells(4).Value.ToString)
+        End If
+    End Sub
 End Class
