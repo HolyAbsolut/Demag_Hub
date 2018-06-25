@@ -19,6 +19,7 @@ Public Class frmMaininterface
 
     'End Sub
     Private Sub frmMaininterface_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        My.Settings.sttDBPath = txtDB.Text
         Save()
         'custom.Default.Save()
 
@@ -27,7 +28,9 @@ Public Class frmMaininterface
 
 
     Private Sub frmMaininterface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        dirDB.DataBindings.Add("Text", My.Settings, "sttDBPath")
+        txtDB.Text = My.Settings.sttDBPath
+        'dirDB.DataBindings.Add("Text", My.Settings, "sttDBPath")
+
         LoadDB()
         bgwImportICM.RunWorkerAsync(0)
     End Sub
@@ -38,7 +41,11 @@ Public Class frmMaininterface
             dlgFileDialog.ShowDialog() 'Fileauswählen
             My.Settings.sttDBPath = dlgFileDialog.FileName
         End If
-        CON.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & My.Settings.sttDBPath
+
+
+
+        CON.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & txtDB.Text
+        'CON.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & My.Settings.sttDBPath
 
 
         PoShipping_OrderTableAdapter.Connection = CON
@@ -57,8 +64,10 @@ Public Class frmMaininterface
 
 
 
+        'TODO:   Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsShipments". Sie können sie bei Bedarf verschieben oder entfernen.
+        Me.DsShipmentsTableAdapter.Fill(Me.DsDemag_HUB.dsShipments)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.ptShipments". Sie können sie bei Bedarf verschieben oder entfernen.
-        Me.PtShipmentsTableAdapter.Fill(Me.DsDemag_HUB.ptShipments)
+        'Me.PtShipmentsTableAdapter.Fill(Me.DsDemag_HUB.ptShipments)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.poShipping_Order". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.PoShipping_OrderTableAdapter.Fill(Me.DsDemag_HUB.poShipping_Order)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsShipment_SO". Sie können sie bei Bedarf verschieben oder entfernen.
@@ -83,8 +92,10 @@ Public Class frmMaininterface
         Me.DsPartnerTableAdapter.Fill(Me.DsDemag_HUB.dsPartner)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.Incoterm". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.IncotermTableAdapter.Fill(Me.DsDemag_HUB.Incoterm)
-        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsShipments". Sie können sie bei Bedarf verschieben oder entfernen.
-        Me.DsShipmentsTableAdapter.Fill(Me.DsDemag_HUB.dsShipments)
+
+
+
+        'MsgBox(DsShipmentsTableAdapter.Connection.ConnectionString.ToString)
     End Sub
 
 
@@ -145,7 +156,7 @@ Public Class frmMaininterface
     Private Sub dtnConvert(ctlButton As Object, e As EventArgs) Handles dtnCRD.Leave, dtnETD.Leave, dtnETA.Leave
         Dim sender As Control = CType(ctlButton, Control)
         If sender.Text = "" Then
-            DsDemag_HUB.dsShipments.Rows.Find(Shipment_IDTextBox.Text).Item(sender.Name) = System.DBNull.Value
+            'DsDemag_HUB.dsShipments.Rows.Find(Shipment_IDTextBox.Text).Item(sender.Name) = System.DBNull.Value
         Else
             sender.Text = getDate(sender.Text).ToString
         End If
@@ -844,30 +855,40 @@ Public Class frmMaininterface
                 Cont20DCTextBox.Enabled = True
                 Cont40DCTextBox.Enabled = True
                 Cont40HQTextBox.Enabled = True
+                CarrierTextBox.Enabled = True
+                Contract_NoTextBox.Enabled = True
             Case = "LCL"
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
                 Cont20DCTextBox.Enabled = False
                 Cont40DCTextBox.Enabled = False
                 Cont40HQTextBox.Enabled = False
+                CarrierTextBox.Enabled = False
+                Contract_NoTextBox.Enabled = False
             Case = "AIR"
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
                 Cont20DCTextBox.Enabled = False
                 Cont40DCTextBox.Enabled = False
                 Cont40HQTextBox.Enabled = False
+                CarrierTextBox.Enabled = False
+                Contract_NoTextBox.Enabled = False
             Case = "RAIL"
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
                 Cont20DCTextBox.Enabled = True
                 Cont40DCTextBox.Enabled = True
                 Cont40HQTextBox.Enabled = True
+                CarrierTextBox.Enabled = False
+                Contract_NoTextBox.Enabled = False
             Case Else
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
                 Cont20DCTextBox.Enabled = True
                 Cont40DCTextBox.Enabled = True
                 Cont40HQTextBox.Enabled = True
+                CarrierTextBox.Enabled = True
+                Contract_NoTextBox.Enabled = True
         End Select
 
     End Sub
@@ -1033,5 +1054,9 @@ Public Class frmMaininterface
             Dim selectedRow = DsInvoiceDataGridView1.Rows(e.RowIndex)
             Process.Start(selectedRow.Cells(4).Value.ToString)
         End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        LoadDB()
     End Sub
 End Class

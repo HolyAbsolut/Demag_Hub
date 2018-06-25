@@ -165,12 +165,14 @@ Partial Class frmMaininterface
         Me.tabProtocol = New System.Windows.Forms.TabPage()
         Me.PtShipmentsDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn61 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PoOrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PtShipmentsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PoShipping_OrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.PoOrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsCommentBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tabSettings = New System.Windows.Forms.TabPage()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.txtDB = New System.Windows.Forms.TextBox()
         Me.dirDB = New System.Windows.Forms.TextBox()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnSearch = New System.Windows.Forms.Button()
@@ -276,9 +278,9 @@ Partial Class frmMaininterface
         CType(Me.DsInvoiceDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabProtocol.SuspendLayout()
         CType(Me.PtShipmentsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PtShipmentsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PoShipping_OrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsCommentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabSettings.SuspendLayout()
         Me.TabControl3.SuspendLayout()
@@ -1223,6 +1225,7 @@ Partial Class frmMaininterface
         Me.FullIncoterm_LocTextBox.Name = "FullIncoterm_LocTextBox"
         Me.FullIncoterm_LocTextBox.Size = New System.Drawing.Size(178, 21)
         Me.FullIncoterm_LocTextBox.TabIndex = 8
+        Me.FullIncoterm_LocTextBox.TabStop = False
         '
         'UNLOCBindingSource
         '
@@ -1234,8 +1237,6 @@ Partial Class frmMaininterface
         Me.Incoterm_LocTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.Incoterm_LocTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.Incoterm_LocTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Incoterm_Loc", True))
-        Me.Incoterm_LocTextBox.DataSource = Me.UNLOCBindingSource
-        Me.Incoterm_LocTextBox.DisplayMember = "UNLOC"
         Me.Incoterm_LocTextBox.FormattingEnabled = True
         Me.Incoterm_LocTextBox.Location = New System.Drawing.Point(109, 125)
         Me.Incoterm_LocTextBox.Name = "Incoterm_LocTextBox"
@@ -1254,6 +1255,7 @@ Partial Class frmMaininterface
         Me.FullPODTextBox.Name = "FullPODTextBox"
         Me.FullPODTextBox.Size = New System.Drawing.Size(178, 21)
         Me.FullPODTextBox.TabIndex = 12
+        Me.FullPODTextBox.TabStop = False
         '
         'PODTextBox
         '
@@ -1261,8 +1263,6 @@ Partial Class frmMaininterface
         Me.PODTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.PODTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.PODTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "POD", True))
-        Me.PODTextBox.DataSource = Me.UNLOCBindingSource
-        Me.PODTextBox.DisplayMember = "UNLOC"
         Me.PODTextBox.FormattingEnabled = True
         Me.PODTextBox.Location = New System.Drawing.Point(109, 184)
         Me.PODTextBox.Name = "PODTextBox"
@@ -1281,6 +1281,7 @@ Partial Class frmMaininterface
         Me.FullPOLTextBox.Name = "FullPOLTextBox"
         Me.FullPOLTextBox.Size = New System.Drawing.Size(178, 21)
         Me.FullPOLTextBox.TabIndex = 10
+        Me.FullPOLTextBox.TabStop = False
         '
         'POLTextBox
         '
@@ -1288,8 +1289,6 @@ Partial Class frmMaininterface
         Me.POLTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.POLTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.POLTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "POL", True))
-        Me.POLTextBox.DataSource = Me.UNLOCBindingSource
-        Me.POLTextBox.DisplayMember = "UNLOC"
         Me.POLTextBox.FormattingEnabled = True
         Me.POLTextBox.Location = New System.Drawing.Point(109, 155)
         Me.POLTextBox.Name = "POLTextBox"
@@ -1322,6 +1321,7 @@ Partial Class frmMaininterface
         Me.ConsigneeTextBox.Name = "ConsigneeTextBox"
         Me.ConsigneeTextBox.Size = New System.Drawing.Size(281, 21)
         Me.ConsigneeTextBox.TabIndex = 5
+        Me.ConsigneeTextBox.TabStop = False
         '
         'DsPartnerBindingSource
         '
@@ -1341,6 +1341,7 @@ Partial Class frmMaininterface
         Me.ShipperTextBox.Name = "ShipperTextBox"
         Me.ShipperTextBox.Size = New System.Drawing.Size(281, 21)
         Me.ShipperTextBox.TabIndex = 4
+        Me.ShipperTextBox.TabStop = False
         '
         'PrincipalTextBox
         '
@@ -1355,6 +1356,7 @@ Partial Class frmMaininterface
         Me.PrincipalTextBox.Name = "PrincipalTextBox"
         Me.PrincipalTextBox.Size = New System.Drawing.Size(281, 21)
         Me.PrincipalTextBox.TabIndex = 3
+        Me.PrincipalTextBox.TabStop = False
         '
         'IncotermTextBox
         '
@@ -1422,6 +1424,7 @@ Partial Class frmMaininterface
         Me.VesselTextBox.Name = "VesselTextBox"
         Me.VesselTextBox.Size = New System.Drawing.Size(200, 20)
         Me.VesselTextBox.TabIndex = 14
+        Me.VesselTextBox.TabStop = False
         '
         'Contract_NoTextBox
         '
@@ -1595,6 +1598,11 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn61.Name = "DataGridViewTextBoxColumn61"
         Me.DataGridViewTextBoxColumn61.ReadOnly = True
         '
+        'PoOrderBindingSource
+        '
+        Me.PoOrderBindingSource.DataMember = "poOrder"
+        Me.PoOrderBindingSource.DataSource = Me.DsDemag_HUB
+        '
         'PtShipmentsBindingSource
         '
         Me.PtShipmentsBindingSource.DataMember = "dsShipmentsptShipments"
@@ -1604,11 +1612,6 @@ Partial Class frmMaininterface
         '
         Me.PoShipping_OrderBindingSource.DataMember = "poShipping_Order"
         Me.PoShipping_OrderBindingSource.DataSource = Me.DsDemag_HUB
-        '
-        'PoOrderBindingSource
-        '
-        Me.PoOrderBindingSource.DataMember = "poOrder"
-        Me.PoOrderBindingSource.DataSource = Me.DsDemag_HUB
         '
         'DsCommentBindingSource
         '
@@ -1626,6 +1629,8 @@ Partial Class frmMaininterface
         '
         'tabSettings
         '
+        Me.tabSettings.Controls.Add(Me.Button1)
+        Me.tabSettings.Controls.Add(Me.txtDB)
         Me.tabSettings.Controls.Add(Me.dirDB)
         Me.tabSettings.Location = New System.Drawing.Point(4, 4)
         Me.tabSettings.Name = "tabSettings"
@@ -1634,6 +1639,22 @@ Partial Class frmMaininterface
         Me.tabSettings.TabIndex = 0
         Me.tabSettings.Text = "Settings"
         Me.tabSettings.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(389, 33)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'txtDB
+        '
+        Me.txtDB.Location = New System.Drawing.Point(7, 33)
+        Me.txtDB.Name = "txtDB"
+        Me.txtDB.Size = New System.Drawing.Size(375, 20)
+        Me.txtDB.TabIndex = 1
         '
         'dirDB
         '
@@ -2114,9 +2135,9 @@ Partial Class frmMaininterface
         CType(Me.DsInvoiceDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabProtocol.ResumeLayout(False)
         CType(Me.PtShipmentsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PtShipmentsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PoShipping_OrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsCommentBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabSettings.ResumeLayout(False)
         Me.tabSettings.PerformLayout()
@@ -2310,4 +2331,6 @@ Partial Class frmMaininterface
     Friend WithEvents DataGridViewTextBoxColumn61 As DataGridViewTextBoxColumn
     Friend WithEvents btnSchedule As Button
     Friend WithEvents dirDB As TextBox
+    Friend WithEvents txtDB As TextBox
+    Friend WithEvents Button1 As Button
 End Class
