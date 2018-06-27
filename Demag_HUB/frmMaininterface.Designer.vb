@@ -180,6 +180,8 @@ Partial Class frmMaininterface
         Me.cmbFilter = New System.Windows.Forms.ComboBox()
         Me.TabControl3 = New System.Windows.Forms.TabControl()
         Me.tabShipments = New System.Windows.Forms.TabPage()
+        Me.btnReloadDB = New System.Windows.Forms.Button()
+        Me.btnMailSubject = New System.Windows.Forms.Button()
         Me.btnSchedule = New System.Windows.Forms.Button()
         Me.SQE = New System.Windows.Forms.Button()
         Me.ProgressBar = New System.Windows.Forms.ProgressBar()
@@ -359,7 +361,7 @@ Partial Class frmMaininterface
         'WeightLabel
         '
         WeightLabel.AutoSize = True
-        WeightLabel.Location = New System.Drawing.Point(428, 248)
+        WeightLabel.Location = New System.Drawing.Point(371, 248)
         WeightLabel.Name = "WeightLabel"
         WeightLabel.Size = New System.Drawing.Size(44, 13)
         WeightLabel.TabIndex = 40
@@ -368,7 +370,7 @@ Partial Class frmMaininterface
         'VolumeLabel
         '
         VolumeLabel.AutoSize = True
-        VolumeLabel.Location = New System.Drawing.Point(372, 248)
+        VolumeLabel.Location = New System.Drawing.Point(426, 248)
         VolumeLabel.Name = "VolumeLabel"
         VolumeLabel.Size = New System.Drawing.Size(45, 13)
         VolumeLabel.TabIndex = 38
@@ -1439,18 +1441,18 @@ Partial Class frmMaininterface
         'VolumeTextBox
         '
         Me.VolumeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Volume", True))
-        Me.VolumeTextBox.Location = New System.Drawing.Point(375, 264)
+        Me.VolumeTextBox.Location = New System.Drawing.Point(429, 264)
         Me.VolumeTextBox.Name = "VolumeTextBox"
         Me.VolumeTextBox.Size = New System.Drawing.Size(50, 20)
-        Me.VolumeTextBox.TabIndex = 20
+        Me.VolumeTextBox.TabIndex = 21
         '
         'WeightTextBox
         '
         Me.WeightTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Weight", True))
-        Me.WeightTextBox.Location = New System.Drawing.Point(431, 264)
+        Me.WeightTextBox.Location = New System.Drawing.Point(374, 264)
         Me.WeightTextBox.Name = "WeightTextBox"
         Me.WeightTextBox.Size = New System.Drawing.Size(50, 20)
-        Me.WeightTextBox.TabIndex = 21
+        Me.WeightTextBox.TabIndex = 20
         '
         'TEUTextBox
         '
@@ -1621,11 +1623,12 @@ Partial Class frmMaininterface
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(18, 279)
+        Me.Label2.Location = New System.Drawing.Point(6, 356)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(37, 13)
         Me.Label2.TabIndex = 78
         Me.Label2.Text = "Status"
+        Me.Label2.Visible = False
         '
         'tabSettings
         '
@@ -1682,7 +1685,7 @@ Partial Class frmMaininterface
         Me.btnSearch.Size = New System.Drawing.Size(134, 40)
         Me.btnSearch.TabIndex = 9
         Me.btnSearch.TabStop = False
-        Me.btnSearch.Text = "&Search"
+        Me.btnSearch.Text = "S&earch"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
         'btnNew
@@ -1726,6 +1729,8 @@ Partial Class frmMaininterface
         '
         'tabShipments
         '
+        Me.tabShipments.Controls.Add(Me.btnReloadDB)
+        Me.tabShipments.Controls.Add(Me.btnMailSubject)
         Me.tabShipments.Controls.Add(Me.btnSchedule)
         Me.tabShipments.Controls.Add(Me.SQE)
         Me.tabShipments.Controls.Add(Me.ProgressBar)
@@ -1743,6 +1748,28 @@ Partial Class frmMaininterface
         Me.tabShipments.TabIndex = 0
         Me.tabShipments.Text = "Shipments"
         Me.tabShipments.UseVisualStyleBackColor = True
+        '
+        'btnReloadDB
+        '
+        Me.btnReloadDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnReloadDB.Location = New System.Drawing.Point(6, 595)
+        Me.btnReloadDB.Name = "btnReloadDB"
+        Me.btnReloadDB.Size = New System.Drawing.Size(134, 40)
+        Me.btnReloadDB.TabIndex = 85
+        Me.btnReloadDB.TabStop = False
+        Me.btnReloadDB.Text = "&Reload DB"
+        Me.btnReloadDB.UseVisualStyleBackColor = True
+        '
+        'btnMailSubject
+        '
+        Me.btnMailSubject.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnMailSubject.Location = New System.Drawing.Point(5, 236)
+        Me.btnMailSubject.Name = "btnMailSubject"
+        Me.btnMailSubject.Size = New System.Drawing.Size(134, 40)
+        Me.btnMailSubject.TabIndex = 84
+        Me.btnMailSubject.TabStop = False
+        Me.btnMailSubject.Text = "Email subject"
+        Me.btnMailSubject.UseVisualStyleBackColor = True
         '
         'btnSchedule
         '
@@ -1768,7 +1795,7 @@ Partial Class frmMaininterface
         '
         'ProgressBar
         '
-        Me.ProgressBar.Location = New System.Drawing.Point(7, 624)
+        Me.ProgressBar.Location = New System.Drawing.Point(6, 578)
         Me.ProgressBar.Name = "ProgressBar"
         Me.ProgressBar.Size = New System.Drawing.Size(133, 11)
         Me.ProgressBar.TabIndex = 81
@@ -1777,7 +1804,7 @@ Partial Class frmMaininterface
         '
         Me.Label_Result.AutoSize = True
         Me.Label_Result.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label_Result.Location = New System.Drawing.Point(6, 608)
+        Me.Label_Result.Location = New System.Drawing.Point(5, 562)
         Me.Label_Result.Name = "Label_Result"
         Me.Label_Result.Size = New System.Drawing.Size(69, 13)
         Me.Label_Result.TabIndex = 80
@@ -2333,4 +2360,6 @@ Partial Class frmMaininterface
     Friend WithEvents dirDB As TextBox
     Friend WithEvents txtDB As TextBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents btnReloadDB As Button
+    Friend WithEvents btnMailSubject As Button
 End Class

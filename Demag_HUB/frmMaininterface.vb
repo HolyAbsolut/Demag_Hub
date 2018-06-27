@@ -61,13 +61,12 @@ Public Class frmMaininterface
         DsPartnerTableAdapter.Connection = CON
         IncotermTableAdapter.Connection = CON
         DsShipmentsTableAdapter.Connection = CON
+        PtShipmentsTableAdapter.Connection = CON
 
 
 
         'TODO:   Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsShipments". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.DsShipmentsTableAdapter.Fill(Me.DsDemag_HUB.dsShipments)
-        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.ptShipments". Sie können sie bei Bedarf verschieben oder entfernen.
-        'Me.PtShipmentsTableAdapter.Fill(Me.DsDemag_HUB.ptShipments)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.poShipping_Order". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.PoShipping_OrderTableAdapter.Fill(Me.DsDemag_HUB.poShipping_Order)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsShipment_SO". Sie können sie bei Bedarf verschieben oder entfernen.
@@ -92,7 +91,8 @@ Public Class frmMaininterface
         Me.DsPartnerTableAdapter.Fill(Me.DsDemag_HUB.dsPartner)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.Incoterm". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.IncotermTableAdapter.Fill(Me.DsDemag_HUB.Incoterm)
-
+        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.ptShipments". Sie können sie bei Bedarf verschieben oder entfernen.
+        Me.PtShipmentsTableAdapter.Fill(Me.DsDemag_HUB.ptShipments)
 
 
         'MsgBox(DsShipmentsTableAdapter.Connection.ConnectionString.ToString)
@@ -177,15 +177,39 @@ Public Class frmMaininterface
         Me.DsAddressBindingSource.EndEdit()
         Me.DsShipment_OrderBindingSource.EndEdit()
         Me.DsShipment_SOBindingSource.EndEdit()
+        Me.PtShipmentsBindingSource.EndEdit()
+        Me.PoOrderBindingSource.EndEdit()
+        Me.PoShipping_OrderBindingSource.EndEdit()
         'MsgBox("Arbeite")
 
-        Me.DsShipmentsTableAdapter.Update(Me.DsDemag_HUB.dsShipments)
-        Me.DsCommentTableAdapter.Update(Me.DsDemag_HUB.dsComment)
+
+
         Me.DsPartnerTableAdapter.Update(Me.DsDemag_HUB.dsPartner)
         Me.DsContactTableAdapter.Update(Me.DsDemag_HUB.dsContact)
         Me.DsAddressTableAdapter.Update(Me.DsDemag_HUB.dsAddress)
+
+        Me.PoOrderTableAdapter.Update(Me.DsDemag_HUB.poOrder)
+        Me.PoShipping_OrderTableAdapter.Update(Me.DsDemag_HUB.poShipping_Order)
+
+
+
+
         Me.DsShipment_OrderTableAdapter.Update(Me.DsDemag_HUB.dsShipment_Order)
         Me.DsShipment_SOTableAdapter.Update(Me.DsDemag_HUB.dsShipment_SO)
+        Me.DsShipmentsTableAdapter.Update(Me.DsDemag_HUB.dsShipments)
+        Me.DsCommentTableAdapter.Update(Me.DsDemag_HUB.dsComment)
+
+
+
+        Me.PtShipmentsTableAdapter.Update(Me.DsDemag_HUB.ptShipments)
+
+
+
+
+
+
+
+
         'MsgBox("Fertig")
     End Sub
 
@@ -298,8 +322,14 @@ Public Class frmMaininterface
     Private Sub Shipment_IDTextBox_TextChanged(sender As Object, e As EventArgs) Handles Shipment_IDTextBox.TextChanged
         If Convert.ToDouble(Shipment_IDTextBox.Text) > 0 Then
             btnaddDocument.Enabled = True
+            btnAddPO.Enabled = True
+            txtPoNo.Enabled = True
+            DsCommentDataGridView.Enabled = True
         Else
             btnaddDocument.Enabled = False
+            btnAddPO.Enabled = False
+            txtPoNo.Enabled = False
+            DsCommentDataGridView.Enabled = False
         End If
     End Sub
 
@@ -325,8 +355,6 @@ Public Class frmMaininterface
             newPORow.Incoterm = IncotermTextBox.Text
             newPORow.Incoterm_Location = Incoterm_LocTextBox.Text
             DsDemag_HUB.poOrder.Rows.Add(newPORow)
-            Me.PoOrderBindingSource.EndEdit()
-            Me.PoOrderTableAdapter.Update(Me.DsDemag_HUB.poOrder)
             txtPoNo.BackColor = Color.YellowGreen
         Else
             txtPoNo.BackColor = Color.White
@@ -787,8 +815,6 @@ Public Class frmMaininterface
             newSoRow.Shipping_Order = Convert.ToInt32(txtSoNo.Text)
             newSoRow.Created = Date.Now
             DsDemag_HUB.poShipping_Order.Rows.Add(newSoRow)
-            Me.PoShipping_OrderBindingSource.EndEdit()
-            Me.PoShipping_OrderTableAdapter.Update(Me.DsDemag_HUB.poShipping_Order)
             txtSoNo.BackColor = Color.YellowGreen
         Else
             txtSoNo.BackColor = Color.White
@@ -906,7 +932,7 @@ Public Class frmMaininterface
 
     Private Sub WeightTextBox_TextChanged(sender As Object, e As EventArgs) Handles WeightTextBox.TextChanged
         If WeightTextBox.Text = "" Then Exit Sub
-        Select Case Convert.ToInt32(WeightTextBox.Text)
+        Select Case Convert.ToDouble(WeightTextBox.Text)
             Case > 25000
                 WeightTextBox.BackColor = Color.Crimson
             Case > 18000
@@ -940,7 +966,7 @@ Public Class frmMaininterface
         End If
 
         If DsShipment_OrderDataGridView.Rows.Count <> 0 Then
-            Subject = Subject & " // SO No.:"
+            Subject = Subject & " // PO No.:"
             For Each Row As DataGridViewRow In Me.DsShipment_OrderDataGridView.Rows
                 Subject = Subject & " " & Row.Cells(0).Value.ToString
             Next
@@ -970,8 +996,6 @@ Public Class frmMaininterface
         newPtRow.Description = "SQE Check aproval was requested"
         newPtRow.User = Environment.UserName
         DsDemag_HUB.ptShipments.Rows.Add(newPtRow)
-        Me.PtShipmentsBindingSource.EndEdit()
-        Me.PtShipmentsTableAdapter.Update(Me.DsDemag_HUB.ptShipments)
     End Sub
 
     Private Sub btnSchedule_Click(sender As Object, e As EventArgs) Handles btnSchedule.Click
@@ -1007,7 +1031,7 @@ Public Class frmMaininterface
         End If
 
         If DsShipment_OrderDataGridView.Rows.Count <> 0 Then
-            Subject = Subject & " // SO No.:"
+            Subject = Subject & " // PO No.:"
             For Each Row As DataGridViewRow In Me.DsShipment_OrderDataGridView.Rows
                 Subject = Subject & " " & Row.Cells(0).Value.ToString
             Next
@@ -1041,8 +1065,6 @@ Public Class frmMaininterface
         newPtRow.Description = "Schedule was announced"
         newPtRow.User = Environment.UserName
         DsDemag_HUB.ptShipments.Rows.Add(newPtRow)
-        Me.PtShipmentsBindingSource.EndEdit()
-        Me.PtShipmentsTableAdapter.Update(Me.DsDemag_HUB.ptShipments)
     End Sub
 
     Private Sub tabOverview_Enter(sender As Object, e As EventArgs) Handles tabOverview.Enter
@@ -1056,7 +1078,45 @@ Public Class frmMaininterface
         End If
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub btnReloadDB_Click(sender As Object, e As EventArgs) Handles btnReloadDB.Click
         LoadDB()
+    End Sub
+
+    Private Sub btnMailSubject_Click(sender As Object, e As EventArgs) Handles btnMailSubject.Click
+        Dim Subject As String
+
+
+        Subject = "DEMAG: "
+        Subject = Subject & "ID: " & Shipment_IDTextBox.Text
+        If STT_NoTextBox.Text <> "" Then Subject = Subject & " // STT No.: " & STT_NoTextBox.Text
+        If DsShipment_SODataGridView.Rows.Count <> 0 Then
+            Subject = Subject & " // SO No.:"
+            For Each Row As DataGridViewRow In Me.DsShipment_SODataGridView.Rows
+                Subject = Subject & " " & Row.Cells(0).Value.ToString
+            Next
+        End If
+
+        If DsInvoiceDataGridView.Rows.Count <> 0 Then
+            Subject = Subject & " // INV No.:"
+            For Each Row As DataGridViewRow In Me.DsInvoiceDataGridView.Rows
+                Subject = Subject & " " & Row.Cells(0).Value.ToString
+            Next
+        End If
+
+        If DsShipment_OrderDataGridView.Rows.Count <> 0 Then
+            Subject = Subject & " // PO No.:"
+            For Each Row As DataGridViewRow In Me.DsShipment_OrderDataGridView.Rows
+                Subject = Subject & " " & Row.Cells(0).Value.ToString
+            Next
+        End If
+
+        My.Computer.Clipboard.SetText(Subject)
+
+    End Sub
+
+    Private Sub CharacterCasingComboBox(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles IncotermTextBox.KeyPress, Incoterm_LocTextBox.KeyPress, POLTextBox.KeyPress, PODTextBox.KeyPress, ServiceTextBox.KeyPress
+        If Char.IsLetter(e.KeyChar) Then
+            e.KeyChar = Char.ToUpper(e.KeyChar)
+        End If
     End Sub
 End Class

@@ -40,4 +40,8 @@ Public Class frmDocument
 
         End Try
     End Sub
+
+    Private Sub frmDocument_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        txtDocumentNo.Text = ""
+    End Sub
 End Class
