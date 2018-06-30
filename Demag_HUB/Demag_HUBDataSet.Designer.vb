@@ -105,8 +105,6 @@ Partial Public Class dsDemag_HUB
     
     Private relationdsShipmentsdsShipment_SO As Global.System.Data.DataRelation
     
-    Private relationpoShipping_OrderdsShipment_SO As Global.System.Data.DataRelation
-    
     Private relationdsPartnerdsShipments As Global.System.Data.DataRelation
     
     Private relationdsPartnerdsShipments1 As Global.System.Data.DataRelation
@@ -133,8 +131,6 @@ Partial Public Class dsDemag_HUB
     
     Private relationpoOrderpoSO_Order As Global.System.Data.DataRelation
     
-    Private relationpoShipping_OrderpoSO_Order As Global.System.Data.DataRelation
-    
     Private relationdsContainerptContainer As Global.System.Data.DataRelation
     
     Private relationdsShipmentsptContainer As Global.System.Data.DataRelation
@@ -160,6 +156,12 @@ Partial Public Class dsDemag_HUB
     Private relationCountryCodesSubdivisionCodes As Global.System.Data.DataRelation
     
     Private relationCountryCodesUNLOC As Global.System.Data.DataRelation
+    
+    Private relationpoShipping_Order_dsShipment_SO As Global.System.Data.DataRelation
+    
+    Private relationpoSO_Order_poShipping_Order As Global.System.Data.DataRelation
+    
+    Private relationpoShipping_OrderpoSO_Order As Global.System.Data.DataRelation
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -913,7 +915,6 @@ Partial Public Class dsDemag_HUB
         Me.relationdsShipmentsdsShipment_Order = Me.Relations("dsShipmentsdsShipment_Order")
         Me.relationpoOrderdsShipment_Order = Me.Relations("poOrderdsShipment_Order")
         Me.relationdsShipmentsdsShipment_SO = Me.Relations("dsShipmentsdsShipment_SO")
-        Me.relationpoShipping_OrderdsShipment_SO = Me.Relations("poShipping_OrderdsShipment_SO")
         Me.relationdsPartnerdsShipments = Me.Relations("dsPartnerdsShipments")
         Me.relationdsPartnerdsShipments1 = Me.Relations("dsPartnerdsShipments1")
         Me.relationdsPartnerdsShipments2 = Me.Relations("dsPartnerdsShipments2")
@@ -927,7 +928,6 @@ Partial Public Class dsDemag_HUB
         Me.relationIncotermpoOrder = Me.Relations("IncotermpoOrder")
         Me.relationUNLOCpoOrder = Me.Relations("UNLOCpoOrder")
         Me.relationpoOrderpoSO_Order = Me.Relations("poOrderpoSO_Order")
-        Me.relationpoShipping_OrderpoSO_Order = Me.Relations("poShipping_OrderpoSO_Order")
         Me.relationdsContainerptContainer = Me.Relations("dsContainerptContainer")
         Me.relationdsShipmentsptContainer = Me.Relations("dsShipmentsptContainer")
         Me.relationdsShipmentsptShipments = Me.Relations("dsShipmentsptShipments")
@@ -941,6 +941,9 @@ Partial Public Class dsDemag_HUB
         Me.relationdsShipmentsrtShipments_Charges = Me.Relations("dsShipmentsrtShipments_Charges")
         Me.relationCountryCodesSubdivisionCodes = Me.Relations("CountryCodesSubdivisionCodes")
         Me.relationCountryCodesUNLOC = Me.Relations("CountryCodesUNLOC")
+        Me.relationpoShipping_Order_dsShipment_SO = Me.Relations("poShipping_Order_dsShipment_SO")
+        Me.relationpoSO_Order_poShipping_Order = Me.Relations("poSO_Order_poShipping_Order")
+        Me.relationpoShipping_OrderpoSO_Order = Me.Relations("poShipping_OrderpoSO_Order")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1031,8 +1034,6 @@ Partial Public Class dsDemag_HUB
         Me.Relations.Add(Me.relationpoOrderdsShipment_Order)
         Me.relationdsShipmentsdsShipment_SO = New Global.System.Data.DataRelation("dsShipmentsdsShipment_SO", New Global.System.Data.DataColumn() {Me.tabledsShipments.Shipment_IDColumn}, New Global.System.Data.DataColumn() {Me.tabledsShipment_SO.Shipment_IDColumn}, false)
         Me.Relations.Add(Me.relationdsShipmentsdsShipment_SO)
-        Me.relationpoShipping_OrderdsShipment_SO = New Global.System.Data.DataRelation("poShipping_OrderdsShipment_SO", New Global.System.Data.DataColumn() {Me.tablepoShipping_Order.Shipping_OrderColumn}, New Global.System.Data.DataColumn() {Me.tabledsShipment_SO.Shipping_OrderColumn}, false)
-        Me.Relations.Add(Me.relationpoShipping_OrderdsShipment_SO)
         Me.relationdsPartnerdsShipments = New Global.System.Data.DataRelation("dsPartnerdsShipments", New Global.System.Data.DataColumn() {Me.tabledsPartner.Partner_IDColumn}, New Global.System.Data.DataColumn() {Me.tabledsShipments.PrincipalColumn}, false)
         Me.Relations.Add(Me.relationdsPartnerdsShipments)
         Me.relationdsPartnerdsShipments1 = New Global.System.Data.DataRelation("dsPartnerdsShipments1", New Global.System.Data.DataColumn() {Me.tabledsPartner.Partner_IDColumn}, New Global.System.Data.DataColumn() {Me.tabledsShipments.ShipperColumn}, false)
@@ -1059,8 +1060,6 @@ Partial Public Class dsDemag_HUB
         Me.Relations.Add(Me.relationUNLOCpoOrder)
         Me.relationpoOrderpoSO_Order = New Global.System.Data.DataRelation("poOrderpoSO_Order", New Global.System.Data.DataColumn() {Me.tablepoOrder.Purchase_OrderColumn}, New Global.System.Data.DataColumn() {Me.tablepoSO_Order.Purchase_OrderColumn}, false)
         Me.Relations.Add(Me.relationpoOrderpoSO_Order)
-        Me.relationpoShipping_OrderpoSO_Order = New Global.System.Data.DataRelation("poShipping_OrderpoSO_Order", New Global.System.Data.DataColumn() {Me.tablepoShipping_Order.Shipping_OrderColumn}, New Global.System.Data.DataColumn() {Me.tablepoSO_Order.Shipping_OrderColumn}, false)
-        Me.Relations.Add(Me.relationpoShipping_OrderpoSO_Order)
         Me.relationdsContainerptContainer = New Global.System.Data.DataRelation("dsContainerptContainer", New Global.System.Data.DataColumn() {Me.tabledsContainer.Shipment_IDColumn, Me.tabledsContainer.Container_NoColumn}, New Global.System.Data.DataColumn() {Me.tableptContainer.ShipmentIDColumn, Me.tableptContainer.Container_NoColumn}, false)
         Me.Relations.Add(Me.relationdsContainerptContainer)
         Me.relationdsShipmentsptContainer = New Global.System.Data.DataRelation("dsShipmentsptContainer", New Global.System.Data.DataColumn() {Me.tabledsShipments.Shipment_IDColumn}, New Global.System.Data.DataColumn() {Me.tableptContainer.ShipmentIDColumn}, false)
@@ -1087,6 +1086,12 @@ Partial Public Class dsDemag_HUB
         Me.Relations.Add(Me.relationCountryCodesSubdivisionCodes)
         Me.relationCountryCodesUNLOC = New Global.System.Data.DataRelation("CountryCodesUNLOC", New Global.System.Data.DataColumn() {Me.tableCountryCodes.CountryCodeColumn}, New Global.System.Data.DataColumn() {Me.tableUNLOC.CountryColumn}, false)
         Me.Relations.Add(Me.relationCountryCodesUNLOC)
+        Me.relationpoShipping_Order_dsShipment_SO = New Global.System.Data.DataRelation("poShipping_Order_dsShipment_SO", New Global.System.Data.DataColumn() {Me.tablepoShipping_Order.Shipping_OrderColumn}, New Global.System.Data.DataColumn() {Me.tabledsShipment_SO.Shipping_OrderColumn}, false)
+        Me.Relations.Add(Me.relationpoShipping_Order_dsShipment_SO)
+        Me.relationpoSO_Order_poShipping_Order = New Global.System.Data.DataRelation("poSO_Order_poShipping_Order", New Global.System.Data.DataColumn() {Me.tablepoSO_Order.Shipping_OrderColumn}, New Global.System.Data.DataColumn() {Me.tablepoShipping_Order.Shipping_OrderColumn}, false)
+        Me.Relations.Add(Me.relationpoSO_Order_poShipping_Order)
+        Me.relationpoShipping_OrderpoSO_Order = New Global.System.Data.DataRelation("poShipping_OrderpoSO_Order", New Global.System.Data.DataColumn() {Me.tablepoShipping_Order.Shipping_OrderColumn}, New Global.System.Data.DataColumn() {Me.tablepoSO_Order.Shipping_OrderColumn}, false)
+        Me.Relations.Add(Me.relationpoShipping_OrderpoSO_Order)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5535,14 +5540,14 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AdddsShipment_SORow(ByVal parentdsShipmentsRowBydsShipmentsdsShipment_SO As dsShipmentsRow, ByVal parentpoShipping_OrderRowBypoShipping_OrderdsShipment_SO As poShipping_OrderRow, ByVal Created As Date) As dsShipment_SORow
+        Public Overloads Function AdddsShipment_SORow(ByVal parentdsShipmentsRowBydsShipmentsdsShipment_SO As dsShipmentsRow, ByVal parentpoShipping_OrderRowBypoShipping_Order_dsShipment_SO As poShipping_OrderRow, ByVal Created As Date) As dsShipment_SORow
             Dim rowdsShipment_SORow As dsShipment_SORow = CType(Me.NewRow,dsShipment_SORow)
             Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Nothing, Created}
             If (Not (parentdsShipmentsRowBydsShipmentsdsShipment_SO) Is Nothing) Then
                 columnValuesArray(1) = parentdsShipmentsRowBydsShipmentsdsShipment_SO(0)
             End If
-            If (Not (parentpoShipping_OrderRowBypoShipping_OrderdsShipment_SO) Is Nothing) Then
-                columnValuesArray(2) = parentpoShipping_OrderRowBypoShipping_OrderdsShipment_SO(0)
+            If (Not (parentpoShipping_OrderRowBypoShipping_Order_dsShipment_SO) Is Nothing) Then
+                columnValuesArray(2) = parentpoShipping_OrderRowBypoShipping_Order_dsShipment_SO(0)
             End If
             rowdsShipment_SORow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdsShipment_SORow)
@@ -5585,7 +5590,7 @@ Partial Public Class dsDemag_HUB
             MyBase.Columns.Add(Me.columnShipment_Order_ID)
             Me.columnShipment_ID = New Global.System.Data.DataColumn("Shipment_ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnShipment_ID)
-            Me.columnShipping_Order = New Global.System.Data.DataColumn("Shipping_Order", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnShipping_Order = New Global.System.Data.DataColumn("Shipping_Order", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnShipping_Order)
             Me.columnCreated = New Global.System.Data.DataColumn("Created", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCreated)
@@ -7464,9 +7469,12 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddpoShipping_OrderRow(ByVal Shipping_Order As Integer, ByVal Created As Date, ByVal SO_Created As Date, ByVal Transport_Mode As String, ByVal Incoterm As String, ByVal Supplier As Integer, ByVal Volume As Double, ByVal Weight As Double, ByVal POL As String, ByVal Shipping_Order_Status As String, ByVal Last_Update As Date, ByVal ETD As Date, ByVal Comment As String) As poShipping_OrderRow
+        Public Overloads Function AddpoShipping_OrderRow(ByVal parentpoSO_OrderRowBypoSO_Order_poShipping_Order As poSO_OrderRow, ByVal Created As Date, ByVal SO_Created As Date, ByVal Transport_Mode As String, ByVal Incoterm As String, ByVal Supplier As Integer, ByVal Volume As Double, ByVal Weight As Double, ByVal POL As String, ByVal Shipping_Order_Status As String, ByVal Last_Update As Date, ByVal ETD As Date, ByVal Comment As String) As poShipping_OrderRow
             Dim rowpoShipping_OrderRow As poShipping_OrderRow = CType(Me.NewRow,poShipping_OrderRow)
-            Dim columnValuesArray() As Object = New Object() {Shipping_Order, Created, SO_Created, Transport_Mode, Incoterm, Supplier, Volume, Weight, POL, Shipping_Order_Status, Last_Update, ETD, Comment}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Created, SO_Created, Transport_Mode, Incoterm, Supplier, Volume, Weight, POL, Shipping_Order_Status, Last_Update, ETD, Comment}
+            If (Not (parentpoSO_OrderRowBypoSO_Order_poShipping_Order) Is Nothing) Then
+                columnValuesArray(0) = parentpoSO_OrderRowBypoSO_Order_poShipping_Order(1)
+            End If
             rowpoShipping_OrderRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowpoShipping_OrderRow)
             Return rowpoShipping_OrderRow
@@ -7474,7 +7482,7 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByShipping_Order(ByVal Shipping_Order As Integer) As poShipping_OrderRow
+        Public Function FindByShipping_Order(ByVal Shipping_Order As Double) As poShipping_OrderRow
             Return CType(Me.Rows.Find(New Object() {Shipping_Order}),poShipping_OrderRow)
         End Function
         
@@ -7513,7 +7521,7 @@ Partial Public Class dsDemag_HUB
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnShipping_Order = New Global.System.Data.DataColumn("Shipping_Order", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnShipping_Order = New Global.System.Data.DataColumn("Shipping_Order", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnShipping_Order)
             Me.columnCreated = New Global.System.Data.DataColumn("Created", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCreated)
@@ -7844,7 +7852,7 @@ Partial Public Class dsDemag_HUB
         Private Sub InitClass()
             Me.columnSO_Order_ID = New Global.System.Data.DataColumn("SO_Order_ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSO_Order_ID)
-            Me.columnShipping_Order = New Global.System.Data.DataColumn("Shipping_Order", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnShipping_Order = New Global.System.Data.DataColumn("Shipping_Order", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnShipping_Order)
             Me.columnPurchase_Order = New Global.System.Data.DataColumn("Purchase_Order", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPurchase_Order)
@@ -14103,10 +14111,10 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Shipping_Order() As Integer
+        Public Property Shipping_Order() As Double
             Get
                 Try 
-                    Return CType(Me(Me.tabledsShipment_SO.Shipping_OrderColumn),Integer)
+                    Return CType(Me(Me.tabledsShipment_SO.Shipping_OrderColumn),Double)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Shipping_Order in Tabelle dsShipment_SO ist DBNull.", e)
                 End Try
@@ -14146,10 +14154,10 @@ Partial Public Class dsDemag_HUB
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property poShipping_OrderRow() As poShipping_OrderRow
             Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("poShipping_OrderdsShipment_SO")),poShipping_OrderRow)
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("poShipping_Order_dsShipment_SO")),poShipping_OrderRow)
             End Get
             Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("poShipping_OrderdsShipment_SO"))
+                Me.SetParentRow(value, Me.Table.ParentRelations("poShipping_Order_dsShipment_SO"))
             End Set
         End Property
         
@@ -15900,9 +15908,9 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Shipping_Order() As Integer
+        Public Property Shipping_Order() As Double
             Get
-                Return CType(Me(Me.tablepoShipping_Order.Shipping_OrderColumn),Integer)
+                Return CType(Me(Me.tablepoShipping_Order.Shipping_OrderColumn),Double)
             End Get
             Set
                 Me(Me.tablepoShipping_Order.Shipping_OrderColumn) = value
@@ -16092,6 +16100,17 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property poSO_OrderRow() As poSO_OrderRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("poSO_Order_poShipping_Order")),poSO_OrderRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("poSO_Order_poShipping_Order"))
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsCreatedNull() As Boolean
             Return Me.IsNull(Me.tablepoShipping_Order.CreatedColumn)
         End Function
@@ -16237,10 +16256,10 @@ Partial Public Class dsDemag_HUB
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function GetdsShipment_SORows() As dsShipment_SORow()
-            If (Me.Table.ChildRelations("poShipping_OrderdsShipment_SO") Is Nothing) Then
+            If (Me.Table.ChildRelations("poShipping_Order_dsShipment_SO") Is Nothing) Then
                 Return New dsShipment_SORow(-1) {}
             Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("poShipping_OrderdsShipment_SO")),dsShipment_SORow())
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("poShipping_Order_dsShipment_SO")),dsShipment_SORow())
             End If
         End Function
         
@@ -16283,10 +16302,10 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Shipping_Order() As Integer
+        Public Property Shipping_Order() As Double
             Get
                 Try 
-                    Return CType(Me(Me.tablepoSO_Order.Shipping_OrderColumn),Integer)
+                    Return CType(Me(Me.tablepoSO_Order.Shipping_OrderColumn),Double)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Shipping_Order in Tabelle poSO_Order ist DBNull.", e)
                 End Try
@@ -16383,6 +16402,16 @@ Partial Public Class dsDemag_HUB
         Public Sub SetCreatedNull()
             Me(Me.tablepoSO_Order.CreatedColumn) = Global.System.Convert.DBNull
         End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function GetpoShipping_OrderRows() As poShipping_OrderRow()
+            If (Me.Table.ChildRelations("poSO_Order_poShipping_Order") Is Nothing) Then
+                Return New poShipping_OrderRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("poSO_Order_poShipping_Order")),poShipping_OrderRow())
+            End If
+        End Function
     End Class
     
     '''<summary>
@@ -25859,7 +25888,7 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Shipment_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipment_ID", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipment_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipment_ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Created", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
@@ -25868,7 +25897,7 @@ Namespace dsDemag_HUBTableAdapters
                 "?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipment_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipment_ID", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipping_Order", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
@@ -25878,13 +25907,13 @@ Namespace dsDemag_HUBTableAdapters
                 "= ?)) AND ((? = 1 AND `Created` IS NULL) OR (`Created` = ?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipment_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipment_ID", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipping_Order", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipment_Order_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipment_Order_ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Shipment_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipment_ID", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipment_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipment_ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Created", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
@@ -25963,12 +25992,12 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_Shipment_Order_ID As Integer, ByVal Original_Shipment_ID As Integer, ByVal Original_Shipping_Order As Integer, ByVal Original_Created As Date) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_Shipment_Order_ID As Integer, ByVal Original_Shipment_ID As Integer, ByVal Original_Shipping_Order As Double, ByVal Original_Created As Date) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_Shipment_Order_ID,Integer)
             Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
             Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Shipment_ID,Integer)
             Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Shipping_Order,Integer)
+            Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Shipping_Order,Double)
             Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
             Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Created,Date)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
@@ -25990,9 +26019,9 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Shipment_ID As Integer, ByVal Shipping_Order As Integer, ByVal Created As Date) As Integer
+        Public Overloads Overridable Function Insert(ByVal Shipment_ID As Integer, ByVal Shipping_Order As Double, ByVal Created As Date) As Integer
             Me.Adapter.InsertCommand.Parameters(0).Value = CType(Shipment_ID,Integer)
-            Me.Adapter.InsertCommand.Parameters(1).Value = CType(Shipping_Order,Integer)
+            Me.Adapter.InsertCommand.Parameters(1).Value = CType(Shipping_Order,Double)
             Me.Adapter.InsertCommand.Parameters(2).Value = CType(Created,Date)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -26013,15 +26042,15 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal Shipment_ID As Integer, ByVal Shipping_Order As Integer, ByVal Created As Date, ByVal Original_Shipment_Order_ID As Integer, ByVal Original_Shipment_ID As Integer, ByVal Original_Shipping_Order As Integer, ByVal Original_Created As Date) As Integer
+        Public Overloads Overridable Function Update(ByVal Shipment_ID As Integer, ByVal Shipping_Order As Double, ByVal Created As Date, ByVal Original_Shipment_Order_ID As Integer, ByVal Original_Shipment_ID As Integer, ByVal Original_Shipping_Order As Double, ByVal Original_Created As Date) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Shipment_ID,Integer)
-            Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Shipping_Order,Integer)
+            Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Shipping_Order,Double)
             Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Created,Date)
             Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Original_Shipment_Order_ID,Integer)
             Me.Adapter.UpdateCommand.Parameters(4).Value = CType(0,Object)
             Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Original_Shipment_ID,Integer)
             Me.Adapter.UpdateCommand.Parameters(6).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_Shipping_Order,Integer)
+            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_Shipping_Order,Double)
             Me.Adapter.UpdateCommand.Parameters(8).Value = CType(0,Object)
             Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_Created,Date)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
@@ -28826,7 +28855,7 @@ Namespace dsDemag_HUBTableAdapters
                 " OR (`Shipping_Order_Status` = ?)) AND ((? = 1 AND `Last_Update` IS NULL) OR (`L"& _ 
                 "ast_Update` = ?)) AND ((? = 1 AND `ETD` IS NULL) OR (`ETD` = ?)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Created", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_SO_Created", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SO_Created", Global.System.Data.DataRowVersion.Original, true, Nothing))
@@ -28856,7 +28885,7 @@ Namespace dsDemag_HUBTableAdapters
                 "tatus`, `Last_Update`, `ETD`, `Comment`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?"& _ 
                 ", ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipping_Order", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("SO_Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SO_Created", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Transport_Mode", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Transport_Mode", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -28884,7 +28913,7 @@ Namespace dsDemag_HUBTableAdapters
                 "_Status` = ?)) AND ((? = 1 AND `Last_Update` IS NULL) OR (`Last_Update` = ?)) AN"& _ 
                 "D ((? = 1 AND `ETD` IS NULL) OR (`ETD` = ?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipping_Order", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("SO_Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SO_Created", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Transport_Mode", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Transport_Mode", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -28897,7 +28926,7 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Last_Update", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Last_Update", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ETD", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ETD", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Comment", Global.System.Data.OleDb.OleDbType.LongVarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Comment", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Created", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_SO_Created", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SO_Created", Global.System.Data.DataRowVersion.Original, true, Nothing))
@@ -28935,9 +28964,9 @@ Namespace dsDemag_HUBTableAdapters
             Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT Shipping_Order, Created, SO_Created, Transport_Mode, Incoterm, Supplier, V"& _ 
-                "olume, Weight, POL, Shipping_Order_Status, Last_Update, ETD, Comment FROM poShip"& _ 
-                "ping_Order"
+            Me._commandCollection(0).CommandText = "SELECT        Shipping_Order, Created, SO_Created, Transport_Mode, Incoterm, Supp"& _ 
+                "lier, Volume, Weight, POL, Shipping_Order_Status, Last_Update, ETD, Comment"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FRO"& _ 
+                "M            poShipping_Order"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -28997,8 +29026,8 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_Shipping_Order As Integer, ByVal Original_Created As Date, ByVal Original_SO_Created As Global.System.Nullable(Of Date), ByVal Original_Transport_Mode As String, ByVal Original_Incoterm As String, ByVal Original_Supplier As Global.System.Nullable(Of Integer), ByVal Original_Volume As Global.System.Nullable(Of Double), ByVal Original_Weight As Global.System.Nullable(Of Double), ByVal Original_POL As String, ByVal Original_Shipping_Order_Status As String, ByVal Original_Last_Update As Global.System.Nullable(Of Date), ByVal Original_ETD As Global.System.Nullable(Of Date)) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_Shipping_Order,Integer)
+        Public Overloads Overridable Function Delete(ByVal Original_Shipping_Order As Double, ByVal Original_Created As Date, ByVal Original_SO_Created As Global.System.Nullable(Of Date), ByVal Original_Transport_Mode As String, ByVal Original_Incoterm As String, ByVal Original_Supplier As Global.System.Nullable(Of Integer), ByVal Original_Volume As Global.System.Nullable(Of Double), ByVal Original_Weight As Global.System.Nullable(Of Double), ByVal Original_POL As String, ByVal Original_Shipping_Order_Status As String, ByVal Original_Last_Update As Global.System.Nullable(Of Date), ByVal Original_ETD As Global.System.Nullable(Of Date)) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_Shipping_Order,Double)
             Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
             Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Created,Date)
             If (Original_SO_Created.HasValue = true) Then
@@ -29090,8 +29119,8 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Shipping_Order As Integer, ByVal Created As Date, ByVal SO_Created As Global.System.Nullable(Of Date), ByVal Transport_Mode As String, ByVal Incoterm As String, ByVal Supplier As Global.System.Nullable(Of Integer), ByVal Volume As Global.System.Nullable(Of Double), ByVal Weight As Global.System.Nullable(Of Double), ByVal POL As String, ByVal Shipping_Order_Status As String, ByVal Last_Update As Global.System.Nullable(Of Date), ByVal ETD As Global.System.Nullable(Of Date), ByVal Comment As String) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(Shipping_Order,Integer)
+        Public Overloads Overridable Function Insert(ByVal Shipping_Order As Double, ByVal Created As Date, ByVal SO_Created As Global.System.Nullable(Of Date), ByVal Transport_Mode As String, ByVal Incoterm As String, ByVal Supplier As Global.System.Nullable(Of Integer), ByVal Volume As Global.System.Nullable(Of Double), ByVal Weight As Global.System.Nullable(Of Double), ByVal POL As String, ByVal Shipping_Order_Status As String, ByVal Last_Update As Global.System.Nullable(Of Date), ByVal ETD As Global.System.Nullable(Of Date), ByVal Comment As String) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(Shipping_Order,Double)
             Me.Adapter.InsertCommand.Parameters(1).Value = CType(Created,Date)
             If (SO_Created.HasValue = true) Then
                 Me.Adapter.InsertCommand.Parameters(2).Value = CType(SO_Created.Value,Date)
@@ -29168,7 +29197,7 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
         Public Overloads Overridable Function Update( _
-                    ByVal Shipping_Order As Integer,  _
+                    ByVal Shipping_Order As Double,  _
                     ByVal Created As Date,  _
                     ByVal SO_Created As Global.System.Nullable(Of Date),  _
                     ByVal Transport_Mode As String,  _
@@ -29181,7 +29210,7 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal Last_Update As Global.System.Nullable(Of Date),  _
                     ByVal ETD As Global.System.Nullable(Of Date),  _
                     ByVal Comment As String,  _
-                    ByVal Original_Shipping_Order As Integer,  _
+                    ByVal Original_Shipping_Order As Double,  _
                     ByVal Original_Created As Date,  _
                     ByVal Original_SO_Created As Global.System.Nullable(Of Date),  _
                     ByVal Original_Transport_Mode As String,  _
@@ -29193,7 +29222,7 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal Original_Shipping_Order_Status As String,  _
                     ByVal Original_Last_Update As Global.System.Nullable(Of Date),  _
                     ByVal Original_ETD As Global.System.Nullable(Of Date)) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Shipping_Order,Integer)
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Shipping_Order,Double)
             Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Created,Date)
             If (SO_Created.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(2).Value = CType(SO_Created.Value,Date)
@@ -29250,7 +29279,7 @@ Namespace dsDemag_HUBTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Comment,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_Shipping_Order,Integer)
+            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_Shipping_Order,Double)
             Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
             Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_Created,Date)
             If (Original_SO_Created.HasValue = true) Then
@@ -29355,7 +29384,7 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal Last_Update As Global.System.Nullable(Of Date),  _
                     ByVal ETD As Global.System.Nullable(Of Date),  _
                     ByVal Comment As String,  _
-                    ByVal Original_Shipping_Order As Integer,  _
+                    ByVal Original_Shipping_Order As Double,  _
                     ByVal Original_Created As Date,  _
                     ByVal Original_SO_Created As Global.System.Nullable(Of Date),  _
                     ByVal Original_Transport_Mode As String,  _
@@ -29512,7 +29541,7 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_SO_Order_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SO_Order_ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Purchase_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Purchase_Order", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Purchase_Order", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Purchase_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Created", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, true, Nothing))
@@ -29522,7 +29551,7 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.InsertCommand.CommandText = "INSERT INTO `poSO_Order` (`Shipping_Order`, `Purchase_Order`, `Created`) VALUES ("& _ 
                 "?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipping_Order", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Purchase_Order", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Purchase_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
@@ -29532,12 +29561,12 @@ Namespace dsDemag_HUBTableAdapters
                 "ing_Order` = ?)) AND ((? = 1 AND `Purchase_Order` IS NULL) OR (`Purchase_Order` "& _ 
                 "= ?)) AND ((? = 1 AND `Created` IS NULL) OR (`Created` = ?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipping_Order", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Purchase_Order", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Purchase_Order", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_SO_Order_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SO_Order_ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, true, Nothing))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipping_Order", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipping_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Purchase_Order", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Purchase_Order", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Purchase_Order", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Purchase_Order", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Created", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, true, Nothing))
@@ -29617,10 +29646,10 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_SO_Order_ID As Integer, ByVal Original_Shipping_Order As Integer, ByVal Original_Purchase_Order As String, ByVal Original_Created As Date) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_SO_Order_ID As Integer, ByVal Original_Shipping_Order As Double, ByVal Original_Purchase_Order As String, ByVal Original_Created As Date) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_SO_Order_ID,Integer)
             Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Shipping_Order,Integer)
+            Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Shipping_Order,Double)
             If (Original_Purchase_Order Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Purchase_Order")
             Else
@@ -29648,8 +29677,8 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Shipping_Order As Integer, ByVal Purchase_Order As String, ByVal Created As Date) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(Shipping_Order,Integer)
+        Public Overloads Overridable Function Insert(ByVal Shipping_Order As Double, ByVal Purchase_Order As String, ByVal Created As Date) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(Shipping_Order,Double)
             If (Purchase_Order Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Purchase_Order")
             Else
@@ -29675,8 +29704,8 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal Shipping_Order As Integer, ByVal Purchase_Order As String, ByVal Created As Date, ByVal Original_SO_Order_ID As Integer, ByVal Original_Shipping_Order As Integer, ByVal Original_Purchase_Order As String, ByVal Original_Created As Date) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Shipping_Order,Integer)
+        Public Overloads Overridable Function Update(ByVal Shipping_Order As Double, ByVal Purchase_Order As String, ByVal Created As Date, ByVal Original_SO_Order_ID As Integer, ByVal Original_Shipping_Order As Double, ByVal Original_Purchase_Order As String, ByVal Original_Created As Date) As Integer
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Shipping_Order,Double)
             If (Purchase_Order Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Purchase_Order")
             Else
@@ -29685,7 +29714,7 @@ Namespace dsDemag_HUBTableAdapters
             Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Created,Date)
             Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Original_SO_Order_ID,Integer)
             Me.Adapter.UpdateCommand.Parameters(4).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Original_Shipping_Order,Integer)
+            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Original_Shipping_Order,Double)
             If (Original_Purchase_Order Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Purchase_Order")
             Else
@@ -36279,21 +36308,12 @@ Namespace dsDemag_HUBTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._dsShipmentsTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsShipments.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._poOrderTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.poOrder.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._dsShipmentsTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._rtCharge_CodeTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.rtCharge_Code.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._rtCharge_CodeTableAdapter.Update(updatedRows))
+                    result = (result + Me._poOrderTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -36306,21 +36326,21 @@ Namespace dsDemag_HUBTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._poOrderTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.poOrder.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._poSO_OrderTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.poSO_Order.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._poOrderTableAdapter.Update(updatedRows))
+                    result = (result + Me._poSO_OrderTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._dsContactTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsContact.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._dsShipmentsTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsShipments.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._dsContactTableAdapter.Update(updatedRows))
+                    result = (result + Me._dsShipmentsTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -36333,111 +36353,21 @@ Namespace dsDemag_HUBTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._stSettingsTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.stSettings.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._rtCharge_CodeTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.rtCharge_Code.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._stSettingsTableAdapter.Update(updatedRows))
+                    result = (result + Me._rtCharge_CodeTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._rtShipments_ChargesTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.rtShipments_Charges.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._dsContactTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsContact.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._rtShipments_ChargesTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._rtRatesTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.rtRates.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._rtRatesTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._rtCarrier_RatesTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.rtCarrier_Rates.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._rtCarrier_RatesTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._ptShipmentsTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.ptShipments.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._ptShipmentsTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._ptContainerTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.ptContainer.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._ptContainerTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._dsInvoiceTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsInvoice.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._dsInvoiceTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._poSO_OrderTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.poSO_Order.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._poSO_OrderTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._dsCommentTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsComment.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._dsCommentTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._dsAddressTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsAddress.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._dsAddressTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._subdivisionCodesTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.SubdivisionCodes.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._subdivisionCodesTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._dsShipment_SOTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsShipment_SO.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._dsShipment_SOTableAdapter.Update(updatedRows))
+                    result = (result + Me._dsContactTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -36450,12 +36380,84 @@ Namespace dsDemag_HUBTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._dsRoleTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsRole.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._dsShipment_SOTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsShipment_SO.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._dsRoleTableAdapter.Update(updatedRows))
+                    result = (result + Me._dsShipment_SOTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._subdivisionCodesTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.SubdivisionCodes.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._subdivisionCodesTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._dsAddressTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsAddress.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._dsAddressTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._dsCommentTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsComment.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._dsCommentTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._dsEventTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsEvent.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._dsEventTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._dsInvoiceTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsInvoice.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._dsInvoiceTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._ptContainerTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.ptContainer.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._ptContainerTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._ptShipmentsTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.ptShipments.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._ptShipmentsTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._rtCarrier_RatesTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.rtCarrier_Rates.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._rtCarrier_RatesTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -36468,12 +36470,39 @@ Namespace dsDemag_HUBTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._dsEventTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsEvent.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._rtRatesTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.rtRates.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._dsEventTableAdapter.Update(updatedRows))
+                    result = (result + Me._rtRatesTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._rtShipments_ChargesTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.rtShipments_Charges.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._rtShipments_ChargesTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._stSettingsTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.stSettings.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._stSettingsTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._dsRoleTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.dsRole.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._dsRoleTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -36528,19 +36557,11 @@ Namespace dsDemag_HUBTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._dsShipmentsTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsShipments.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._poOrderTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.poOrder.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._dsShipmentsTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._rtCharge_CodeTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.rtCharge_Code.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._rtCharge_CodeTableAdapter.Update(addedRows))
+                    result = (result + Me._poOrderTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -36552,19 +36573,19 @@ Namespace dsDemag_HUBTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._poOrderTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.poOrder.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._poSO_OrderTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.poSO_Order.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._poOrderTableAdapter.Update(addedRows))
+                    result = (result + Me._poSO_OrderTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._dsContactTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsContact.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._dsShipmentsTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsShipments.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._dsContactTableAdapter.Update(addedRows))
+                    result = (result + Me._dsShipmentsTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -36576,99 +36597,19 @@ Namespace dsDemag_HUBTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._stSettingsTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.stSettings.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._rtCharge_CodeTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.rtCharge_Code.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._stSettingsTableAdapter.Update(addedRows))
+                    result = (result + Me._rtCharge_CodeTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._rtShipments_ChargesTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.rtShipments_Charges.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._dsContactTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsContact.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._rtShipments_ChargesTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._rtRatesTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.rtRates.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._rtRatesTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._rtCarrier_RatesTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.rtCarrier_Rates.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._rtCarrier_RatesTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._ptShipmentsTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.ptShipments.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._ptShipmentsTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._ptContainerTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.ptContainer.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._ptContainerTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._dsInvoiceTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsInvoice.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._dsInvoiceTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._poSO_OrderTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.poSO_Order.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._poSO_OrderTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._dsCommentTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsComment.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._dsCommentTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._dsAddressTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsAddress.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._dsAddressTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._subdivisionCodesTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.SubdivisionCodes.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._subdivisionCodesTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._dsShipment_SOTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsShipment_SO.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._dsShipment_SOTableAdapter.Update(addedRows))
+                    result = (result + Me._dsContactTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -36680,11 +36621,75 @@ Namespace dsDemag_HUBTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._dsRoleTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsRole.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._dsShipment_SOTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsShipment_SO.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._dsRoleTableAdapter.Update(addedRows))
+                    result = (result + Me._dsShipment_SOTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._subdivisionCodesTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.SubdivisionCodes.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._subdivisionCodesTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._dsAddressTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsAddress.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._dsAddressTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._dsCommentTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsComment.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._dsCommentTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._dsEventTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsEvent.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._dsEventTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._dsInvoiceTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsInvoice.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._dsInvoiceTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._ptContainerTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.ptContainer.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._ptContainerTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._ptShipmentsTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.ptShipments.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._ptShipmentsTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._rtCarrier_RatesTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.rtCarrier_Rates.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._rtCarrier_RatesTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -36696,11 +36701,35 @@ Namespace dsDemag_HUBTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._dsEventTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsEvent.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._rtRatesTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.rtRates.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._dsEventTableAdapter.Update(addedRows))
+                    result = (result + Me._rtRatesTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._rtShipments_ChargesTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.rtShipments_Charges.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._rtShipments_ChargesTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._stSettingsTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.stSettings.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._stSettingsTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._dsRoleTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.dsRole.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._dsRoleTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -36730,123 +36759,11 @@ Namespace dsDemag_HUBTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._dsEventTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsEvent.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._dsEventTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._dsAliasTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsAlias.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._dsAliasTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
             If (Not (Me._dsRoleTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsRole.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me._dsRoleTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._dsShipment_OrderTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsShipment_Order.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._dsShipment_OrderTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._dsShipment_SOTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsShipment_SO.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._dsShipment_SOTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._subdivisionCodesTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.SubdivisionCodes.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._subdivisionCodesTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._dsAddressTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsAddress.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._dsAddressTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._dsCommentTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsComment.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._dsCommentTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._poSO_OrderTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.poSO_Order.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._poSO_OrderTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._dsInvoiceTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsInvoice.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._dsInvoiceTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._ptContainerTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.ptContainer.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._ptContainerTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._ptShipmentsTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.ptShipments.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._ptShipmentsTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._rtCarrier_RatesTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.rtCarrier_Rates.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._rtCarrier_RatesTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._rtRatesTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.rtRates.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._rtRatesTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._rtShipments_ChargesTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.rtShipments_Charges.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._rtShipments_ChargesTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -36858,11 +36775,107 @@ Namespace dsDemag_HUBTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._dsContainerTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsContainer.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._rtShipments_ChargesTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.rtShipments_Charges.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._dsContainerTableAdapter.Update(deletedRows))
+                    result = (result + Me._rtShipments_ChargesTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._rtRatesTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.rtRates.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._rtRatesTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._dsAliasTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsAlias.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._dsAliasTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._rtCarrier_RatesTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.rtCarrier_Rates.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._rtCarrier_RatesTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._ptShipmentsTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.ptShipments.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._ptShipmentsTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._ptContainerTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.ptContainer.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._ptContainerTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._dsInvoiceTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsInvoice.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._dsInvoiceTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._dsEventTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsEvent.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._dsEventTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._dsCommentTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsComment.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._dsCommentTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._dsAddressTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsAddress.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._dsAddressTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._subdivisionCodesTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.SubdivisionCodes.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._subdivisionCodesTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._dsShipment_SOTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsShipment_SO.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._dsShipment_SOTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._dsShipment_OrderTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsShipment_Order.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._dsShipment_OrderTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -36874,11 +36887,35 @@ Namespace dsDemag_HUBTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._poOrderTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.poOrder.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._rtCharge_CodeTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.rtCharge_Code.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._poOrderTableAdapter.Update(deletedRows))
+                    result = (result + Me._rtCharge_CodeTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._dsContainerTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsContainer.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._dsContainerTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._dsShipmentsTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsShipments.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._dsShipmentsTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._poSO_OrderTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.poSO_Order.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._poSO_OrderTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -36890,19 +36927,11 @@ Namespace dsDemag_HUBTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._rtCharge_CodeTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.rtCharge_Code.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._poOrderTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.poOrder.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._rtCharge_CodeTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._dsShipmentsTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.dsShipments.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._dsShipmentsTableAdapter.Update(deletedRows))
+                    result = (result + Me._poOrderTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If

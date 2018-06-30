@@ -469,7 +469,13 @@ Public Class frmMaininterface
         Select Case DsPartnerBindingSource.Count
             Case = 1
                 Dim ptRow As DataRow = DsDemag_HUB.dsPartner.Rows(DsDemag_HUB.dsPartner.Rows.IndexOf(DirectCast(DsPartnerBindingSource.Current, DataRowView).Row))
-                Return Convert.ToInt32(ptRow.Item("Partner_ID"))
+                If ptRow.Item("Partner_ID").ToString = "" Then
+                    MsgBox(searchString)
+                    Return 4
+                Else
+                    Return Convert.ToInt32(ptRow.Item("Partner_ID").ToString)
+                End If
+
             Case = 0
                 Dim newParter As dsDemag_HUB.dsPartnerRow
                 newParter = DsDemag_HUB.dsPartner.NewdsPartnerRow
@@ -582,11 +588,11 @@ Public Class frmMaininterface
                         newPO.Supplier = searchPartner(Row("Supplier Code").ToString(), "ICM_ID", Row("Supplier").ToString())
                         Select Case Row("Planned Mode").ToString()
                             Case "Ocean"
-                                If newPO.Service <> "SEA" Then newPO.Service = "SEA"
+                                newPO.Service = "SEA"
                             Case "Air"
-                                If newPO.Service <> "AIR" Then newPO.Service = "Ocean"
+                                newPO.Service = "AIR"
                             Case Else
-                                If newPO.Service <> "ZZZ" Then newPO.Service = "ZZZ"
+                                newPO.Service = "ZZZ"
                         End Select
                         Select Case Row("Shipping Terms").ToString()
                             Case Is = "Carriage Paid To"
@@ -657,7 +663,11 @@ Public Class frmMaininterface
                         If Row("Latest On-Board Date").ToString() <> "" Then newPO.Latest_On_Board = Convert.ToDateTime(Row("Latest On-Board Date").ToString())
                         If Row("Expected Arrival Date").ToString() <> "" Then newPO.Latest_Arrival = Convert.ToDateTime(Row("Expected Arrival Date").ToString())
                         'newPO.Forwarding_Agent = ""
-                        If Row("Acceptance Status").ToString() = "Order Accepted" Then newPO.Acceptance_Status = True
+                        If Row("Acceptance Status").ToString() = "Order Accepted" Then
+                            newPO.Acceptance_Status = True
+                        Else
+                            newPO.Acceptance_Status = False
+                        End If
                         If Row("SQE Check Approval").ToString() <> "" Then newPO.SQE_Check = Convert.ToDateTime(Row("SQE Check Approval").ToString())
                         newPO.Division = Row("Division").ToString()
                         newPO.Buyer_Mail = Row("Buyer E-Mail Address").ToString()
@@ -666,7 +676,21 @@ Public Class frmMaininterface
                     Else 'Update
                         Dim editPO As dsDemag_HUB.poOrderRow
                         editPO = DsDemag_HUB.poOrder.FindByPurchase_Order(PO)
-                        If editPO.Supplier <> searchPartner(Row("Supplier Code").ToString(), "ICM_ID", Row("Supplier").ToString()) Then editPO.Supplier = searchPartner(Row("Supplier Code").ToString(), "ICM_ID", Row("Supplier").ToString())
+                        'If IsDBNull(editPO.Supplier) Then 'Nötig weil die manuel hinzugefügten keine Supplier haben
+
+                        'Dim kpfile As System.IO.StreamWriter
+                        'kpfile = My.Computer.FileSystem.OpenTextFileWriter("C:\Users\HolyAbsolut\Desktop\Log.txt", True)
+                        'kpfile.WriteLine(PO & "_" & "XLS_" & searchPartner(Row("Supplier Code").ToString(), "ICM_ID", Row("Supplier").ToString()))
+                        'kpfile.Close()
+
+                        If editPO.IsSupplierNull Then
+                            editPO.Supplier = searchPartner(Row("Supplier Code").ToString(), "ICM_ID", Row("Supplier").ToString())
+                        Else
+                            If editPO.Supplier <> searchPartner(Row("Supplier Code").ToString(), "ICM_ID", Row("Supplier").ToString()) Then
+                                editPO.Supplier = searchPartner(Row("Supplier Code").ToString(), "ICM_ID", Row("Supplier").ToString())
+                            End If
+                        End If
+
                         Select Case Row("Planned Mode").ToString()
                             Case "Ocean"
                                 If editPO.Service <> "SEA" Then editPO.Service = "SEA"
@@ -741,10 +765,18 @@ Public Class frmMaininterface
                         End Select
                         If editPO.Incoterm_Location <> searchUNLOC(Row("Planned POL").ToString(), "ICM") Then editPO.Incoterm_Location = searchUNLOC(Row("Planned POL").ToString(), "ICM")
                         If Row("Latest On-Board Date").ToString() <> "" Then
-                            If editPO.Latest_On_Board <> Convert.ToDateTime(Row("Latest On-Board Date").ToString()) Then editPO.Latest_On_Board = Convert.ToDateTime(Row("Latest On-Board Date").ToString())
+                            If editPO.IsLatest_On_BoardNull Then
+                                editPO.Latest_On_Board = Convert.ToDateTime(Row("Latest On-Board Date").ToString())
+                            Else
+                                If editPO.Latest_On_Board <> Convert.ToDateTime(Row("Latest On-Board Date").ToString()) Then editPO.Latest_On_Board = Convert.ToDateTime(Row("Latest On-Board Date").ToString())
+                            End If
                         End If
                         If Row("Expected Arrival Date").ToString() <> "" Then
-                            If editPO.Latest_Arrival <> Convert.ToDateTime(Row("Expected Arrival Date").ToString()) Then editPO.Latest_Arrival = Convert.ToDateTime(Row("Expected Arrival Date").ToString())
+                            If editPO.IsLatest_ArrivalNull Then
+                                editPO.Latest_Arrival = Convert.ToDateTime(Row("Expected Arrival Date").ToString())
+                            Else
+                                If editPO.Latest_Arrival <> Convert.ToDateTime(Row("Expected Arrival Date").ToString()) Then editPO.Latest_Arrival = Convert.ToDateTime(Row("Expected Arrival Date").ToString())
+                            End If
                         End If
                         'newPO.Forwarding_Agent = ""
                         If Row("Acceptance Status").ToString() = "Order Accepted" Then
@@ -770,9 +802,16 @@ Public Class frmMaininterface
                             MsgBox(ex)
                         End Try
 
-
-                        If editPO.Division <> Row("Division").ToString() Then editPO.Division = Row("Division").ToString()
-                        If editPO.Buyer_Mail <> Row("Buyer E-Mail Address").ToString() Then editPO.Buyer_Mail = Row("Buyer E-Mail Address").ToString()
+                        If editPO.IsDivisionNull Then
+                            editPO.Division = Row("Division").ToString()
+                        Else
+                            If editPO.Division <> Row("Division").ToString() Then editPO.Division = Row("Division").ToString()
+                        End If
+                        If editPO.IsBuyer_MailNull Then
+                            editPO.Buyer_Mail = Row("Buyer E-Mail Address").ToString()
+                        Else
+                            If editPO.Buyer_Mail <> Row("Buyer E-Mail Address").ToString() Then editPO.Buyer_Mail = Row("Buyer E-Mail Address").ToString()
+                        End If
                     End If
                     countRecord += 1
                     bgwImportICM.ReportProgress(Convert.ToInt32(countRecord / ImportDS.Tables("ICMImport").Rows.Count * 100))
@@ -812,7 +851,7 @@ Public Class frmMaininterface
         If PoShipping_OrderBindingSource.Count = 0 Then
             Dim newSoRow As dsDemag_HUB.poShipping_OrderRow
             newSoRow = DsDemag_HUB.poShipping_Order.NewpoShipping_OrderRow
-            newSoRow.Shipping_Order = Convert.ToInt32(txtSoNo.Text)
+            newSoRow.Shipping_Order = Convert.ToDouble(txtSoNo.Text)
             newSoRow.Created = Date.Now
             DsDemag_HUB.poShipping_Order.Rows.Add(newSoRow)
             txtSoNo.BackColor = Color.YellowGreen
@@ -825,7 +864,7 @@ Public Class frmMaininterface
         Dim newShipmentSO As dsDemag_HUB.dsShipment_SORow
         newShipmentSO = DsDemag_HUB.dsShipment_SO.NewdsShipment_SORow
         newShipmentSO.Shipment_ID = Convert.ToInt32(Shipment_IDTextBox.Text)
-        newShipmentSO.Shipping_Order = Convert.ToInt32(txtSoNo.Text)
+        newShipmentSO.Shipping_Order = Convert.ToDouble(txtSoNo.Text)
         newShipmentSO.Created = Date.Now
         DsDemag_HUB.dsShipment_SO.Rows.Add(newShipmentSO)
 
