@@ -187,35 +187,55 @@ Public Class frmMaininterface
         Me.DsPartnerTableAdapter.Update(Me.DsDemag_HUB.dsPartner)
         Me.DsContactTableAdapter.Update(Me.DsDemag_HUB.dsContact)
         Me.DsAddressTableAdapter.Update(Me.DsDemag_HUB.dsAddress)
-
         Me.PoOrderTableAdapter.Update(Me.DsDemag_HUB.poOrder)
         Me.PoShipping_OrderTableAdapter.Update(Me.DsDemag_HUB.poShipping_Order)
-
-
-
-
         Me.DsShipment_OrderTableAdapter.Update(Me.DsDemag_HUB.dsShipment_Order)
         Me.DsShipment_SOTableAdapter.Update(Me.DsDemag_HUB.dsShipment_SO)
         Me.DsShipmentsTableAdapter.Update(Me.DsDemag_HUB.dsShipments)
         Me.DsCommentTableAdapter.Update(Me.DsDemag_HUB.dsComment)
-
-
-
         Me.PtShipmentsTableAdapter.Update(Me.DsDemag_HUB.ptShipments)
-
-
-
-
-
-
-
 
         'MsgBox("Fertig")
     End Sub
 
     Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
-        DsShipmentsBindingSource.AddNew()
+        DsShipmentsBindingSource.Filter = "Service = 'FREE'"
+
+
+        If DsShipmentsBindingSource.Count < 20 Then
+            For i As Integer = DsShipmentsBindingSource.Count To 20
+                Dim newShipment As dsDemag_HUB.dsShipmentsRow
+                newShipment = DsDemag_HUB.dsShipments.NewdsShipmentsRow
+                newShipment.Created = Date.MinValue
+                newShipment.Service = "FREE"
+                newShipment.POL = "ZZZZZ"
+                newShipment.POD = "ZZZZZ"
+                DsDemag_HUB.dsShipments.Rows.Add(newShipment)
+            Next
+        End If
+
+        'Dim noValidID As Boolean = True
+        'For Each Row As dsDemag_HUB.dsShipmentsRow In DsDemag_HUB.dsShipments
+        '    If Row.Shipment_ID > 0 And Row.Service = "FREE" Then noValidID = False
+        '    Exit For
+        'Next
+        'If noValidID = True Then LoadDB()
+
+        'Prüfen ob noch genug 'fertige' PO da sind und auswählen
+        DsShipmentsBindingSource.Filter = "Service = 'FREE' AND Shipment_ID > 0"
+        DsShipmentsBindingSource.Sort = "Shipment_ID"
+
+        If DsShipmentsBindingSource.Count = 0 Then
+            LoadDB()
+            DsShipmentsBindingSource.Filter = "Service = 'FREE' AND Shipment_ID > 0"
+        End If
+        DsShipmentsBindingSource.MoveFirst()
+
+
+
+        'DsShipmentsBindingSource.AddNew()
         Me.subTabShipments.SelectedTab = tabBooking
+        'DsShipmentsBindingSource.Filter = String.Empty
     End Sub
     'Drag & Dropp https://www.codeproject.com/Articles/7140/Drag-and-Drop-Attached-File-From-Outlook-and-ab
     Private Sub frmMaininterface_DragDrop(sender As Object, e As System.Windows.Forms.DragEventArgs) Handles btnaddDocument.DragDrop
@@ -399,6 +419,13 @@ Public Class frmMaininterface
             Case Else
                 MsgBox("Filter unbekannt:" & cmbField.Text)
         End Select
+
+        'Später einmal je Status
+        If DsShipmentsBindingSource.Count = 1 Then
+            Me.subTabShipments.SelectedTab = tabBooking
+        End If
+
+
     End Sub
 
     Sub searchPO(ByVal PoNo As String)
@@ -920,40 +947,40 @@ Public Class frmMaininterface
                 Cont20DCTextBox.Enabled = True
                 Cont40DCTextBox.Enabled = True
                 Cont40HQTextBox.Enabled = True
-                CarrierTextBox.Enabled = True
-                Contract_NoTextBox.Enabled = True
+                'CarrierTextBox.Enabled = True
+                'Contract_NoTextBox.Enabled = True
             Case = "LCL"
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
                 Cont20DCTextBox.Enabled = False
                 Cont40DCTextBox.Enabled = False
                 Cont40HQTextBox.Enabled = False
-                CarrierTextBox.Enabled = False
-                Contract_NoTextBox.Enabled = False
+                'CarrierTextBox.Enabled = False
+                'Contract_NoTextBox.Enabled = False
             Case = "AIR"
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
                 Cont20DCTextBox.Enabled = False
                 Cont40DCTextBox.Enabled = False
                 Cont40HQTextBox.Enabled = False
-                CarrierTextBox.Enabled = False
-                Contract_NoTextBox.Enabled = False
+                'CarrierTextBox.Enabled = False
+                'Contract_NoTextBox.Enabled = False
             Case = "RAIL"
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
                 Cont20DCTextBox.Enabled = True
                 Cont40DCTextBox.Enabled = True
                 Cont40HQTextBox.Enabled = True
-                CarrierTextBox.Enabled = False
-                Contract_NoTextBox.Enabled = False
+                'CarrierTextBox.Enabled = False
+                'Contract_NoTextBox.Enabled = False
             Case Else
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
                 Cont20DCTextBox.Enabled = True
                 Cont40DCTextBox.Enabled = True
                 Cont40HQTextBox.Enabled = True
-                CarrierTextBox.Enabled = True
-                Contract_NoTextBox.Enabled = True
+                'CarrierTextBox.Enabled = True
+                'Contract_NoTextBox.Enabled = True
         End Select
 
     End Sub
@@ -972,7 +999,7 @@ Public Class frmMaininterface
     Private Sub WeightTextBox_TextChanged(sender As Object, e As EventArgs) Handles WeightTextBox.TextChanged
         If WeightTextBox.Text = "" Then Exit Sub
         Select Case Convert.ToDouble(WeightTextBox.Text)
-            Case > 25000
+            Case > 27000
                 WeightTextBox.BackColor = Color.Crimson
             Case > 18000
                 WeightTextBox.BackColor = Color.Gold

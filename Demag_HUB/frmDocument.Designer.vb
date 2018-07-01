@@ -32,10 +32,10 @@ Partial Class frmDocument
         '
         Me.txtDocumentNo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtDocumentNo.Location = New System.Drawing.Point(91, 12)
+        Me.txtDocumentNo.Location = New System.Drawing.Point(12, 12)
         Me.txtDocumentNo.Name = "txtDocumentNo"
         Me.txtDocumentNo.Size = New System.Drawing.Size(469, 20)
-        Me.txtDocumentNo.TabIndex = 9
+        Me.txtDocumentNo.TabIndex = 1
         Me.txtDocumentNo.WatermarkColor = System.Drawing.Color.Gray
         Me.txtDocumentNo.WatermarkText = "Document No.:"
         '
@@ -43,11 +43,11 @@ Partial Class frmDocument
         '
         Me.cmbDocType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbDocType.FormattingEnabled = True
-        Me.cmbDocType.Items.AddRange(New Object() {"INV", "PL", "HBL", "BL"})
-        Me.cmbDocType.Location = New System.Drawing.Point(12, 12)
+        Me.cmbDocType.Items.AddRange(New Object() {"INV", "PL", "BL", "HBL", "MISC", "Booking_Confirmation"})
+        Me.cmbDocType.Location = New System.Drawing.Point(487, 11)
         Me.cmbDocType.Name = "cmbDocType"
         Me.cmbDocType.Size = New System.Drawing.Size(73, 21)
-        Me.cmbDocType.TabIndex = 8
+        Me.cmbDocType.TabIndex = 2
         '
         'btnOpen
         '
@@ -57,6 +57,7 @@ Partial Class frmDocument
         Me.btnOpen.Name = "btnOpen"
         Me.btnOpen.Size = New System.Drawing.Size(75, 23)
         Me.btnOpen.TabIndex = 7
+        Me.btnOpen.TabStop = False
         Me.btnOpen.Text = "Open"
         Me.btnOpen.UseVisualStyleBackColor = True
         '
@@ -67,6 +68,7 @@ Partial Class frmDocument
         Me.btnOk.Name = "btnOk"
         Me.btnOk.Size = New System.Drawing.Size(75, 23)
         Me.btnOk.TabIndex = 6
+        Me.btnOk.TabStop = False
         Me.btnOk.Text = "Ok"
         Me.btnOk.UseVisualStyleBackColor = True
         '

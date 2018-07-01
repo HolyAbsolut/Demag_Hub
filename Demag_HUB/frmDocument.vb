@@ -6,6 +6,7 @@ Public Class frmDocument
     Public docNo As String
     Public docType As String
     Public docDirectory As String
+    Dim docSaveNo As String
 
 
     Private Sub btnOpen_Click(sender As Object, e As EventArgs) Handles btnOpen.Click
@@ -16,9 +17,13 @@ Public Class frmDocument
         'Prüfen ob Felder leer sind
         If txtDocumentNo.Text = "" Then Exit Sub
         If cmbDocType.Text = "" Then Exit Sub
+
         'Daten für frmMaininterface verfügbarmachen
         docNo = txtDocumentNo.Text
         docType = cmbDocType.Text
+        docSaveNo = txtDocumentNo.Text.Replace("/", String.Empty) 'zum speichern ohne 
+        docSaveNo = docSaveNo.Replace("\", String.Empty) 'zum speichern ohne sonderzeichen
+        docNo = txtDocumentNo.Text
         Try
             'Datei verschieben
             Dim directoryPath As String = Path.GetDirectoryName(My.Settings.sttDBPath)
@@ -26,7 +31,7 @@ Public Class frmDocument
             If dir.Exists = False Then
                 System.IO.Directory.CreateDirectory(dir.ToString)
             End If
-            docDirectory = dir.ToString & docType & "_" & docNo & Path.GetExtension(dirFile)
+            docDirectory = dir.ToString & docType & "_" & docSaveNo & Path.GetExtension(dirFile)
 
             File.Move(dirFile, docDirectory)
             ' See if the original file exists now.
@@ -43,5 +48,6 @@ Public Class frmDocument
 
     Private Sub frmDocument_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtDocumentNo.Text = ""
+        txtDocumentNo.Focus()
     End Sub
 End Class
