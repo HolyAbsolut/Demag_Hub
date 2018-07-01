@@ -185,6 +185,7 @@ Partial Class frmMaininterface
         Me.cmbFilter = New System.Windows.Forms.ComboBox()
         Me.TabControl3 = New System.Windows.Forms.TabControl()
         Me.tabShipments = New System.Windows.Forms.TabPage()
+        Me.btnPDF = New System.Windows.Forms.Button()
         Me.btnReloadDB = New System.Windows.Forms.Button()
         Me.btnMailSubject = New System.Windows.Forms.Button()
         Me.btnSchedule = New System.Windows.Forms.Button()
@@ -236,7 +237,6 @@ Partial Class frmMaininterface
         Me.DsShipment_SOTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsShipment_SOTableAdapter()
         Me.PoShipping_OrderTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.poShipping_OrderTableAdapter()
         Me.PtShipmentsTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.ptShipmentsTableAdapter()
-        Me.Button2 = New System.Windows.Forms.Button()
         DtnETALabel = New System.Windows.Forms.Label()
         DtnETDLabel = New System.Windows.Forms.Label()
         DtnCRDLabel = New System.Windows.Forms.Label()
@@ -1768,7 +1768,7 @@ Partial Class frmMaininterface
         '
         'tabShipments
         '
-        Me.tabShipments.Controls.Add(Me.Button2)
+        Me.tabShipments.Controls.Add(Me.btnPDF)
         Me.tabShipments.Controls.Add(Me.btnReloadDB)
         Me.tabShipments.Controls.Add(Me.btnMailSubject)
         Me.tabShipments.Controls.Add(Me.btnSchedule)
@@ -1788,6 +1788,17 @@ Partial Class frmMaininterface
         Me.tabShipments.TabIndex = 0
         Me.tabShipments.Text = "Shipments"
         Me.tabShipments.UseVisualStyleBackColor = True
+        '
+        'btnPDF
+        '
+        Me.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPDF.Location = New System.Drawing.Point(6, 282)
+        Me.btnPDF.Name = "btnPDF"
+        Me.btnPDF.Size = New System.Drawing.Size(134, 40)
+        Me.btnPDF.TabIndex = 86
+        Me.btnPDF.TabStop = False
+        Me.btnPDF.Text = "PDF"
+        Me.btnPDF.UseVisualStyleBackColor = True
         '
         'btnReloadDB
         '
@@ -2168,17 +2179,6 @@ Partial Class frmMaininterface
         '
         Me.PtShipmentsTableAdapter.ClearBeforeFill = True
         '
-        'Button2
-        '
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(6, 282)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(134, 40)
-        Me.Button2.TabIndex = 86
-        Me.Button2.TabStop = False
-        Me.Button2.Text = "Email subject"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'frmMaininterface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2418,5 +2418,5 @@ Partial Class frmMaininterface
     Friend WithEvents DataGridViewTextBoxColumn65 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn66 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn67 As DataGridViewTextBoxColumn
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btnPDF As Button
 End Class

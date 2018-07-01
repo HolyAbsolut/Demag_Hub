@@ -1185,4 +1185,9 @@ Public Class frmMaininterface
             e.KeyChar = Char.ToUpper(e.KeyChar)
         End If
     End Sub
+
+    Private Sub btnPDF_Click(sender As Object, e As EventArgs) Handles btnPDF.Click
+        PDF.Test()
+        Process.Start("C:\Users\HolyAbsolut\Desktop\Tesdt.pdf")
+    End Sub
 End Class
