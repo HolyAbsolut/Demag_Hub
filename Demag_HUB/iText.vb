@@ -3,27 +3,44 @@
 
 
 
-
+Imports iText
 Imports iText.Kernel.Pdf
 Imports iText.Layout
 Imports iText.Layout.Element
+Imports iText.IO.Font
+Imports iText.Kernel.Font
 
 
-Module PDF
+Module iText
     Sub Test()
 
         Dim DEST As String = "C:\Users\HolyAbsolut\Desktop\Tesdt.pdf"
-        'Dim File As = New FileIO(DEST)
-        MsgBox("OK")
-        ''Dim document As New Document(iText.text.PageSize.A4, 10, 10, 42, 35)
         Dim writer As New PdfWriter(DEST)
         Dim pdf As New PdfDocument(writer)
-        Dim document As New Document(pdf)
+        Dim pdfSize As Global.iText.Kernel.Geom.PageSize = Global.iText.Kernel.Geom.PageSize.A4
+        Dim page As PdfPage = pdf.AddNewPage(pdfSize)
+        Dim Canvas As Global.iText.Kernel.Pdf.Canvas.PdfCanvas = New Global.iText.Kernel.Pdf.Canvas.PdfCanvas(page)
+        'Dim Canvas As iText.Layout.Canvas = New iText.Kernel.Pdf.Canvas.PdfCanvas(page)
 
-        document.Add(New Paragraph("Hello World"))
+        'Dim document As New Document(pdf)
+        'Dim newFont As PdfFont
+        'newFont = PdfFontFactory.CreateFont(Constants.StandardFonts.TIMES_ITALIC)
+        'document.Add(New Paragraph("Hello World"))
+        'document.Add(New Paragraph("Hello World").SetFont(newFont))
+        'document.Close()
 
-        document.Close()
-        MsgBox("OK")
+
+        Canvas.MoveTo(-(pdfSize.GetWidth() / 2 - 15), 0).LineTo(pdfSize.GetWidth() / 2 - 5, 0).Stroke()
+        Canvas.SetLineJoinStyle(Global.iText.Kernel.Pdf.Canvas.PdfCanvasConstants.LineJoinStyle.ROUND).MoveTo(pdfSize.GetWidth() / 2 - 25, -10) _
+        .LineTo(pdfSize.GetWidth() / 2 - 15, 0) _
+        .LineTo(pdfSize.GetWidth() / 2 - 25, 10).Stroke() _
+        .SetLineJoinStyle(Global.iText.Kernel.Pdf.Canvas.PdfCanvasConstants.LineJoinStyle.MITER)
+
+
+
+        Canvas.Stroke()
+
+        pdf.Close()
 
 
 
