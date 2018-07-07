@@ -1117,7 +1117,12 @@ Public Class frmMaininterface
 
         If DsShipment_OrderDataGridView.Rows.Count <> 0 Then
             For Each Row As DataGridViewRow In Me.DsShipment_OrderDataGridView.Rows
-                toMail = toMail & ";" & Row.Cells(5).Value.ToString
+                If IsNothing(Row.Cells(5).Value) Then
+
+                Else
+                    toMail = toMail & ";" & Row.Cells(5).Value.ToString
+                End If
+
             Next
         End If
 
@@ -1197,6 +1202,7 @@ Public Class frmMaininterface
             e.KeyChar = Char.ToUpper(e.KeyChar)
         End If
     End Sub
+
 
 
 
@@ -1399,5 +1405,18 @@ Public Class frmMaininterface
 
 
         Process.Start("C:\Users\HolyAbsolut\Desktop\Tesdt.pdf")
+
+    Private Sub tsmOpenDIR_Click(sender As Object, e As EventArgs) Handles tsmOpenDIR.Click
+        Dim directoryPath As String = Path.GetDirectoryName(My.Settings.sttDBPath)
+        Dim dir As New IO.DirectoryInfo(directoryPath & "\Documents\" & Shipment_IDTextBox.Text & "\")
+        If System.IO.Directory.Exists(dir.ToString) Then Process.Start(Path.GetDirectoryName(dir.ToString))
+    End Sub
+
+    Private Sub tsmOpen_Click(sender As Object, e As EventArgs) Handles tsmOpen.Click
+        'If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then 'Dokument öffnen
+        '    Dim selectedRow = DsInvoiceDataGridView1.Rows(e.RowIndex)
+        '    Process.Start(selectedRow.Cells(4).Value.ToString)
+        'End If
+
     End Sub
 End Class

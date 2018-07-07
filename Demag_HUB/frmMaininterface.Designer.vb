@@ -162,6 +162,10 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn58 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmsDocuments = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.tsmCopy = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmOpen = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmOpenDIR = New System.Windows.Forms.ToolStripMenuItem()
         Me.tabProtocol = New System.Windows.Forms.TabPage()
         Me.PtShipmentsDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn61 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -284,6 +288,7 @@ Partial Class frmMaininterface
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabDocuments.SuspendLayout()
         CType(Me.DsInvoiceDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.cmsDocuments.SuspendLayout()
         Me.tabProtocol.SuspendLayout()
         CType(Me.PtShipmentsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PtShipmentsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1533,6 +1538,7 @@ Partial Class frmMaininterface
         Me.DsInvoiceDataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.DsInvoiceDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DsInvoiceDataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn20, Me.DataGridViewTextBoxColumn21, Me.DataGridViewTextBoxColumn23, Me.DataGridViewTextBoxColumn25, Me.DataGridViewTextBoxColumn58})
+        Me.DsInvoiceDataGridView1.ContextMenuStrip = Me.cmsDocuments
         Me.DsInvoiceDataGridView1.DataSource = Me.DsShipmentsdsInvoiceBindingSource
         Me.DsInvoiceDataGridView1.GridColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.DsInvoiceDataGridView1.Location = New System.Drawing.Point(6, 6)
@@ -1570,6 +1576,33 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn58.DataPropertyName = "Link"
         Me.DataGridViewTextBoxColumn58.HeaderText = "Link"
         Me.DataGridViewTextBoxColumn58.Name = "DataGridViewTextBoxColumn58"
+        '
+        'cmsDocuments
+        '
+        Me.cmsDocuments.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmCopy, Me.tsmOpen, Me.tsmOpenDIR})
+        Me.cmsDocuments.Name = "cmsDocuments"
+        Me.cmsDocuments.ShowImageMargin = False
+        Me.cmsDocuments.Size = New System.Drawing.Size(156, 92)
+        '
+        'tsmCopy
+        '
+        Me.tsmCopy.Enabled = False
+        Me.tsmCopy.Name = "tsmCopy"
+        Me.tsmCopy.Size = New System.Drawing.Size(155, 22)
+        Me.tsmCopy.Text = "Copy"
+        '
+        'tsmOpen
+        '
+        Me.tsmOpen.Enabled = False
+        Me.tsmOpen.Name = "tsmOpen"
+        Me.tsmOpen.Size = New System.Drawing.Size(155, 22)
+        Me.tsmOpen.Text = "Open"
+        '
+        'tsmOpenDIR
+        '
+        Me.tsmOpenDIR.Name = "tsmOpenDIR"
+        Me.tsmOpenDIR.Size = New System.Drawing.Size(155, 22)
+        Me.tsmOpenDIR.Text = "Open directory"
         '
         'tabProtocol
         '
@@ -2211,6 +2244,7 @@ Partial Class frmMaininterface
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabDocuments.ResumeLayout(False)
         CType(Me.DsInvoiceDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.cmsDocuments.ResumeLayout(False)
         Me.tabProtocol.ResumeLayout(False)
         CType(Me.PtShipmentsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PtShipmentsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2419,4 +2453,8 @@ Partial Class frmMaininterface
     Friend WithEvents DataGridViewTextBoxColumn66 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn67 As DataGridViewTextBoxColumn
     Friend WithEvents btnPDF As Button
+    Friend WithEvents cmsDocuments As ContextMenuStrip
+    Friend WithEvents tsmCopy As ToolStripMenuItem
+    Friend WithEvents tsmOpen As ToolStripMenuItem
+    Friend WithEvents tsmOpenDIR As ToolStripMenuItem
 End Class
