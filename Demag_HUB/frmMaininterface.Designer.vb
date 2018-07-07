@@ -189,6 +189,7 @@ Partial Class frmMaininterface
         Me.cmbFilter = New System.Windows.Forms.ComboBox()
         Me.TabControl3 = New System.Windows.Forms.TabControl()
         Me.tabShipments = New System.Windows.Forms.TabPage()
+        Me.btnPDF = New System.Windows.Forms.Button()
         Me.btnReloadDB = New System.Windows.Forms.Button()
         Me.btnMailSubject = New System.Windows.Forms.Button()
         Me.btnSchedule = New System.Windows.Forms.Button()
@@ -1800,6 +1801,7 @@ Partial Class frmMaininterface
         '
         'tabShipments
         '
+        Me.tabShipments.Controls.Add(Me.btnPDF)
         Me.tabShipments.Controls.Add(Me.btnReloadDB)
         Me.tabShipments.Controls.Add(Me.btnMailSubject)
         Me.tabShipments.Controls.Add(Me.btnSchedule)
@@ -1819,6 +1821,17 @@ Partial Class frmMaininterface
         Me.tabShipments.TabIndex = 0
         Me.tabShipments.Text = "Shipments"
         Me.tabShipments.UseVisualStyleBackColor = True
+        '
+        'btnPDF
+        '
+        Me.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPDF.Location = New System.Drawing.Point(6, 282)
+        Me.btnPDF.Name = "btnPDF"
+        Me.btnPDF.Size = New System.Drawing.Size(134, 40)
+        Me.btnPDF.TabIndex = 86
+        Me.btnPDF.TabStop = False
+        Me.btnPDF.Text = "PDF"
+        Me.btnPDF.UseVisualStyleBackColor = True
         '
         'btnReloadDB
         '
@@ -2439,6 +2452,7 @@ Partial Class frmMaininterface
     Friend WithEvents DataGridViewTextBoxColumn65 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn66 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn67 As DataGridViewTextBoxColumn
+    Friend WithEvents btnPDF As Button
     Friend WithEvents cmsDocuments As ContextMenuStrip
     Friend WithEvents tsmCopy As ToolStripMenuItem
     Friend WithEvents tsmOpen As ToolStripMenuItem
