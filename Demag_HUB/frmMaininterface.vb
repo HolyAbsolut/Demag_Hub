@@ -10,6 +10,7 @@ Public Class frmMaininterface
     Dim MyConnection As System.Data.OleDb.OleDbConnection
     Dim MyCommand As System.Data.OleDb.OleDbDataAdapter
     Dim ImportDS As System.Data.DataSet
+    Public PDFCover As PDFCoverStructure
 
 
     'Private Sub DsShipmentsBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs)
@@ -1202,5 +1203,216 @@ Public Class frmMaininterface
         '    Dim selectedRow = DsInvoiceDataGridView1.Rows(e.RowIndex)
         '    Process.Start(selectedRow.Cells(4).Value.ToString)
         'End If
+    End Sub
+
+    Function GetDataMatrix(ByVal Content As String) As Bitmap
+        Dim encoder As DataMatrix.net.DmtxImageEncoder = New DataMatrix.net.DmtxImageEncoder
+        Dim options As DataMatrix.net.DmtxImageEncoderOptions = New DataMatrix.net.DmtxImageEncoderOptions
+        options.ModuleSize = 2
+        options.MarginSize = 5
+        options.BackColor = Color.White
+        options.ForeColor = Color.Black
+        options.Scheme = DataMatrix.net.DmtxScheme.DmtxSchemeAsciiGS1
+        Dim encodedBitmap As Bitmap = encoder.EncodeImage(Content, options)
+        Return encodedBitmap
+    End Function
+
+    Private Sub btnPDF_Click(sender As Object, e As EventArgs) Handles btnPDF.Click
+        'iText.Test()
+        'If ServiceTextBox.Text <> "FCL" Then Exit Sub
+
+        Dim curRow As dsDemag_HUB.dsShipmentsRow
+
+        curRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
+
+        PDFCover.dtSipmentID = curRow.Shipment_ID.ToString
+
+        If curRow.IsArchive_NoNull Then
+            PDFCover.ArchivNo = ""
+        Else
+            PDFCover.ArchivNo = curRow.Archive_No
+        End If
+        If curRow.IsArchive_NoNull Then
+            PDFCover.dtArchiveNoHBL = ""
+        Else
+            PDFCover.dtArchiveNoHBL = curRow.Archive_No
+        End If
+        If curRow.IsSTT_NoNull Then
+            PDFCover.STTNo = ""
+        Else
+            PDFCover.STTNo = curRow.STT_No
+        End If
+        If curRow.IsdtnETANull Then
+            PDFCover.ETA = ""
+        Else
+            PDFCover.ETA = curRow.dtnETA.ToString("dd.MM.yyyy")
+        End If
+        If curRow.IsPOLNull Then
+            PDFCover.POL = ""
+        Else
+            PDFCover.POL = curRow.POL
+        End If
+        If curRow.IsPODNull Then
+            PDFCover.POD = ""
+        Else
+            PDFCover.POD = curRow.POD
+        End If
+        If curRow.IsVesselNull Then
+            PDFCover.Vessel = ""
+        Else
+            PDFCover.Vessel = curRow.Vessel
+        End If
+        If curRow.IsTerminalNull Then
+            PDFCover.Terminal = ""
+        Else
+            PDFCover.Terminal = curRow.Terminal.ToString
+        End If
+        If curRow.IsCont20DCNull Then
+            PDFCover.dt20DC = ""
+        Else
+            PDFCover.dt20DC = curRow.Cont20DC.ToString
+        End If
+        If curRow.IsCont40DCNull Then
+            PDFCover.dt40DC = ""
+        Else
+            PDFCover.dt40DC = curRow.Cont40DC.ToString
+        End If
+        If curRow.IsCont40HQNull Then
+            PDFCover.dt40HQ = ""
+        Else
+            PDFCover.dt40HQ = curRow.Cont40HQ.ToString
+        End If
+        If curRow.IsContract_NoNull Then
+            PDFCover.dtContract = ""
+        Else
+            PDFCover.dtContract = curRow.Contract_No
+        End If
+        If curRow.IsSTT_NoNull Then
+            PDFCover.dtSTT = ""
+        Else
+            PDFCover.dtSTT = curRow.STT_No
+        End If
+        If curRow.IsServiceNull Then
+            PDFCover.dtService = ""
+        Else
+            PDFCover.dtService = curRow.Service
+        End If
+        If curRow.IsWeightNull Then
+            PDFCover.dtWeight = ""
+        Else
+            PDFCover.dtWeight = curRow.Weight.ToString
+        End If
+        If curRow.IsVolumeNull Then
+            PDFCover.dtVolume = ""
+        Else
+            PDFCover.dtVolume = curRow.Volume.ToString
+        End If
+        If curRow.IsVolumeNull Or curRow.IsWeightNull Then
+            PDFCover.dtVolume = ""
+        Else
+            If curRow.Volume > curRow.Weight / 1000 Then
+                PDFCover.dtChargeable = curRow.Volume.ToString
+            Else
+                PDFCover.dtChargeable = (curRow.Weight / 1000).ToString
+            End If
+            PDFCover.dtVolume = curRow.Volume.ToString
+        End If
+
+
+        If curRow.IsIncotermNull Then
+            PDFCover.dtIncoterm = ""
+        Else
+            PDFCover.dtIncoterm = curRow.Incoterm
+        End If
+        If curRow.IsIncoterm_LocNull Then
+            PDFCover.dtIncotermLoc = ""
+        Else
+            PDFCover.dtIncotermLoc = curRow.Incoterm_Loc
+        End If
+
+
+
+
+
+
+        PDFCover.dtQuantity = ""
+        PDFCover.dtEK_VK = ""
+        PDFCover.dtEK_SK = ""
+        PDFCover.dtEK_SpecialSurcharge = ""
+        PDFCover.dtVK_VK = ""
+        PDFCover.dtVK_SK = ""
+        PDFCover.dtVK_SpecialSurcharge = ""
+        PDFCover.dtVK_Nachlauf = ""
+        PDFCover.dt20DCHW = ""
+        PDFCover.dtCharge0Description = ""
+        PDFCover.dtCharge0Value = ""
+        PDFCover.dtCharge1Description = ""
+        PDFCover.dtCharge1Value = ""
+        PDFCover.dtCharge2Description = ""
+        PDFCover.dtCharge2Value = ""
+        PDFCover.dtCharge3Description = ""
+        PDFCover.dtCharge3Value = ""
+        PDFCover.dtCharge4Description = ""
+        PDFCover.dtCharge4Value = ""
+        PDFCover.dtCharge5Description = ""
+        PDFCover.dtCharge5Value = ""
+        PDFCover.dtCharge6Description = ""
+        PDFCover.dtCharge6Value = ""
+        PDFCover.dtCharge7Description = ""
+        PDFCover.dtCharge7Value = ""
+        PDFCover.dtCharge8Description = ""
+        PDFCover.dtCharge8Value = ""
+        PDFCover.dtCharge9Description = ""
+        PDFCover.dtCharge9Value = ""
+        PDFCover.dtCharge10Description = ""
+        PDFCover.dtCharge10Value = ""
+        PDFCover.dtClient = "Demag"
+        PDFCover.dtFullDocs = ""
+        PDFCover.dtIMDG = ""
+        PDFCover.dtPMRef = ""
+        PDFCover.dtWKV = ""
+        PDFCover.dtBLSent = ""
+        PDFCover.dtLeerdepot = "Neuss"
+        PDFCover.EmptyDepot = ""
+        PDFCover.dtIMDGUN = ""
+        PDFCover.dtIMDGCheck = ""
+        PDFCover.dtDelivery = ""
+        PDFCover.dtCUS = ""
+        PDFCover.dtFISoTRANSIT = ""
+        PDFCover.dtArchiveNoMBL = ""
+        PDFCover.chkVomKunden = False
+        PDFCover.chkVerzolltSeehafen = False
+        PDFCover.chkAtlasFremd = False
+        PDFCover.chkVomUnternehmer = False
+        PDFCover.chkTruck = False
+        PDFCover.chkT1 = True
+        PDFCover.chkSchenker = True
+        PDFCover.chkRail = True
+        PDFCover.chkMBLW = False
+        PDFCover.chkMBLO = False
+        PDFCover.chkLeer = False
+        PDFCover.chkKopiert = False
+        PDFCover.chkKompensation = True
+        PDFCover.chkHBLW = False
+        PDFCover.chkHBLS = False
+        PDFCover.chkHBLO = False
+        PDFCover.chkFremd = False
+        PDFCover.chkFreistellung = False
+        PDFCover.chkDispo = False
+        PDFCover.chkBarge = False
+        PDFCover.chkAtlas2 = False
+        PDFCover.chkAtlas1 = False
+
+        PDFCover.chkICM = False
+        PDFCover.chkTurnIn = False
+        PDFCover.chkPIN = False
+        PDFCover.chkAbgerechnet = False
+
+        Cover("C:\Users\HolyAbsolut\Desktop\Tesdt.pdf")
+
+
+
+
+        Process.Start("C:\Users\HolyAbsolut\Desktop\Tesdt.pdf")
     End Sub
 End Class

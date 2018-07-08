@@ -240,6 +240,7 @@ Partial Class frmMaininterface
         Me.DsShipment_SOTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsShipment_SOTableAdapter()
         Me.PoShipping_OrderTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.poShipping_OrderTableAdapter()
         Me.PtShipmentsTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.ptShipmentsTableAdapter()
+        Me.btnPDF = New System.Windows.Forms.Button()
         DtnETALabel = New System.Windows.Forms.Label()
         DtnETDLabel = New System.Windows.Forms.Label()
         DtnCRDLabel = New System.Windows.Forms.Label()
@@ -1581,26 +1582,26 @@ Partial Class frmMaininterface
         Me.cmsDocuments.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmCopy, Me.tsmOpen, Me.tsmOpenDIR})
         Me.cmsDocuments.Name = "cmsDocuments"
         Me.cmsDocuments.ShowImageMargin = False
-        Me.cmsDocuments.Size = New System.Drawing.Size(156, 92)
+        Me.cmsDocuments.Size = New System.Drawing.Size(129, 70)
         '
         'tsmCopy
         '
         Me.tsmCopy.Enabled = False
         Me.tsmCopy.Name = "tsmCopy"
-        Me.tsmCopy.Size = New System.Drawing.Size(155, 22)
+        Me.tsmCopy.Size = New System.Drawing.Size(128, 22)
         Me.tsmCopy.Text = "Copy"
         '
         'tsmOpen
         '
         Me.tsmOpen.Enabled = False
         Me.tsmOpen.Name = "tsmOpen"
-        Me.tsmOpen.Size = New System.Drawing.Size(155, 22)
+        Me.tsmOpen.Size = New System.Drawing.Size(128, 22)
         Me.tsmOpen.Text = "Open"
         '
         'tsmOpenDIR
         '
         Me.tsmOpenDIR.Name = "tsmOpenDIR"
-        Me.tsmOpenDIR.Size = New System.Drawing.Size(155, 22)
+        Me.tsmOpenDIR.Size = New System.Drawing.Size(128, 22)
         Me.tsmOpenDIR.Text = "Open directory"
         '
         'tabProtocol
@@ -1800,6 +1801,7 @@ Partial Class frmMaininterface
         '
         'tabShipments
         '
+        Me.tabShipments.Controls.Add(Me.btnPDF)
         Me.tabShipments.Controls.Add(Me.btnReloadDB)
         Me.tabShipments.Controls.Add(Me.btnMailSubject)
         Me.tabShipments.Controls.Add(Me.btnSchedule)
@@ -2199,6 +2201,17 @@ Partial Class frmMaininterface
         '
         Me.PtShipmentsTableAdapter.ClearBeforeFill = True
         '
+        'btnPDF
+        '
+        Me.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPDF.Location = New System.Drawing.Point(6, 282)
+        Me.btnPDF.Name = "btnPDF"
+        Me.btnPDF.Size = New System.Drawing.Size(134, 40)
+        Me.btnPDF.TabIndex = 86
+        Me.btnPDF.TabStop = False
+        Me.btnPDF.Text = "PDF"
+        Me.btnPDF.UseVisualStyleBackColor = True
+        '
         'frmMaininterface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2443,4 +2456,5 @@ Partial Class frmMaininterface
     Friend WithEvents tsmCopy As ToolStripMenuItem
     Friend WithEvents tsmOpen As ToolStripMenuItem
     Friend WithEvents tsmOpenDIR As ToolStripMenuItem
+    Friend WithEvents btnPDF As Button
 End Class
