@@ -21,6 +21,8 @@ Public Class frmMaininterface
     'End Sub
     Private Sub frmMaininterface_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         My.Settings.sttDBPath = txtDB.Text
+        My.Settings.sttOpenPDF = chkOpenPDF.Checked
+        My.Settings.sttPrintPDF = chkPrintPDF.Checked
         Save()
         'custom.Default.Save()
 
@@ -30,6 +32,8 @@ Public Class frmMaininterface
 
     Private Sub frmMaininterface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtDB.Text = My.Settings.sttDBPath
+        chkOpenPDF.Checked = My.Settings.sttOpenPDF
+        chkPrintPDF.Checked = My.Settings.sttPrintPDF
         'dirDB.DataBindings.Add("Text", My.Settings, "sttDBPath")
 
         LoadDB()
@@ -352,17 +356,29 @@ Public Class frmMaininterface
             txtPoNo.Enabled = False
             DsCommentDataGridView.Enabled = False
         End If
+
+        'Prüfen ob gecancelt
+        Dim curRow As dsDemag_HUB.dsShipmentsRow
+        curRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
+        shpCancel(curRow.Cancelled)
+
     End Sub
 
 
     Private Sub btnAddPO_Click(sender As Object, e As EventArgs) Handles btnAddPO.Click
+        'Prüfen ob PO leer ist
+        If txtPoNo.Text = "" Then
+            txtPoNo.BackColor = Color.LightGoldenrodYellow
+            Exit Sub
+        End If
+
         'Prüfen ob PO bereits in der Sendung ist
-        'For Each row As DataGridViewRow In Me.dvPoNo.Rows
-        '    If txtPoNo.Text = row.Cells(1).Value.ToString Then
-        '        txtPoNo.BackColor = Color.LightGoldenrodYellow
-        '        Exit Sub
-        '    End If
-        'Next
+        For Each row As DataGridViewRow In DsShipment_OrderDataGridView.Rows
+            If txtPoNo.Text = row.Cells(0).Value.ToString Then
+                txtPoNo.BackColor = Color.LightGoldenrodYellow
+                Exit Sub
+            End If
+        Next
 
         'Prüfen ob PO exisitiert und ggf. einfügen
         PoOrderBindingSource.Filter = "Purchase_Order = '" & txtPoNo.Text & "'"
@@ -398,6 +414,12 @@ Public Class frmMaininterface
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        If txtSearch.Text = "" Then
+            DsShipmentsBindingSource.RemoveFilter()
+            Exit Sub
+        End If
+
+
         Select Case cmbField.Text
             Case Is = "ShipmentID"
                 DsShipmentsBindingSource.Filter = "Shipment_ID = '" & txtSearch.Text & "'"
@@ -412,24 +434,30 @@ Public Class frmMaininterface
             Case Is = "POL No.:"
                 DsShipmentsBindingSource.Filter = "POL_No = '" & txtSearch.Text & "'"
             Case Is = "PO No.:"
-                searchPO(txtSearch.Text)
+                DsShipmentsBindingSource.Filter = searchPO(txtSearch.Text)
             Case Is = "SO No.:"
-                searchSO(txtSearch.Text)
+                DsShipmentsBindingSource.Filter = searchSO(txtSearch.Text)
             Case Is = "Inv No.:"
-                searchINV(txtSearch.Text)
+                DsShipmentsBindingSource.Filter = searchINV(txtSearch.Text)
             Case Else
-                MsgBox("Filter unbekannt:" & cmbField.Text)
+                DsShipmentsBindingSource.Filter = "Shipment_ID = '" & txtSearch.Text & "' OR " &
+                                                    "STT_No = '" & txtSearch.Text & "' OR " &
+                                                    "Archive_No = '" & txtSearch.Text & "' OR " &
+                                                    "HBL_No = '" & txtSearch.Text & "' OR " &
+                                                    "MBL_No = '" & txtSearch.Text & "' OR " &
+                                                    "POL_No = '" & txtSearch.Text & "' OR " &
+                                                    searchPO(txtSearch.Text) & " OR " &
+                                                    searchSO(txtSearch.Text) & " OR " &
+                                                    searchINV(txtSearch.Text)
         End Select
 
         'Später einmal je Status
         If DsShipmentsBindingSource.Count = 1 Then
             Me.subTabShipments.SelectedTab = tabBooking
         End If
-
-
     End Sub
 
-    Sub searchPO(ByVal PoNo As String)
+    Function searchPO(ByVal PoNo As String) As String
         Dim strFilter As String = ""
         DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = "Purchase_Order = '" & PoNo & "'"
         For Each Row As DataRowView In DsDemag_HUB.dsShipment_Order.DefaultView
@@ -440,10 +468,11 @@ Public Class frmMaininterface
             End If
         Next
         DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = String.Empty
-        DsShipmentsBindingSource.Filter = strFilter
-    End Sub
+        If strFilter = "" Then strFilter = "Shipment_ID = '0'"
+        Return strFilter
+    End Function
 
-    Sub searchSO(ByVal SoNo As String)
+    Function searchSO(ByVal SoNo As String) As String
         Dim strFilter As String = ""
         DsDemag_HUB.dsShipment_SO.DefaultView.RowFilter = "Shipping_Order = '" & SoNo & "'"
         For Each Row As DataRowView In DsDemag_HUB.dsShipment_SO.DefaultView
@@ -454,10 +483,11 @@ Public Class frmMaininterface
             End If
         Next
         DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = String.Empty
-        DsShipmentsBindingSource.Filter = strFilter
-    End Sub
+        If strFilter = "" Then strFilter = "Shipment_ID = '0'"
+        Return strFilter
+    End Function
 
-    Sub searchINV(ByVal INVNo As String)
+    Function searchINV(ByVal INVNo As String) As String
         Dim strFilter As String = ""
         DsDemag_HUB.dsInvoice.DefaultView.RowFilter = "Invoice_No = '" & INVNo & "'"
         For Each Row As DataRowView In DsDemag_HUB.dsInvoice.DefaultView
@@ -468,8 +498,9 @@ Public Class frmMaininterface
             End If
         Next
         DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = String.Empty
-        DsShipmentsBindingSource.Filter = strFilter
-    End Sub
+        If strFilter = "" Then strFilter = "Shipment_ID = '0'"
+        Return strFilter
+    End Function
 
 
     Private Sub DsShipmentsDataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DsShipmentsDataGridView.CellDoubleClick
@@ -920,22 +951,14 @@ Public Class frmMaininterface
         For Each row As DataGridViewRow In DsShipment_OrderDataGridView.Rows
             'MsgBox(row.Cells(2).Value.ToString)
             PoOrderBindingSource.Filter = "Purchase_Order = '" & row.Cells(0).Value.ToString & "'"
+
             If PoOrderBindingSource.Count = 1 Then
                 'Dim LatestETD As Date = HellwegDataSet.dsPurchaseOrder.FindByPONo(row.Cells(1).Value.ToString).LatestETD
-                If DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).IsSQE_CheckNull Then
-                Else
-                    'MsgBox(DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(2).Value.ToString).SQE_Check)
-                    row.Cells(1).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).Incoterm
-                    row.Cells(2).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).Incoterm_Location
-                    row.Cells(3).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).SQE_Check
-                    row.Cells(4).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).Latest_Arrival
-                    row.Cells(5).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).Buyer_Mail.ToString
-
-
-                End If
-
-                'row.Cells(3).Value = getCalendarWeek(LatestETD)
-                'row.Cells(4).Value = HellwegDataSet.dsPurchaseOrder.FindByPONo(row.Cells(1).Value.ToString).POL
+                If DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).IsIncotermNull <> True Then row.Cells(1).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).Incoterm
+                If DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).IsIncoterm_LocationNull <> True Then row.Cells(2).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).Incoterm_Location
+                If DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).IsSQE_CheckNull <> True Then row.Cells(3).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).SQE_Check
+                If DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).IsLatest_ArrivalNull <> True Then row.Cells(4).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).Latest_Arrival
+                If DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).IsBuyer_MailNull <> True Then row.Cells(5).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).Buyer_Mail
             End If
         Next
     End Sub
@@ -1117,7 +1140,7 @@ Public Class frmMaininterface
 
         Body = "Dear Sir or Madam,<br>above mentioned shipment is planned as follow.<br>" &
                 "<br>ETD " & POLTextBox.Text & ": " & dtnETD.Text &
-                "<br>ETA " & PODTextBox.Text & ": " & dtnETD.Text &
+                "<br>ETA " & PODTextBox.Text & ": " & dtnETA.Text &
                 "<br>Incoterm: " & IncotermTextBox.Text & " - " & Incoterm_LocTextBox.Text &
                 "<br><br>Please let us know if any additional Info is necessary."
 
@@ -1218,9 +1241,6 @@ Public Class frmMaininterface
     End Function
 
     Private Sub btnPDF_Click(sender As Object, e As EventArgs) Handles btnPDF.Click
-        'iText.Test()
-        'If ServiceTextBox.Text <> "FCL" Then Exit Sub
-
         Dim curRow As dsDemag_HUB.dsShipmentsRow
 
         curRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
@@ -1332,28 +1352,42 @@ Public Class frmMaininterface
 
 
 
-
-
-
-        PDFCover.dtQuantity = ""
-        PDFCover.dtEK_VK = ""
-        PDFCover.dtEK_SK = ""
-        PDFCover.dtEK_SpecialSurcharge = ""
-        PDFCover.dtVK_VK = ""
-        PDFCover.dtVK_SK = ""
-        PDFCover.dtVK_SpecialSurcharge = ""
-        PDFCover.dtVK_Nachlauf = ""
-        PDFCover.dt20DCHW = ""
-        PDFCover.dtCharge0Description = ""
-        PDFCover.dtCharge0Value = ""
-        PDFCover.dtCharge1Description = ""
-        PDFCover.dtCharge1Value = ""
-        PDFCover.dtCharge2Description = ""
-        PDFCover.dtCharge2Value = ""
-        PDFCover.dtCharge3Description = ""
-        PDFCover.dtCharge3Value = ""
-        PDFCover.dtCharge4Description = ""
-        PDFCover.dtCharge4Value = ""
+        Select Case curRow.Service
+            Case = "LCL"
+                PDFCover.dtCharge0Description = "T1"
+                PDFCover.dtCharge0Value = "€ 35,-"
+                PDFCover.dtCharge1Description = "LCL Service-Charges"
+                If curRow.Weight / 1000 * 85 > curRow.Volume * 25 Then
+                    If curRow.Weight / 1000 * 85 > 85 Then
+                        PDFCover.dtCharge1Value = "€ 85,- per To"
+                    Else
+                        PDFCover.dtCharge1Value = "€ 85,- Minimum"
+                    End If
+                Else
+                    If curRow.Volume * 25 > 85 Then
+                        PDFCover.dtCharge1Value = "€ 25,- per cbm"
+                    Else
+                        PDFCover.dtCharge1Value = "€ 85,- Minimum"
+                    End If
+                End If
+                PDFCover.dtCharge2Description = "Lizenzgebühren POT"
+                PDFCover.dtCharge2Value = "€ 17,-"
+                PDFCover.dtCharge3Description = ""
+                PDFCover.dtCharge3Value = ""
+                PDFCover.dtCharge4Description = ""
+                PDFCover.dtCharge4Value = ""
+            Case = "FCL"
+                PDFCover.dtCharge0Description = "T1"
+                PDFCover.dtCharge0Value = "€ 35,-"
+                PDFCover.dtCharge1Description = "THC"
+                PDFCover.dtCharge1Value = "€ 210,-"
+                PDFCover.dtCharge2Description = "ISPS"
+                PDFCover.dtCharge2Value = "€ 18,50"
+                PDFCover.dtCharge3Description = "Release fee"
+                PDFCover.dtCharge3Value = "€ 35,"
+                PDFCover.dtCharge4Description = "Lizenzgebühren POT"
+                PDFCover.dtCharge4Value = "€ 21,75"
+        End Select
         PDFCover.dtCharge5Description = ""
         PDFCover.dtCharge5Value = ""
         PDFCover.dtCharge6Description = ""
@@ -1366,6 +1400,39 @@ Public Class frmMaininterface
         PDFCover.dtCharge9Value = ""
         PDFCover.dtCharge10Description = ""
         PDFCover.dtCharge10Value = ""
+
+
+        PDFCover.dtQuantity = ""
+        PDFCover.dtEK_VK = ""
+        PDFCover.dtEK_SK = ""
+        PDFCover.dtEK_SpecialSurcharge = ""
+        PDFCover.dtVK_VK = ""
+        PDFCover.dtVK_SK = ""
+        PDFCover.dtVK_SpecialSurcharge = ""
+        PDFCover.dtVK_Nachlauf = ""
+        PDFCover.dt20DCHW = ""
+        'PDFCover.dtCharge0Description = ""
+        'PDFCover.dtCharge0Value = ""
+        'PDFCover.dtCharge1Description = ""
+        'PDFCover.dtCharge1Value = ""
+        'PDFCover.dtCharge2Description = ""
+        'PDFCover.dtCharge2Value = ""
+        'PDFCover.dtCharge3Description = ""
+        'PDFCover.dtCharge3Value = ""
+        'PDFCover.dtCharge4Description = ""
+        'PDFCover.dtCharge4Value = ""
+        'PDFCover.dtCharge5Description = ""
+        'PDFCover.dtCharge5Value = ""
+        'PDFCover.dtCharge6Description = ""
+        'PDFCover.dtCharge6Value = ""
+        'PDFCover.dtCharge7Description = ""
+        'PDFCover.dtCharge7Value = ""
+        'PDFCover.dtCharge8Description = ""
+        'PDFCover.dtCharge8Value = ""
+        'PDFCover.dtCharge9Description = ""
+        'PDFCover.dtCharge9Value = ""
+        'PDFCover.dtCharge10Description = ""
+        'PDFCover.dtCharge10Value = ""
         PDFCover.dtClient = "Demag"
         PDFCover.dtFullDocs = ""
         PDFCover.dtIMDG = ""
@@ -1385,7 +1452,7 @@ Public Class frmMaininterface
         PDFCover.chkAtlasFremd = False
         PDFCover.chkVomUnternehmer = False
         PDFCover.chkTruck = False
-        PDFCover.chkT1 = True
+        PDFCover.chkT1 = False
         PDFCover.chkSchenker = True
         PDFCover.chkRail = True
         PDFCover.chkMBLW = False
@@ -1408,11 +1475,88 @@ Public Class frmMaininterface
         PDFCover.chkPIN = False
         PDFCover.chkAbgerechnet = False
 
-        Cover("C:\Users\HolyAbsolut\Desktop\Tesdt.pdf")
+        Dim directoryPath As String = Path.GetDirectoryName(My.Settings.sttDBPath)
+        Dim dir As New IO.DirectoryInfo(directoryPath & "\Documents\" & Shipment_IDTextBox.Text & "\")
+        If dir.Exists = False Then
+            System.IO.Directory.CreateDirectory(dir.ToString)
+        End If
+
+        Dim dirCover As String = dir.ToString & "JobDossier_" & Date.Now.ToString("yyyyMMdd-hhmmss") & ".pdf"
+        'Create Job Dossier
+        Cover(dirCover)
+
+        'Create Invoice
+        Dim newDocRow As dsDemag_HUB.dsInvoiceRow
+        newDocRow = DsDemag_HUB.dsInvoice.NewdsInvoiceRow
+        newDocRow.Shipment_ID = Convert.ToInt32(Shipment_IDTextBox.Text)
+        newDocRow.Created = Date.Now
+        newDocRow.Invoice_No = "Job Dossier"
+        newDocRow.Link = dirCover
+        DsDemag_HUB.dsInvoice.Rows.Add(newDocRow)
+
+        Me.dsInvoiceBindingSource.EndEdit()
+        Me.DsInvoiceTableAdapter.Update(Me.DsDemag_HUB.dsInvoice)
+
+
+        If chkOpenPDF.Checked = True Then Process.Start(dirCover)
+
+        'https://blog.scottlogic.com/2012/10/05/pdf-generation-and-printing-in-net-2.html
+        'If chkPrintPDF.Checked = True Then
+        '    RunGS("-sDEVICE=mswinpr2", "-dNOPAUSE", "-dBATCH", "-sOutputFile=%printer%" & My.Settings.setPrinter, dirCover)
+        '    ' If chkPrintDouble.Checked = True Then RunGS("-sDEVICE=mswinpr2", "-dNOPAUSE", "-dBATCH", "-sOutputFile=%printer%" & My.Settings.setPrinter, pdfFile)
+        '    'chkPrintFile.Checked = False
+        'End If
 
 
 
 
-        Process.Start("C:\Users\HolyAbsolut\Desktop\Tesdt.pdf")
     End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Dim curRow As dsDemag_HUB.dsShipmentsRow
+
+        curRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
+        'Protokoll anlegen
+        Dim newPtRow As dsDemag_HUB.ptShipmentsRow
+        newPtRow = DsDemag_HUB.ptShipments.NewptShipmentsRow
+        newPtRow.ShipmentID = curRow.Shipment_ID
+        newPtRow.Created = Date.Now
+        newPtRow.Description = "Cancel"
+        newPtRow.User = Environment.UserName
+
+        If curRow.Cancelled = True Then
+            curRow.Cancelled = False
+            newPtRow.Description = "Shipment was enabled"
+            newPtRow.oldValue = True.ToString
+            newPtRow.newValue = False.ToString
+            newPtRow.Column_Name = "Cancelled"
+        Else
+            curRow.Cancelled = True
+            newPtRow.Description = "Shipment was cancelled"
+            newPtRow.oldValue = False.ToString
+            newPtRow.newValue = True.ToString
+            newPtRow.Column_Name = "Cancelled"
+        End If
+        DsDemag_HUB.ptShipments.Rows.Add(newPtRow)
+        shpCancel(curRow.Cancelled)
+    End Sub
+
+    Sub shpCancel(ByVal chkState As Boolean)
+        If chkState = True Then
+            tabBooking.Enabled = False
+            tabBooking.BackColor = Color.IndianRed
+        Else
+            tabBooking.Enabled = True
+            tabBooking.BackColor = Color.White
+        End If
+    End Sub
+
+    Private Sub DsInvoiceDataGridView_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DsInvoiceDataGridView.CellDoubleClick
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then 'Dokument öffnen
+            Dim selectedRow = DsInvoiceDataGridView1.Rows(e.RowIndex)
+            Process.Start(selectedRow.Cells(4).Value.ToString)
+        End If
+    End Sub
+
+
 End Class

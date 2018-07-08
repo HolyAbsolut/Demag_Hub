@@ -76,6 +76,30 @@ Namespace My
                 Me("sttDBPath") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property sttOpenPDF() As Boolean
+            Get
+                Return CType(Me("sttOpenPDF"),Boolean)
+            End Get
+            Set
+                Me("sttOpenPDF") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property sttPrintPDF() As Boolean
+            Get
+                Return CType(Me("sttPrintPDF"),Boolean)
+            End Get
+            Set
+                Me("sttPrintPDF") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

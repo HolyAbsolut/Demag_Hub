@@ -52,7 +52,6 @@ Partial Class frmMaininterface
         Dim Label3 As System.Windows.Forms.Label
         Dim Label4 As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMaininterface))
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.subTabShipments = New System.Windows.Forms.TabControl()
         Me.tabOverview = New System.Windows.Forms.TabPage()
         Me.DsShipmentsDataGridView = New System.Windows.Forms.DataGridView()
@@ -118,6 +117,10 @@ Partial Class frmMaininterface
         Me.InvoiceNoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LinkDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewLinkColumn()
         Me.CreatedDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmsDocuments = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.tsmCopy = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmOpen = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmOpenDIR = New System.Windows.Forms.ToolStripMenuItem()
         Me.DsShipmentsdsInvoiceBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsCommentDataGridView = New System.Windows.Forms.DataGridView()
         Me.TxtCommentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -162,10 +165,6 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn25 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn58 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cmsDocuments = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.tsmCopy = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmOpen = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmOpenDIR = New System.Windows.Forms.ToolStripMenuItem()
         Me.tabProtocol = New System.Windows.Forms.TabPage()
         Me.PtShipmentsDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn61 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -180,6 +179,8 @@ Partial Class frmMaininterface
         Me.DsCommentBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tabSettings = New System.Windows.Forms.TabPage()
+        Me.chkOpenPDF = New System.Windows.Forms.CheckBox()
+        Me.chkPrintPDF = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.txtDB = New System.Windows.Forms.TextBox()
         Me.dirDB = New System.Windows.Forms.TextBox()
@@ -189,6 +190,7 @@ Partial Class frmMaininterface
         Me.cmbFilter = New System.Windows.Forms.ComboBox()
         Me.TabControl3 = New System.Windows.Forms.TabControl()
         Me.tabShipments = New System.Windows.Forms.TabPage()
+        Me.btnPDF = New System.Windows.Forms.Button()
         Me.btnReloadDB = New System.Windows.Forms.Button()
         Me.btnMailSubject = New System.Windows.Forms.Button()
         Me.btnSchedule = New System.Windows.Forms.Button()
@@ -240,7 +242,8 @@ Partial Class frmMaininterface
         Me.DsShipment_SOTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsShipment_SOTableAdapter()
         Me.PoShipping_OrderTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.poShipping_OrderTableAdapter()
         Me.PtShipmentsTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.ptShipmentsTableAdapter()
-        Me.btnPDF = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         DtnETALabel = New System.Windows.Forms.Label()
         DtnETDLabel = New System.Windows.Forms.Label()
         DtnCRDLabel = New System.Windows.Forms.Label()
@@ -280,6 +283,7 @@ Partial Class frmMaininterface
         CType(Me.DsShipment_OrderDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipment_OrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsInvoiceDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.cmsDocuments.SuspendLayout()
         CType(Me.DsShipmentsdsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsCommentDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipmentsdsCommentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -288,7 +292,6 @@ Partial Class frmMaininterface
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabDocuments.SuspendLayout()
         CType(Me.DsInvoiceDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.cmsDocuments.SuspendLayout()
         Me.tabProtocol.SuspendLayout()
         CType(Me.PtShipmentsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PtShipmentsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -304,6 +307,7 @@ Partial Class frmMaininterface
         CType(Me.DsContactDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsContactBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DtnETALabel
@@ -558,15 +562,6 @@ Partial Class frmMaininterface
         Label4.Size = New System.Drawing.Size(47, 13)
         Label4.TabIndex = 97
         Label4.Text = "Add SO:"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 29)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(408, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "http://www.iconarchive.com/show/captiva-icons-by-bokehlicia/web-github-icon.html"
         '
         'subTabShipments
         '
@@ -1124,6 +1119,7 @@ Partial Class frmMaininterface
         Me.DsInvoiceDataGridView.BackgroundColor = System.Drawing.SystemColors.Window
         Me.DsInvoiceDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DsInvoiceDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.InvoiceNoDataGridViewTextBoxColumn, Me.LinkDataGridViewTextBoxColumn, Me.CreatedDataGridViewTextBoxColumn1})
+        Me.DsInvoiceDataGridView.ContextMenuStrip = Me.cmsDocuments
         Me.DsInvoiceDataGridView.DataSource = Me.DsShipmentsdsInvoiceBindingSource
         Me.DsInvoiceDataGridView.Location = New System.Drawing.Point(889, 83)
         Me.DsInvoiceDataGridView.Name = "DsInvoiceDataGridView"
@@ -1157,6 +1153,33 @@ Partial Class frmMaininterface
         Me.CreatedDataGridViewTextBoxColumn1.Name = "CreatedDataGridViewTextBoxColumn1"
         Me.CreatedDataGridViewTextBoxColumn1.ReadOnly = True
         Me.CreatedDataGridViewTextBoxColumn1.Visible = False
+        '
+        'cmsDocuments
+        '
+        Me.cmsDocuments.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmCopy, Me.tsmOpen, Me.tsmOpenDIR})
+        Me.cmsDocuments.Name = "cmsDocuments"
+        Me.cmsDocuments.ShowImageMargin = False
+        Me.cmsDocuments.Size = New System.Drawing.Size(129, 70)
+        '
+        'tsmCopy
+        '
+        Me.tsmCopy.Enabled = False
+        Me.tsmCopy.Name = "tsmCopy"
+        Me.tsmCopy.Size = New System.Drawing.Size(128, 22)
+        Me.tsmCopy.Text = "Copy"
+        '
+        'tsmOpen
+        '
+        Me.tsmOpen.Enabled = False
+        Me.tsmOpen.Name = "tsmOpen"
+        Me.tsmOpen.Size = New System.Drawing.Size(128, 22)
+        Me.tsmOpen.Text = "Open"
+        '
+        'tsmOpenDIR
+        '
+        Me.tsmOpenDIR.Name = "tsmOpenDIR"
+        Me.tsmOpenDIR.Size = New System.Drawing.Size(128, 22)
+        Me.tsmOpenDIR.Text = "Open directory"
         '
         'DsShipmentsdsInvoiceBindingSource
         '
@@ -1577,33 +1600,6 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn58.HeaderText = "Link"
         Me.DataGridViewTextBoxColumn58.Name = "DataGridViewTextBoxColumn58"
         '
-        'cmsDocuments
-        '
-        Me.cmsDocuments.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmCopy, Me.tsmOpen, Me.tsmOpenDIR})
-        Me.cmsDocuments.Name = "cmsDocuments"
-        Me.cmsDocuments.ShowImageMargin = False
-        Me.cmsDocuments.Size = New System.Drawing.Size(129, 70)
-        '
-        'tsmCopy
-        '
-        Me.tsmCopy.Enabled = False
-        Me.tsmCopy.Name = "tsmCopy"
-        Me.tsmCopy.Size = New System.Drawing.Size(128, 22)
-        Me.tsmCopy.Text = "Copy"
-        '
-        'tsmOpen
-        '
-        Me.tsmOpen.Enabled = False
-        Me.tsmOpen.Name = "tsmOpen"
-        Me.tsmOpen.Size = New System.Drawing.Size(128, 22)
-        Me.tsmOpen.Text = "Open"
-        '
-        'tsmOpenDIR
-        '
-        Me.tsmOpenDIR.Name = "tsmOpenDIR"
-        Me.tsmOpenDIR.Size = New System.Drawing.Size(128, 22)
-        Me.tsmOpenDIR.Text = "Open directory"
-        '
         'tabProtocol
         '
         Me.tabProtocol.Controls.Add(Me.PtShipmentsDataGridView)
@@ -1639,6 +1635,7 @@ Partial Class frmMaininterface
         '
         'DataGridViewTextBoxColumn63
         '
+        Me.DataGridViewTextBoxColumn63.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.DataGridViewTextBoxColumn63.DataPropertyName = "Description"
         Me.DataGridViewTextBoxColumn63.HeaderText = "Description"
         Me.DataGridViewTextBoxColumn63.Name = "DataGridViewTextBoxColumn63"
@@ -1704,6 +1701,9 @@ Partial Class frmMaininterface
         '
         'tabSettings
         '
+        Me.tabSettings.Controls.Add(Me.Label1)
+        Me.tabSettings.Controls.Add(Me.chkOpenPDF)
+        Me.tabSettings.Controls.Add(Me.chkPrintPDF)
         Me.tabSettings.Controls.Add(Me.Button1)
         Me.tabSettings.Controls.Add(Me.txtDB)
         Me.tabSettings.Controls.Add(Me.dirDB)
@@ -1714,6 +1714,27 @@ Partial Class frmMaininterface
         Me.tabSettings.TabIndex = 0
         Me.tabSettings.Text = "Settings"
         Me.tabSettings.UseVisualStyleBackColor = True
+        '
+        'chkOpenPDF
+        '
+        Me.chkOpenPDF.AutoSize = True
+        Me.chkOpenPDF.Location = New System.Drawing.Point(7, 82)
+        Me.chkOpenPDF.Name = "chkOpenPDF"
+        Me.chkOpenPDF.Size = New System.Drawing.Size(76, 17)
+        Me.chkOpenPDF.TabIndex = 6
+        Me.chkOpenPDF.Text = "Open PDF"
+        Me.chkOpenPDF.UseVisualStyleBackColor = True
+        '
+        'chkPrintPDF
+        '
+        Me.chkPrintPDF.AutoSize = True
+        Me.chkPrintPDF.Enabled = False
+        Me.chkPrintPDF.Location = New System.Drawing.Point(7, 59)
+        Me.chkPrintPDF.Name = "chkPrintPDF"
+        Me.chkPrintPDF.Size = New System.Drawing.Size(71, 17)
+        Me.chkPrintPDF.TabIndex = 5
+        Me.chkPrintPDF.Text = "Print PDF"
+        Me.chkPrintPDF.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -1821,6 +1842,17 @@ Partial Class frmMaininterface
         Me.tabShipments.TabIndex = 0
         Me.tabShipments.Text = "Shipments"
         Me.tabShipments.UseVisualStyleBackColor = True
+        '
+        'btnPDF
+        '
+        Me.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPDF.Location = New System.Drawing.Point(6, 282)
+        Me.btnPDF.Name = "btnPDF"
+        Me.btnPDF.Size = New System.Drawing.Size(134, 40)
+        Me.btnPDF.TabIndex = 86
+        Me.btnPDF.TabStop = False
+        Me.btnPDF.Text = "PDF"
+        Me.btnPDF.UseVisualStyleBackColor = True
         '
         'btnReloadDB
         '
@@ -2201,25 +2233,33 @@ Partial Class frmMaininterface
         '
         Me.PtShipmentsTableAdapter.ClearBeforeFill = True
         '
-        'btnPDF
+        'Label1
         '
-        Me.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnPDF.Location = New System.Drawing.Point(6, 282)
-        Me.btnPDF.Name = "btnPDF"
-        Me.btnPDF.Size = New System.Drawing.Size(134, 40)
-        Me.btnPDF.TabIndex = 86
-        Me.btnPDF.TabStop = False
-        Me.btnPDF.Text = "PDF"
-        Me.btnPDF.UseVisualStyleBackColor = True
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(6, 124)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(408, 13)
+        Me.Label1.TabIndex = 7
+        Me.Label1.Text = "http://www.iconarchive.com/show/captiva-icons-by-bokehlicia/web-github-icon.html"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(1021, 12)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(204, 53)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 17
+        Me.PictureBox1.TabStop = False
         '
         'frmMaininterface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1237, 797)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.TabControl3)
         Me.Controls.Add(Me.cmbFilter)
-        Me.Controls.Add(Me.Label1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMaininterface"
         Me.Text = "Demag HUB"
@@ -2236,6 +2276,7 @@ Partial Class frmMaininterface
         CType(Me.DsShipment_OrderDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsShipment_OrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsInvoiceDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.cmsDocuments.ResumeLayout(False)
         CType(Me.DsShipmentsdsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsCommentDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsShipmentsdsCommentBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2244,7 +2285,6 @@ Partial Class frmMaininterface
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabDocuments.ResumeLayout(False)
         CType(Me.DsInvoiceDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.cmsDocuments.ResumeLayout(False)
         Me.tabProtocol.ResumeLayout(False)
         CType(Me.PtShipmentsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PtShipmentsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2263,8 +2303,8 @@ Partial Class frmMaininterface
         CType(Me.DsContactDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsContactBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -2272,7 +2312,6 @@ Partial Class frmMaininterface
     Friend WithEvents DsShipmentsBindingSource As BindingSource
     Friend WithEvents DsShipmentsTableAdapter As dsDemag_HUBTableAdapters.dsShipmentsTableAdapter
     Friend WithEvents TableAdapterManager As dsDemag_HUBTableAdapters.TableAdapterManager
-    Friend WithEvents Label1 As Label
     Friend WithEvents subTabShipments As TabControl
     Friend WithEvents tabSettings As TabPage
     Friend WithEvents tabShipping As TabPage
@@ -2446,15 +2485,19 @@ Partial Class frmMaininterface
     Friend WithEvents btnReloadDB As Button
     Friend WithEvents btnMailSubject As Button
     Friend WithEvents PtShipmentsDataGridView As DataGridView
+    Friend WithEvents cmsDocuments As ContextMenuStrip
+    Friend WithEvents tsmCopy As ToolStripMenuItem
+    Friend WithEvents tsmOpen As ToolStripMenuItem
+    Friend WithEvents tsmOpenDIR As ToolStripMenuItem
+    Friend WithEvents btnPDF As Button
+    Friend WithEvents chkOpenPDF As CheckBox
+    Friend WithEvents chkPrintPDF As CheckBox
     Friend WithEvents DataGridViewTextBoxColumn61 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn63 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn64 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn65 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn66 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn67 As DataGridViewTextBoxColumn
-    Friend WithEvents cmsDocuments As ContextMenuStrip
-    Friend WithEvents tsmCopy As ToolStripMenuItem
-    Friend WithEvents tsmOpen As ToolStripMenuItem
-    Friend WithEvents tsmOpenDIR As ToolStripMenuItem
-    Friend WithEvents btnPDF As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

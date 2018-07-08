@@ -112,7 +112,9 @@ Module pdfSharp
 
         ' Create a new PDF document
         Dim document As PdfDocument = New PdfDocument
-        document.Info.Title = "Deckblatt Kik // " & frmMaininterface.PDFCover.ArchivNo
+        document.Info.Title = "Job Dossier // " & frmMaininterface.PDFCover.ArchivNo
+        document.Info.Author = My.User.Name
+        document.Info.Keywords = "Job Dossier"
 
         ' Create an empty page
         Dim page As PdfPage = document.AddPage
@@ -247,7 +249,7 @@ Module pdfSharp
         gfx.DrawString("Fremd", FormularFont, XBrushes.Black, New XRect(30, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString("VK-VK US-$", FormularFont, XBrushes.Black, New XRect(110, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString(frmMaininterface.PDFCover.dtVK_VK, EntryFont, XBrushes.Black, New XRect(175, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
-        gfx.DrawString("VK-SK US-$", FormularFont, XBrushes.Black, New XRect(280, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+        gfx.DrawString("VK-SK EU-€", FormularFont, XBrushes.Black, New XRect(280, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString(frmMaininterface.PDFCover.dtVK_SK, EntryFont, XBrushes.Black, New XRect(350, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         If frmMaininterface.PDFCover.chkFremd = True Then
             gfx.DrawString("þ", CheckBoxFont, XBrushes.Black, New XRect(80, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) ' check
@@ -262,7 +264,7 @@ Module pdfSharp
 
         'Line 6
         Line += stdDistance
-        gfx.DrawString("Special Surcharge US $", FormularFont, XBrushes.Black, New XRect(110, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+        gfx.DrawString("Special Surcharge EU €", FormularFont, XBrushes.Black, New XRect(110, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString(frmMaininterface.PDFCover.dtVK_SpecialSurcharge, EntryFont, XBrushes.Black, New XRect(250, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
 
         'Draw Lines
@@ -274,8 +276,10 @@ Module pdfSharp
         gfx.DrawString("Schenker", FormularFont, XBrushes.Black, New XRect(30, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString("FCL Nachlauf", FormularFont, XBrushes.Black, New XRect(110, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString(frmMaininterface.PDFCover.dtVK_Nachlauf, EntryFont, XBrushes.Black, New XRect(200, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
-        gfx.DrawString("Leerdepot", FormularFont, XBrushes.Black, New XRect(350, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
-        gfx.DrawString(frmMaininterface.PDFCover.dtLeerdepot, EntryFont, XBrushes.Black, New XRect(425, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+        If frmMaininterface.PDFCover.dtService = "FCL" Then
+            gfx.DrawString("Leerdepot", FormularFont, XBrushes.Black, New XRect(350, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+            gfx.DrawString(frmMaininterface.PDFCover.dtLeerdepot, EntryFont, XBrushes.Black, New XRect(425, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+        End If
         If frmMaininterface.PDFCover.chkSchenker = True Then
             gfx.DrawString("þ", CheckBoxFont, XBrushes.Black, New XRect(80, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) ' check
         Else
@@ -285,7 +289,7 @@ Module pdfSharp
         'Draw Lines
         drwLine = Line + 12
         gfx.DrawLine(Pen, 200, drwLine, 295, drwLine) 'FCL Nachlauf
-        gfx.DrawLine(Pen, 425, drwLine, 520, drwLine) 'Leerdepot
+        If frmMaininterface.PDFCover.dtService = "FCL" Then gfx.DrawLine(Pen, 425, drwLine, 520, drwLine) 'Leerdepot
 
         'Line 8
         Line += stdDistance
@@ -370,27 +374,30 @@ Module pdfSharp
             gfx.DrawString("40'", FormularFont, XBrushes.Black, New XRect(360, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
             gfx.DrawString(frmMaininterface.PDFCover.dt40HQ, EntryFont, XBrushes.Black, New XRect(380, Line, 88, 12), XStringFormats.TopCenter)
             gfx.DrawString("40' HC", FormularFont, XBrushes.Black, New XRect(470, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+            'Draw Lines
+            drwLine = Line + 12
+            gfx.DrawLine(Pen, 30, drwLine, 108, drwLine) '20DC
+            gfx.DrawLine(Pen, 125, drwLine, 208, drwLine) '20DC schwer
+            gfx.DrawLine(Pen, 270, drwLine, 358, drwLine) '40DC
+            gfx.DrawLine(Pen, 380, drwLine, 468, drwLine) '40HQ
         End If
 
         If frmMaininterface.PDFCover.dtService = "LCL" Then
             gfx.DrawString(frmMaininterface.PDFCover.dtQuantity, EntryFont, XBrushes.Black, New XRect(30, Line, 88, 12), XStringFormats.TopCenter)
             gfx.DrawString("Kolli", FormularFont, XBrushes.Black, New XRect(110, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
-            gfx.DrawString(frmMaininterface.PDFCover.dtWeight, EntryFont, XBrushes.Black, New XRect(125, Line, 88, 12), XStringFormats.TopCenter)
-            gfx.DrawString("KG", FormularFont, XBrushes.Black, New XRect(210, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+            gfx.DrawString(frmMaininterface.PDFCover.dtWeight, EntryFont, XBrushes.Black, New XRect(145, Line, 88, 12), XStringFormats.TopCenter)
+            gfx.DrawString("KG", FormularFont, XBrushes.Black, New XRect(230, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
             gfx.DrawString(frmMaininterface.PDFCover.dtVolume, EntryFont, XBrushes.Black, New XRect(270, Line, 88, 12), XStringFormats.TopCenter)
             gfx.DrawString("CBM", FormularFont, XBrushes.Black, New XRect(360, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
             gfx.DrawString(frmMaininterface.PDFCover.dtChargeable, EntryFont, XBrushes.Black, New XRect(380, Line, 88, 12), XStringFormats.TopCenter)
             gfx.DrawString("Chargeable", FormularFont, XBrushes.Black, New XRect(470, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+            'Draw Lines
+            drwLine = Line + 12
+            gfx.DrawLine(Pen, 30, drwLine, 108, drwLine) '20DC
+            gfx.DrawLine(Pen, 145, drwLine, 228, drwLine) '20DC schwer
+            gfx.DrawLine(Pen, 270, drwLine, 358, drwLine) '40DC
+            gfx.DrawLine(Pen, 380, drwLine, 468, drwLine) '40HQ
         End If
-
-
-        'Draw Lines
-        drwLine = Line + 12
-        gfx.DrawLine(Pen, 30, drwLine, 108, drwLine) '20DC
-        gfx.DrawLine(Pen, 125, drwLine, 208, drwLine) '20DC schwer
-        gfx.DrawLine(Pen, 270, drwLine, 358, drwLine) '40DC
-        gfx.DrawLine(Pen, 380, drwLine, 468, drwLine) '40HQ
-
 
         'Line 20
         Line += stdDistance
@@ -479,19 +486,19 @@ Module pdfSharp
         gfx.DrawString("Rail", FormularFont, XBrushes.Black, New XRect(400, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString("Barge", FormularFont, XBrushes.Black, New XRect(450, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         If frmMaininterface.PDFCover.chkTruck = True Then
+            gfx.DrawString("þ", CheckBoxFont, XBrushes.Black, New XRect(340, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) ' check
+        Else
+            gfx.DrawString("o", CheckBoxFont, XBrushes.Black, New XRect(340, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) 'uncheck
+        End If
+        If frmMaininterface.PDFCover.chkRail = True Then
             gfx.DrawString("þ", CheckBoxFont, XBrushes.Black, New XRect(390, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) ' check
         Else
             gfx.DrawString("o", CheckBoxFont, XBrushes.Black, New XRect(390, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) 'uncheck
         End If
-        If frmMaininterface.PDFCover.chkRail = True Then
+        If frmMaininterface.PDFCover.chkBarge = True Then
             gfx.DrawString("þ", CheckBoxFont, XBrushes.Black, New XRect(440, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) ' check
         Else
             gfx.DrawString("o", CheckBoxFont, XBrushes.Black, New XRect(440, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) 'uncheck
-        End If
-        If frmMaininterface.PDFCover.chkBarge = True Then
-            gfx.DrawString("þ", CheckBoxFont, XBrushes.Black, New XRect(490, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) ' check
-        Else
-            gfx.DrawString("o", CheckBoxFont, XBrushes.Black, New XRect(490, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) 'uncheck
         End If
 
         'Draw Line
@@ -581,9 +588,14 @@ Module pdfSharp
 
 
         'Shipment ID
-        FormularFont = New XFont("Arial", 18, XFontStyle.Bold)
+        FormularFont = New XFont("Arial", 18, XFontStyle.Bold) ' Pretty Big
         Line += stdDistance - 5
         gfx.DrawString("#" & frmMaininterface.PDFCover.dtSipmentID, FormularFont, XBrushes.Black, New XRect(20, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+
+        'Version    
+        EntryFont = New XFont("Arial", 9, XFontStyle.Regular)  'Small
+        gfx.DrawString("v1.0", EntryFont, XBrushes.Black, New XRect(page.Width.Point - 20, page.Height.Point - 15, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+
 
         ' Save the document...
         'Dim filename As String = "Abrenzungsblatt.pdf"
