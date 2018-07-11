@@ -729,7 +729,7 @@ Public Class frmMaininterface
                         End If
                         If Row("SQE Check Approval").ToString() <> "" Then newPO.SQE_Check = Convert.ToDateTime(Row("SQE Check Approval").ToString())
                         newPO.Division = Row("Division").ToString()
-                        newPO.Buyer_Mail = Row("Buyer E-Mail Address").ToString()
+                        newPO.Buyer_Mail = Row("Buyer E-Mail Address").ToString().Replace("demagcranes.com", "konecranes.com")
                         DsDemag_HUB.poOrder.Rows.Add(newPO)
 
                     Else 'Update
@@ -867,9 +867,9 @@ Public Class frmMaininterface
                             If editPO.Division <> Row("Division").ToString() Then editPO.Division = Row("Division").ToString()
                         End If
                         If editPO.IsBuyer_MailNull Then
-                            editPO.Buyer_Mail = Row("Buyer E-Mail Address").ToString()
+                            editPO.Buyer_Mail = Row("Buyer E-Mail Address").ToString().Replace("demagcranes.com", "konecranes.com")
                         Else
-                            If editPO.Buyer_Mail <> Row("Buyer E-Mail Address").ToString() Then editPO.Buyer_Mail = Row("Buyer E-Mail Address").ToString()
+                            If editPO.Buyer_Mail <> Row("Buyer E-Mail Address").ToString() Then editPO.Buyer_Mail = Row("Buyer E-Mail Address").ToString().Replace("demagcranes.com", "konecranes.com")
                         End If
                     End If
                     countRecord += 1
@@ -1474,6 +1474,7 @@ Public Class frmMaininterface
         PDFCover.chkTurnIn = False
         PDFCover.chkPIN = False
         PDFCover.chkAbgerechnet = False
+        PDFCover.chkSQE = False
 
         Dim directoryPath As String = Path.GetDirectoryName(My.Settings.sttDBPath)
         Dim dir As New IO.DirectoryInfo(directoryPath & "\Documents\" & Shipment_IDTextBox.Text & "\")

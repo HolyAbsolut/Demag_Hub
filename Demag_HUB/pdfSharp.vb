@@ -98,6 +98,8 @@ Public Structure PDFCoverStructure
     Dim dtIncoterm As String
     Dim dtSipmentID As String
     Dim dtIncotermLoc As String
+
+    Dim chkSQE As Boolean
 End Structure
 
 Module pdfSharp
@@ -163,9 +165,6 @@ Module pdfSharp
         EntryFont = New XFont("Arial", 11, XFontStyle.Regular)
         CheckBoxFont = New XFont("Wingdings", 11, XFontStyle.Regular)
 
-        'Datamatrix
-        Dim Image As XImage = frmMaininterface.GetDataMatrix(frmMaininterface.PDFCover.STTNo)
-        gfx.DrawImage(Image, page.Width.Point - 50, page.Height.Point - 50)
 
 
         'Line 1
@@ -573,7 +572,7 @@ Module pdfSharp
         gfx.DrawString("Kopiert:", FormularFont, XBrushes.Black, New XRect(30, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString("TOPS:", FormularFont, XBrushes.Black, New XRect(170, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString("ICM:", FormularFont, XBrushes.Black, New XRect(300, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
-
+        gfx.DrawString("SQE:", FormularFont, XBrushes.Black, New XRect(420, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString("o", CheckBoxFont, XBrushes.Black, New XRect(20, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) 'uncheck
         If frmMaininterface.PDFCover.chkDispo = True Then
             gfx.DrawString("þ", CheckBoxFont, XBrushes.Black, New XRect(160, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) ' check
@@ -585,12 +584,23 @@ Module pdfSharp
         Else
             gfx.DrawString("o", CheckBoxFont, XBrushes.Black, New XRect(290, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) 'uncheck
         End If
+        If frmMaininterface.PDFCover.chkSQE = True Then
+            gfx.DrawString("þ", CheckBoxFont, XBrushes.Black, New XRect(410, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) ' check
+        Else
+            gfx.DrawString("o", CheckBoxFont, XBrushes.Black, New XRect(410, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft) 'uncheck
+        End If
 
 
         'Shipment ID
         FormularFont = New XFont("Arial", 18, XFontStyle.Bold) ' Pretty Big
-        Line += stdDistance - 5
-        gfx.DrawString("#" & frmMaininterface.PDFCover.dtSipmentID, FormularFont, XBrushes.Black, New XRect(20, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+        Line += stdDistance - 10
+        gfx.DrawString("#" & frmMaininterface.PDFCover.dtSipmentID, FormularFont, XBrushes.Black, New XRect(50, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+
+        'Datamatrix
+        Dim Image As XImage = frmMaininterface.GetDataMatrix(frmMaininterface.PDFCover.dtSipmentID)
+        gfx.DrawImage(Image, page.Width.Point - 580, page.Height.Point - 30)
+
+
 
         'Version    
         EntryFont = New XFont("Arial", 9, XFontStyle.Regular)  'Small
