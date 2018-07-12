@@ -179,6 +179,7 @@ Partial Class frmMaininterface
         Me.DsCommentBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tabSettings = New System.Windows.Forms.TabPage()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.chkOpenPDF = New System.Windows.Forms.CheckBox()
         Me.chkPrintPDF = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -242,8 +243,9 @@ Partial Class frmMaininterface
         Me.DsShipment_SOTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsShipment_SOTableAdapter()
         Me.PoShipping_OrderTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.poShipping_OrderTableAdapter()
         Me.PtShipmentsTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.ptShipmentsTableAdapter()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.SQECheckBox = New System.Windows.Forms.CheckBox()
+        Me.Button2 = New System.Windows.Forms.Button()
         DtnETALabel = New System.Windows.Forms.Label()
         DtnETDLabel = New System.Windows.Forms.Label()
         DtnCRDLabel = New System.Windows.Forms.Label()
@@ -890,6 +892,7 @@ Partial Class frmMaininterface
         'tabBooking
         '
         Me.tabBooking.AutoScroll = True
+        Me.tabBooking.Controls.Add(Me.SQECheckBox)
         Me.tabBooking.Controls.Add(Me.DsShipment_SODataGridView)
         Me.tabBooking.Controls.Add(Me.btnDeleteSO)
         Me.tabBooking.Controls.Add(Me.btnAddSO)
@@ -1692,7 +1695,7 @@ Partial Class frmMaininterface
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 356)
+        Me.Label2.Location = New System.Drawing.Point(20, 454)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(37, 13)
         Me.Label2.TabIndex = 78
@@ -1714,6 +1717,15 @@ Partial Class frmMaininterface
         Me.tabSettings.TabIndex = 0
         Me.tabSettings.Text = "Settings"
         Me.tabSettings.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(6, 124)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(408, 13)
+        Me.Label1.TabIndex = 7
+        Me.Label1.Text = "http://www.iconarchive.com/show/captiva-icons-by-bokehlicia/web-github-icon.html"
         '
         'chkOpenPDF
         '
@@ -1822,6 +1834,7 @@ Partial Class frmMaininterface
         '
         'tabShipments
         '
+        Me.tabShipments.Controls.Add(Me.Button2)
         Me.tabShipments.Controls.Add(Me.btnPDF)
         Me.tabShipments.Controls.Add(Me.btnReloadDB)
         Me.tabShipments.Controls.Add(Me.btnMailSubject)
@@ -2233,15 +2246,6 @@ Partial Class frmMaininterface
         '
         Me.PtShipmentsTableAdapter.ClearBeforeFill = True
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 124)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(408, 13)
-        Me.Label1.TabIndex = 7
-        Me.Label1.Text = "http://www.iconarchive.com/show/captiva-icons-by-bokehlicia/web-github-icon.html"
-        '
         'PictureBox1
         '
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
@@ -2251,6 +2255,28 @@ Partial Class frmMaininterface
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 17
         Me.PictureBox1.TabStop = False
+        '
+        'SQECheckBox
+        '
+        Me.SQECheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.DsShipmentsBindingSource, "SQE", True))
+        Me.SQECheckBox.Location = New System.Drawing.Point(711, 262)
+        Me.SQECheckBox.Name = "SQECheckBox"
+        Me.SQECheckBox.Size = New System.Drawing.Size(56, 24)
+        Me.SQECheckBox.TabIndex = 101
+        Me.SQECheckBox.TabStop = False
+        Me.SQECheckBox.Text = "SQE"
+        Me.SQECheckBox.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(6, 328)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(134, 40)
+        Me.Button2.TabIndex = 87
+        Me.Button2.TabStop = False
+        Me.Button2.Text = "PDF"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'frmMaininterface
         '
@@ -2500,4 +2526,6 @@ Partial Class frmMaininterface
     Friend WithEvents DataGridViewTextBoxColumn67 As DataGridViewTextBoxColumn
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents SQECheckBox As CheckBox
+    Friend WithEvents Button2 As Button
 End Class

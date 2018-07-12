@@ -65,7 +65,8 @@ Module SendMailOutlook
                     ByVal Body As String,
                     Optional ByVal Attachment As String = "",
                     Optional ByVal adrCC As String = "",
-                    Optional ByVal adrBCC As String = "")
+                    Optional ByVal adrBCC As String = "",
+                     Optional ByVal sentHidden As Boolean = False)
 
         ' Create an Outlook application.
         Dim oApp As Outlook._Application
@@ -116,13 +117,13 @@ Module SendMailOutlook
             oAttach = oAttachs.Add(Attachment, , sBodyLen + 1, sDisplayName)
         End If
 
-        ' Send
-        'If My.Settings.Sent_Display.ToString = True Then
-        '    oMsg.Send()
-        'Else
-        '    oMsg.Display()
-        'End If
-        oMsg.Display()
+        'Send
+        If sentHidden = True Then
+            oMsg.Send()
+        Else
+            oMsg.Display()
+        End If
+
 
         ' Clean up
         oApp = Nothing

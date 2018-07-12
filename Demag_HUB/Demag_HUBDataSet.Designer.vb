@@ -5809,6 +5809,8 @@ Partial Public Class dsDemag_HUB
         
         Private columnCancelled As Global.System.Data.DataColumn
         
+        Private columnSQE As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -6133,6 +6135,14 @@ Partial Public Class dsDemag_HUB
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SQEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSQE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -6204,9 +6214,10 @@ Partial Public Class dsDemag_HUB
                     ByVal dtnSurendered As Date,  _
                     ByVal dtnDocuments As Date,  _
                     ByVal Closed As Boolean,  _
-                    ByVal Cancelled As Boolean) As dsShipmentsRow
+                    ByVal Cancelled As Boolean,  _
+                    ByVal SQE As Boolean) As dsShipmentsRow
             Dim rowdsShipmentsRow As dsShipmentsRow = CType(Me.NewRow,dsShipmentsRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Created, STT_No, Archive_No, HBL_No, MBL_No, POL_No, Service, Nothing, Incoterm_Loc, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Vessel, Nothing, Contract_No, Volume, Weight, TEU, Cont20DC, Cont40DC, Cont40HQ, dtnCRD, dtnETD, dtnATD, dtnETA, dtnATA, dtnETS, ECO_Month, dtnSurendered, dtnDocuments, Closed, Cancelled}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Created, STT_No, Archive_No, HBL_No, MBL_No, POL_No, Service, Nothing, Incoterm_Loc, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Vessel, Nothing, Contract_No, Volume, Weight, TEU, Cont20DC, Cont40DC, Cont40HQ, dtnCRD, dtnETD, dtnATD, dtnETA, dtnATA, dtnETS, ECO_Month, dtnSurendered, dtnDocuments, Closed, Cancelled, SQE}
             If (Not (parentIncotermRowByIncotermdsShipments) Is Nothing) Then
                 columnValuesArray(8) = parentIncotermRowByIncotermdsShipments(0)
             End If
@@ -6295,6 +6306,7 @@ Partial Public Class dsDemag_HUB
             Me.columndtnDocuments = MyBase.Columns("dtnDocuments")
             Me.columnClosed = MyBase.Columns("Closed")
             Me.columnCancelled = MyBase.Columns("Cancelled")
+            Me.columnSQE = MyBase.Columns("SQE")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6372,6 +6384,8 @@ Partial Public Class dsDemag_HUB
             MyBase.Columns.Add(Me.columnClosed)
             Me.columnCancelled = New Global.System.Data.DataColumn("Cancelled", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCancelled)
+            Me.columnSQE = New Global.System.Data.DataColumn("SQE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSQE)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnShipment_ID}, true))
             Me.columnShipment_ID.AutoIncrement = true
             Me.columnShipment_ID.AutoIncrementSeed = -1
@@ -14751,6 +14765,21 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SQE() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tabledsShipments.SQEColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte SQE in Tabelle dsShipments ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledsShipments.SQEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property dsPartnerRowBydsPartnerdsShipments() As dsPartnerRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("dsPartnerdsShipments")),dsPartnerRow)
@@ -15255,6 +15284,18 @@ Partial Public Class dsDemag_HUB
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetCancelledNull()
             Me(Me.tabledsShipments.CancelledColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSQENull() As Boolean
+            Return Me.IsNull(Me.tabledsShipments.SQEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSQENull()
+            Me(Me.tabledsShipments.SQEColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -26232,6 +26273,7 @@ Namespace dsDemag_HUBTableAdapters
             tableMapping.ColumnMappings.Add("dtnDocuments", "dtnDocuments")
             tableMapping.ColumnMappings.Add("Closed", "Closed")
             tableMapping.ColumnMappings.Add("Cancelled", "Cancelled")
+            tableMapping.ColumnMappings.Add("SQE", "SQE")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -26259,7 +26301,8 @@ Namespace dsDemag_HUBTableAdapters
                 "dtnETS` = ?)) AND ((? = 1 AND `ECO_Month` IS NULL) OR (`ECO_Month` = ?)) AND ((?"& _ 
                 " = 1 AND `dtnSurendered` IS NULL) OR (`dtnSurendered` = ?)) AND ((? = 1 AND `dtn"& _ 
                 "Documents` IS NULL) OR (`dtnDocuments` = ?)) AND ((? = 1 AND `Closed` IS NULL) O"& _ 
-                "R (`Closed` = ?)) AND ((? = 1 AND `Cancelled` IS NULL) OR (`Cancelled` = ?)))"
+                "R (`Closed` = ?)) AND ((? = 1 AND `Cancelled` IS NULL) OR (`Cancelled` = ?)) AND"& _ 
+                " ((? = 1 AND `SQE` IS NULL) OR (`SQE` = ?)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipment_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipment_ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Created", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, true, Nothing))
@@ -26332,6 +26375,8 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Closed", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Closed", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Cancelled", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Cancelled", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Cancelled", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Cancelled", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_SQE", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SQE", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_SQE", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SQE", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO `dsShipments` (`Created`, `STT_No`, `Archive_No`, `HBL_No`, `MBL_No`,"& _ 
@@ -26339,8 +26384,8 @@ Namespace dsDemag_HUBTableAdapters
                 "gnee`, `POL`, `POD`, `Terminal`, `Vessel`, `Carrier`, `Contract_No`, `Volume`, `"& _ 
                 "Weight`, `TEU`, `Cont20DC`, `Cont40DC`, `Cont40HQ`, `dtnCRD`, `dtnETD`, `dtnATD`"& _ 
                 ", `dtnETA`, `dtnATA`, `dtnETS`, `ECO_Month`, `dtnSurendered`, `dtnDocuments`, `C"& _ 
-                "losed`, `Cancelled`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "& _ 
-                "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                "losed`, `Cancelled`, `SQE`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"& _ 
+                " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("STT_No", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "STT_No", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -26377,6 +26422,7 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("dtnDocuments", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dtnDocuments", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Closed", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Closed", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Cancelled", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Cancelled", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("SQE", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SQE", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE `dsShipments` SET `Created` = ?, `STT_No` = ?, `Archive_No` = ?, `HBL_No` "& _ 
@@ -26385,32 +26431,33 @@ Namespace dsDemag_HUBTableAdapters
                 "inal` = ?, `Vessel` = ?, `Carrier` = ?, `Contract_No` = ?, `Volume` = ?, `Weight"& _ 
                 "` = ?, `TEU` = ?, `Cont20DC` = ?, `Cont40DC` = ?, `Cont40HQ` = ?, `dtnCRD` = ?, "& _ 
                 "`dtnETD` = ?, `dtnATD` = ?, `dtnETA` = ?, `dtnATA` = ?, `dtnETS` = ?, `ECO_Month"& _ 
-                "` = ?, `dtnSurendered` = ?, `dtnDocuments` = ?, `Closed` = ?, `Cancelled` = ? WH"& _ 
-                "ERE ((`Shipment_ID` = ?) AND ((? = 1 AND `Created` IS NULL) OR (`Created` = ?)) "& _ 
-                "AND ((? = 1 AND `STT_No` IS NULL) OR (`STT_No` = ?)) AND ((? = 1 AND `Archive_No"& _ 
-                "` IS NULL) OR (`Archive_No` = ?)) AND ((? = 1 AND `HBL_No` IS NULL) OR (`HBL_No`"& _ 
-                " = ?)) AND ((? = 1 AND `MBL_No` IS NULL) OR (`MBL_No` = ?)) AND ((? = 1 AND `POL"& _ 
-                "_No` IS NULL) OR (`POL_No` = ?)) AND ((? = 1 AND `Service` IS NULL) OR (`Service"& _ 
-                "` = ?)) AND ((? = 1 AND `Incoterm` IS NULL) OR (`Incoterm` = ?)) AND ((? = 1 AND"& _ 
-                " `Incoterm_Loc` IS NULL) OR (`Incoterm_Loc` = ?)) AND ((? = 1 AND `Principal` IS"& _ 
-                " NULL) OR (`Principal` = ?)) AND ((? = 1 AND `Shipper` IS NULL) OR (`Shipper` = "& _ 
-                "?)) AND ((? = 1 AND `Consignee` IS NULL) OR (`Consignee` = ?)) AND ((? = 1 AND `"& _ 
-                "POL` IS NULL) OR (`POL` = ?)) AND ((? = 1 AND `POD` IS NULL) OR (`POD` = ?)) AND"& _ 
-                " ((? = 1 AND `Terminal` IS NULL) OR (`Terminal` = ?)) AND ((? = 1 AND `Vessel` I"& _ 
-                "S NULL) OR (`Vessel` = ?)) AND ((? = 1 AND `Carrier` IS NULL) OR (`Carrier` = ?)"& _ 
-                ") AND ((? = 1 AND `Contract_No` IS NULL) OR (`Contract_No` = ?)) AND ((? = 1 AND"& _ 
-                " `Volume` IS NULL) OR (`Volume` = ?)) AND ((? = 1 AND `Weight` IS NULL) OR (`Wei"& _ 
-                "ght` = ?)) AND ((? = 1 AND `TEU` IS NULL) OR (`TEU` = ?)) AND ((? = 1 AND `Cont2"& _ 
-                "0DC` IS NULL) OR (`Cont20DC` = ?)) AND ((? = 1 AND `Cont40DC` IS NULL) OR (`Cont"& _ 
-                "40DC` = ?)) AND ((? = 1 AND `Cont40HQ` IS NULL) OR (`Cont40HQ` = ?)) AND ((? = 1"& _ 
-                " AND `dtnCRD` IS NULL) OR (`dtnCRD` = ?)) AND ((? = 1 AND `dtnETD` IS NULL) OR ("& _ 
-                "`dtnETD` = ?)) AND ((? = 1 AND `dtnATD` IS NULL) OR (`dtnATD` = ?)) AND ((? = 1 "& _ 
-                "AND `dtnETA` IS NULL) OR (`dtnETA` = ?)) AND ((? = 1 AND `dtnATA` IS NULL) OR (`"& _ 
-                "dtnATA` = ?)) AND ((? = 1 AND `dtnETS` IS NULL) OR (`dtnETS` = ?)) AND ((? = 1 A"& _ 
-                "ND `ECO_Month` IS NULL) OR (`ECO_Month` = ?)) AND ((? = 1 AND `dtnSurendered` IS"& _ 
-                " NULL) OR (`dtnSurendered` = ?)) AND ((? = 1 AND `dtnDocuments` IS NULL) OR (`dt"& _ 
-                "nDocuments` = ?)) AND ((? = 1 AND `Closed` IS NULL) OR (`Closed` = ?)) AND ((? ="& _ 
-                " 1 AND `Cancelled` IS NULL) OR (`Cancelled` = ?)))"
+                "` = ?, `dtnSurendered` = ?, `dtnDocuments` = ?, `Closed` = ?, `Cancelled` = ?, `"& _ 
+                "SQE` = ? WHERE ((`Shipment_ID` = ?) AND ((? = 1 AND `Created` IS NULL) OR (`Crea"& _ 
+                "ted` = ?)) AND ((? = 1 AND `STT_No` IS NULL) OR (`STT_No` = ?)) AND ((? = 1 AND "& _ 
+                "`Archive_No` IS NULL) OR (`Archive_No` = ?)) AND ((? = 1 AND `HBL_No` IS NULL) O"& _ 
+                "R (`HBL_No` = ?)) AND ((? = 1 AND `MBL_No` IS NULL) OR (`MBL_No` = ?)) AND ((? ="& _ 
+                " 1 AND `POL_No` IS NULL) OR (`POL_No` = ?)) AND ((? = 1 AND `Service` IS NULL) O"& _ 
+                "R (`Service` = ?)) AND ((? = 1 AND `Incoterm` IS NULL) OR (`Incoterm` = ?)) AND "& _ 
+                "((? = 1 AND `Incoterm_Loc` IS NULL) OR (`Incoterm_Loc` = ?)) AND ((? = 1 AND `Pr"& _ 
+                "incipal` IS NULL) OR (`Principal` = ?)) AND ((? = 1 AND `Shipper` IS NULL) OR (`"& _ 
+                "Shipper` = ?)) AND ((? = 1 AND `Consignee` IS NULL) OR (`Consignee` = ?)) AND (("& _ 
+                "? = 1 AND `POL` IS NULL) OR (`POL` = ?)) AND ((? = 1 AND `POD` IS NULL) OR (`POD"& _ 
+                "` = ?)) AND ((? = 1 AND `Terminal` IS NULL) OR (`Terminal` = ?)) AND ((? = 1 AND"& _ 
+                " `Vessel` IS NULL) OR (`Vessel` = ?)) AND ((? = 1 AND `Carrier` IS NULL) OR (`Ca"& _ 
+                "rrier` = ?)) AND ((? = 1 AND `Contract_No` IS NULL) OR (`Contract_No` = ?)) AND "& _ 
+                "((? = 1 AND `Volume` IS NULL) OR (`Volume` = ?)) AND ((? = 1 AND `Weight` IS NUL"& _ 
+                "L) OR (`Weight` = ?)) AND ((? = 1 AND `TEU` IS NULL) OR (`TEU` = ?)) AND ((? = 1"& _ 
+                " AND `Cont20DC` IS NULL) OR (`Cont20DC` = ?)) AND ((? = 1 AND `Cont40DC` IS NULL"& _ 
+                ") OR (`Cont40DC` = ?)) AND ((? = 1 AND `Cont40HQ` IS NULL) OR (`Cont40HQ` = ?)) "& _ 
+                "AND ((? = 1 AND `dtnCRD` IS NULL) OR (`dtnCRD` = ?)) AND ((? = 1 AND `dtnETD` IS"& _ 
+                " NULL) OR (`dtnETD` = ?)) AND ((? = 1 AND `dtnATD` IS NULL) OR (`dtnATD` = ?)) A"& _ 
+                "ND ((? = 1 AND `dtnETA` IS NULL) OR (`dtnETA` = ?)) AND ((? = 1 AND `dtnATA` IS "& _ 
+                "NULL) OR (`dtnATA` = ?)) AND ((? = 1 AND `dtnETS` IS NULL) OR (`dtnETS` = ?)) AN"& _ 
+                "D ((? = 1 AND `ECO_Month` IS NULL) OR (`ECO_Month` = ?)) AND ((? = 1 AND `dtnSur"& _ 
+                "endered` IS NULL) OR (`dtnSurendered` = ?)) AND ((? = 1 AND `dtnDocuments` IS NU"& _ 
+                "LL) OR (`dtnDocuments` = ?)) AND ((? = 1 AND `Closed` IS NULL) OR (`Closed` = ?)"& _ 
+                ") AND ((? = 1 AND `Cancelled` IS NULL) OR (`Cancelled` = ?)) AND ((? = 1 AND `SQ"& _ 
+                "E` IS NULL) OR (`SQE` = ?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("STT_No", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "STT_No", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -26447,6 +26494,7 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("dtnDocuments", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dtnDocuments", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Closed", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Closed", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Cancelled", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Cancelled", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("SQE", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SQE", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipment_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipment_ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Created", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, false, Nothing))
@@ -26518,6 +26566,8 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Closed", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Closed", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Cancelled", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Cancelled", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Cancelled", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Cancelled", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_SQE", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SQE", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_SQE", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "SQE", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -26537,7 +26587,7 @@ Namespace dsDemag_HUBTableAdapters
                 " Incoterm, Incoterm_Loc, Principal, Shipper, Consignee, POL, POD, Terminal, Vess"& _ 
                 "el, Carrier, Contract_No, Volume, Weight, TEU, Cont20DC, Cont40DC, Cont40HQ, dtn"& _ 
                 "CRD, dtnETD, dtnATD, dtnETA, dtnATA, dtnETS, ECO_Month, dtnSurendered, dtnDocume"& _ 
-                "nts, Closed, Cancelled FROM dsShipments"
+                "nts, Closed, Cancelled, SQE FROM dsShipments"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -26633,7 +26683,8 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal Original_dtnSurendered As Global.System.Nullable(Of Date),  _
                     ByVal Original_dtnDocuments As Global.System.Nullable(Of Date),  _
                     ByVal Original_Closed As Boolean,  _
-                    ByVal Original_Cancelled As Boolean) As Integer
+                    ByVal Original_Cancelled As Boolean,  _
+                    ByVal Original_SQE As Boolean) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_Shipment_ID,Integer)
             Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
             Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Created,Date)
@@ -26862,6 +26913,8 @@ Namespace dsDemag_HUBTableAdapters
             Me.Adapter.DeleteCommand.Parameters(68).Value = CType(Original_Closed,Boolean)
             Me.Adapter.DeleteCommand.Parameters(69).Value = CType(0,Object)
             Me.Adapter.DeleteCommand.Parameters(70).Value = CType(Original_Cancelled,Boolean)
+            Me.Adapter.DeleteCommand.Parameters(71).Value = CType(0,Object)
+            Me.Adapter.DeleteCommand.Parameters(72).Value = CType(Original_SQE,Boolean)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -26916,7 +26969,8 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal dtnSurendered As Global.System.Nullable(Of Date),  _
                     ByVal dtnDocuments As Global.System.Nullable(Of Date),  _
                     ByVal Closed As Boolean,  _
-                    ByVal Cancelled As Boolean) As Integer
+                    ByVal Cancelled As Boolean,  _
+                    ByVal SQE As Boolean) As Integer
             Me.Adapter.InsertCommand.Parameters(0).Value = CType(Created,Date)
             If (STT_No Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
@@ -27080,6 +27134,7 @@ Namespace dsDemag_HUBTableAdapters
             End If
             Me.Adapter.InsertCommand.Parameters(33).Value = CType(Closed,Boolean)
             Me.Adapter.InsertCommand.Parameters(34).Value = CType(Cancelled,Boolean)
+            Me.Adapter.InsertCommand.Parameters(35).Value = CType(SQE,Boolean)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -27135,6 +27190,7 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal dtnDocuments As Global.System.Nullable(Of Date),  _
                     ByVal Closed As Boolean,  _
                     ByVal Cancelled As Boolean,  _
+                    ByVal SQE As Boolean,  _
                     ByVal Original_Shipment_ID As Integer,  _
                     ByVal Original_Created As Date,  _
                     ByVal Original_STT_No As String,  _
@@ -27170,7 +27226,8 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal Original_dtnSurendered As Global.System.Nullable(Of Date),  _
                     ByVal Original_dtnDocuments As Global.System.Nullable(Of Date),  _
                     ByVal Original_Closed As Boolean,  _
-                    ByVal Original_Cancelled As Boolean) As Integer
+                    ByVal Original_Cancelled As Boolean,  _
+                    ByVal Original_SQE As Boolean) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Created,Date)
             If (STT_No Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
@@ -27334,234 +27391,237 @@ Namespace dsDemag_HUBTableAdapters
             End If
             Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Closed,Boolean)
             Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Cancelled,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_Shipment_ID,Integer)
-            Me.Adapter.UpdateCommand.Parameters(36).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_Created,Date)
+            Me.Adapter.UpdateCommand.Parameters(35).Value = CType(SQE,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_Shipment_ID,Integer)
+            Me.Adapter.UpdateCommand.Parameters(37).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(38).Value = CType(Original_Created,Date)
             If (Original_STT_No Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(39).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(40).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(Original_STT_No,String)
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(Original_STT_No,String)
             End If
             If (Original_Archive_No Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(41).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(42).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(Original_Archive_No,String)
+                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(Original_Archive_No,String)
             End If
             If (Original_HBL_No Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(43).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(44).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(Original_HBL_No,String)
+                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(Original_HBL_No,String)
             End If
             If (Original_MBL_No Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(45).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(46).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(Original_MBL_No,String)
+                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(Original_MBL_No,String)
             End If
             If (Original_POL_No Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(47).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(48).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(Original_POL_No,String)
+                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(Original_POL_No,String)
             End If
             If (Original_Service Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Service")
             Else
-                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(Original_Service,String)
+                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(50).Value = CType(Original_Service,String)
             End If
             If (Original_Incoterm Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(50).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(51).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(52).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(50).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(Original_Incoterm,String)
+                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(52).Value = CType(Original_Incoterm,String)
             End If
             If (Original_Incoterm_Loc Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(52).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(53).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(54).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(52).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(Original_Incoterm_Loc,String)
+                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(54).Value = CType(Original_Incoterm_Loc,String)
             End If
             If (Original_Principal.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(54).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(Original_Principal.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(Original_Principal.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(54).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(55).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(56).Value = Global.System.DBNull.Value
             End If
             If (Original_Shipper.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(Original_Shipper.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(Original_Shipper.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(57).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(58).Value = Global.System.DBNull.Value
             End If
             If (Original_Consignee.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(Original_Consignee.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(60).Value = CType(Original_Consignee.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(59).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(60).Value = Global.System.DBNull.Value
             End If
             If (Original_POL Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_POL")
             Else
-                Me.Adapter.UpdateCommand.Parameters(60).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(Original_POL,String)
+                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(62).Value = CType(Original_POL,String)
             End If
             If (Original_POD Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_POD")
             Else
-                Me.Adapter.UpdateCommand.Parameters(62).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(Original_POD,String)
+                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(Original_POD,String)
             End If
             If (Original_Terminal.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(65).Value = CType(Original_Terminal.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(65).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(66).Value = CType(Original_Terminal.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(65).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(65).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(66).Value = Global.System.DBNull.Value
             End If
             If (Original_Vessel Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(66).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(67).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(67).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(68).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(66).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(67).Value = CType(Original_Vessel,String)
+                Me.Adapter.UpdateCommand.Parameters(67).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(68).Value = CType(Original_Vessel,String)
             End If
             If (Original_Carrier.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(68).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(69).Value = CType(Original_Carrier.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(69).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(70).Value = CType(Original_Carrier.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(68).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(69).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(69).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(70).Value = Global.System.DBNull.Value
             End If
             If (Original_Contract_No Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(70).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(71).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(71).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(72).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(70).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(71).Value = CType(Original_Contract_No,String)
+                Me.Adapter.UpdateCommand.Parameters(71).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(72).Value = CType(Original_Contract_No,String)
             End If
             If (Original_Volume.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(72).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(73).Value = CType(Original_Volume.Value,Double)
+                Me.Adapter.UpdateCommand.Parameters(73).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(74).Value = CType(Original_Volume.Value,Double)
             Else
-                Me.Adapter.UpdateCommand.Parameters(72).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(73).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(73).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(74).Value = Global.System.DBNull.Value
             End If
             If (Original_Weight.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(74).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(75).Value = CType(Original_Weight.Value,Double)
+                Me.Adapter.UpdateCommand.Parameters(75).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(76).Value = CType(Original_Weight.Value,Double)
             Else
-                Me.Adapter.UpdateCommand.Parameters(74).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(75).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(75).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(76).Value = Global.System.DBNull.Value
             End If
             If (Original_TEU.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(76).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(77).Value = CType(Original_TEU.Value,Byte)
+                Me.Adapter.UpdateCommand.Parameters(77).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(78).Value = CType(Original_TEU.Value,Byte)
             Else
-                Me.Adapter.UpdateCommand.Parameters(76).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(77).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(77).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(78).Value = Global.System.DBNull.Value
             End If
             If (Original_Cont20DC.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(78).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(79).Value = CType(Original_Cont20DC.Value,Byte)
+                Me.Adapter.UpdateCommand.Parameters(79).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(80).Value = CType(Original_Cont20DC.Value,Byte)
             Else
-                Me.Adapter.UpdateCommand.Parameters(78).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(79).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(79).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(80).Value = Global.System.DBNull.Value
             End If
             If (Original_Cont40DC.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(80).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(81).Value = CType(Original_Cont40DC.Value,Byte)
+                Me.Adapter.UpdateCommand.Parameters(81).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(82).Value = CType(Original_Cont40DC.Value,Byte)
             Else
-                Me.Adapter.UpdateCommand.Parameters(80).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(81).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(81).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(82).Value = Global.System.DBNull.Value
             End If
             If (Original_Cont40HQ.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(82).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(83).Value = CType(Original_Cont40HQ.Value,Byte)
+                Me.Adapter.UpdateCommand.Parameters(83).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(84).Value = CType(Original_Cont40HQ.Value,Byte)
             Else
-                Me.Adapter.UpdateCommand.Parameters(82).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(83).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(83).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(84).Value = Global.System.DBNull.Value
             End If
             If (Original_dtnCRD.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(84).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(85).Value = CType(Original_dtnCRD.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(85).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(86).Value = CType(Original_dtnCRD.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(84).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(85).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(85).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(86).Value = Global.System.DBNull.Value
             End If
             If (Original_dtnETD.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(86).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(87).Value = CType(Original_dtnETD.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(87).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(88).Value = CType(Original_dtnETD.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(86).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(87).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(87).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(88).Value = Global.System.DBNull.Value
             End If
             If (Original_dtnATD.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(88).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(89).Value = CType(Original_dtnATD.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(89).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(90).Value = CType(Original_dtnATD.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(88).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(89).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(89).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(90).Value = Global.System.DBNull.Value
             End If
             If (Original_dtnETA.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(90).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(91).Value = CType(Original_dtnETA.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(91).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(92).Value = CType(Original_dtnETA.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(90).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(91).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(91).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(92).Value = Global.System.DBNull.Value
             End If
             If (Original_dtnATA.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(92).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(93).Value = CType(Original_dtnATA.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(93).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(94).Value = CType(Original_dtnATA.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(92).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(93).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(93).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(94).Value = Global.System.DBNull.Value
             End If
             If (Original_dtnETS.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(94).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(95).Value = CType(Original_dtnETS.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(95).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(96).Value = CType(Original_dtnETS.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(94).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(95).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(95).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(96).Value = Global.System.DBNull.Value
             End If
             If (Original_ECO_Month Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(96).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(97).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(97).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(98).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(96).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(97).Value = CType(Original_ECO_Month,String)
+                Me.Adapter.UpdateCommand.Parameters(97).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(98).Value = CType(Original_ECO_Month,String)
             End If
             If (Original_dtnSurendered.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(98).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(99).Value = CType(Original_dtnSurendered.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(99).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(100).Value = CType(Original_dtnSurendered.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(98).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(99).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(99).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(100).Value = Global.System.DBNull.Value
             End If
             If (Original_dtnDocuments.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(100).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(101).Value = CType(Original_dtnDocuments.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(101).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(102).Value = CType(Original_dtnDocuments.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(100).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(101).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(101).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(102).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(102).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(103).Value = CType(Original_Closed,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(104).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(105).Value = CType(Original_Cancelled,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(103).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(104).Value = CType(Original_Closed,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(105).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(106).Value = CType(Original_Cancelled,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(107).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(108).Value = CType(Original_SQE,Boolean)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then

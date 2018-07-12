@@ -886,6 +886,14 @@ Public Class frmMaininterface
             Next
         End If
 
+
+        'Prüfen ob jetzt bei irgendwem ein SQE ausgelöst werden kann
+        DsDemag_HUB.dsShipments.DefaultView.RowFilter = "SQE = 'False'"
+        For Each Row As DataRowView In DsDemag_HUB.dsShipments.DefaultView
+            sqeCheck(Convert.ToInt32(Row.Item("Shipment_ID").ToString))
+        Next
+        DsDemag_HUB.dsShipments.DefaultView.RowFilter = String.Empty
+
     End Sub
 
     Private Sub BGW_ProgressChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ProgressChangedEventArgs) Handles bgwImportICM.ProgressChanged
@@ -1559,5 +1567,44 @@ Public Class frmMaininterface
         End If
     End Sub
 
+    Sub sqeCheck(ByVal idShipment As Integer)
+        Dim ShipRow As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(idShipment)
 
+        'Prüfen ob bereits confirmed
+        If ShipRow.SQE = True Then Exit Sub
+        Dim sqeStatus As Boolean = True
+
+
+        'DataRowView
+
+        DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = "Shipment_ID = '" & idShipment & "'"
+        For Each Row As DataRowView In DsDemag_HUB.dsShipment_Order.DefaultView
+            Dim poRow As dsDemag_HUB.poOrderRow = DsDemag_HUB.poOrder.FindByPurchase_Order(Row.Item("Purchase_Order").ToString)
+            If poRow.IsSQE_CheckNull Then sqeStatus = False
+        Next
+
+
+        If sqeStatus = True Then
+            ShipRow.SQE = True
+            'Protokoll anlegen
+            Dim newPtRow As dsDemag_HUB.ptShipmentsRow
+            newPtRow = DsDemag_HUB.ptShipments.NewptShipmentsRow
+            newPtRow.ShipmentID = ShipRow.Shipment_ID
+            newPtRow.Created = Date.Now
+            newPtRow.Description = "SQE Aprroved"
+            newPtRow.Column_Name = "SQE"
+            newPtRow.oldValue = "False"
+            newPtRow.newValue = "True"
+            newPtRow.User = Environment.UserName
+            DsDemag_HUB.ptShipments.Rows.Add(newPtRow)
+            'Mail
+            SendMailHTTP("Maximilian.Braun@dbschenker.com", ShipRow.Shipment_ID.ToString & " SQE is now approved", "Dringend ausbauen", "", "", "", True)
+        End If
+
+        DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = String.Empty
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        sqeCheck(Convert.ToInt32(Shipment_IDTextBox.Text))
+    End Sub
 End Class
