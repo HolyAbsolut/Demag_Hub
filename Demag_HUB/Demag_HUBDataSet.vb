@@ -1,11 +1,39 @@
 ﻿Partial Class dsDemag_HUB
-    Partial Public Class dsCommentDataTable
+    Partial Public Class dsAddressDataTable
+        Private Sub dsAddressDataTable_TableNewRow(sender As Object, e As DataTableNewRowEventArgs) Handles Me.TableNewRow
+            DirectCast(e.Row, dsAddressRow).Created = Date.Now
+        End Sub
+    End Class
+
+    Partial Public Class dsRoleDataTable
+        Private Sub dsRoleDataTable_TableNewRow(sender As Object, e As DataTableNewRowEventArgs) Handles Me.TableNewRow
+            DirectCast(e.Row, dsRoleRow).Created = Date.Now
+        End Sub
+    End Class
+
+    Partial Public Class dsContactDataTable
+        Private Sub dsContactDataTable_TableNewRow(sender As Object, e As DataTableNewRowEventArgs) Handles Me.TableNewRow
+            DirectCast(e.Row, dsContactRow).Created = Date.Now
+        End Sub
+    End Class
+
+    Partial Public Class dsPartnerDataTable
+        Private Sub dsPartnerDataTable_TableNewRow(sender As Object, e As DataTableNewRowEventArgs) Handles Me.TableNewRow
+            DirectCast(e.Row, dsPartnerRow).Created = Date.Now
+        End Sub
     End Class
 
     Partial Public Class dsShipmentsDataTable
-        Private Sub DeineTabelleDataTable_TableNewRow(sender As Object, e As DataTableNewRowEventArgs) Handles Me.TableNewRow
-            DirectCast(e.Row, dsShipmentsRow).Created = Date.Now
+        Private Sub dsShipmentsDataTable_TableNewRow(sender As Object, e As DataTableNewRowEventArgs) Handles Me.TableNewRow
+            DirectCast(e.Row, dsShipmentsRow).Created = Date.MinValue
         End Sub
+
+
+        'Private Sub Protocol(sender As Object, e As DataTableNewRowEventArgs) Handles Me.dsShipmentsRowChanging
+        '    'DirectCast(e.Row, dsShipmentsRow).Created = Date.MinValue
+        'End Sub
+
+
     End Class
 
     Partial Public Class dsCommentDataTable

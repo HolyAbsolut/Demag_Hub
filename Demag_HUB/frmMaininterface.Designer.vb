@@ -95,6 +95,13 @@ Partial Class frmMaininterface
         Me.txtSearch = New Demag_HUB.Watermark()
         Me.cmbField = New System.Windows.Forms.ComboBox()
         Me.tabBooking = New System.Windows.Forms.TabPage()
+        Me.CarrierTextBox = New System.Windows.Forms.ComboBox()
+        Me.bsCarrier = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ConsigneeTextBox = New System.Windows.Forms.ComboBox()
+        Me.bsConsignee = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ShipperTextBox = New System.Windows.Forms.ComboBox()
+        Me.bsShipper = New System.Windows.Forms.BindingSource(Me.components)
+        Me.SQECheckBox = New System.Windows.Forms.CheckBox()
         Me.DsShipment_SODataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn82 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DsShipment_SOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -131,17 +138,16 @@ Partial Class frmMaininterface
         Me.dtnETD = New System.Windows.Forms.TextBox()
         Me.dtnCRD = New System.Windows.Forms.TextBox()
         Me.FullIncoterm_LocTextBox = New System.Windows.Forms.ComboBox()
-        Me.UNLOCBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.bsUNLOC_Incoterm = New System.Windows.Forms.BindingSource(Me.components)
         Me.Incoterm_LocTextBox = New System.Windows.Forms.ComboBox()
         Me.FullPODTextBox = New System.Windows.Forms.ComboBox()
+        Me.bsUNLOC_POD = New System.Windows.Forms.BindingSource(Me.components)
         Me.PODTextBox = New System.Windows.Forms.ComboBox()
         Me.FullPOLTextBox = New System.Windows.Forms.ComboBox()
+        Me.bsUNLOC_POL = New System.Windows.Forms.BindingSource(Me.components)
         Me.POLTextBox = New System.Windows.Forms.ComboBox()
-        Me.CarrierTextBox = New System.Windows.Forms.ComboBox()
-        Me.ConsigneeTextBox = New System.Windows.Forms.ComboBox()
-        Me.DsPartnerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ShipperTextBox = New System.Windows.Forms.ComboBox()
         Me.PrincipalTextBox = New System.Windows.Forms.ComboBox()
+        Me.bsPrincipal = New System.Windows.Forms.BindingSource(Me.components)
         Me.IncotermTextBox = New System.Windows.Forms.ComboBox()
         Me.IncotermBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ServiceTextBox = New System.Windows.Forms.ComboBox()
@@ -174,6 +180,8 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn66 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn67 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PtShipmentsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.UNLOCBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsPartnerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PoOrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PoShipping_OrderBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsCommentBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -191,6 +199,8 @@ Partial Class frmMaininterface
         Me.cmbFilter = New System.Windows.Forms.ComboBox()
         Me.TabControl3 = New System.Windows.Forms.TabControl()
         Me.tabShipments = New System.Windows.Forms.TabPage()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.btnPDF = New System.Windows.Forms.Button()
         Me.btnReloadDB = New System.Windows.Forms.Button()
         Me.btnMailSubject = New System.Windows.Forms.Button()
@@ -200,11 +210,13 @@ Partial Class frmMaininterface
         Me.Label_Result = New System.Windows.Forms.Label()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.tabPartner = New System.Windows.Forms.TabPage()
+        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.DsRoleDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn68 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DsRoleBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsContactBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.btnNewPartner = New System.Windows.Forms.Button()
         Me.DsAddressDataGridView = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -213,8 +225,6 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DsAddressBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsContactDataGridView = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -223,7 +233,6 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DsContactBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Tango_IDTextBox = New System.Windows.Forms.TextBox()
         Me.ICM_IDTextBox = New System.Windows.Forms.TextBox()
         Me.PartnerNameTextBox = New System.Windows.Forms.TextBox()
@@ -244,8 +253,7 @@ Partial Class frmMaininterface
         Me.PoShipping_OrderTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.poShipping_OrderTableAdapter()
         Me.PtShipmentsTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.ptShipmentsTableAdapter()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.SQECheckBox = New System.Windows.Forms.CheckBox()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.DsRoleTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsRoleTableAdapter()
         DtnETALabel = New System.Windows.Forms.Label()
         DtnETDLabel = New System.Windows.Forms.Label()
         DtnCRDLabel = New System.Windows.Forms.Label()
@@ -280,6 +288,9 @@ Partial Class frmMaininterface
         CType(Me.DsShipmentsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsDemag_HUB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabBooking.SuspendLayout()
+        CType(Me.bsCarrier, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.bsConsignee, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.bsShipper, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipment_SODataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipment_SOBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipment_OrderDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -289,14 +300,18 @@ Partial Class frmMaininterface
         CType(Me.DsShipmentsdsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsCommentDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipmentsdsCommentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.UNLOCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DsPartnerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.bsUNLOC_Incoterm, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.bsUNLOC_POD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.bsUNLOC_POL, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.bsPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabDocuments.SuspendLayout()
         CType(Me.DsInvoiceDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabProtocol.SuspendLayout()
         CType(Me.PtShipmentsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PtShipmentsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.UNLOCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsPartnerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PoShipping_OrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsCommentBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -304,10 +319,12 @@ Partial Class frmMaininterface
         Me.TabControl3.SuspendLayout()
         Me.tabShipments.SuspendLayout()
         Me.tabPartner.SuspendLayout()
+        CType(Me.DsRoleDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsRoleBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsContactBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsAddressDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsAddressBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsContactDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DsContactBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -342,7 +359,7 @@ Partial Class frmMaininterface
         'Cont40HQLabel
         '
         Cont40HQLabel.AutoSize = True
-        Cont40HQLabel.Location = New System.Drawing.Point(596, 248)
+        Cont40HQLabel.Location = New System.Drawing.Point(596, 242)
         Cont40HQLabel.Name = "Cont40HQLabel"
         Cont40HQLabel.Size = New System.Drawing.Size(35, 13)
         Cont40HQLabel.TabIndex = 48
@@ -351,7 +368,7 @@ Partial Class frmMaininterface
         'Cont40DCLabel
         '
         Cont40DCLabel.AutoSize = True
-        Cont40DCLabel.Location = New System.Drawing.Point(540, 248)
+        Cont40DCLabel.Location = New System.Drawing.Point(540, 242)
         Cont40DCLabel.Name = "Cont40DCLabel"
         Cont40DCLabel.Size = New System.Drawing.Size(34, 13)
         Cont40DCLabel.TabIndex = 46
@@ -360,7 +377,7 @@ Partial Class frmMaininterface
         'Cont20DCLabel
         '
         Cont20DCLabel.AutoSize = True
-        Cont20DCLabel.Location = New System.Drawing.Point(484, 248)
+        Cont20DCLabel.Location = New System.Drawing.Point(484, 242)
         Cont20DCLabel.Name = "Cont20DCLabel"
         Cont20DCLabel.Size = New System.Drawing.Size(34, 13)
         Cont20DCLabel.TabIndex = 44
@@ -369,7 +386,7 @@ Partial Class frmMaininterface
         'TEULabel
         '
         TEULabel.AutoSize = True
-        TEULabel.Location = New System.Drawing.Point(652, 248)
+        TEULabel.Location = New System.Drawing.Point(652, 242)
         TEULabel.Name = "TEULabel"
         TEULabel.Size = New System.Drawing.Size(32, 13)
         TEULabel.TabIndex = 42
@@ -378,7 +395,7 @@ Partial Class frmMaininterface
         'WeightLabel
         '
         WeightLabel.AutoSize = True
-        WeightLabel.Location = New System.Drawing.Point(371, 248)
+        WeightLabel.Location = New System.Drawing.Point(371, 242)
         WeightLabel.Name = "WeightLabel"
         WeightLabel.Size = New System.Drawing.Size(44, 13)
         WeightLabel.TabIndex = 40
@@ -387,7 +404,7 @@ Partial Class frmMaininterface
         'VolumeLabel
         '
         VolumeLabel.AutoSize = True
-        VolumeLabel.Location = New System.Drawing.Point(426, 248)
+        VolumeLabel.Location = New System.Drawing.Point(426, 242)
         VolumeLabel.Name = "VolumeLabel"
         VolumeLabel.Size = New System.Drawing.Size(45, 13)
         VolumeLabel.TabIndex = 38
@@ -486,7 +503,7 @@ Partial Class frmMaininterface
         'ServiceLabel
         '
         ServiceLabel.AutoSize = True
-        ServiceLabel.Location = New System.Drawing.Point(301, 248)
+        ServiceLabel.Location = New System.Drawing.Point(301, 242)
         ServiceLabel.Name = "ServiceLabel"
         ServiceLabel.Size = New System.Drawing.Size(46, 13)
         ServiceLabel.TabIndex = 14
@@ -550,7 +567,7 @@ Partial Class frmMaininterface
         'Label3
         '
         Label3.AutoSize = True
-        Label3.Location = New System.Drawing.Point(19, 255)
+        Label3.Location = New System.Drawing.Point(106, 242)
         Label3.Name = "Label3"
         Label3.Size = New System.Drawing.Size(47, 13)
         Label3.TabIndex = 93
@@ -892,6 +909,9 @@ Partial Class frmMaininterface
         'tabBooking
         '
         Me.tabBooking.AutoScroll = True
+        Me.tabBooking.Controls.Add(Me.CarrierTextBox)
+        Me.tabBooking.Controls.Add(Me.ConsigneeTextBox)
+        Me.tabBooking.Controls.Add(Me.ShipperTextBox)
         Me.tabBooking.Controls.Add(Me.SQECheckBox)
         Me.tabBooking.Controls.Add(Me.DsShipment_SODataGridView)
         Me.tabBooking.Controls.Add(Me.btnDeleteSO)
@@ -915,9 +935,6 @@ Partial Class frmMaininterface
         Me.tabBooking.Controls.Add(Me.PODTextBox)
         Me.tabBooking.Controls.Add(Me.FullPOLTextBox)
         Me.tabBooking.Controls.Add(Me.POLTextBox)
-        Me.tabBooking.Controls.Add(Me.CarrierTextBox)
-        Me.tabBooking.Controls.Add(Me.ConsigneeTextBox)
-        Me.tabBooking.Controls.Add(Me.ShipperTextBox)
         Me.tabBooking.Controls.Add(Me.PrincipalTextBox)
         Me.tabBooking.Controls.Add(Me.IncotermTextBox)
         Me.tabBooking.Controls.Add(Me.ServiceTextBox)
@@ -962,6 +979,74 @@ Partial Class frmMaininterface
         Me.tabBooking.TabIndex = 1
         Me.tabBooking.Text = "Booking"
         Me.tabBooking.UseVisualStyleBackColor = True
+        '
+        'CarrierTextBox
+        '
+        Me.CarrierTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CarrierTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CarrierTextBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.DsShipmentsBindingSource, "Carrier", True))
+        Me.CarrierTextBox.DataSource = Me.bsCarrier
+        Me.CarrierTextBox.DisplayMember = "PartnerName"
+        Me.CarrierTextBox.FormattingEnabled = True
+        Me.CarrierTextBox.Location = New System.Drawing.Point(109, 211)
+        Me.CarrierTextBox.Name = "CarrierTextBox"
+        Me.CarrierTextBox.Size = New System.Drawing.Size(257, 21)
+        Me.CarrierTextBox.TabIndex = 16
+        Me.CarrierTextBox.ValueMember = "Partner_ID"
+        '
+        'bsCarrier
+        '
+        Me.bsCarrier.DataMember = "dsPartner"
+        Me.bsCarrier.DataSource = Me.DsDemag_HUB
+        '
+        'ConsigneeTextBox
+        '
+        Me.ConsigneeTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ConsigneeTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ConsigneeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.DsShipmentsBindingSource, "Consignee", True))
+        Me.ConsigneeTextBox.DataSource = Me.bsConsignee
+        Me.ConsigneeTextBox.DisplayMember = "PartnerName"
+        Me.ConsigneeTextBox.FormattingEnabled = True
+        Me.ConsigneeTextBox.Location = New System.Drawing.Point(381, 74)
+        Me.ConsigneeTextBox.Name = "ConsigneeTextBox"
+        Me.ConsigneeTextBox.Size = New System.Drawing.Size(281, 21)
+        Me.ConsigneeTextBox.TabIndex = 5
+        Me.ConsigneeTextBox.ValueMember = "Partner_ID"
+        '
+        'bsConsignee
+        '
+        Me.bsConsignee.DataMember = "dsPartner"
+        Me.bsConsignee.DataSource = Me.DsDemag_HUB
+        '
+        'ShipperTextBox
+        '
+        Me.ShipperTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ShipperTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ShipperTextBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.DsShipmentsBindingSource, "Shipper", True))
+        Me.ShipperTextBox.DataSource = Me.bsShipper
+        Me.ShipperTextBox.DisplayMember = "PartnerName"
+        Me.ShipperTextBox.FormattingEnabled = True
+        Me.ShipperTextBox.Location = New System.Drawing.Point(381, 47)
+        Me.ShipperTextBox.Name = "ShipperTextBox"
+        Me.ShipperTextBox.Size = New System.Drawing.Size(281, 21)
+        Me.ShipperTextBox.TabIndex = 4
+        Me.ShipperTextBox.ValueMember = "Partner_ID"
+        '
+        'bsShipper
+        '
+        Me.bsShipper.DataMember = "dsPartner"
+        Me.bsShipper.DataSource = Me.DsDemag_HUB
+        '
+        'SQECheckBox
+        '
+        Me.SQECheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.DsShipmentsBindingSource, "SQE", True))
+        Me.SQECheckBox.Location = New System.Drawing.Point(22, 256)
+        Me.SQECheckBox.Name = "SQECheckBox"
+        Me.SQECheckBox.Size = New System.Drawing.Size(56, 24)
+        Me.SQECheckBox.TabIndex = 101
+        Me.SQECheckBox.TabStop = False
+        Me.SQECheckBox.Text = "SQE"
+        Me.SQECheckBox.UseVisualStyleBackColor = True
         '
         'DsShipment_SODataGridView
         '
@@ -1075,7 +1160,7 @@ Partial Class frmMaininterface
         '
         'btnDeletePO
         '
-        Me.btnDeletePO.Location = New System.Drawing.Point(246, 248)
+        Me.btnDeletePO.Location = New System.Drawing.Point(246, 255)
         Me.btnDeletePO.Name = "btnDeletePO"
         Me.btnDeletePO.Size = New System.Drawing.Size(25, 25)
         Me.btnDeletePO.TabIndex = 95
@@ -1087,7 +1172,7 @@ Partial Class frmMaininterface
         'btnAddPO
         '
         Me.btnAddPO.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnAddPO.Location = New System.Drawing.Point(215, 248)
+        Me.btnAddPO.Location = New System.Drawing.Point(215, 255)
         Me.btnAddPO.Name = "btnAddPO"
         Me.btnAddPO.Size = New System.Drawing.Size(25, 25)
         Me.btnAddPO.TabIndex = 94
@@ -1097,7 +1182,7 @@ Partial Class frmMaininterface
         '
         'txtPoNo
         '
-        Me.txtPoNo.Location = New System.Drawing.Point(109, 251)
+        Me.txtPoNo.Location = New System.Drawing.Point(109, 258)
         Me.txtPoNo.Name = "txtPoNo"
         Me.txtPoNo.Size = New System.Drawing.Size(100, 20)
         Me.txtPoNo.TabIndex = 18
@@ -1257,7 +1342,8 @@ Partial Class frmMaininterface
         '
         Me.FullIncoterm_LocTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.FullIncoterm_LocTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.FullIncoterm_LocTextBox.DataSource = Me.UNLOCBindingSource
+        Me.FullIncoterm_LocTextBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.DsShipmentsBindingSource, "Incoterm_Loc", True))
+        Me.FullIncoterm_LocTextBox.DataSource = Me.bsUNLOC_Incoterm
         Me.FullIncoterm_LocTextBox.DisplayMember = "Name"
         Me.FullIncoterm_LocTextBox.FormattingEnabled = True
         Me.FullIncoterm_LocTextBox.Location = New System.Drawing.Point(188, 128)
@@ -1265,29 +1351,34 @@ Partial Class frmMaininterface
         Me.FullIncoterm_LocTextBox.Size = New System.Drawing.Size(178, 21)
         Me.FullIncoterm_LocTextBox.TabIndex = 8
         Me.FullIncoterm_LocTextBox.TabStop = False
+        Me.FullIncoterm_LocTextBox.ValueMember = "UNLOC"
         '
-        'UNLOCBindingSource
+        'bsUNLOC_Incoterm
         '
-        Me.UNLOCBindingSource.DataMember = "UNLOC"
-        Me.UNLOCBindingSource.DataSource = Me.DsDemag_HUB
+        Me.bsUNLOC_Incoterm.DataMember = "UNLOC"
+        Me.bsUNLOC_Incoterm.DataSource = Me.DsDemag_HUB
         '
         'Incoterm_LocTextBox
         '
         Me.Incoterm_LocTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.Incoterm_LocTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.Incoterm_LocTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Incoterm_Loc", True))
+        Me.Incoterm_LocTextBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.DsShipmentsBindingSource, "Incoterm_Loc", True))
+        Me.Incoterm_LocTextBox.DataSource = Me.bsUNLOC_Incoterm
+        Me.Incoterm_LocTextBox.DisplayMember = "UNLOC"
         Me.Incoterm_LocTextBox.FormattingEnabled = True
-        Me.Incoterm_LocTextBox.Location = New System.Drawing.Point(109, 125)
+        Me.Incoterm_LocTextBox.Location = New System.Drawing.Point(109, 128)
         Me.Incoterm_LocTextBox.Name = "Incoterm_LocTextBox"
         Me.Incoterm_LocTextBox.Size = New System.Drawing.Size(68, 21)
         Me.Incoterm_LocTextBox.TabIndex = 7
+        Me.Incoterm_LocTextBox.ValueMember = "UNLOC"
         '
         'FullPODTextBox
         '
         Me.FullPODTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.FullPODTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.FullPODTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.FullPODTextBox.DataSource = Me.UNLOCBindingSource
+        Me.FullPODTextBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.DsShipmentsBindingSource, "POD", True))
+        Me.FullPODTextBox.DataSource = Me.bsUNLOC_POD
         Me.FullPODTextBox.DisplayMember = "Name"
         Me.FullPODTextBox.FormattingEnabled = True
         Me.FullPODTextBox.Location = New System.Drawing.Point(188, 184)
@@ -1295,6 +1386,12 @@ Partial Class frmMaininterface
         Me.FullPODTextBox.Size = New System.Drawing.Size(178, 21)
         Me.FullPODTextBox.TabIndex = 12
         Me.FullPODTextBox.TabStop = False
+        Me.FullPODTextBox.ValueMember = "UNLOC"
+        '
+        'bsUNLOC_POD
+        '
+        Me.bsUNLOC_POD.DataMember = "UNLOC"
+        Me.bsUNLOC_POD.DataSource = Me.DsDemag_HUB
         '
         'PODTextBox
         '
@@ -1302,18 +1399,23 @@ Partial Class frmMaininterface
         Me.PODTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.PODTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.PODTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "POD", True))
+        Me.PODTextBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.DsShipmentsBindingSource, "POD", True))
+        Me.PODTextBox.DataSource = Me.bsUNLOC_POD
+        Me.PODTextBox.DisplayMember = "UNLOC"
         Me.PODTextBox.FormattingEnabled = True
         Me.PODTextBox.Location = New System.Drawing.Point(109, 184)
         Me.PODTextBox.Name = "PODTextBox"
         Me.PODTextBox.Size = New System.Drawing.Size(68, 21)
         Me.PODTextBox.TabIndex = 11
+        Me.PODTextBox.ValueMember = "UNLOC"
         '
         'FullPOLTextBox
         '
         Me.FullPOLTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.FullPOLTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.FullPOLTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.FullPOLTextBox.DataSource = Me.UNLOCBindingSource
+        Me.FullPOLTextBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.DsShipmentsBindingSource, "POL", True))
+        Me.FullPOLTextBox.DataSource = Me.bsUNLOC_POL
         Me.FullPOLTextBox.DisplayMember = "Name"
         Me.FullPOLTextBox.FormattingEnabled = True
         Me.FullPOLTextBox.Location = New System.Drawing.Point(188, 155)
@@ -1321,6 +1423,12 @@ Partial Class frmMaininterface
         Me.FullPOLTextBox.Size = New System.Drawing.Size(178, 21)
         Me.FullPOLTextBox.TabIndex = 10
         Me.FullPOLTextBox.TabStop = False
+        Me.FullPOLTextBox.ValueMember = "UNLOC"
+        '
+        'bsUNLOC_POL
+        '
+        Me.bsUNLOC_POL.DataMember = "UNLOC"
+        Me.bsUNLOC_POL.DataSource = Me.DsDemag_HUB
         '
         'POLTextBox
         '
@@ -1328,74 +1436,34 @@ Partial Class frmMaininterface
         Me.POLTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.POLTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.POLTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "POL", True))
+        Me.POLTextBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.DsShipmentsBindingSource, "POL", True))
+        Me.POLTextBox.DataSource = Me.bsUNLOC_POL
+        Me.POLTextBox.DisplayMember = "UNLOC"
         Me.POLTextBox.FormattingEnabled = True
         Me.POLTextBox.Location = New System.Drawing.Point(109, 155)
         Me.POLTextBox.Name = "POLTextBox"
         Me.POLTextBox.Size = New System.Drawing.Size(68, 21)
         Me.POLTextBox.TabIndex = 9
-        '
-        'CarrierTextBox
-        '
-        Me.CarrierTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CarrierTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CarrierTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Carrier", True))
-        Me.CarrierTextBox.DataSource = Me.DsShipmentsBindingSource
-        Me.CarrierTextBox.Enabled = False
-        Me.CarrierTextBox.FormattingEnabled = True
-        Me.CarrierTextBox.Location = New System.Drawing.Point(109, 211)
-        Me.CarrierTextBox.Name = "CarrierTextBox"
-        Me.CarrierTextBox.Size = New System.Drawing.Size(256, 21)
-        Me.CarrierTextBox.TabIndex = 16
-        '
-        'ConsigneeTextBox
-        '
-        Me.ConsigneeTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.ConsigneeTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.ConsigneeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Consignee", True))
-        Me.ConsigneeTextBox.DataSource = Me.DsPartnerBindingSource
-        Me.ConsigneeTextBox.DisplayMember = "PartnerName"
-        Me.ConsigneeTextBox.Enabled = False
-        Me.ConsigneeTextBox.FormattingEnabled = True
-        Me.ConsigneeTextBox.Location = New System.Drawing.Point(381, 72)
-        Me.ConsigneeTextBox.Name = "ConsigneeTextBox"
-        Me.ConsigneeTextBox.Size = New System.Drawing.Size(281, 21)
-        Me.ConsigneeTextBox.TabIndex = 5
-        Me.ConsigneeTextBox.TabStop = False
-        '
-        'DsPartnerBindingSource
-        '
-        Me.DsPartnerBindingSource.DataMember = "dsPartner"
-        Me.DsPartnerBindingSource.DataSource = Me.DsDemag_HUB
-        '
-        'ShipperTextBox
-        '
-        Me.ShipperTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.ShipperTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.ShipperTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Shipper", True))
-        Me.ShipperTextBox.DataSource = Me.DsPartnerBindingSource
-        Me.ShipperTextBox.DisplayMember = "PartnerName"
-        Me.ShipperTextBox.Enabled = False
-        Me.ShipperTextBox.FormattingEnabled = True
-        Me.ShipperTextBox.Location = New System.Drawing.Point(381, 46)
-        Me.ShipperTextBox.Name = "ShipperTextBox"
-        Me.ShipperTextBox.Size = New System.Drawing.Size(281, 21)
-        Me.ShipperTextBox.TabIndex = 4
-        Me.ShipperTextBox.TabStop = False
+        Me.POLTextBox.ValueMember = "UNLOC"
         '
         'PrincipalTextBox
         '
         Me.PrincipalTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.PrincipalTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.PrincipalTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Principal", True))
-        Me.PrincipalTextBox.DataSource = Me.DsPartnerBindingSource
+        Me.PrincipalTextBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.DsShipmentsBindingSource, "Principal", True))
+        Me.PrincipalTextBox.DataSource = Me.bsPrincipal
         Me.PrincipalTextBox.DisplayMember = "PartnerName"
-        Me.PrincipalTextBox.Enabled = False
         Me.PrincipalTextBox.FormattingEnabled = True
         Me.PrincipalTextBox.Location = New System.Drawing.Point(381, 20)
         Me.PrincipalTextBox.Name = "PrincipalTextBox"
         Me.PrincipalTextBox.Size = New System.Drawing.Size(281, 21)
         Me.PrincipalTextBox.TabIndex = 3
-        Me.PrincipalTextBox.TabStop = False
+        Me.PrincipalTextBox.ValueMember = "Partner_ID"
+        '
+        'bsPrincipal
+        '
+        Me.bsPrincipal.DataMember = "dsPartner"
+        Me.bsPrincipal.DataSource = Me.DsDemag_HUB
         '
         'IncotermTextBox
         '
@@ -1423,7 +1491,7 @@ Partial Class frmMaininterface
         Me.ServiceTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Service", True))
         Me.ServiceTextBox.FormattingEnabled = True
         Me.ServiceTextBox.Items.AddRange(New Object() {"FCL", "LCL", "AIR", "RAIL"})
-        Me.ServiceTextBox.Location = New System.Drawing.Point(304, 264)
+        Me.ServiceTextBox.Location = New System.Drawing.Point(304, 258)
         Me.ServiceTextBox.Name = "ServiceTextBox"
         Me.ServiceTextBox.Size = New System.Drawing.Size(65, 21)
         Me.ServiceTextBox.TabIndex = 19
@@ -1469,7 +1537,6 @@ Partial Class frmMaininterface
         '
         Me.Contract_NoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.Contract_NoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Contract_No", True))
-        Me.Contract_NoTextBox.Enabled = False
         Me.Contract_NoTextBox.Location = New System.Drawing.Point(462, 211)
         Me.Contract_NoTextBox.Name = "Contract_NoTextBox"
         Me.Contract_NoTextBox.Size = New System.Drawing.Size(200, 20)
@@ -1478,7 +1545,7 @@ Partial Class frmMaininterface
         'VolumeTextBox
         '
         Me.VolumeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Volume", True))
-        Me.VolumeTextBox.Location = New System.Drawing.Point(429, 264)
+        Me.VolumeTextBox.Location = New System.Drawing.Point(429, 258)
         Me.VolumeTextBox.Name = "VolumeTextBox"
         Me.VolumeTextBox.Size = New System.Drawing.Size(50, 20)
         Me.VolumeTextBox.TabIndex = 21
@@ -1486,7 +1553,7 @@ Partial Class frmMaininterface
         'WeightTextBox
         '
         Me.WeightTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Weight", True))
-        Me.WeightTextBox.Location = New System.Drawing.Point(374, 264)
+        Me.WeightTextBox.Location = New System.Drawing.Point(374, 258)
         Me.WeightTextBox.Name = "WeightTextBox"
         Me.WeightTextBox.Size = New System.Drawing.Size(50, 20)
         Me.WeightTextBox.TabIndex = 20
@@ -1495,7 +1562,7 @@ Partial Class frmMaininterface
         '
         Me.TEUTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "TEU", True))
         Me.TEUTextBox.Enabled = False
-        Me.TEUTextBox.Location = New System.Drawing.Point(655, 264)
+        Me.TEUTextBox.Location = New System.Drawing.Point(655, 258)
         Me.TEUTextBox.Name = "TEUTextBox"
         Me.TEUTextBox.Size = New System.Drawing.Size(50, 20)
         Me.TEUTextBox.TabIndex = 25
@@ -1503,7 +1570,7 @@ Partial Class frmMaininterface
         'Cont20DCTextBox
         '
         Me.Cont20DCTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Cont20DC", True))
-        Me.Cont20DCTextBox.Location = New System.Drawing.Point(487, 264)
+        Me.Cont20DCTextBox.Location = New System.Drawing.Point(487, 258)
         Me.Cont20DCTextBox.Name = "Cont20DCTextBox"
         Me.Cont20DCTextBox.Size = New System.Drawing.Size(50, 20)
         Me.Cont20DCTextBox.TabIndex = 22
@@ -1511,7 +1578,7 @@ Partial Class frmMaininterface
         'Cont40DCTextBox
         '
         Me.Cont40DCTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Cont40DC", True))
-        Me.Cont40DCTextBox.Location = New System.Drawing.Point(543, 264)
+        Me.Cont40DCTextBox.Location = New System.Drawing.Point(543, 258)
         Me.Cont40DCTextBox.Name = "Cont40DCTextBox"
         Me.Cont40DCTextBox.Size = New System.Drawing.Size(50, 20)
         Me.Cont40DCTextBox.TabIndex = 23
@@ -1519,7 +1586,7 @@ Partial Class frmMaininterface
         'Cont40HQTextBox
         '
         Me.Cont40HQTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Cont40HQ", True))
-        Me.Cont40HQTextBox.Location = New System.Drawing.Point(599, 264)
+        Me.Cont40HQTextBox.Location = New System.Drawing.Point(599, 258)
         Me.Cont40HQTextBox.Name = "Cont40HQTextBox"
         Me.Cont40HQTextBox.Size = New System.Drawing.Size(50, 20)
         Me.Cont40HQTextBox.TabIndex = 24
@@ -1676,6 +1743,16 @@ Partial Class frmMaininterface
         '
         Me.PtShipmentsBindingSource.DataMember = "dsShipmentsptShipments"
         Me.PtShipmentsBindingSource.DataSource = Me.DsShipmentsBindingSource
+        '
+        'UNLOCBindingSource
+        '
+        Me.UNLOCBindingSource.DataMember = "UNLOC"
+        Me.UNLOCBindingSource.DataSource = Me.DsDemag_HUB
+        '
+        'DsPartnerBindingSource
+        '
+        Me.DsPartnerBindingSource.DataMember = "dsPartner"
+        Me.DsPartnerBindingSource.DataSource = Me.DsDemag_HUB
         '
         'PoOrderBindingSource
         '
@@ -1834,6 +1911,7 @@ Partial Class frmMaininterface
         '
         'tabShipments
         '
+        Me.tabShipments.Controls.Add(Me.Button3)
         Me.tabShipments.Controls.Add(Me.Button2)
         Me.tabShipments.Controls.Add(Me.btnPDF)
         Me.tabShipments.Controls.Add(Me.btnReloadDB)
@@ -1855,6 +1933,26 @@ Partial Class frmMaininterface
         Me.tabShipments.TabIndex = 0
         Me.tabShipments.Text = "Shipments"
         Me.tabShipments.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(23, 391)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 88
+        Me.Button3.Text = "Button3"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(6, 328)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(134, 40)
+        Me.Button2.TabIndex = 87
+        Me.Button2.TabStop = False
+        Me.Button2.Text = "SQE Check"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'btnPDF
         '
@@ -1943,6 +2041,8 @@ Partial Class frmMaininterface
         'tabPartner
         '
         Me.tabPartner.AutoScroll = True
+        Me.tabPartner.Controls.Add(Me.ComboBox3)
+        Me.tabPartner.Controls.Add(Me.DsRoleDataGridView)
         Me.tabPartner.Controls.Add(Me.btnNewPartner)
         Me.tabPartner.Controls.Add(Me.DsAddressDataGridView)
         Me.tabPartner.Controls.Add(Me.DsContactDataGridView)
@@ -1960,6 +2060,48 @@ Partial Class frmMaininterface
         Me.tabPartner.Text = "Partner"
         Me.tabPartner.UseVisualStyleBackColor = True
         '
+        'ComboBox3
+        '
+        Me.ComboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox3.DataSource = Me.DsPartnerBindingSource
+        Me.ComboBox3.DisplayMember = "PartnerName"
+        Me.ComboBox3.FormattingEnabled = True
+        Me.ComboBox3.Location = New System.Drawing.Point(625, 26)
+        Me.ComboBox3.Name = "ComboBox3"
+        Me.ComboBox3.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBox3.TabIndex = 17
+        Me.ComboBox3.ValueMember = "Partner_ID"
+        '
+        'DsRoleDataGridView
+        '
+        Me.DsRoleDataGridView.AutoGenerateColumns = False
+        Me.DsRoleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DsRoleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn68})
+        Me.DsRoleDataGridView.DataSource = Me.DsRoleBindingSource
+        Me.DsRoleDataGridView.Location = New System.Drawing.Point(967, 85)
+        Me.DsRoleDataGridView.Name = "DsRoleDataGridView"
+        Me.DsRoleDataGridView.Size = New System.Drawing.Size(208, 220)
+        Me.DsRoleDataGridView.TabIndex = 16
+        '
+        'DataGridViewTextBoxColumn68
+        '
+        Me.DataGridViewTextBoxColumn68.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataGridViewTextBoxColumn68.DataPropertyName = "Role"
+        Me.DataGridViewTextBoxColumn68.HeaderText = "Role"
+        Me.DataGridViewTextBoxColumn68.Name = "DataGridViewTextBoxColumn68"
+        Me.DataGridViewTextBoxColumn68.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'DsRoleBindingSource
+        '
+        Me.DsRoleBindingSource.DataMember = "dsContactdsRole"
+        Me.DsRoleBindingSource.DataSource = Me.DsContactBindingSource
+        '
+        'DsContactBindingSource
+        '
+        Me.DsContactBindingSource.DataMember = "dsPartnerdsContact"
+        Me.DsContactBindingSource.DataSource = Me.DsPartnerBindingSource
+        '
         'btnNewPartner
         '
         Me.btnNewPartner.Location = New System.Drawing.Point(344, 25)
@@ -1975,33 +2117,12 @@ Partial Class frmMaininterface
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DsAddressDataGridView.AutoGenerateColumns = False
         Me.DsAddressDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DsAddressDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19})
+        Me.DsAddressDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19})
         Me.DsAddressDataGridView.DataSource = Me.DsAddressBindingSource
         Me.DsAddressDataGridView.Location = New System.Drawing.Point(9, 321)
         Me.DsAddressDataGridView.Name = "DsAddressDataGridView"
         Me.DsAddressDataGridView.Size = New System.Drawing.Size(907, 138)
         Me.DsAddressDataGridView.TabIndex = 15
-        '
-        'DataGridViewTextBoxColumn11
-        '
-        Me.DataGridViewTextBoxColumn11.DataPropertyName = "Address_ID"
-        Me.DataGridViewTextBoxColumn11.HeaderText = "Address_ID"
-        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
-        Me.DataGridViewTextBoxColumn11.Visible = False
-        '
-        'DataGridViewTextBoxColumn12
-        '
-        Me.DataGridViewTextBoxColumn12.DataPropertyName = "Created"
-        Me.DataGridViewTextBoxColumn12.HeaderText = "Created"
-        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
-        Me.DataGridViewTextBoxColumn12.Visible = False
-        '
-        'DataGridViewTextBoxColumn13
-        '
-        Me.DataGridViewTextBoxColumn13.DataPropertyName = "Partner_ID"
-        Me.DataGridViewTextBoxColumn13.HeaderText = "Partner_ID"
-        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
-        Me.DataGridViewTextBoxColumn13.Visible = False
         '
         'DataGridViewTextBoxColumn14
         '
@@ -2052,26 +2173,12 @@ Partial Class frmMaininterface
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DsContactDataGridView.AutoGenerateColumns = False
         Me.DsContactDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DsContactDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9})
+        Me.DsContactDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9})
         Me.DsContactDataGridView.DataSource = Me.DsContactBindingSource
         Me.DsContactDataGridView.Location = New System.Drawing.Point(9, 85)
         Me.DsContactDataGridView.Name = "DsContactDataGridView"
         Me.DsContactDataGridView.Size = New System.Drawing.Size(907, 230)
         Me.DsContactDataGridView.TabIndex = 14
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "Contact_ID"
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Contact_ID"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.Visible = False
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "Created"
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Created"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.Visible = False
         '
         'DataGridViewTextBoxColumn3
         '
@@ -2123,11 +2230,6 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn9.DataPropertyName = "Fax"
         Me.DataGridViewTextBoxColumn9.HeaderText = "Fax"
         Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
-        '
-        'DsContactBindingSource
-        '
-        Me.DsContactBindingSource.DataMember = "dsPartnerdsContact"
-        Me.DsContactBindingSource.DataSource = Me.DsPartnerBindingSource
         '
         'Tango_IDTextBox
         '
@@ -2256,27 +2358,9 @@ Partial Class frmMaininterface
         Me.PictureBox1.TabIndex = 17
         Me.PictureBox1.TabStop = False
         '
-        'SQECheckBox
+        'DsRoleTableAdapter
         '
-        Me.SQECheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.DsShipmentsBindingSource, "SQE", True))
-        Me.SQECheckBox.Location = New System.Drawing.Point(711, 262)
-        Me.SQECheckBox.Name = "SQECheckBox"
-        Me.SQECheckBox.Size = New System.Drawing.Size(56, 24)
-        Me.SQECheckBox.TabIndex = 101
-        Me.SQECheckBox.TabStop = False
-        Me.SQECheckBox.Text = "SQE"
-        Me.SQECheckBox.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(6, 328)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(134, 40)
-        Me.Button2.TabIndex = 87
-        Me.Button2.TabStop = False
-        Me.Button2.Text = "PDF"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.DsRoleTableAdapter.ClearBeforeFill = True
         '
         'frmMaininterface
         '
@@ -2297,6 +2381,9 @@ Partial Class frmMaininterface
         CType(Me.DsDemag_HUB, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabBooking.ResumeLayout(False)
         Me.tabBooking.PerformLayout()
+        CType(Me.bsCarrier, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.bsConsignee, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.bsShipper, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsShipment_SODataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsShipment_SOBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsShipment_OrderDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2306,14 +2393,18 @@ Partial Class frmMaininterface
         CType(Me.DsShipmentsdsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsCommentDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsShipmentsdsCommentBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.UNLOCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DsPartnerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.bsUNLOC_Incoterm, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.bsUNLOC_POD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.bsUNLOC_POL, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.bsPrincipal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabDocuments.ResumeLayout(False)
         CType(Me.DsInvoiceDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabProtocol.ResumeLayout(False)
         CType(Me.PtShipmentsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PtShipmentsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.UNLOCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsPartnerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PoOrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PoShipping_OrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsCommentBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2324,10 +2415,12 @@ Partial Class frmMaininterface
         Me.tabShipments.PerformLayout()
         Me.tabPartner.ResumeLayout(False)
         Me.tabPartner.PerformLayout()
+        CType(Me.DsRoleDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsRoleBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsContactBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsAddressDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsAddressBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsContactDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DsContactBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dsInvoiceBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -2379,29 +2472,7 @@ Partial Class frmMaininterface
     Friend WithEvents DsAddressBindingSource As BindingSource
     Friend WithEvents DsAddressTableAdapter As dsDemag_HUBTableAdapters.dsAddressTableAdapter
     Friend WithEvents DsAddressDataGridView As DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn12 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn18 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn19 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
     Friend WithEvents btnNewPartner As Button
-    Friend WithEvents ConsigneeTextBox As ComboBox
-    Friend WithEvents ShipperTextBox As ComboBox
-    Friend WithEvents CarrierTextBox As ComboBox
     Friend WithEvents Label2 As Label
     Friend WithEvents tabDocuments As TabPage
     Friend WithEvents FullPOLTextBox As ComboBox
@@ -2528,4 +2599,34 @@ Partial Class frmMaininterface
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents SQECheckBox As CheckBox
     Friend WithEvents Button2 As Button
+    Friend WithEvents ShipperTextBox As ComboBox
+    Friend WithEvents bsShipper As BindingSource
+    Friend WithEvents CarrierTextBox As ComboBox
+    Friend WithEvents bsCarrier As BindingSource
+    Friend WithEvents ConsigneeTextBox As ComboBox
+    Friend WithEvents bsConsignee As BindingSource
+    Friend WithEvents bsPrincipal As BindingSource
+    Friend WithEvents bsUNLOC_Incoterm As BindingSource
+    Friend WithEvents bsUNLOC_POD As BindingSource
+    Friend WithEvents bsUNLOC_POL As BindingSource
+    Friend WithEvents DsRoleBindingSource As BindingSource
+    Friend WithEvents DsRoleTableAdapter As dsDemag_HUBTableAdapters.dsRoleTableAdapter
+    Friend WithEvents DsRoleDataGridView As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn68 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn18 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn19 As DataGridViewTextBoxColumn
+    Friend WithEvents ComboBox3 As ComboBox
+    Friend WithEvents Button3 As Button
 End Class

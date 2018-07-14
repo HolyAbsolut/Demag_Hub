@@ -31,6 +31,8 @@ Public Class frmMaininterface
 
 
     Private Sub frmMaininterface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsRole". Sie können sie bei Bedarf verschieben oder entfernen.
+        Me.DsRoleTableAdapter.Fill(Me.DsDemag_HUB.dsRole)
         txtDB.Text = My.Settings.sttDBPath
         chkOpenPDF.Checked = My.Settings.sttOpenPDF
         chkPrintPDF.Checked = My.Settings.sttPrintPDF
@@ -185,6 +187,7 @@ Public Class frmMaininterface
         Me.PtShipmentsBindingSource.EndEdit()
         Me.PoOrderBindingSource.EndEdit()
         Me.PoShipping_OrderBindingSource.EndEdit()
+        Me.DsRoleBindingSource.EndEdit()
         'MsgBox("Arbeite")
 
 
@@ -199,7 +202,7 @@ Public Class frmMaininterface
         Me.DsShipmentsTableAdapter.Update(Me.DsDemag_HUB.dsShipments)
         Me.DsCommentTableAdapter.Update(Me.DsDemag_HUB.dsComment)
         Me.PtShipmentsTableAdapter.Update(Me.DsDemag_HUB.ptShipments)
-
+        Me.DsRoleTableAdapter.Update(Me.DsDemag_HUB.dsRole)
         'MsgBox("Fertig")
     End Sub
 
@@ -979,40 +982,40 @@ Public Class frmMaininterface
                 Cont20DCTextBox.Enabled = True
                 Cont40DCTextBox.Enabled = True
                 Cont40HQTextBox.Enabled = True
-                'CarrierTextBox.Enabled = True
-                'Contract_NoTextBox.Enabled = True
+                CarrierTextBox.Enabled = True
+                Contract_NoTextBox.Enabled = True
             Case = "LCL"
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
                 Cont20DCTextBox.Enabled = False
                 Cont40DCTextBox.Enabled = False
                 Cont40HQTextBox.Enabled = False
-                'CarrierTextBox.Enabled = False
-                'Contract_NoTextBox.Enabled = False
+                CarrierTextBox.Enabled = False
+                Contract_NoTextBox.Enabled = False
             Case = "AIR"
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
                 Cont20DCTextBox.Enabled = False
                 Cont40DCTextBox.Enabled = False
                 Cont40HQTextBox.Enabled = False
-                'CarrierTextBox.Enabled = False
-                'Contract_NoTextBox.Enabled = False
+                CarrierTextBox.Enabled = False
+                Contract_NoTextBox.Enabled = False
             Case = "RAIL"
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
                 Cont20DCTextBox.Enabled = True
                 Cont40DCTextBox.Enabled = True
                 Cont40HQTextBox.Enabled = True
-                'CarrierTextBox.Enabled = False
-                'Contract_NoTextBox.Enabled = False
+                CarrierTextBox.Enabled = False
+                Contract_NoTextBox.Enabled = False
             Case Else
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
                 Cont20DCTextBox.Enabled = True
                 Cont40DCTextBox.Enabled = True
                 Cont40HQTextBox.Enabled = True
-                'CarrierTextBox.Enabled = True
-                'Contract_NoTextBox.Enabled = True
+                CarrierTextBox.Enabled = True
+                Contract_NoTextBox.Enabled = True
         End Select
 
     End Sub
@@ -1045,6 +1048,7 @@ Public Class frmMaininterface
         Dim Subject As String
         Dim Body As String
         Dim File As String = ""
+        Dim rowActual As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
 
         Subject = "DEMAG: Missing SQE Approval - "
         Subject = Subject & "ID: " & Shipment_IDTextBox.Text
@@ -1083,7 +1087,7 @@ Public Class frmMaininterface
         End If
 
 
-        SendMailOutlook.SendMailHTTP("", Subject, Body, File)
+        SendMailOutlook.SendMailHTTP(GetMailContact(rowActual.Shipper, "SQE"), Subject, Body, File)
 
         'Protokoll anlegen
         Dim newPtRow As dsDemag_HUB.ptShipmentsRow
@@ -1248,6 +1252,28 @@ Public Class frmMaininterface
         Return encodedBitmap
     End Function
 
+    Function GetPartnerName(ByVal PartnerID As Integer, ByVal Field As String) As String
+        Dim parRow As dsDemag_HUB.dsPartnerRow = DsDemag_HUB.dsPartner.FindByPartner_ID(PartnerID)
+        Select Case Field
+            Case "Created"
+                Return parRow.Created.ToString
+            Case "Tango_ID"
+                Return parRow.Tango_ID
+            Case "ICM_ID"
+                Return parRow.ICM_ID
+            Case "PartnerName"
+                Return parRow.PartnerName
+            Case "EORI"
+                Return parRow.EORI
+            Case "WKV"
+                Return parRow.WKV.ToString
+            Case Else
+                Return ""
+        End Select
+    End Function
+
+
+
     Private Sub btnPDF_Click(sender As Object, e As EventArgs) Handles btnPDF.Click
         Dim curRow As dsDemag_HUB.dsShipmentsRow
 
@@ -1345,6 +1371,17 @@ Public Class frmMaininterface
             End If
             PDFCover.dtVolume = curRow.Volume.ToString
         End If
+        If curRow.IsPrincipalNull Then
+            PDFCover.dtClient = ""
+        Else
+            PDFCover.dtClient = GetPartnerName(curRow.Principal, "PartnerName")
+        End If
+        If curRow.IsCarrierNull Then
+            PDFCover.dtCarrier = ""
+        Else
+            PDFCover.dtCarrier = GetPartnerName(curRow.Carrier, "PartnerName")
+        End If
+
 
 
         If curRow.IsIncotermNull Then
@@ -1441,7 +1478,7 @@ Public Class frmMaininterface
         'PDFCover.dtCharge9Value = ""
         'PDFCover.dtCharge10Description = ""
         'PDFCover.dtCharge10Value = ""
-        PDFCover.dtClient = "Demag"
+
         PDFCover.dtFullDocs = ""
         PDFCover.dtIMDG = ""
         PDFCover.dtPMRef = ""
@@ -1460,7 +1497,7 @@ Public Class frmMaininterface
         PDFCover.chkAtlasFremd = False
         PDFCover.chkVomUnternehmer = False
         PDFCover.chkTruck = False
-        PDFCover.chkT1 = False
+        PDFCover.chkT1 = True
         PDFCover.chkSchenker = True
         PDFCover.chkRail = True
         PDFCover.chkMBLW = False
@@ -1607,4 +1644,65 @@ Public Class frmMaininterface
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         sqeCheck(Convert.ToInt32(Shipment_IDTextBox.Text))
     End Sub
+
+    Function GetMailContact(ByVal idPartner As Integer, ByVal Role As String) As String
+        GetMailContact = ""
+        DsDemag_HUB.dsContact.DefaultView.RowFilter = "Partner_ID = '" & idPartner & "'"
+        For Each Contact As DataRowView In DsDemag_HUB.dsContact.DefaultView
+            Dim rowContact As dsDemag_HUB.dsContactRow = DsDemag_HUB.dsContact.FindByContact_ID(Convert.ToInt32(Contact.Item("Contact_ID").ToString))
+            DsDemag_HUB.dsRole.DefaultView.RowFilter = "Contact_ID = '" & rowContact.Contact_ID & "' AND ROLE ='" & Role & "'"
+            If DsDemag_HUB.dsRole.DefaultView.Count <> 0 Then GetMailContact += rowContact.eMail & ";"
+        Next
+        Return GetMailContact
+    End Function
+
+
+    Private Sub PrincipalTextBox_Leave(ctlButton As Object, e As EventArgs) Handles PrincipalTextBox.Leave, ShipperTextBox.Leave, ConsigneeTextBox.Leave
+        Dim rowActual As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
+        Dim sender As Control = CType(ctlButton, Control)
+
+        If sender.Text = "" Then
+            Select Case sender.Name
+                Case "PrincipalTextBox"
+                    rowActual.Principal = 4
+                Case "ShipperTextBox"
+                    rowActual.Shipper = 4
+                Case "ConsigneeTextBox"
+                    rowActual.Consignee = 4
+                Case "CarrierTextBox"
+                    rowActual.Carrier = 4
+            End Select
+
+
+
+        End If
+
+
+
+
+
+    End Sub
+
+    'Private Sub BindingSource_BindingComplete(sender As Object, e As BindingCompleteEventArgs) Handles DsShipmentsBindingSource.BindingComplete
+    '    If e.Binding.Control.Name = "IncotermTextBox" Then
+    '        If Shipment_IDTextBox.Text = "" Then Exit Sub
+    '        Dim rowActual As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
+    '        If rowActual.IsIncotermNull Then Exit Sub
+    '        Select Case rowActual.Incoterm
+    '            Case "FOB"
+    '                If rowActual.IsConsigneeNull And rowActual.IsPrincipalNull = False Then rowActual.Consignee = rowActual.Principal
+    '                If rowActual.IsPrincipalNull And rowActual.IsConsigneeNull = False Then rowActual.Principal = rowActual.Consignee
+    '            Case "EXW"
+    '                If rowActual.IsConsigneeNull And rowActual.IsPrincipalNull = False Then rowActual.Consignee = rowActual.Principal
+    '                If rowActual.IsPrincipalNull And rowActual.IsConsigneeNull = False Then rowActual.Principal = rowActual.Consignee
+    '            Case "CFR"
+    '                If rowActual.IsConsigneeNull And rowActual.IsShipperNull = False Then rowActual.Consignee = rowActual.Shipper
+    '                If rowActual.IsShipperNull And rowActual.IsConsigneeNull = False Then rowActual.Shipper = rowActual.Consignee
+    '        End Select
+    '    End If
+
+    'End Sub
+
+
+
 End Class

@@ -100,6 +100,8 @@ Public Structure PDFCoverStructure
     Dim dtIncotermLoc As String
 
     Dim chkSQE As Boolean
+
+    Dim dtCarrier As String
 End Structure
 
 Module pdfSharp
@@ -273,7 +275,7 @@ Module pdfSharp
         'Line 7
         Line += stdDistance
         gfx.DrawString("Schenker", FormularFont, XBrushes.Black, New XRect(30, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
-        gfx.DrawString("FCL Nachlauf", FormularFont, XBrushes.Black, New XRect(110, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+        gfx.DrawString("Nachlauf", FormularFont, XBrushes.Black, New XRect(110, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString(frmMaininterface.PDFCover.dtVK_Nachlauf, EntryFont, XBrushes.Black, New XRect(200, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         If frmMaininterface.PDFCover.dtService = "FCL" Then
             gfx.DrawString("Leerdepot", FormularFont, XBrushes.Black, New XRect(350, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
@@ -294,17 +296,23 @@ Module pdfSharp
         Line += stdDistance
         gfx.DrawString(frmMaininterface.PDFCover.dtCharge0Description, FormularFont, XBrushes.Black, New XRect(30, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString(frmMaininterface.PDFCover.dtCharge0Value, EntryFont, XBrushes.Black, New XRect(150, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+        gfx.DrawString("Reeder:", FormularFont, XBrushes.Black, New XRect(350, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+        gfx.DrawString(frmMaininterface.PDFCover.dtCarrier, EntryFont, XBrushes.Black, New XRect(425, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+
+        'Draw Lines
+        drwLine = Line + 12
+        gfx.DrawLine(Pen, 425, drwLine, 520, drwLine) 'Reeder:.
 
         'Line 9
         Line += stdDistance
         gfx.DrawString(frmMaininterface.PDFCover.dtCharge1Description, FormularFont, XBrushes.Black, New XRect(30, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString(frmMaininterface.PDFCover.dtCharge1Value, EntryFont, XBrushes.Black, New XRect(150, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
-        gfx.DrawString("Kontrakt Nr.", FormularFont, XBrushes.Black, New XRect(350, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
+        gfx.DrawString("Kontrakt Nr.:", FormularFont, XBrushes.Black, New XRect(350, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
         gfx.DrawString(frmMaininterface.PDFCover.dtContract, EntryFont, XBrushes.Black, New XRect(425, Line, page.Width.Point, page.Height.Point), XStringFormats.TopLeft)
 
         'Draw Lines
         drwLine = Line + 12
-        gfx.DrawLine(Pen, 425, drwLine, 520, drwLine) 'Kontrakt Nr.
+        gfx.DrawLine(Pen, 425, drwLine, 520, drwLine) 'Kontrakt Nr.:
 
         'Line 10
         Line += stdDistance
