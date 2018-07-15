@@ -113,7 +113,7 @@ Partial Class frmPartner
         Me.TableAdapterManager.dsContactTableAdapter = Me.DsContactTableAdapter
         Me.TableAdapterManager.dsContainerTableAdapter = Nothing
         Me.TableAdapterManager.dsEventTableAdapter = Nothing
-        Me.TableAdapterManager.dsInvoiceTableAdapter = Nothing
+        Me.TableAdapterManager.dsDocumentsTableAdapter = Nothing
         Me.TableAdapterManager.dsLocTranslateTableAdapter = Nothing
         Me.TableAdapterManager.dsPartnerTableAdapter = Me.DsPartnerTableAdapter
         Me.TableAdapterManager.dsRoleTableAdapter = Nothing

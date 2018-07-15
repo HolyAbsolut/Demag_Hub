@@ -38,6 +38,8 @@ Public Class frmMaininterface
         chkOpenPDF.Checked = My.Settings.sttOpenPDF
         chkPrintPDF.Checked = My.Settings.sttPrintPDF
         txtSignature.Text = My.Settings.sttSignature
+        DsDocumentDataGridView.AllowDrop = True
+        DsDocumentDataGridView1.AllowDrop = True
         'dirDB.DataBindings.Add("Text", My.Settings, "sttDBPath")
 
         LoadDB()
@@ -61,8 +63,8 @@ Public Class frmMaininterface
         DsShipment_SOTableAdapter.Connection = CON
         PoOrderTableAdapter.Connection = CON
         DsShipment_OrderTableAdapter.Connection = CON
-        DsInvoiceTableAdapter.Connection = CON
-        DsInvoiceTableAdapter.Connection = CON
+        DsDocumentsTableAdapter.Connection = CON
+        DsDocumentsTableAdapter.Connection = CON
         DsCommentTableAdapter.Connection = CON
         UNLOCTableAdapter.Connection = CON
         DsAddressTableAdapter.Connection = CON
@@ -84,10 +86,8 @@ Public Class frmMaininterface
         Me.PoOrderTableAdapter.Fill(Me.DsDemag_HUB.poOrder)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsShipment_Order". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.DsShipment_OrderTableAdapter.Fill(Me.DsDemag_HUB.dsShipment_Order)
-        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsInvoice". Sie können sie bei Bedarf verschieben oder entfernen.
-        Me.DsInvoiceTableAdapter.Fill(Me.DsDemag_HUB.dsInvoice)
-        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsInvoice". Sie können sie bei Bedarf verschieben oder entfernen.
-        Me.DsInvoiceTableAdapter.Fill(Me.DsDemag_HUB.dsInvoice)
+        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsDocuments". Sie können sie bei Bedarf verschieben oder entfernen.
+        Me.DsDocumentsTableAdapter.Fill(Me.DsDemag_HUB.dsDocuments)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsComment". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.DsCommentTableAdapter.Fill(Me.DsDemag_HUB.dsComment)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.UNLOC". Sie können sie bei Bedarf verschieben oder entfernen.
@@ -248,7 +248,7 @@ Public Class frmMaininterface
         'DsShipmentsBindingSource.Filter = String.Empty
     End Sub
     'Drag & Dropp https://www.codeproject.com/Articles/7140/Drag-and-Drop-Attached-File-From-Outlook-and-ab
-    Private Sub frmMaininterface_DragDrop(sender As Object, e As System.Windows.Forms.DragEventArgs) Handles btnaddDocument.DragDrop
+    Private Sub frmMaininterface_DragDrop(sender As Object, e As System.Windows.Forms.DragEventArgs) Handles btnaddDocument.DragDrop, DsDocumentDataGridView.DragDrop, DsDocumentDataGridView1.DragDrop
         Dim fileNames As String() = Nothing
 
         Try
@@ -324,7 +324,7 @@ Public Class frmMaininterface
 
     End Sub
 
-    Private Sub btnImport_DragEnter(sender As Object, e As DragEventArgs) Handles btnaddDocument.DragEnter
+    Private Sub btnImport_DragEnter(sender As Object, e As DragEventArgs) Handles btnaddDocument.DragEnter, DsDocumentDataGridView.DragEnter, DsDocumentDataGridView1.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Or e.Data.GetDataPresent("FileGroupDescriptor") Then
             e.Effect = DragDropEffects.Copy
         End If
@@ -335,16 +335,17 @@ Public Class frmMaininterface
         frmDocument.ShowDialog()
 
         'Datenbank ergänzen
-        Dim newDocRow As dsDemag_HUB.dsInvoiceRow
-        newDocRow = DsDemag_HUB.dsInvoice.NewdsInvoiceRow
+        Dim newDocRow As dsDemag_HUB.dsDocumentsRow
+        newDocRow = DsDemag_HUB.dsDocuments.NewdsDocumentsRow
         newDocRow.Shipment_ID = Convert.ToInt32(Shipment_IDTextBox.Text)
         newDocRow.Created = Date.Now
-        newDocRow.Invoice_No = frmDocument.docNo
+        newDocRow.Document_No = frmDocument.docNo
         newDocRow.Link = frmDocument.docDirectory
-        DsDemag_HUB.dsInvoice.Rows.Add(newDocRow)
+        newDocRow.Document_Type = frmDocument.docType
+        DsDemag_HUB.dsDocuments.Rows.Add(newDocRow)
 
-        Me.dsInvoiceBindingSource.EndEdit()
-        Me.DsInvoiceTableAdapter.Update(Me.DsDemag_HUB.dsInvoice)
+        Me.dsDocumentsBindingSource.EndEdit()
+        Me.DsDocumentsTableAdapter.Update(Me.DsDemag_HUB.dsDocuments)
 
 
     End Sub
@@ -529,8 +530,8 @@ Public Class frmMaininterface
 
     Function searchINV(ByVal INVNo As String) As String
         Dim strFilter As String = ""
-        DsDemag_HUB.dsInvoice.DefaultView.RowFilter = "Invoice_No = '" & INVNo & "'"
-        For Each Row As DataRowView In DsDemag_HUB.dsInvoice.DefaultView
+        DsDemag_HUB.dsDocuments.DefaultView.RowFilter = "Document_No = '" & INVNo & "'"
+        For Each Row As DataRowView In DsDemag_HUB.dsDocuments.DefaultView
             If strFilter = "" Then
                 strFilter += "Shipment_ID = '" & Row.Item("Shipment_ID").ToString & "'"
             Else
@@ -1106,9 +1107,9 @@ Public Class frmMaininterface
             Next
         End If
 
-        If DsInvoiceDataGridView.Rows.Count <> 0 Then
+        If DsDocumentDataGridView.Rows.Count <> 0 Then
             Subject = Subject & " // INV No.:"
-            For Each Row As DataGridViewRow In Me.DsInvoiceDataGridView.Rows
+            For Each Row As DataGridViewRow In Me.DsDocumentDataGridView.Rows
                 Subject = Subject & " " & Row.Cells(0).Value.ToString
             Next
         End If
@@ -1127,9 +1128,9 @@ Public Class frmMaininterface
 
         Body = "Dear Sir or Madam,<br>please check if for above mentioned shipment the SQE approval was given. <br><br> Many thanks"
 
-        If DsInvoiceDataGridView.Rows.Count = 1 Then
+        If DsDocumentDataGridView.Rows.Count = 1 Then
             'MsgBox(DsInvoiceDataGridView1.Rows(0).Cells(4).Value.ToString)
-            File = DsInvoiceDataGridView1.Rows(0).Cells(4).Value.ToString
+            File = DsDocumentDataGridView1.Rows(0).Cells(4).Value.ToString
         End If
 
 
@@ -1171,9 +1172,9 @@ Public Class frmMaininterface
             Next
         End If
 
-        If DsInvoiceDataGridView.Rows.Count <> 0 Then
+        If DsDocumentDataGridView.Rows.Count <> 0 Then
             Subject = Subject & " // INV No.:"
-            For Each Row As DataGridViewRow In Me.DsInvoiceDataGridView.Rows
+            For Each Row As DataGridViewRow In Me.DsDocumentDataGridView.Rows
                 Subject = Subject & " " & Row.Cells(0).Value.ToString
             Next
         End If
@@ -1208,8 +1209,8 @@ Public Class frmMaininterface
                 "<br>Incoterm: " & IncotermTextBox.Text & " - " & Incoterm_LocTextBox.Text &
                 "<br><br>Please let us know if any additional Info is necessary."
 
-        If DsInvoiceDataGridView.Rows.Count = 1 Then
-            File = DsInvoiceDataGridView1.Rows(0).Cells(4).Value.ToString
+        If DsDocumentDataGridView.Rows.Count = 1 Then
+            File = DsDocumentDataGridView1.Rows(0).Cells(4).Value.ToString
         End If
 
 
@@ -1230,10 +1231,10 @@ Public Class frmMaininterface
         txtSearch.Focus()
     End Sub
 
-    Private Sub DsInvoiceDataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DsInvoiceDataGridView1.CellDoubleClick
+    Private Sub DsDocumentsDataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DsDocumentDataGridView1.CellDoubleClick
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then 'Dokument öffnen
-            Dim selectedRow = DsInvoiceDataGridView1.Rows(e.RowIndex)
-            Process.Start(selectedRow.Cells(4).Value.ToString)
+            Dim selectedRow = DsDocumentDataGridView1.Rows(e.RowIndex)
+            Process.Start(selectedRow.Cells(3).Value.ToString)
         End If
     End Sub
 
@@ -1255,9 +1256,9 @@ Public Class frmMaininterface
             Next
         End If
 
-        If DsInvoiceDataGridView.Rows.Count <> 0 Then
+        If DsDocumentDataGridView.Rows.Count <> 0 Then
             Subject = Subject & " // INV No.:"
-            For Each Row As DataGridViewRow In Me.DsInvoiceDataGridView.Rows
+            For Each Row As DataGridViewRow In Me.DsDocumentDataGridView.Rows
                 Subject = Subject & " " & Row.Cells(0).Value.ToString
             Next
         End If
@@ -1582,16 +1583,17 @@ Public Class frmMaininterface
         Cover(dirCover)
 
         'Create Invoice
-        Dim newDocRow As dsDemag_HUB.dsInvoiceRow
-        newDocRow = DsDemag_HUB.dsInvoice.NewdsInvoiceRow
+        Dim newDocRow As dsDemag_HUB.dsDocumentsRow
+        newDocRow = DsDemag_HUB.dsDocuments.NewdsDocumentsRow
         newDocRow.Shipment_ID = Convert.ToInt32(Shipment_IDTextBox.Text)
         newDocRow.Created = Date.Now
-        newDocRow.Invoice_No = "Job Dossier"
+        newDocRow.Document_No = "Job Dossier"
         newDocRow.Link = dirCover
-        DsDemag_HUB.dsInvoice.Rows.Add(newDocRow)
+        newDocRow.Document_Type = "Job_Dossier"
+        DsDemag_HUB.dsDocuments.Rows.Add(newDocRow)
 
-        Me.dsInvoiceBindingSource.EndEdit()
-        Me.DsInvoiceTableAdapter.Update(Me.DsDemag_HUB.dsInvoice)
+        Me.DsDocumentsBindingSource.EndEdit()
+        Me.DsDocumentsTableAdapter.Update(Me.DsDemag_HUB.dsDocuments)
 
 
         If chkOpenPDF.Checked = True Then Process.Start(dirCover)
@@ -1647,9 +1649,9 @@ Public Class frmMaininterface
         End If
     End Sub
 
-    Private Sub DsInvoiceDataGridView_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DsInvoiceDataGridView.CellDoubleClick
+    Private Sub DsDocumentDataGridView_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DsDocumentDataGridView.CellDoubleClick
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then 'Dokument öffnen
-            Dim selectedRow = DsInvoiceDataGridView1.Rows(e.RowIndex)
+            Dim selectedRow = DsDocumentDataGridView1.Rows(e.RowIndex)
             Process.Start(selectedRow.Cells(4).Value.ToString)
         End If
     End Sub
@@ -1797,6 +1799,7 @@ Public Class frmMaininterface
         My.Computer.Clipboard.SetText(strClipboard)
         If strClipboard.Length > 100 Then MsgBox("Warning: ICM will not handle all...")
     End Sub
+
 
 
 
