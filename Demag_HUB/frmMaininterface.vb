@@ -1662,6 +1662,7 @@ Public Class frmMaininterface
         'Prüfen ob bereits confirmed
         If ShipRow.SQE = True Then Exit Sub
         Dim sqeStatus As Boolean = True
+        Dim txtPO As String = ""
 
 
         'DataRowView
@@ -1670,6 +1671,7 @@ Public Class frmMaininterface
         For Each Row As DataRowView In DsDemag_HUB.dsShipment_Order.DefaultView
             Dim poRow As dsDemag_HUB.poOrderRow = DsDemag_HUB.poOrder.FindByPurchase_Order(Row.Item("Purchase_Order").ToString)
             If poRow.IsSQE_CheckNull Then sqeStatus = False
+            txtPO += poRow.Purchase_Order & " "
         Next
 
 
@@ -1687,10 +1689,35 @@ Public Class frmMaininterface
             newPtRow.User = Environment.UserName
             DsDemag_HUB.ptShipments.Rows.Add(newPtRow)
             'Mail
-            SendMailHTTP("Maximilian.Braun@dbschenker.com", ShipRow.Shipment_ID.ToString & " SQE is now approved", "Dringend ausbauen", "", "", "", True)
+            Dim Body As String
+            Dim Subject As String = "DEMAG: SQE confirmed // ID: " & ShipRow.Shipment_ID.ToString
+
+            Body = "Dear Sir or Madam,<br>above mentioned shipment is confirmed by the cnee.<br>" &
+                    "<br>Shipment ID.: " & ShipRow.Shipment_ID.ToString
+            Body += "<br>PO No.: <i> " & txtPO & "</i>"
+            If ShipRow.IsSTT_NoNull = False Then
+                Body += "<br>STT No.: " & ShipRow.STT_No.ToString
+                Subject += " // STT No.: " & ShipRow.STT_No.ToString
+            End If
+            If ShipRow.IsPOL_NoNull = False Then
+                Body += "<br>POL No.: " & ShipRow.POL_No.ToString
+                Subject += " // POL No.: " & ShipRow.POL_No.ToString
+            End If
+            If ShipRow.IsServiceNull = False Then Body += "<br>Service " & ShipRow.Service.ToString
+            If ShipRow.IsPOLNull = False Then Body += "<br>POL " & ShipRow.POL.ToString
+            If ShipRow.IsPODNull = False Then Body += "<br>POD " & ShipRow.POD.ToString
+            If ShipRow.IsIncotermNull = False And ShipRow.IsIncoterm_LocNull = False Then Body += "<br>Incoterm: " & ShipRow.Incoterm.ToString & " - " & ShipRow.Incoterm_Loc.ToString
+            If ShipRow.IsShipperNull = False Then
+                Body += "<br>Shipper: <b>" & GetPartnerName(ShipRow.Shipper, "PartnerName") & "</b>"
+                Subject += " // " & GetPartnerName(ShipRow.Shipper, "PartnerName")
+            End If
+            Subject += " // PO No.: " & txtPO
+            Body += "<br><br>Please advise next available schedule or let us know if any additional Info is necessary"
+
+            SendMailHTTP("Maximilian.Braun@dbschenker.com", Subject, Body, "", "", "", True)
         End If
 
-        DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = String.Empty
+            DsDemag_HUB.dsShipment_Order.DefaultView.RowFilter = String.Empty
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
