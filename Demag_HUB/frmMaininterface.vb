@@ -23,6 +23,7 @@ Public Class frmMaininterface
         My.Settings.sttDBPath = txtDB.Text
         My.Settings.sttOpenPDF = chkOpenPDF.Checked
         My.Settings.sttPrintPDF = chkPrintPDF.Checked
+        My.Settings.sttSignature = txtSignature.Text
         Save()
         'custom.Default.Save()
 
@@ -36,6 +37,7 @@ Public Class frmMaininterface
         txtDB.Text = My.Settings.sttDBPath
         chkOpenPDF.Checked = My.Settings.sttOpenPDF
         chkPrintPDF.Checked = My.Settings.sttPrintPDF
+        txtSignature.Text = My.Settings.sttSignature
         'dirDB.DataBindings.Add("Text", My.Settings, "sttDBPath")
 
         LoadDB()
@@ -422,10 +424,19 @@ Public Class frmMaininterface
             Exit Sub
         End If
 
+        Dim intSearch As Integer
+        If Integer.TryParse(txtSearch.Text, intSearch) = False Then
+            intSearch = 0
+        End If
+
+        Dim doubleSearch As Double
+        If Double.TryParse(txtSearch.Text, doubleSearch) = False Then
+            doubleSearch = 0
+        End If
 
         Select Case cmbField.Text
             Case Is = "ShipmentID"
-                DsShipmentsBindingSource.Filter = "Shipment_ID = '" & txtSearch.Text & "'"
+                If intSearch <> 0 Then DsShipmentsBindingSource.Filter = "Shipment_ID = '" & intSearch & "'"
             Case Is = "STT No.:"
                 DsShipmentsBindingSource.Filter = "STT_No = '" & txtSearch.Text & "'"
             Case Is = "Archive No.:"
@@ -439,20 +450,46 @@ Public Class frmMaininterface
             Case Is = "PO No.:"
                 DsShipmentsBindingSource.Filter = searchPO(txtSearch.Text)
             Case Is = "SO No.:"
-                DsShipmentsBindingSource.Filter = searchSO(txtSearch.Text)
+                If doubleSearch <> 0 Then DsShipmentsBindingSource.Filter = searchSO(txtSearch.Text)
             Case Is = "Inv No.:"
                 DsShipmentsBindingSource.Filter = searchINV(txtSearch.Text)
             Case Else
-                DsShipmentsBindingSource.Filter = "Shipment_ID = '" & txtSearch.Text & "' OR " &
-                                                    "STT_No = '" & txtSearch.Text & "' OR " &
+                If intSearch <> 0 Then
+                    DsShipmentsBindingSource.Filter = "Shipment_ID = '" & txtSearch.Text & "' OR " &
+                                                   "STT_No = '" & txtSearch.Text & "' OR " &
+                                                   "Archive_No = '" & txtSearch.Text & "' OR " &
+                                                   "HBL_No = '" & txtSearch.Text & "' OR " &
+                                                   "MBL_No = '" & txtSearch.Text & "' OR " &
+                                                   "POL_No = '" & txtSearch.Text & "' OR " &
+                                                   searchPO(txtSearch.Text) & " OR " &
+                                                   searchSO(txtSearch.Text) & " OR " &
+                                                   searchINV(txtSearch.Text)
+                    Exit Select
+                End If
+
+                If doubleSearch <> 0 Then
+                    DsShipmentsBindingSource.Filter = "STT_No = '" & txtSearch.Text & "' OR " &
+                                                   "Archive_No = '" & txtSearch.Text & "' OR " &
+                                                   "HBL_No = '" & txtSearch.Text & "' OR " &
+                                                   "MBL_No = '" & txtSearch.Text & "' OR " &
+                                                   "POL_No = '" & txtSearch.Text & "' OR " &
+                                                   searchPO(txtSearch.Text) & " OR " &
+                                                   searchSO(txtSearch.Text) & " OR " &
+                                                   searchINV(txtSearch.Text)
+                    Exit Select
+                End If
+
+                DsShipmentsBindingSource.Filter = "STT_No = '" & txtSearch.Text & "' OR " &
                                                     "Archive_No = '" & txtSearch.Text & "' OR " &
                                                     "HBL_No = '" & txtSearch.Text & "' OR " &
                                                     "MBL_No = '" & txtSearch.Text & "' OR " &
                                                     "POL_No = '" & txtSearch.Text & "' OR " &
                                                     searchPO(txtSearch.Text) & " OR " &
-                                                    searchSO(txtSearch.Text) & " OR " &
                                                     searchINV(txtSearch.Text)
         End Select
+
+
+
 
         'Später einmal je Status
         If DsShipmentsBindingSource.Count = 1 Then
@@ -908,6 +945,25 @@ Public Class frmMaininterface
     End Sub
 
     Private Sub btnAddSO_Click(sender As Object, e As EventArgs) Handles btnAddSO.Click
+        'Prüfen ob SO leer ist
+        If txtSoNo.Text = "" Then
+            txtSoNo.BackColor = Color.LightGoldenrodYellow
+            Exit Sub
+        End If
+
+        'Prüfen ob SO bereits in der Sendung ist
+        For Each row As DataGridViewRow In DsShipment_SODataGridView.Rows
+            If txtSoNo.Text = row.Cells(0).Value.ToString Then
+                txtSoNo.BackColor = Color.LightGoldenrodYellow
+                Exit Sub
+            End If
+        Next
+
+
+
+
+
+
         'Prüfen ob PO bereits in der Sendung ist
         'For Each row As DataGridViewRow In Me.dvPoNo.Rows
         '    If txtPoNo.Text = row.Cells(1).Value.ToString Then
@@ -972,6 +1028,7 @@ Public Class frmMaininterface
                 If DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).IsBuyer_MailNull <> True Then row.Cells(5).Value = DsDemag_HUB.poOrder.FindByPurchase_Order(row.Cells(0).Value.ToString).Buyer_Mail
             End If
         Next
+        txtPOCount.Text = DsShipment_OrderDataGridView.Rows.Count.ToString
     End Sub
 
     Private Sub ServiceTextBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ServiceTextBox.SelectedIndexChanged
@@ -1031,20 +1088,9 @@ Public Class frmMaininterface
         TEUTextBox.Text = Convert.ToString((cont40DC + cont40HQ) * 2 + cont20DC)
     End Sub
 
-    Private Sub WeightTextBox_TextChanged(sender As Object, e As EventArgs) Handles WeightTextBox.TextChanged
-        If WeightTextBox.Text = "" Then Exit Sub
-        Select Case Convert.ToDouble(WeightTextBox.Text)
-            Case > 27000
-                WeightTextBox.BackColor = Color.Crimson
-            Case > 18000
-                WeightTextBox.BackColor = Color.Gold
-            Case < 18000
-                WeightTextBox.BackColor = Color.White
-            Case Else
-        End Select
-    End Sub
 
-    Private Sub SQE_Click(sender As Object, e As EventArgs) Handles SQE.Click
+
+    Private Sub SQE_Click(sender As Object, e As EventArgs) Handles btnSQE.Click
         Dim Subject As String
         Dim Body As String
         Dim File As String = ""
@@ -1139,16 +1185,22 @@ Public Class frmMaininterface
             Next
         End If
 
+
+        'Mailadressen auslesen
+        Dim arrMail As New List(Of String) 'Doppelte prüfen
         If DsShipment_OrderDataGridView.Rows.Count <> 0 Then
             For Each Row As DataGridViewRow In Me.DsShipment_OrderDataGridView.Rows
-                If IsNothing(Row.Cells(5).Value) Then
-
-                Else
-                    toMail = toMail & ";" & Row.Cells(5).Value.ToString
+                If IsNothing(Row.Cells(5).Value) = False Then
+                    If arrMail.Contains(Row.Cells(5).Value.ToString.Replace("demagcranes.com", "konecranes.com")) = False Then arrMail.Add(Row.Cells(5).Value.ToString.Replace("demagcranes.com", "konecranes.com"))
                 End If
-
             Next
         End If
+
+        For Each strgMail As String In arrMail
+            toMail += strgMail & ";"
+        Next
+
+
 
         Body = "Dear Sir or Madam,<br>above mentioned shipment is planned as follow.<br>" &
                 "<br>ETD " & POLTextBox.Text & ": " & dtnETD.Text &
@@ -1271,8 +1323,6 @@ Public Class frmMaininterface
                 Return ""
         End Select
     End Function
-
-
 
     Private Sub btnPDF_Click(sender As Object, e As EventArgs) Handles btnPDF.Click
         Dim curRow As dsDemag_HUB.dsShipmentsRow
@@ -1675,6 +1725,26 @@ Public Class frmMaininterface
 
 
 
+            If rowActual.IsIncotermNull Then Exit Sub
+            Select Case rowActual.Incoterm
+                Case "FOB"
+                    If ConsigneeTextBox.Text = "" And PrincipalTextBox.Text <> "" Then ConsigneeTextBox.Text = PrincipalTextBox.Text
+                    If PrincipalTextBox.Text = "" And ConsigneeTextBox.Text <> "" Then PrincipalTextBox.Text = ConsigneeTextBox.Text
+                    'If rowActual.IsConsigneeNull And rowActual.IsPrincipalNull = False Then rowActual.Consignee = rowActual.Principal
+                    'If rowActual.IsPrincipalNull And rowActual.IsConsigneeNull = False Then rowActual.Principal = rowActual.Consignee
+                Case "EXW"
+                    If ConsigneeTextBox.Text = "" And PrincipalTextBox.Text <> "" Then ConsigneeTextBox.Text = PrincipalTextBox.Text
+                    If PrincipalTextBox.Text = "" And ConsigneeTextBox.Text <> "" Then PrincipalTextBox.Text = ConsigneeTextBox.Text
+                    'If rowActual.IsConsigneeNull And rowActual.IsPrincipalNull = False Then rowActual.Consignee = rowActual.Principal
+                    'If rowActual.IsPrincipalNull And rowActual.IsConsigneeNull = False Then rowActual.Principal = rowActual.Consignee
+                Case "CFR"
+                    If ShipperTextBox.Text = "" And PrincipalTextBox.Text <> "" Then ShipperTextBox.Text = PrincipalTextBox.Text
+                    If PrincipalTextBox.Text = "" And ShipperTextBox.Text <> "" Then PrincipalTextBox.Text = ShipperTextBox.Text
+                    'If rowActual.IsConsigneeNull And rowActual.IsShipperNull = False Then rowActual.Consignee = rowActual.Shipper
+                    'If rowActual.IsShipperNull And rowActual.IsConsigneeNull = False Then rowActual.Shipper = rowActual.Consignee
+            End Select
+
+
         End If
 
 
@@ -1682,6 +1752,53 @@ Public Class frmMaininterface
 
 
     End Sub
+
+
+    Private Sub SQECheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles SQECheckBox.CheckedChanged
+        If SQECheckBox.Checked = True Then
+            SQECheckBox.ForeColor = Color.DarkSeaGreen
+            btnSchedule.Enabled = True
+            btnSQE.Enabled = False
+        Else
+            SQECheckBox.ForeColor = Color.Firebrick
+            btnSchedule.Enabled = False
+            btnSQE.Enabled = True
+        End If
+    End Sub
+
+    Private Sub tabBooking_Enter(sender As Object, e As EventArgs) Handles tabBooking.Enter
+        If SQECheckBox.Checked = True Then
+            SQECheckBox.ForeColor = Color.DarkSeaGreen
+            btnSchedule.Enabled = True
+            btnSQE.Enabled = False
+        Else
+            SQECheckBox.ForeColor = Color.Firebrick
+            btnSchedule.Enabled = False
+            btnSQE.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim strClipboard As String = ""
+        For Each Row As DataGridViewRow In DsShipment_SODataGridView.Rows
+            strClipboard += Row.Cells(0).Value.ToString & ";"
+        Next
+        My.Computer.Clipboard.SetText(strClipboard)
+        If strClipboard.Length > 100 Then MsgBox("Warning: ICM will not handle all...")
+
+
+    End Sub
+
+    Private Sub cpyICM_Click(sender As Object, e As EventArgs) Handles cpyICM.Click
+        Dim strClipboard As String = ""
+        For Each Row As DataGridViewRow In DsShipment_SODataGridView.Rows
+            strClipboard += Row.Cells(0).Value.ToString & ";"
+        Next
+        My.Computer.Clipboard.SetText(strClipboard)
+        If strClipboard.Length > 100 Then MsgBox("Warning: ICM will not handle all...")
+    End Sub
+
+
 
     'Private Sub BindingSource_BindingComplete(sender As Object, e As BindingCompleteEventArgs) Handles DsShipmentsBindingSource.BindingComplete
     '    If e.Binding.Control.Name = "IncotermTextBox" Then

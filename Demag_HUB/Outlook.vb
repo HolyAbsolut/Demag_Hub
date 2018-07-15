@@ -3,6 +3,7 @@
 
 Option Strict Off ' Leider notwendig
 Imports Outlook = Microsoft.Office.Interop.Outlook
+
 Module SendMailOutlook
 
 
@@ -72,29 +73,17 @@ Module SendMailOutlook
         Dim oApp As Outlook._Application
         oApp = New Outlook.Application()
 
-        'Dim SigString As String
-        'Dim Signature As String
-        ''Change only Mysig.htm to the name of your signature
-        ''SigString = Environ("appdata") &
-        ''        "\Microsoft\Signatures\Mysig.htm"
-        'SigString = Environ("appdata") &
-        '        "C:\Users\HolyAbsolut\Desktop\Signatures\Englisch.htm"
-        ''C:\Users\HolyAbsolut\Desktop\Signatures\Englisch.htm
-        'MsgBox("Ok")
-        'If Dir(SigString) <> "" Then
-        '    MsgBox("Ok")
-        '    Signature = GetBoiler(SigString)
-        '    MsgBox(Signature)
-        'Else
-        '    Signature = ""
-        'End If
+        Dim Signature As String = String.Empty
 
+        Dim sr As New IO.StreamReader(My.Settings.sttSignature)
+        Signature = sr.ReadToEnd()
 
         ' Create a new MailItem.
         Dim oMsg As Outlook._MailItem
         oMsg = oApp.CreateItem(Outlook.OlItemType.olMailItem)
         oMsg.Subject = Subject
-        oMsg.HTMLBody = Body '& "<br>" & Signature
+        oMsg.HTMLBody = Body & "<br>" & Signature 'Signature
+
 
 
         ' TODO: Replace with a valid e-mail address.

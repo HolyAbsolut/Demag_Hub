@@ -51,6 +51,7 @@ Partial Class frmMaininterface
         Dim PartnerNameLabel As System.Windows.Forms.Label
         Dim Label3 As System.Windows.Forms.Label
         Dim Label4 As System.Windows.Forms.Label
+        Dim Label5 As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMaininterface))
         Me.subTabShipments = New System.Windows.Forms.TabControl()
         Me.tabOverview = New System.Windows.Forms.TabPage()
@@ -95,6 +96,7 @@ Partial Class frmMaininterface
         Me.txtSearch = New Demag_HUB.Watermark()
         Me.cmbField = New System.Windows.Forms.ComboBox()
         Me.tabBooking = New System.Windows.Forms.TabPage()
+        Me.txtPOCount = New System.Windows.Forms.TextBox()
         Me.CarrierTextBox = New System.Windows.Forms.ComboBox()
         Me.bsCarrier = New System.Windows.Forms.BindingSource(Me.components)
         Me.ConsigneeTextBox = New System.Windows.Forms.ComboBox()
@@ -104,6 +106,8 @@ Partial Class frmMaininterface
         Me.SQECheckBox = New System.Windows.Forms.CheckBox()
         Me.DsShipment_SODataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn82 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmsSO = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.cpyICM = New System.Windows.Forms.ToolStripMenuItem()
         Me.DsShipment_SOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.btnDeleteSO = New System.Windows.Forms.Button()
         Me.btnAddSO = New System.Windows.Forms.Button()
@@ -205,7 +209,7 @@ Partial Class frmMaininterface
         Me.btnReloadDB = New System.Windows.Forms.Button()
         Me.btnMailSubject = New System.Windows.Forms.Button()
         Me.btnSchedule = New System.Windows.Forms.Button()
-        Me.SQE = New System.Windows.Forms.Button()
+        Me.btnSQE = New System.Windows.Forms.Button()
         Me.ProgressBar = New System.Windows.Forms.ProgressBar()
         Me.Label_Result = New System.Windows.Forms.Label()
         Me.btnCancel = New System.Windows.Forms.Button()
@@ -254,6 +258,7 @@ Partial Class frmMaininterface
         Me.PtShipmentsTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.ptShipmentsTableAdapter()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DsRoleTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsRoleTableAdapter()
+        Me.txtSignature = New Demag_HUB.Watermark()
         DtnETALabel = New System.Windows.Forms.Label()
         DtnETDLabel = New System.Windows.Forms.Label()
         DtnCRDLabel = New System.Windows.Forms.Label()
@@ -282,6 +287,7 @@ Partial Class frmMaininterface
         PartnerNameLabel = New System.Windows.Forms.Label()
         Label3 = New System.Windows.Forms.Label()
         Label4 = New System.Windows.Forms.Label()
+        Label5 = New System.Windows.Forms.Label()
         Me.subTabShipments.SuspendLayout()
         Me.tabOverview.SuspendLayout()
         CType(Me.DsShipmentsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -292,6 +298,7 @@ Partial Class frmMaininterface
         CType(Me.bsConsignee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bsShipper, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipment_SODataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.cmsSO.SuspendLayout()
         CType(Me.DsShipment_SOBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipment_OrderDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsShipment_OrderBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -581,6 +588,15 @@ Partial Class frmMaininterface
         Label4.Size = New System.Drawing.Size(47, 13)
         Label4.TabIndex = 97
         Label4.Text = "Add SO:"
+        '
+        'Label5
+        '
+        Label5.AutoSize = True
+        Label5.Location = New System.Drawing.Point(708, 242)
+        Label5.Name = "Label5"
+        Label5.Size = New System.Drawing.Size(25, 13)
+        Label5.TabIndex = 103
+        Label5.Text = "PO:"
         '
         'subTabShipments
         '
@@ -909,6 +925,8 @@ Partial Class frmMaininterface
         'tabBooking
         '
         Me.tabBooking.AutoScroll = True
+        Me.tabBooking.Controls.Add(Label5)
+        Me.tabBooking.Controls.Add(Me.txtPOCount)
         Me.tabBooking.Controls.Add(Me.CarrierTextBox)
         Me.tabBooking.Controls.Add(Me.ConsigneeTextBox)
         Me.tabBooking.Controls.Add(Me.ShipperTextBox)
@@ -979,6 +997,15 @@ Partial Class frmMaininterface
         Me.tabBooking.TabIndex = 1
         Me.tabBooking.Text = "Booking"
         Me.tabBooking.UseVisualStyleBackColor = True
+        '
+        'txtPOCount
+        '
+        Me.txtPOCount.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "TEU", True))
+        Me.txtPOCount.Enabled = False
+        Me.txtPOCount.Location = New System.Drawing.Point(711, 258)
+        Me.txtPOCount.Name = "txtPOCount"
+        Me.txtPOCount.Size = New System.Drawing.Size(50, 20)
+        Me.txtPOCount.TabIndex = 102
         '
         'CarrierTextBox
         '
@@ -1055,6 +1082,7 @@ Partial Class frmMaininterface
         Me.DsShipment_SODataGridView.BackgroundColor = System.Drawing.SystemColors.Window
         Me.DsShipment_SODataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DsShipment_SODataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn82})
+        Me.DsShipment_SODataGridView.ContextMenuStrip = Me.cmsSO
         Me.DsShipment_SODataGridView.DataSource = Me.DsShipment_SOBindingSource
         Me.DsShipment_SODataGridView.Location = New System.Drawing.Point(668, 52)
         Me.DsShipment_SODataGridView.Name = "DsShipment_SODataGridView"
@@ -1068,6 +1096,19 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn82.DataPropertyName = "Shipping_Order"
         Me.DataGridViewTextBoxColumn82.HeaderText = "Shipping_Order"
         Me.DataGridViewTextBoxColumn82.Name = "DataGridViewTextBoxColumn82"
+        '
+        'cmsSO
+        '
+        Me.cmsSO.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cpyICM})
+        Me.cmsSO.Name = "cmsSO"
+        Me.cmsSO.ShowImageMargin = False
+        Me.cmsSO.Size = New System.Drawing.Size(103, 26)
+        '
+        'cpyICM
+        '
+        Me.cpyICM.Name = "cpyICM"
+        Me.cpyICM.Size = New System.Drawing.Size(102, 22)
+        Me.cpyICM.Text = "Copy ICM"
         '
         'DsShipment_SOBindingSource
         '
@@ -1781,6 +1822,7 @@ Partial Class frmMaininterface
         '
         'tabSettings
         '
+        Me.tabSettings.Controls.Add(Me.txtSignature)
         Me.tabSettings.Controls.Add(Me.Label1)
         Me.tabSettings.Controls.Add(Me.chkOpenPDF)
         Me.tabSettings.Controls.Add(Me.chkPrintPDF)
@@ -1917,7 +1959,7 @@ Partial Class frmMaininterface
         Me.tabShipments.Controls.Add(Me.btnReloadDB)
         Me.tabShipments.Controls.Add(Me.btnMailSubject)
         Me.tabShipments.Controls.Add(Me.btnSchedule)
-        Me.tabShipments.Controls.Add(Me.SQE)
+        Me.tabShipments.Controls.Add(Me.btnSQE)
         Me.tabShipments.Controls.Add(Me.ProgressBar)
         Me.tabShipments.Controls.Add(Me.Label_Result)
         Me.tabShipments.Controls.Add(Me.Label2)
@@ -1962,7 +2004,7 @@ Partial Class frmMaininterface
         Me.btnPDF.Size = New System.Drawing.Size(134, 40)
         Me.btnPDF.TabIndex = 86
         Me.btnPDF.TabStop = False
-        Me.btnPDF.Text = "PDF"
+        Me.btnPDF.Text = "Job Dossier"
         Me.btnPDF.UseVisualStyleBackColor = True
         '
         'btnReloadDB
@@ -1998,16 +2040,16 @@ Partial Class frmMaininterface
         Me.btnSchedule.Text = "Sent schedule"
         Me.btnSchedule.UseVisualStyleBackColor = True
         '
-        'SQE
+        'btnSQE
         '
-        Me.SQE.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SQE.Location = New System.Drawing.Point(5, 144)
-        Me.SQE.Name = "SQE"
-        Me.SQE.Size = New System.Drawing.Size(134, 40)
-        Me.SQE.TabIndex = 82
-        Me.SQE.TabStop = False
-        Me.SQE.Text = "SQE"
-        Me.SQE.UseVisualStyleBackColor = True
+        Me.btnSQE.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSQE.Location = New System.Drawing.Point(5, 144)
+        Me.btnSQE.Name = "btnSQE"
+        Me.btnSQE.Size = New System.Drawing.Size(134, 40)
+        Me.btnSQE.TabIndex = 82
+        Me.btnSQE.TabStop = False
+        Me.btnSQE.Text = "SQE"
+        Me.btnSQE.UseVisualStyleBackColor = True
         '
         'ProgressBar
         '
@@ -2362,6 +2404,15 @@ Partial Class frmMaininterface
         '
         Me.DsRoleTableAdapter.ClearBeforeFill = True
         '
+        'txtSignature
+        '
+        Me.txtSignature.Location = New System.Drawing.Point(7, 141)
+        Me.txtSignature.Name = "txtSignature"
+        Me.txtSignature.Size = New System.Drawing.Size(375, 20)
+        Me.txtSignature.TabIndex = 8
+        Me.txtSignature.WatermarkColor = System.Drawing.Color.Gray
+        Me.txtSignature.WatermarkText = "Signatur"
+        '
         'frmMaininterface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2385,6 +2436,7 @@ Partial Class frmMaininterface
         CType(Me.bsConsignee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bsShipper, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsShipment_SODataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.cmsSO.ResumeLayout(False)
         CType(Me.DsShipment_SOBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsShipment_OrderDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DsShipment_OrderBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2565,7 +2617,7 @@ Partial Class frmMaininterface
     Friend WithEvents InvoiceNoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents LinkDataGridViewTextBoxColumn As DataGridViewLinkColumn
     Friend WithEvents CreatedDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents SQE As Button
+    Friend WithEvents btnSQE As Button
     Friend WithEvents DsInvoiceDataGridView1 As DataGridView
     Friend WithEvents DataGridViewTextBoxColumn20 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn21 As DataGridViewTextBoxColumn
@@ -2629,4 +2681,8 @@ Partial Class frmMaininterface
     Friend WithEvents DataGridViewTextBoxColumn19 As DataGridViewTextBoxColumn
     Friend WithEvents ComboBox3 As ComboBox
     Friend WithEvents Button3 As Button
+    Friend WithEvents txtPOCount As TextBox
+    Friend WithEvents cmsSO As ContextMenuStrip
+    Friend WithEvents cpyICM As ToolStripMenuItem
+    Friend WithEvents txtSignature As Watermark
 End Class

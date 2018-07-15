@@ -100,6 +100,18 @@ Namespace My
                 Me("sttPrintPDF") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property sttSignature() As String
+            Get
+                Return CType(Me("sttSignature"),String)
+            End Get
+            Set
+                Me("sttSignature") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
