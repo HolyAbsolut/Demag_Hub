@@ -32,8 +32,7 @@ Public Class frmMaininterface
 
 
     Private Sub frmMaininterface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsRole". Sie können sie bei Bedarf verschieben oder entfernen.
-        Me.DsRoleTableAdapter.Fill(Me.DsDemag_HUB.dsRole)
+
         txtDB.Text = My.Settings.sttDBPath
         chkOpenPDF.Checked = My.Settings.sttOpenPDF
         chkPrintPDF.Checked = My.Settings.sttPrintPDF
@@ -73,7 +72,7 @@ Public Class frmMaininterface
         IncotermTableAdapter.Connection = CON
         DsShipmentsTableAdapter.Connection = CON
         PtShipmentsTableAdapter.Connection = CON
-
+        DsRoleTableAdapter.Connection = CON
 
 
         'TODO:   Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsShipments". Sie können sie bei Bedarf verschieben oder entfernen.
@@ -102,6 +101,8 @@ Public Class frmMaininterface
         Me.IncotermTableAdapter.Fill(Me.DsDemag_HUB.Incoterm)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.ptShipments". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.PtShipmentsTableAdapter.Fill(Me.DsDemag_HUB.ptShipments)
+        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsRole". Sie können sie bei Bedarf verschieben oder entfernen.
+        Me.DsRoleTableAdapter.Fill(Me.DsDemag_HUB.dsRole)
 
 
         'MsgBox(DsShipmentsTableAdapter.Connection.ConnectionString.ToString)
@@ -415,7 +416,7 @@ Public Class frmMaininterface
 
         txtPoNo.Clear()
         txtPoNo.Focus()
-
+        'sqeCheck(Convert.ToInt32(Shipment_IDTextBox.Text))
 
     End Sub
 
@@ -1673,7 +1674,7 @@ Public Class frmMaininterface
             If poRow.IsSQE_CheckNull Then sqeStatus = False
             txtPO += poRow.Purchase_Order & " "
         Next
-
+        If DsDemag_HUB.dsShipment_Order.DefaultView.Count = 0 Then sqeStatus = False
 
         If sqeStatus = True Then
             ShipRow.SQE = True
@@ -1752,8 +1753,6 @@ Public Class frmMaininterface
                     rowActual.Carrier = 4
             End Select
 
-
-
             If rowActual.IsIncotermNull Then Exit Sub
             Select Case rowActual.Incoterm
                 Case "FOB"
@@ -1773,7 +1772,6 @@ Public Class frmMaininterface
                     'If rowActual.IsShipperNull And rowActual.IsConsigneeNull = False Then rowActual.Shipper = rowActual.Consignee
             End Select
 
-
         End If
 
 
@@ -1781,6 +1779,7 @@ Public Class frmMaininterface
 
 
     End Sub
+
 
 
     Private Sub SQECheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles SQECheckBox.CheckedChanged
@@ -1807,16 +1806,6 @@ Public Class frmMaininterface
         End If
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Dim strClipboard As String = ""
-        For Each Row As DataGridViewRow In DsShipment_SODataGridView.Rows
-            strClipboard += Row.Cells(0).Value.ToString & ";"
-        Next
-        My.Computer.Clipboard.SetText(strClipboard)
-        If strClipboard.Length > 100 Then MsgBox("Warning: ICM will not handle all...")
-
-
-    End Sub
 
     Private Sub cpyICM_Click(sender As Object, e As EventArgs) Handles cpyICM.Click
         Dim strClipboard As String = ""
@@ -1827,7 +1816,32 @@ Public Class frmMaininterface
         If strClipboard.Length > 100 Then MsgBox("Warning: ICM will not handle all...")
     End Sub
 
+    Private Sub Incoterm_LocTextBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Incoterm_LocTextBox.SelectedIndexChanged
 
+    End Sub
+
+    Private Sub Incoterm_LocTextBox_Leave(ctlButton As Object, e As EventArgs) Handles Incoterm_LocTextBox.Leave, POLTextBox.Leave, PODTextBox.Leave
+        Dim rowActual As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
+        Dim sender As Control = CType(ctlButton, Control)
+
+        If sender.Text = "" Then
+            Select Case sender.Name
+                Case "Incoterm_LocTextBox"
+                    rowActual.Incoterm_Loc = "ZZZZZ"
+                Case "POLTextBox"
+                    rowActual.POL = "ZZZZZ"
+                Case "PODTextBox"
+                    rowActual.POD = "ZZZZZ"
+
+            End Select
+
+        End If
+
+
+
+
+
+    End Sub
 
 
     'Private Sub BindingSource_BindingComplete(sender As Object, e As BindingCompleteEventArgs) Handles DsShipmentsBindingSource.BindingComplete

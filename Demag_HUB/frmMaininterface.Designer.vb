@@ -203,7 +203,6 @@ Partial Class frmMaininterface
         Me.cmbFilter = New System.Windows.Forms.ComboBox()
         Me.TabControl3 = New System.Windows.Forms.TabControl()
         Me.tabShipments = New System.Windows.Forms.TabPage()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.btnPDF = New System.Windows.Forms.Button()
         Me.btnReloadDB = New System.Windows.Forms.Button()
@@ -1000,7 +999,7 @@ Partial Class frmMaininterface
         Me.txtPOCount.Location = New System.Drawing.Point(711, 258)
         Me.txtPOCount.Name = "txtPOCount"
         Me.txtPOCount.Size = New System.Drawing.Size(50, 20)
-        Me.txtPOCount.TabIndex = 102
+        Me.txtPOCount.TabIndex = 28
         '
         'CarrierTextBox
         '
@@ -1014,6 +1013,7 @@ Partial Class frmMaininterface
         Me.CarrierTextBox.Name = "CarrierTextBox"
         Me.CarrierTextBox.Size = New System.Drawing.Size(257, 21)
         Me.CarrierTextBox.TabIndex = 16
+        Me.CarrierTextBox.TabStop = False
         Me.CarrierTextBox.ValueMember = "Partner_ID"
         '
         'bsCarrier
@@ -1032,7 +1032,7 @@ Partial Class frmMaininterface
         Me.ConsigneeTextBox.Location = New System.Drawing.Point(381, 74)
         Me.ConsigneeTextBox.Name = "ConsigneeTextBox"
         Me.ConsigneeTextBox.Size = New System.Drawing.Size(281, 21)
-        Me.ConsigneeTextBox.TabIndex = 5
+        Me.ConsigneeTextBox.TabIndex = 15
         Me.ConsigneeTextBox.ValueMember = "Partner_ID"
         '
         'bsConsignee
@@ -1051,7 +1051,7 @@ Partial Class frmMaininterface
         Me.ShipperTextBox.Location = New System.Drawing.Point(381, 47)
         Me.ShipperTextBox.Name = "ShipperTextBox"
         Me.ShipperTextBox.Size = New System.Drawing.Size(281, 21)
-        Me.ShipperTextBox.TabIndex = 4
+        Me.ShipperTextBox.TabIndex = 14
         Me.ShipperTextBox.ValueMember = "Partner_ID"
         '
         'bsShipper
@@ -1137,7 +1137,7 @@ Partial Class frmMaininterface
         Me.txtSoNo.Location = New System.Drawing.Point(721, 24)
         Me.txtSoNo.Name = "txtSoNo"
         Me.txtSoNo.Size = New System.Drawing.Size(100, 20)
-        Me.txtSoNo.TabIndex = 26
+        Me.txtSoNo.TabIndex = 29
         '
         'DsShipment_OrderDataGridView
         '
@@ -1221,7 +1221,7 @@ Partial Class frmMaininterface
         Me.txtPoNo.Location = New System.Drawing.Point(109, 258)
         Me.txtPoNo.Name = "txtPoNo"
         Me.txtPoNo.Size = New System.Drawing.Size(100, 20)
-        Me.txtPoNo.TabIndex = 18
+        Me.txtPoNo.TabIndex = 20
         '
         'btnaddDocument
         '
@@ -1338,7 +1338,7 @@ Partial Class frmMaininterface
         Me.dtnETA.Location = New System.Drawing.Point(462, 184)
         Me.dtnETA.Name = "dtnETA"
         Me.dtnETA.Size = New System.Drawing.Size(100, 20)
-        Me.dtnETA.TabIndex = 15
+        Me.dtnETA.TabIndex = 19
         '
         'dtnETD
         '
@@ -1346,7 +1346,7 @@ Partial Class frmMaininterface
         Me.dtnETD.Location = New System.Drawing.Point(462, 154)
         Me.dtnETD.Name = "dtnETD"
         Me.dtnETD.Size = New System.Drawing.Size(100, 20)
-        Me.dtnETD.TabIndex = 14
+        Me.dtnETD.TabIndex = 18
         '
         'dtnCRD
         '
@@ -1354,7 +1354,7 @@ Partial Class frmMaininterface
         Me.dtnCRD.Location = New System.Drawing.Point(462, 128)
         Me.dtnCRD.Name = "dtnCRD"
         Me.dtnCRD.Size = New System.Drawing.Size(100, 20)
-        Me.dtnCRD.TabIndex = 13
+        Me.dtnCRD.TabIndex = 17
         '
         'FullIncoterm_LocTextBox
         '
@@ -1475,7 +1475,7 @@ Partial Class frmMaininterface
         Me.PrincipalTextBox.Location = New System.Drawing.Point(381, 20)
         Me.PrincipalTextBox.Name = "PrincipalTextBox"
         Me.PrincipalTextBox.Size = New System.Drawing.Size(281, 21)
-        Me.PrincipalTextBox.TabIndex = 3
+        Me.PrincipalTextBox.TabIndex = 13
         Me.PrincipalTextBox.ValueMember = "Partner_ID"
         '
         'bsPrincipal
@@ -1512,7 +1512,7 @@ Partial Class frmMaininterface
         Me.ServiceTextBox.Location = New System.Drawing.Point(304, 258)
         Me.ServiceTextBox.Name = "ServiceTextBox"
         Me.ServiceTextBox.Size = New System.Drawing.Size(65, 21)
-        Me.ServiceTextBox.TabIndex = 19
+        Me.ServiceTextBox.TabIndex = 21
         '
         'Shipment_IDTextBox
         '
@@ -1548,7 +1548,7 @@ Partial Class frmMaininterface
         Me.VesselTextBox.Location = New System.Drawing.Point(462, 98)
         Me.VesselTextBox.Name = "VesselTextBox"
         Me.VesselTextBox.Size = New System.Drawing.Size(200, 20)
-        Me.VesselTextBox.TabIndex = 14
+        Me.VesselTextBox.TabIndex = 16
         Me.VesselTextBox.TabStop = False
         '
         'Contract_NoTextBox
@@ -1559,6 +1559,7 @@ Partial Class frmMaininterface
         Me.Contract_NoTextBox.Name = "Contract_NoTextBox"
         Me.Contract_NoTextBox.Size = New System.Drawing.Size(200, 20)
         Me.Contract_NoTextBox.TabIndex = 17
+        Me.Contract_NoTextBox.TabStop = False
         '
         'VolumeTextBox
         '
@@ -1566,7 +1567,7 @@ Partial Class frmMaininterface
         Me.VolumeTextBox.Location = New System.Drawing.Point(429, 258)
         Me.VolumeTextBox.Name = "VolumeTextBox"
         Me.VolumeTextBox.Size = New System.Drawing.Size(50, 20)
-        Me.VolumeTextBox.TabIndex = 21
+        Me.VolumeTextBox.TabIndex = 23
         '
         'WeightTextBox
         '
@@ -1574,7 +1575,7 @@ Partial Class frmMaininterface
         Me.WeightTextBox.Location = New System.Drawing.Point(374, 258)
         Me.WeightTextBox.Name = "WeightTextBox"
         Me.WeightTextBox.Size = New System.Drawing.Size(50, 20)
-        Me.WeightTextBox.TabIndex = 20
+        Me.WeightTextBox.TabIndex = 22
         '
         'TEUTextBox
         '
@@ -1583,7 +1584,7 @@ Partial Class frmMaininterface
         Me.TEUTextBox.Location = New System.Drawing.Point(655, 258)
         Me.TEUTextBox.Name = "TEUTextBox"
         Me.TEUTextBox.Size = New System.Drawing.Size(50, 20)
-        Me.TEUTextBox.TabIndex = 25
+        Me.TEUTextBox.TabIndex = 27
         '
         'Cont20DCTextBox
         '
@@ -1591,7 +1592,7 @@ Partial Class frmMaininterface
         Me.Cont20DCTextBox.Location = New System.Drawing.Point(487, 258)
         Me.Cont20DCTextBox.Name = "Cont20DCTextBox"
         Me.Cont20DCTextBox.Size = New System.Drawing.Size(50, 20)
-        Me.Cont20DCTextBox.TabIndex = 22
+        Me.Cont20DCTextBox.TabIndex = 24
         '
         'Cont40DCTextBox
         '
@@ -1599,7 +1600,7 @@ Partial Class frmMaininterface
         Me.Cont40DCTextBox.Location = New System.Drawing.Point(543, 258)
         Me.Cont40DCTextBox.Name = "Cont40DCTextBox"
         Me.Cont40DCTextBox.Size = New System.Drawing.Size(50, 20)
-        Me.Cont40DCTextBox.TabIndex = 23
+        Me.Cont40DCTextBox.TabIndex = 25
         '
         'Cont40HQTextBox
         '
@@ -1607,7 +1608,7 @@ Partial Class frmMaininterface
         Me.Cont40HQTextBox.Location = New System.Drawing.Point(599, 258)
         Me.Cont40HQTextBox.Name = "Cont40HQTextBox"
         Me.Cont40HQTextBox.Size = New System.Drawing.Size(50, 20)
-        Me.Cont40HQTextBox.TabIndex = 24
+        Me.Cont40HQTextBox.TabIndex = 26
         '
         'tabShipping
         '
@@ -1944,7 +1945,6 @@ Partial Class frmMaininterface
         '
         'tabShipments
         '
-        Me.tabShipments.Controls.Add(Me.Button3)
         Me.tabShipments.Controls.Add(Me.Button2)
         Me.tabShipments.Controls.Add(Me.btnPDF)
         Me.tabShipments.Controls.Add(Me.btnReloadDB)
@@ -1966,15 +1966,6 @@ Partial Class frmMaininterface
         Me.tabShipments.TabIndex = 0
         Me.tabShipments.Text = "Shipments"
         Me.tabShipments.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(23, 391)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 88
-        Me.Button3.Text = "Button3"
-        Me.Button3.UseVisualStyleBackColor = True
         '
         'Button2
         '
@@ -2639,7 +2630,6 @@ Partial Class frmMaininterface
     Friend WithEvents DataGridViewTextBoxColumn18 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn19 As DataGridViewTextBoxColumn
     Friend WithEvents ComboBox3 As ComboBox
-    Friend WithEvents Button3 As Button
     Friend WithEvents txtPOCount As TextBox
     Friend WithEvents cmsSO As ContextMenuStrip
     Friend WithEvents cpyICM As ToolStripMenuItem
