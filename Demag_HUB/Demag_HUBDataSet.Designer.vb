@@ -3097,6 +3097,8 @@ Partial Public Class dsDemag_HUB
         
         Private columndtnDrop_Off_Terminal As Global.System.Data.DataColumn
         
+        Private columnQuantity As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -3253,6 +3255,14 @@ Partial Public Class dsDemag_HUB
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property QuantityColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnQuantity
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -3289,9 +3299,25 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AdddsContainerRow(ByVal parentdsShipmentsRowBydsShipmentsdsContainer As dsShipmentsRow, ByVal Container_No As String, ByVal Created As Date, ByVal Container_Size As String, ByVal Mode_of_Transport As String, ByVal TOPS_ID As String, ByVal Weight As Double, ByVal Volume As Double, ByVal dtnPick_Up As Date, ByVal dtnEDD As Date, ByVal dtnRDD As Date, ByVal dtnADD As Date, ByVal dtnDelivered As Date, ByVal Drop_Off_Terminal As Integer, ByVal dtnDrop_Off_Terminal As Date) As dsContainerRow
+        Public Overloads Function AdddsContainerRow( _
+                    ByVal parentdsShipmentsRowBydsShipmentsdsContainer As dsShipmentsRow,  _
+                    ByVal Container_No As String,  _
+                    ByVal Created As Date,  _
+                    ByVal Container_Size As String,  _
+                    ByVal Mode_of_Transport As String,  _
+                    ByVal TOPS_ID As String,  _
+                    ByVal Weight As Double,  _
+                    ByVal Volume As Double,  _
+                    ByVal dtnPick_Up As Date,  _
+                    ByVal dtnEDD As Date,  _
+                    ByVal dtnRDD As Date,  _
+                    ByVal dtnADD As Date,  _
+                    ByVal dtnDelivered As Date,  _
+                    ByVal Drop_Off_Terminal As Integer,  _
+                    ByVal dtnDrop_Off_Terminal As Date,  _
+                    ByVal Quantity As Double) As dsContainerRow
             Dim rowdsContainerRow As dsContainerRow = CType(Me.NewRow,dsContainerRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Container_No, Created, Container_Size, Mode_of_Transport, TOPS_ID, Weight, Volume, dtnPick_Up, dtnEDD, dtnRDD, dtnADD, dtnDelivered, Drop_Off_Terminal, dtnDrop_Off_Terminal}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Container_No, Created, Container_Size, Mode_of_Transport, TOPS_ID, Weight, Volume, dtnPick_Up, dtnEDD, dtnRDD, dtnADD, dtnDelivered, Drop_Off_Terminal, dtnDrop_Off_Terminal, Quantity}
             If (Not (parentdsShipmentsRowBydsShipmentsdsContainer) Is Nothing) Then
                 columnValuesArray(0) = parentdsShipmentsRowBydsShipmentsdsContainer(0)
             End If
@@ -3338,6 +3364,7 @@ Partial Public Class dsDemag_HUB
             Me.columndtnDelivered = MyBase.Columns("dtnDelivered")
             Me.columnDrop_Off_Terminal = MyBase.Columns("Drop_Off_Terminal")
             Me.columndtnDrop_Off_Terminal = MyBase.Columns("dtnDrop_Off_Terminal")
+            Me.columnQuantity = MyBase.Columns("Quantity")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3373,6 +3400,8 @@ Partial Public Class dsDemag_HUB
             MyBase.Columns.Add(Me.columnDrop_Off_Terminal)
             Me.columndtnDrop_Off_Terminal = New Global.System.Data.DataColumn("dtnDrop_Off_Terminal", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndtnDrop_Off_Terminal)
+            Me.columnQuantity = New Global.System.Data.DataColumn("Quantity", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnQuantity)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnShipment_ID, Me.columnContainer_No}, true))
             Me.columnShipment_ID.AllowDBNull = false
             Me.columnContainer_No.AllowDBNull = false
@@ -4158,6 +4187,8 @@ Partial Public Class dsDemag_HUB
         
         Private columnWKV As Global.System.Data.DataColumn
         
+        Private columnTrackingLink As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -4250,6 +4281,14 @@ Partial Public Class dsDemag_HUB
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TrackingLinkColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTrackingLink
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -4286,9 +4325,9 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AdddsPartnerRow(ByVal Created As Date, ByVal Tango_ID As String, ByVal ICM_ID As String, ByVal PartnerName As String, ByVal EORI As String, ByVal WKV As Boolean) As dsPartnerRow
+        Public Overloads Function AdddsPartnerRow(ByVal Created As Date, ByVal Tango_ID As String, ByVal ICM_ID As String, ByVal PartnerName As String, ByVal EORI As String, ByVal WKV As Boolean, ByVal TrackingLink As String) As dsPartnerRow
             Dim rowdsPartnerRow As dsPartnerRow = CType(Me.NewRow,dsPartnerRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Created, Tango_ID, ICM_ID, PartnerName, EORI, WKV}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Created, Tango_ID, ICM_ID, PartnerName, EORI, WKV, TrackingLink}
             rowdsPartnerRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdsPartnerRow)
             Return rowdsPartnerRow
@@ -4324,6 +4363,7 @@ Partial Public Class dsDemag_HUB
             Me.columnPartnerName = MyBase.Columns("PartnerName")
             Me.columnEORI = MyBase.Columns("EORI")
             Me.columnWKV = MyBase.Columns("WKV")
+            Me.columnTrackingLink = MyBase.Columns("TrackingLink")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4343,6 +4383,8 @@ Partial Public Class dsDemag_HUB
             MyBase.Columns.Add(Me.columnEORI)
             Me.columnWKV = New Global.System.Data.DataColumn("WKV", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnWKV)
+            Me.columnTrackingLink = New Global.System.Data.DataColumn("TrackingLink", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTrackingLink)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnPartner_ID}, true))
             Me.columnPartner_ID.AutoIncrement = true
             Me.columnPartner_ID.AutoIncrementSeed = -1
@@ -4353,6 +4395,7 @@ Partial Public Class dsDemag_HUB
             Me.columnICM_ID.MaxLength = 25
             Me.columnPartnerName.MaxLength = 255
             Me.columnEORI.MaxLength = 255
+            Me.columnTrackingLink.MaxLength = 536870910
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12961,6 +13004,21 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Quantity() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tabledsContainer.QuantityColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Quantity in Tabelle dsContainer ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledsContainer.QuantityColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property dsShipmentsRow() As dsShipmentsRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("dsShipmentsdsContainer")),dsShipmentsRow)
@@ -13124,6 +13182,18 @@ Partial Public Class dsDemag_HUB
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetdtnDrop_Off_TerminalNull()
             Me(Me.tabledsContainer.dtnDrop_Off_TerminalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsQuantityNull() As Boolean
+            Return Me.IsNull(Me.tabledsContainer.QuantityColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetQuantityNull()
+            Me(Me.tabledsContainer.QuantityColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -13520,6 +13590,21 @@ Partial Public Class dsDemag_HUB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TrackingLink() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledsPartner.TrackingLinkColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte TrackingLink in Tabelle dsPartner ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledsPartner.TrackingLinkColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsCreatedNull() As Boolean
             Return Me.IsNull(Me.tabledsPartner.CreatedColumn)
         End Function
@@ -13588,6 +13673,18 @@ Partial Public Class dsDemag_HUB
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetWKVNull()
             Me(Me.tabledsPartner.WKVColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTrackingLinkNull() As Boolean
+            Return Me.IsNull(Me.tabledsPartner.TrackingLinkColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTrackingLinkNull()
+            Me(Me.tabledsPartner.TrackingLinkColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -22905,6 +23002,7 @@ Namespace dsDemag_HUBTableAdapters
             tableMapping.ColumnMappings.Add("dtnDelivered", "dtnDelivered")
             tableMapping.ColumnMappings.Add("Drop_Off_Terminal", "Drop_Off_Terminal")
             tableMapping.ColumnMappings.Add("dtnDrop_Off_Terminal", "dtnDrop_Off_Terminal")
+            tableMapping.ColumnMappings.Add("Quantity", "Quantity")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -22918,7 +23016,8 @@ Namespace dsDemag_HUBTableAdapters
                 " 1 AND `dtnRDD` IS NULL) OR (`dtnRDD` = ?)) AND ((? = 1 AND `dtnADD` IS NULL) OR"& _ 
                 " (`dtnADD` = ?)) AND ((? = 1 AND `dtnDelivered` IS NULL) OR (`dtnDelivered` = ?)"& _ 
                 ") AND ((? = 1 AND `Drop_Off_Terminal` IS NULL) OR (`Drop_Off_Terminal` = ?)) AND"& _ 
-                " ((? = 1 AND `dtnDrop_Off_Terminal` IS NULL) OR (`dtnDrop_Off_Terminal` = ?)))"
+                " ((? = 1 AND `dtnDrop_Off_Terminal` IS NULL) OR (`dtnDrop_Off_Terminal` = ?)) AN"& _ 
+                "D ((? = 1 AND `Quantity` IS NULL) OR (`Quantity` = ?)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipment_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipment_ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Container_No", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Container_No", Global.System.Data.DataRowVersion.Original, false, Nothing))
@@ -22948,12 +23047,14 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Drop_Off_Terminal", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Drop_Off_Terminal", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_dtnDrop_Off_Terminal", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dtnDrop_Off_Terminal", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_dtnDrop_Off_Terminal", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dtnDrop_Off_Terminal", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Quantity", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Quantity", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Quantity", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Quantity", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO `dsContainer` (`Shipment_ID`, `Container_No`, `Created`, `Container_S"& _ 
                 "ize`, `Mode_of_Transport`, `TOPS_ID`, `Weight`, `Volume`, `dtnPick_Up`, `dtnEDD`"& _ 
                 ", `dtnRDD`, `dtnADD`, `dtnDelivered`, `Drop_Off_Terminal`, `dtnDrop_Off_Terminal"& _ 
-                "`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                "`, `Quantity`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipment_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipment_ID", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Container_No", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Container_No", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -22970,23 +23071,25 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("dtnDelivered", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dtnDelivered", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Drop_Off_Terminal", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Drop_Off_Terminal", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("dtnDrop_Off_Terminal", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dtnDrop_Off_Terminal", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Quantity", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Quantity", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE `dsContainer` SET `Shipment_ID` = ?, `Container_No` = ?, `Created` = ?, `C"& _ 
                 "ontainer_Size` = ?, `Mode_of_Transport` = ?, `TOPS_ID` = ?, `Weight` = ?, `Volum"& _ 
                 "e` = ?, `dtnPick_Up` = ?, `dtnEDD` = ?, `dtnRDD` = ?, `dtnADD` = ?, `dtnDelivere"& _ 
-                "d` = ?, `Drop_Off_Terminal` = ?, `dtnDrop_Off_Terminal` = ? WHERE ((`Shipment_ID"& _ 
-                "` = ?) AND (`Container_No` = ?) AND ((? = 1 AND `Created` IS NULL) OR (`Created`"& _ 
-                " = ?)) AND ((? = 1 AND `Container_Size` IS NULL) OR (`Container_Size` = ?)) AND "& _ 
-                "((? = 1 AND `Mode_of_Transport` IS NULL) OR (`Mode_of_Transport` = ?)) AND ((? ="& _ 
-                " 1 AND `TOPS_ID` IS NULL) OR (`TOPS_ID` = ?)) AND ((? = 1 AND `Weight` IS NULL) "& _ 
-                "OR (`Weight` = ?)) AND ((? = 1 AND `Volume` IS NULL) OR (`Volume` = ?)) AND ((? "& _ 
-                "= 1 AND `dtnPick_Up` IS NULL) OR (`dtnPick_Up` = ?)) AND ((? = 1 AND `dtnEDD` IS"& _ 
-                " NULL) OR (`dtnEDD` = ?)) AND ((? = 1 AND `dtnRDD` IS NULL) OR (`dtnRDD` = ?)) A"& _ 
-                "ND ((? = 1 AND `dtnADD` IS NULL) OR (`dtnADD` = ?)) AND ((? = 1 AND `dtnDelivere"& _ 
-                "d` IS NULL) OR (`dtnDelivered` = ?)) AND ((? = 1 AND `Drop_Off_Terminal` IS NULL"& _ 
-                ") OR (`Drop_Off_Terminal` = ?)) AND ((? = 1 AND `dtnDrop_Off_Terminal` IS NULL) "& _ 
-                "OR (`dtnDrop_Off_Terminal` = ?)))"
+                "d` = ?, `Drop_Off_Terminal` = ?, `dtnDrop_Off_Terminal` = ?, `Quantity` = ? WHER"& _ 
+                "E ((`Shipment_ID` = ?) AND (`Container_No` = ?) AND ((? = 1 AND `Created` IS NUL"& _ 
+                "L) OR (`Created` = ?)) AND ((? = 1 AND `Container_Size` IS NULL) OR (`Container_"& _ 
+                "Size` = ?)) AND ((? = 1 AND `Mode_of_Transport` IS NULL) OR (`Mode_of_Transport`"& _ 
+                " = ?)) AND ((? = 1 AND `TOPS_ID` IS NULL) OR (`TOPS_ID` = ?)) AND ((? = 1 AND `W"& _ 
+                "eight` IS NULL) OR (`Weight` = ?)) AND ((? = 1 AND `Volume` IS NULL) OR (`Volume"& _ 
+                "` = ?)) AND ((? = 1 AND `dtnPick_Up` IS NULL) OR (`dtnPick_Up` = ?)) AND ((? = 1"& _ 
+                " AND `dtnEDD` IS NULL) OR (`dtnEDD` = ?)) AND ((? = 1 AND `dtnRDD` IS NULL) OR ("& _ 
+                "`dtnRDD` = ?)) AND ((? = 1 AND `dtnADD` IS NULL) OR (`dtnADD` = ?)) AND ((? = 1 "& _ 
+                "AND `dtnDelivered` IS NULL) OR (`dtnDelivered` = ?)) AND ((? = 1 AND `Drop_Off_T"& _ 
+                "erminal` IS NULL) OR (`Drop_Off_Terminal` = ?)) AND ((? = 1 AND `dtnDrop_Off_Ter"& _ 
+                "minal` IS NULL) OR (`dtnDrop_Off_Terminal` = ?)) AND ((? = 1 AND `Quantity` IS N"& _ 
+                "ULL) OR (`Quantity` = ?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Shipment_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipment_ID", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Container_No", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Container_No", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -23003,6 +23106,7 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("dtnDelivered", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dtnDelivered", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Drop_Off_Terminal", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Drop_Off_Terminal", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("dtnDrop_Off_Terminal", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dtnDrop_Off_Terminal", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Quantity", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Quantity", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Shipment_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Shipment_ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Container_No", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Container_No", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Created", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, true, Nothing))
@@ -23031,6 +23135,8 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Drop_Off_Terminal", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Drop_Off_Terminal", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_dtnDrop_Off_Terminal", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dtnDrop_Off_Terminal", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_dtnDrop_Off_Terminal", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "dtnDrop_Off_Terminal", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Quantity", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Quantity", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Quantity", Global.System.Data.OleDb.OleDbType.[Double], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Quantity", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -23048,7 +23154,7 @@ Namespace dsDemag_HUBTableAdapters
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT Shipment_ID, Container_No, Created, Container_Size, Mode_of_Transport, TOP"& _ 
                 "S_ID, Weight, Volume, dtnPick_Up, dtnEDD, dtnRDD, dtnADD, dtnDelivered, Drop_Off"& _ 
-                "_Terminal, dtnDrop_Off_Terminal FROM dsContainer"
+                "_Terminal, dtnDrop_Off_Terminal, Quantity FROM dsContainer"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -23108,7 +23214,23 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_Shipment_ID As Integer, ByVal Original_Container_No As String, ByVal Original_Created As Global.System.Nullable(Of Date), ByVal Original_Container_Size As String, ByVal Original_Mode_of_Transport As String, ByVal Original_TOPS_ID As String, ByVal Original_Weight As Global.System.Nullable(Of Double), ByVal Original_Volume As Global.System.Nullable(Of Double), ByVal Original_dtnPick_Up As Global.System.Nullable(Of Date), ByVal Original_dtnEDD As Global.System.Nullable(Of Date), ByVal Original_dtnRDD As Global.System.Nullable(Of Date), ByVal Original_dtnADD As Global.System.Nullable(Of Date), ByVal Original_dtnDelivered As Global.System.Nullable(Of Date), ByVal Original_Drop_Off_Terminal As Global.System.Nullable(Of Integer), ByVal Original_dtnDrop_Off_Terminal As Global.System.Nullable(Of Date)) As Integer
+        Public Overloads Overridable Function Delete( _
+                    ByVal Original_Shipment_ID As Integer,  _
+                    ByVal Original_Container_No As String,  _
+                    ByVal Original_Created As Global.System.Nullable(Of Date),  _
+                    ByVal Original_Container_Size As String,  _
+                    ByVal Original_Mode_of_Transport As String,  _
+                    ByVal Original_TOPS_ID As String,  _
+                    ByVal Original_Weight As Global.System.Nullable(Of Double),  _
+                    ByVal Original_Volume As Global.System.Nullable(Of Double),  _
+                    ByVal Original_dtnPick_Up As Global.System.Nullable(Of Date),  _
+                    ByVal Original_dtnEDD As Global.System.Nullable(Of Date),  _
+                    ByVal Original_dtnRDD As Global.System.Nullable(Of Date),  _
+                    ByVal Original_dtnADD As Global.System.Nullable(Of Date),  _
+                    ByVal Original_dtnDelivered As Global.System.Nullable(Of Date),  _
+                    ByVal Original_Drop_Off_Terminal As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_dtnDrop_Off_Terminal As Global.System.Nullable(Of Date),  _
+                    ByVal Original_Quantity As Global.System.Nullable(Of Double)) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_Shipment_ID,Integer)
             If (Original_Container_No Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Container_No")
@@ -23205,6 +23327,13 @@ Namespace dsDemag_HUBTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(26).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(27).Value = Global.System.DBNull.Value
             End If
+            If (Original_Quantity.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(Original_Quantity.Value,Double)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(29).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -23224,7 +23353,23 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Shipment_ID As Integer, ByVal Container_No As String, ByVal Created As Global.System.Nullable(Of Date), ByVal Container_Size As String, ByVal Mode_of_Transport As String, ByVal TOPS_ID As String, ByVal Weight As Global.System.Nullable(Of Double), ByVal Volume As Global.System.Nullable(Of Double), ByVal dtnPick_Up As Global.System.Nullable(Of Date), ByVal dtnEDD As Global.System.Nullable(Of Date), ByVal dtnRDD As Global.System.Nullable(Of Date), ByVal dtnADD As Global.System.Nullable(Of Date), ByVal dtnDelivered As Global.System.Nullable(Of Date), ByVal Drop_Off_Terminal As Global.System.Nullable(Of Integer), ByVal dtnDrop_Off_Terminal As Global.System.Nullable(Of Date)) As Integer
+        Public Overloads Overridable Function Insert( _
+                    ByVal Shipment_ID As Integer,  _
+                    ByVal Container_No As String,  _
+                    ByVal Created As Global.System.Nullable(Of Date),  _
+                    ByVal Container_Size As String,  _
+                    ByVal Mode_of_Transport As String,  _
+                    ByVal TOPS_ID As String,  _
+                    ByVal Weight As Global.System.Nullable(Of Double),  _
+                    ByVal Volume As Global.System.Nullable(Of Double),  _
+                    ByVal dtnPick_Up As Global.System.Nullable(Of Date),  _
+                    ByVal dtnEDD As Global.System.Nullable(Of Date),  _
+                    ByVal dtnRDD As Global.System.Nullable(Of Date),  _
+                    ByVal dtnADD As Global.System.Nullable(Of Date),  _
+                    ByVal dtnDelivered As Global.System.Nullable(Of Date),  _
+                    ByVal Drop_Off_Terminal As Global.System.Nullable(Of Integer),  _
+                    ByVal dtnDrop_Off_Terminal As Global.System.Nullable(Of Date),  _
+                    ByVal Quantity As Global.System.Nullable(Of Double)) As Integer
             Me.Adapter.InsertCommand.Parameters(0).Value = CType(Shipment_ID,Integer)
             If (Container_No Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Container_No")
@@ -23296,6 +23441,11 @@ Namespace dsDemag_HUBTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
             End If
+            If (Quantity.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(15).Value = CType(Quantity.Value,Double)
+            Else
+                Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -23331,6 +23481,7 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal dtnDelivered As Global.System.Nullable(Of Date),  _
                     ByVal Drop_Off_Terminal As Global.System.Nullable(Of Integer),  _
                     ByVal dtnDrop_Off_Terminal As Global.System.Nullable(Of Date),  _
+                    ByVal Quantity As Global.System.Nullable(Of Double),  _
                     ByVal Original_Shipment_ID As Integer,  _
                     ByVal Original_Container_No As String,  _
                     ByVal Original_Created As Global.System.Nullable(Of Date),  _
@@ -23345,7 +23496,8 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal Original_dtnADD As Global.System.Nullable(Of Date),  _
                     ByVal Original_dtnDelivered As Global.System.Nullable(Of Date),  _
                     ByVal Original_Drop_Off_Terminal As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_dtnDrop_Off_Terminal As Global.System.Nullable(Of Date)) As Integer
+                    ByVal Original_dtnDrop_Off_Terminal As Global.System.Nullable(Of Date),  _
+                    ByVal Original_Quantity As Global.System.Nullable(Of Double)) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Shipment_ID,Integer)
             If (Container_No Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Container_No")
@@ -23417,101 +23569,113 @@ Namespace dsDemag_HUBTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_Shipment_ID,Integer)
+            If (Quantity.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Quantity.Value,Double)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Shipment_ID,Integer)
             If (Original_Container_No Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Container_No")
             Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Container_No,String)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_Container_No,String)
             End If
             If (Original_Created.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_Created.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_Created.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             End If
             If (Original_Container_Size Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Container_Size")
             Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_Container_Size,String)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_Container_Size,String)
             End If
             If (Original_Mode_of_Transport Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_Mode_of_Transport,String)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_Mode_of_Transport,String)
             End If
             If (Original_TOPS_ID Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_TOPS_ID,String)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_TOPS_ID,String)
             End If
             If (Original_Weight.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_Weight.Value,Double)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_Weight.Value,Double)
             Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
             End If
             If (Original_Volume.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_Volume.Value,Double)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Original_Volume.Value,Double)
             Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
             End If
             If (Original_dtnPick_Up.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_dtnPick_Up.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_dtnPick_Up.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
             End If
             If (Original_dtnEDD.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_dtnEDD.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_dtnEDD.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
             End If
             If (Original_dtnRDD.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_dtnRDD.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_dtnRDD.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(34).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
             End If
             If (Original_dtnADD.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_dtnADD.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_dtnADD.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(36).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(37).Value = Global.System.DBNull.Value
             End If
             If (Original_dtnDelivered.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(Original_dtnDelivered.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(Original_dtnDelivered.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(38).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(39).Value = Global.System.DBNull.Value
             End If
             If (Original_Drop_Off_Terminal.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(Original_Drop_Off_Terminal.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(Original_Drop_Off_Terminal.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(40).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(41).Value = Global.System.DBNull.Value
             End If
             If (Original_dtnDrop_Off_Terminal.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(Original_dtnDrop_Off_Terminal.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(Original_dtnDrop_Off_Terminal.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(42).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(43).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Quantity.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(Original_Quantity.Value,Double)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(45).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -23546,6 +23710,7 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal dtnDelivered As Global.System.Nullable(Of Date),  _
                     ByVal Drop_Off_Terminal As Global.System.Nullable(Of Integer),  _
                     ByVal dtnDrop_Off_Terminal As Global.System.Nullable(Of Date),  _
+                    ByVal Quantity As Global.System.Nullable(Of Double),  _
                     ByVal Original_Shipment_ID As Integer,  _
                     ByVal Original_Container_No As String,  _
                     ByVal Original_Created As Global.System.Nullable(Of Date),  _
@@ -23560,8 +23725,9 @@ Namespace dsDemag_HUBTableAdapters
                     ByVal Original_dtnADD As Global.System.Nullable(Of Date),  _
                     ByVal Original_dtnDelivered As Global.System.Nullable(Of Date),  _
                     ByVal Original_Drop_Off_Terminal As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_dtnDrop_Off_Terminal As Global.System.Nullable(Of Date)) As Integer
-            Return Me.Update(Original_Shipment_ID, Original_Container_No, Created, Container_Size, Mode_of_Transport, TOPS_ID, Weight, Volume, dtnPick_Up, dtnEDD, dtnRDD, dtnADD, dtnDelivered, Drop_Off_Terminal, dtnDrop_Off_Terminal, Original_Shipment_ID, Original_Container_No, Original_Created, Original_Container_Size, Original_Mode_of_Transport, Original_TOPS_ID, Original_Weight, Original_Volume, Original_dtnPick_Up, Original_dtnEDD, Original_dtnRDD, Original_dtnADD, Original_dtnDelivered, Original_Drop_Off_Terminal, Original_dtnDrop_Off_Terminal)
+                    ByVal Original_dtnDrop_Off_Terminal As Global.System.Nullable(Of Date),  _
+                    ByVal Original_Quantity As Global.System.Nullable(Of Double)) As Integer
+            Return Me.Update(Original_Shipment_ID, Original_Container_No, Created, Container_Size, Mode_of_Transport, TOPS_ID, Weight, Volume, dtnPick_Up, dtnEDD, dtnRDD, dtnADD, dtnDelivered, Drop_Off_Terminal, dtnDrop_Off_Terminal, Quantity, Original_Shipment_ID, Original_Container_No, Original_Created, Original_Container_Size, Original_Mode_of_Transport, Original_TOPS_ID, Original_Weight, Original_Volume, Original_dtnPick_Up, Original_dtnEDD, Original_dtnRDD, Original_dtnADD, Original_dtnDelivered, Original_Drop_Off_Terminal, Original_dtnDrop_Off_Terminal, Original_Quantity)
         End Function
     End Class
     
@@ -24475,6 +24641,7 @@ Namespace dsDemag_HUBTableAdapters
             tableMapping.ColumnMappings.Add("PartnerName", "PartnerName")
             tableMapping.ColumnMappings.Add("EORI", "EORI")
             tableMapping.ColumnMappings.Add("WKV", "WKV")
+            tableMapping.ColumnMappings.Add("TrackingLink", "TrackingLink")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -24500,7 +24667,7 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO `dsPartner` (`Created`, `Tango_ID`, `ICM_ID`, `PartnerName`, `EORI`, "& _ 
-                "`WKV`) VALUES (?, ?, ?, ?, ?, ?)"
+                "`WKV`, `TrackingLink`) VALUES (?, ?, ?, ?, ?, ?, ?)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Tango_ID", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tango_ID", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -24508,14 +24675,15 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PartnerName", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PartnerName", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("EORI", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "EORI", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("WKV", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "WKV", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("TrackingLink", Global.System.Data.OleDb.OleDbType.LongVarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "TrackingLink", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE `dsPartner` SET `Created` = ?, `Tango_ID` = ?, `ICM_ID` = ?, `PartnerName`"& _ 
-                " = ?, `EORI` = ?, `WKV` = ? WHERE ((`Partner_ID` = ?) AND ((? = 1 AND `Created` "& _ 
-                "IS NULL) OR (`Created` = ?)) AND ((? = 1 AND `Tango_ID` IS NULL) OR (`Tango_ID` "& _ 
-                "= ?)) AND ((? = 1 AND `ICM_ID` IS NULL) OR (`ICM_ID` = ?)) AND ((? = 1 AND `Part"& _ 
-                "nerName` IS NULL) OR (`PartnerName` = ?)) AND ((? = 1 AND `EORI` IS NULL) OR (`E"& _ 
-                "ORI` = ?)) AND ((? = 1 AND `WKV` IS NULL) OR (`WKV` = ?)))"
+                " = ?, `EORI` = ?, `WKV` = ?, `TrackingLink` = ? WHERE ((`Partner_ID` = ?) AND (("& _ 
+                "? = 1 AND `Created` IS NULL) OR (`Created` = ?)) AND ((? = 1 AND `Tango_ID` IS N"& _ 
+                "ULL) OR (`Tango_ID` = ?)) AND ((? = 1 AND `ICM_ID` IS NULL) OR (`ICM_ID` = ?)) A"& _ 
+                "ND ((? = 1 AND `PartnerName` IS NULL) OR (`PartnerName` = ?)) AND ((? = 1 AND `E"& _ 
+                "ORI` IS NULL) OR (`EORI` = ?)) AND ((? = 1 AND `WKV` IS NULL) OR (`WKV` = ?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Tango_ID", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Tango_ID", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -24523,6 +24691,7 @@ Namespace dsDemag_HUBTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PartnerName", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PartnerName", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("EORI", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "EORI", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("WKV", Global.System.Data.OleDb.OleDbType.[Boolean], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "WKV", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("TrackingLink", Global.System.Data.OleDb.OleDbType.LongVarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "TrackingLink", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Partner_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Partner_ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_Created", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_Created", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Created", Global.System.Data.DataRowVersion.Original, false, Nothing))
@@ -24551,8 +24720,8 @@ Namespace dsDemag_HUBTableAdapters
             Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT Partner_ID, Created, Tango_ID, ICM_ID, PartnerName, EORI, WKV FROM dsPartn"& _ 
-                "er"
+            Me._commandCollection(0).CommandText = "SELECT Partner_ID, Created, Tango_ID, ICM_ID, PartnerName, EORI, WKV, TrackingLin"& _ 
+                "k FROM dsPartner"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -24664,7 +24833,7 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Created As Date, ByVal Tango_ID As String, ByVal ICM_ID As String, ByVal PartnerName As String, ByVal EORI As String, ByVal WKV As Boolean) As Integer
+        Public Overloads Overridable Function Insert(ByVal Created As Date, ByVal Tango_ID As String, ByVal ICM_ID As String, ByVal PartnerName As String, ByVal EORI As String, ByVal WKV As Boolean, ByVal TrackingLink As String) As Integer
             Me.Adapter.InsertCommand.Parameters(0).Value = CType(Created,Date)
             If (Tango_ID Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
@@ -24687,6 +24856,11 @@ Namespace dsDemag_HUBTableAdapters
                 Me.Adapter.InsertCommand.Parameters(4).Value = CType(EORI,String)
             End If
             Me.Adapter.InsertCommand.Parameters(5).Value = CType(WKV,Boolean)
+            If (TrackingLink Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(TrackingLink,String)
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -24706,7 +24880,7 @@ Namespace dsDemag_HUBTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal Created As Date, ByVal Tango_ID As String, ByVal ICM_ID As String, ByVal PartnerName As String, ByVal EORI As String, ByVal WKV As Boolean, ByVal Original_Partner_ID As Integer, ByVal Original_Created As Date, ByVal Original_Tango_ID As String, ByVal Original_ICM_ID As String, ByVal Original_PartnerName As String, ByVal Original_EORI As String, ByVal Original_WKV As Boolean) As Integer
+        Public Overloads Overridable Function Update(ByVal Created As Date, ByVal Tango_ID As String, ByVal ICM_ID As String, ByVal PartnerName As String, ByVal EORI As String, ByVal WKV As Boolean, ByVal TrackingLink As String, ByVal Original_Partner_ID As Integer, ByVal Original_Created As Date, ByVal Original_Tango_ID As String, ByVal Original_ICM_ID As String, ByVal Original_PartnerName As String, ByVal Original_EORI As String, ByVal Original_WKV As Boolean) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Created,Date)
             If (Tango_ID Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
@@ -24729,38 +24903,43 @@ Namespace dsDemag_HUBTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(4).Value = CType(EORI,String)
             End If
             Me.Adapter.UpdateCommand.Parameters(5).Value = CType(WKV,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_Partner_ID,Integer)
-            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_Created,Date)
-            If (Original_Tango_ID Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            If (TrackingLink Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_Tango_ID,String)
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(TrackingLink,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_Partner_ID,Integer)
+            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_Created,Date)
+            If (Original_Tango_ID Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_Tango_ID,String)
             End If
             If (Original_ICM_ID Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_ICM_ID,String)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_ICM_ID,String)
             End If
             If (Original_PartnerName Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_PartnerName")
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_PartnerName,String)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_PartnerName,String)
             End If
             If (Original_EORI Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_EORI,String)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_EORI,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_WKV,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
+            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_WKV,Boolean)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then

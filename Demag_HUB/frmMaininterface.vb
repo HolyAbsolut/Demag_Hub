@@ -1,4 +1,4 @@
-﻿Option Strict On
+﻿'Option Strict On
 
 Imports System.Text
 Imports System.IO
@@ -32,6 +32,7 @@ Public Class frmMaininterface
 
 
     Private Sub frmMaininterface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
 
         txtDB.Text = My.Settings.sttDBPath
         chkOpenPDF.Checked = My.Settings.sttOpenPDF
@@ -73,6 +74,7 @@ Public Class frmMaininterface
         DsShipmentsTableAdapter.Connection = CON
         PtShipmentsTableAdapter.Connection = CON
         DsRoleTableAdapter.Connection = CON
+        DsContainerTableAdapter.Connection = CON
 
 
         'TODO:   Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsShipments". Sie können sie bei Bedarf verschieben oder entfernen.
@@ -103,18 +105,43 @@ Public Class frmMaininterface
         Me.PtShipmentsTableAdapter.Fill(Me.DsDemag_HUB.ptShipments)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsRole". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.DsRoleTableAdapter.Fill(Me.DsDemag_HUB.dsRole)
-
+        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsContainer". Sie können sie bei Bedarf verschieben oder entfernen.
+        Me.DsContainerTableAdapter.Fill(Me.DsDemag_HUB.dsContainer)
 
         'MsgBox(DsShipmentsTableAdapter.Connection.ConnectionString.ToString)
     End Sub
 
+    Sub selectTab()
+        'PeopleBindingSource.Current("Name")
+
+        'Dim rowActual As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
+
+        Dim rowActual As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(DirectCast(DsShipmentsBindingSource.Current, DataRowView).Item(0).ToString()))
+
+        If rowActual.IsdtnETDNull Then
+            Me.subTabShipments.SelectedTab = tabBooking
+            Exit Sub
+        End If
+        If rowActual.IsdtnETANull Then
+            Me.subTabShipments.SelectedTab = tabBooking
+            Exit Sub
+        End If
+
+
+
+        If rowActual.dtnETD < Date.Now Then
+            Me.subTabShipments.SelectedTab = tabShipping
+            Exit Sub
+        End If
+
+    End Sub
 
     Private Sub btnNewPartner_Click(sender As Object, e As EventArgs) Handles btnNewPartner.Click
         DsPartnerBindingSource.AddNew()
         PartnerNameTextBox.Focus()
     End Sub
 
-    Private Sub OnlyNumeric(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles VolumeTextBox.KeyPress, WeightTextBox.KeyPress, Cont20DCTextBox.KeyPress, Cont40DCTextBox.KeyPress, Cont40HQTextBox.KeyPress, STT_NoTextBox.KeyPress, txtSoNo.KeyPress
+    Private Sub OnlyNumeric(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles VolumeTextBox.KeyPress, WeightTextBox.KeyPress, Cont20DCTextBox.KeyPress, Cont40DCTextBox.KeyPress, Cont40HQTextBox.KeyPress, STT_NoTextBox.KeyPress, txtSoNo.KeyPress, STT_NoTextBox1.KeyPress, WeightTextBox1.KeyPress, VolumeTextBox1.KeyPress, QuantityTextBox.KeyPress
         Select Case Asc(e.KeyChar)
             Case 48 To 57, 8, 44
                 ' Zahlen, Backspace und Komma zulassen
@@ -163,7 +190,7 @@ Public Class frmMaininterface
         End Try
     End Function
 
-    Private Sub dtnConvert(ctlButton As Object, e As EventArgs) Handles dtnCRD.Leave, dtnETD.Leave, dtnETA.Leave
+    Private Sub dtnConvert(ctlButton As Object, e As EventArgs) Handles dtnCRD.Leave, dtnETD.Leave, dtnETA.Leave, dtnATD.Leave, dtnETAShipping.Leave
         Dim sender As Control = CType(ctlButton, Control)
         If sender.Text = "" Then
             'DsDemag_HUB.dsShipments.Rows.Find(Shipment_IDTextBox.Text).Item(sender.Name) = System.DBNull.Value
@@ -191,6 +218,7 @@ Public Class frmMaininterface
         Me.PoOrderBindingSource.EndEdit()
         Me.PoShipping_OrderBindingSource.EndEdit()
         Me.DsRoleBindingSource.EndEdit()
+        Me.DsContainerBindingSource.EndEdit()
         'MsgBox("Arbeite")
 
 
@@ -206,6 +234,7 @@ Public Class frmMaininterface
         Me.DsCommentTableAdapter.Update(Me.DsDemag_HUB.dsComment)
         Me.PtShipmentsTableAdapter.Update(Me.DsDemag_HUB.ptShipments)
         Me.DsRoleTableAdapter.Update(Me.DsDemag_HUB.dsRole)
+        Me.DsContainerTableAdapter.Update(Me.DsDemag_HUB.dsContainer)
         'MsgBox("Fertig")
     End Sub
 
@@ -249,7 +278,7 @@ Public Class frmMaininterface
         'DsShipmentsBindingSource.Filter = String.Empty
     End Sub
     'Drag & Dropp https://www.codeproject.com/Articles/7140/Drag-and-Drop-Attached-File-From-Outlook-and-ab
-    Private Sub frmMaininterface_DragDrop(sender As Object, e As System.Windows.Forms.DragEventArgs) Handles btnaddDocument.DragDrop, DsDocumentDataGridView.DragDrop, DsDocumentDataGridView1.DragDrop
+    Private Sub frmMaininterface_DragDrop(sender As Object, e As System.Windows.Forms.DragEventArgs) Handles btnaddDocument.DragDrop, DsDocumentDataGridView.DragDrop, DsDocumentDataGridView1.DragDrop, btnAddBL.DragDrop
         Dim fileNames As String() = Nothing
 
         Try
@@ -325,7 +354,7 @@ Public Class frmMaininterface
 
     End Sub
 
-    Private Sub btnImport_DragEnter(sender As Object, e As DragEventArgs) Handles btnaddDocument.DragEnter, DsDocumentDataGridView.DragEnter, DsDocumentDataGridView1.DragEnter
+    Private Sub btnImport_DragEnter(sender As Object, e As DragEventArgs) Handles btnaddDocument.DragEnter, DsDocumentDataGridView.DragEnter, DsDocumentDataGridView1.DragEnter, btnAddBL.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Or e.Data.GetDataPresent("FileGroupDescriptor") Then
             e.Effect = DragDropEffects.Copy
         End If
@@ -334,6 +363,15 @@ Public Class frmMaininterface
     Sub docHandle(ByVal File As String)
         frmDocument.dirFile = File
         frmDocument.ShowDialog()
+        Dim rowActual As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
+        If frmDocument.docType = "HBL" Then
+            If rowActual.IsHBL_NoNull Then rowActual.HBL_No = frmDocument.docNo
+        End If
+
+        If frmDocument.docType = "BL" Then
+            If rowActual.IsMBL_NoNull Then rowActual.MBL_No = frmDocument.docNo
+        End If
+
 
         'Datenbank ergänzen
         Dim newDocRow As dsDemag_HUB.dsDocumentsRow
@@ -368,6 +406,13 @@ Public Class frmMaininterface
         Dim curRow As dsDemag_HUB.dsShipmentsRow
         curRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
         shpCancel(curRow.Cancelled)
+
+        'Püfen ob surrendered
+        If curRow.IsdtnSurenderedNull Then
+            chkSurrenderedShipping.Checked = False
+        Else
+            chkSurrenderedShipping.Checked = True
+        End If
 
     End Sub
 
@@ -495,7 +540,7 @@ Public Class frmMaininterface
 
         'Später einmal je Status
         If DsShipmentsBindingSource.Count = 1 Then
-            Me.subTabShipments.SelectedTab = tabBooking
+            selectTab()
         End If
     End Sub
 
@@ -546,7 +591,7 @@ Public Class frmMaininterface
 
 
     Private Sub DsShipmentsDataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DsShipmentsDataGridView.CellDoubleClick
-        Me.subTabShipments.SelectedTab = tabBooking
+        selectTab()
     End Sub
 
     Private Sub txtPoNo_Enter(sender As Object, e As EventArgs) Handles txtPoNo.Enter
@@ -1043,6 +1088,7 @@ Public Class frmMaininterface
                 Cont40HQTextBox.Enabled = True
                 CarrierTextBox.Enabled = True
                 Contract_NoTextBox.Enabled = True
+                Container_SizeTextBox.Enabled = True
             Case = "LCL"
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
@@ -1051,6 +1097,7 @@ Public Class frmMaininterface
                 Cont40HQTextBox.Enabled = False
                 CarrierTextBox.Enabled = False
                 Contract_NoTextBox.Enabled = False
+                Container_SizeTextBox.Enabled = False
             Case = "AIR"
                 VolumeTextBox.Enabled = True
                 WeightTextBox.Enabled = True
@@ -1306,7 +1353,7 @@ Public Class frmMaininterface
         Return encodedBitmap
     End Function
 
-    Function GetPartnerName(ByVal PartnerID As Integer, ByVal Field As String) As String
+    Function GetPartnerDetails(ByVal PartnerID As Integer, ByVal Field As String) As String
         Dim parRow As dsDemag_HUB.dsPartnerRow = DsDemag_HUB.dsPartner.FindByPartner_ID(PartnerID)
         Select Case Field
             Case "Created"
@@ -1320,7 +1367,9 @@ Public Class frmMaininterface
             Case "EORI"
                 Return parRow.EORI
             Case "WKV"
-                Return parRow.WKV.ToString
+                Return parRow.WKV
+            Case "TrackingLink"
+                Return parRow.TrackingLink
             Case Else
                 Return ""
         End Select
@@ -1426,12 +1475,12 @@ Public Class frmMaininterface
         If curRow.IsPrincipalNull Then
             PDFCover.dtClient = ""
         Else
-            PDFCover.dtClient = GetPartnerName(curRow.Principal, "PartnerName")
+            PDFCover.dtClient = GetPartnerDetails(curRow.Principal, "PartnerName")
         End If
         If curRow.IsCarrierNull Then
             PDFCover.dtCarrier = ""
         Else
-            PDFCover.dtCarrier = GetPartnerName(curRow.Carrier, "PartnerName")
+            PDFCover.dtCarrier = GetPartnerDetails(curRow.Carrier, "PartnerName")
         End If
 
 
@@ -1644,8 +1693,10 @@ Public Class frmMaininterface
         If chkState = True Then
             tabBooking.Enabled = False
             tabBooking.BackColor = Color.IndianRed
+            tabShipping.BackColor = Color.IndianRed
         Else
             tabBooking.Enabled = True
+            tabBooking.BackColor = Color.White
             tabBooking.BackColor = Color.White
         End If
     End Sub
@@ -1709,8 +1760,8 @@ Public Class frmMaininterface
             If ShipRow.IsPODNull = False Then Body += "<br>POD " & ShipRow.POD.ToString
             If ShipRow.IsIncotermNull = False And ShipRow.IsIncoterm_LocNull = False Then Body += "<br>Incoterm: " & ShipRow.Incoterm.ToString & " - " & ShipRow.Incoterm_Loc.ToString
             If ShipRow.IsShipperNull = False Then
-                Body += "<br>Shipper: <b>" & GetPartnerName(ShipRow.Shipper, "PartnerName") & "</b>"
-                Subject += " // " & GetPartnerName(ShipRow.Shipper, "PartnerName")
+                Body += "<br>Shipper: <b>" & GetPartnerDetails(ShipRow.Shipper, "PartnerName") & "</b>"
+                Subject += " // " & GetPartnerDetails(ShipRow.Shipper, "PartnerName")
             End If
             Subject += " // PO No.: " & txtPO
             Body += "<br><br>Please advise next available schedule or let us know if any additional Info is necessary"
@@ -1737,8 +1788,11 @@ Public Class frmMaininterface
     End Function
 
 
-    Private Sub PrincipalTextBox_Leave(ctlButton As Object, e As EventArgs) Handles PrincipalTextBox.Leave, ShipperTextBox.Leave, ConsigneeTextBox.Leave
-        Dim rowActual As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
+    Private Sub PrincipalTextBox_Leave(ctlButton As Object, e As EventArgs) Handles PrincipalTextBox.Leave, ShipperTextBox.Leave, ConsigneeTextBox.Leave, CarrierTextBox.Leave, TerminalTextBox.Leave
+        Dim rowActual As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(DirectCast(DsShipmentsBindingSource.Current, DataRowView).Item(0).ToString()))
+
+
+        'Dim rowActual As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
         Dim sender As Control = CType(ctlButton, Control)
 
         If sender.Text = "" Then
@@ -1751,6 +1805,10 @@ Public Class frmMaininterface
                     rowActual.Consignee = 4
                 Case "CarrierTextBox"
                     rowActual.Carrier = 4
+                Case "CarrierTextBox1"
+                    rowActual.Carrier = 4
+                Case "TerminalTextBox"
+                    rowActual.Terminal = 4
             End Select
 
             If rowActual.IsIncotermNull Then Exit Sub
@@ -1773,10 +1831,6 @@ Public Class frmMaininterface
             End Select
 
         End If
-
-
-
-
 
     End Sub
 
@@ -1816,9 +1870,6 @@ Public Class frmMaininterface
         If strClipboard.Length > 100 Then MsgBox("Warning: ICM will not handle all...")
     End Sub
 
-    Private Sub Incoterm_LocTextBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Incoterm_LocTextBox.SelectedIndexChanged
-
-    End Sub
 
     Private Sub Incoterm_LocTextBox_Leave(ctlButton As Object, e As EventArgs) Handles Incoterm_LocTextBox.Leave, POLTextBox.Leave, PODTextBox.Leave
         Dim rowActual As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
@@ -1842,6 +1893,69 @@ Public Class frmMaininterface
 
 
     End Sub
+
+    Private Sub chkSurrenderedShipping_CheckedChanged(sender As Object, e As EventArgs) Handles chkSurrenderedShipping.Click
+
+        Dim rowActual As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
+
+        If chkSurrenderedShipping.Checked = True And rowActual.IsdtnSurenderedNull Then
+            rowActual.dtnSurendered = Date.Now
+        End If
+
+        If chkSurrenderedShipping.Checked = False And rowActual.IsdtnSurenderedNull = False Then
+            'rowActual.dtnSurendered = Date.
+            DsDemag_HUB.dsShipments.Rows.Find(Shipment_IDTextBox.Text).Item("dtnSurendered") = System.DBNull.Value
+        End If
+
+    End Sub
+
+    Private Sub grpBL(sender As Object, e As EventArgs) Handles STT_NoTextBox1.TextChanged, HBL_NoTextBox.TextChanged, MBL_NoTextBox.TextChanged
+        If STT_NoTextBox1.Text <> "" And HBL_NoTextBox.Text <> "" And MBL_NoTextBox.Text <> "" Then
+            grpTrack.Enabled = True
+        Else
+            grpTrack.Enabled = False
+        End If
+
+    End Sub
+
+    Private Sub CarrierTextBox1_TextChanged(sender As Object, e As EventArgs)
+        If CarrierTextBox1.Text = "" Then
+            btnTrackShipping.Enabled = False
+        Else
+            btnTrackShipping.Enabled = True
+        End If
+    End Sub
+
+    Private Sub btnTrackShipping_Click(sender As Object, e As EventArgs) Handles btnTrackShipping.Click
+        Dim curRow As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
+        Process.Start(GetPartnerDetails(curRow.Carrier, "TrackingLink").Replace("%BLNO%", curRow.MBL_No))
+    End Sub
+
+    Private Sub grpTrack_TextChanged(sender As Object, e As EventArgs) Handles CarrierTextBox1.TextChanged, Contract_NoTextBox1.TextChanged, TerminalTextBox.TextChanged, VesselTextBox1.TextChanged, dtnATD.TextChanged, dtnETAShipping.TextChanged
+        If CarrierTextBox1.Text <> "" And Contract_NoTextBox1.Text <> "" And TerminalTextBox.Text <> "" And VesselTextBox1.Text <> "" And dtnATD.Text <> "" And dtnETAShipping.Text <> "" Then
+            grpContainer.Enabled = True
+        Else
+            grpContainer.Enabled = False
+        End If
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnAddContainer.Click
+        DsContainerBindingSource.AddNew()
+        If ServiceTextBox.Text = "LCL" Then Container_SizeTextBox.Text = "LCL"
+        Container_NoTextBox.Focus()
+        'Protokoll anlegen
+        'Dim newPtRow As dsDemag_HUB.dsContainerRow
+        'newPtRow = DsDemag_HUB.dsContainer.NewdsContainerRow
+        'newPtRow.Shipment_ID = 10 'Convert.ToInt32(Shipment_IDTextBox.Text)
+        'newPtRow.Container_No = "addTest"
+        'newPtRow.Created = Date.Now
+        'newPtRow.Container_Size = "LCL"
+        'DsDemag_HUB.dsContainer.Rows.Add(newPtRow)
+
+
+
+    End Sub
+
 
 
     'Private Sub BindingSource_BindingComplete(sender As Object, e As BindingCompleteEventArgs) Handles DsShipmentsBindingSource.BindingComplete

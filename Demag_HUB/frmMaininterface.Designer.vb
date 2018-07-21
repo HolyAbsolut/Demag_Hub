@@ -52,6 +52,21 @@ Partial Class frmMaininterface
         Dim Label3 As System.Windows.Forms.Label
         Dim Label4 As System.Windows.Forms.Label
         Dim Label5 As System.Windows.Forms.Label
+        Dim HBL_NoLabel As System.Windows.Forms.Label
+        Dim STT_NoLabel1 As System.Windows.Forms.Label
+        Dim VesselLabel1 As System.Windows.Forms.Label
+        Dim CarrierLabel1 As System.Windows.Forms.Label
+        Dim Contract_NoLabel1 As System.Windows.Forms.Label
+        Dim MBL_NoLabel As System.Windows.Forms.Label
+        Dim DtnATDLabel As System.Windows.Forms.Label
+        Dim DtnETALabel1 As System.Windows.Forms.Label
+        Dim TerminalLabel As System.Windows.Forms.Label
+        Dim Container_NoLabel As System.Windows.Forms.Label
+        Dim Container_SizeLabel As System.Windows.Forms.Label
+        Dim WeightLabel1 As System.Windows.Forms.Label
+        Dim VolumeLabel1 As System.Windows.Forms.Label
+        Dim QuantityLabel As System.Windows.Forms.Label
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMaininterface))
         Me.subTabShipments = New System.Windows.Forms.TabControl()
         Me.tabOverview = New System.Windows.Forms.TabPage()
@@ -165,6 +180,31 @@ Partial Class frmMaininterface
         Me.Cont40DCTextBox = New System.Windows.Forms.TextBox()
         Me.Cont40HQTextBox = New System.Windows.Forms.TextBox()
         Me.tabShipping = New System.Windows.Forms.TabPage()
+        Me.grpContainer = New System.Windows.Forms.GroupBox()
+        Me.QuantityTextBox = New System.Windows.Forms.TextBox()
+        Me.DsContainerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DsContainerDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnAddContainer = New System.Windows.Forms.Button()
+        Me.Container_NoTextBox = New System.Windows.Forms.TextBox()
+        Me.Container_SizeTextBox = New System.Windows.Forms.TextBox()
+        Me.WeightTextBox1 = New System.Windows.Forms.TextBox()
+        Me.VolumeTextBox1 = New System.Windows.Forms.TextBox()
+        Me.grpTrack = New System.Windows.Forms.GroupBox()
+        Me.dtnETAShipping = New System.Windows.Forms.TextBox()
+        Me.TerminalTextBox = New System.Windows.Forms.ComboBox()
+        Me.bsTerminal = New System.Windows.Forms.BindingSource(Me.components)
+        Me.dtnATD = New System.Windows.Forms.TextBox()
+        Me.CarrierTextBox1 = New System.Windows.Forms.ComboBox()
+        Me.btnTrackShipping = New System.Windows.Forms.Button()
+        Me.Contract_NoTextBox1 = New System.Windows.Forms.TextBox()
+        Me.VesselTextBox1 = New System.Windows.Forms.TextBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.STT_NoTextBox1 = New System.Windows.Forms.TextBox()
+        Me.HBL_NoTextBox = New System.Windows.Forms.TextBox()
+        Me.MBL_NoTextBox = New System.Windows.Forms.TextBox()
+        Me.btnAddBL = New System.Windows.Forms.Button()
+        Me.chkSurrenderedShipping = New System.Windows.Forms.CheckBox()
         Me.tabDispo = New System.Windows.Forms.TabPage()
         Me.tabDocuments = New System.Windows.Forms.TabPage()
         Me.DsDocumentDataGridView1 = New System.Windows.Forms.DataGridView()
@@ -181,6 +221,7 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn66 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn67 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PtShipmentsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.DsRoleBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsContactBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsPartnerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -254,6 +295,8 @@ Partial Class frmMaininterface
         Me.PtShipmentsTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.ptShipmentsTableAdapter()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DsRoleTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsRoleTableAdapter()
+        Me.DsContainerTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsContainerTableAdapter()
+        Me.DsCommentTableAdapter1 = New Demag_HUB.dsDemag_HUBTableAdapters.dsCommentTableAdapter()
         DtnETALabel = New System.Windows.Forms.Label()
         DtnETDLabel = New System.Windows.Forms.Label()
         DtnCRDLabel = New System.Windows.Forms.Label()
@@ -283,6 +326,20 @@ Partial Class frmMaininterface
         Label3 = New System.Windows.Forms.Label()
         Label4 = New System.Windows.Forms.Label()
         Label5 = New System.Windows.Forms.Label()
+        HBL_NoLabel = New System.Windows.Forms.Label()
+        STT_NoLabel1 = New System.Windows.Forms.Label()
+        VesselLabel1 = New System.Windows.Forms.Label()
+        CarrierLabel1 = New System.Windows.Forms.Label()
+        Contract_NoLabel1 = New System.Windows.Forms.Label()
+        MBL_NoLabel = New System.Windows.Forms.Label()
+        DtnATDLabel = New System.Windows.Forms.Label()
+        DtnETALabel1 = New System.Windows.Forms.Label()
+        TerminalLabel = New System.Windows.Forms.Label()
+        Container_NoLabel = New System.Windows.Forms.Label()
+        Container_SizeLabel = New System.Windows.Forms.Label()
+        WeightLabel1 = New System.Windows.Forms.Label()
+        VolumeLabel1 = New System.Windows.Forms.Label()
+        QuantityLabel = New System.Windows.Forms.Label()
         Me.subTabShipments.SuspendLayout()
         Me.tabOverview.SuspendLayout()
         CType(Me.DsShipmentsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -307,6 +364,13 @@ Partial Class frmMaininterface
         CType(Me.bsUNLOC_POL, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bsPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tabShipping.SuspendLayout()
+        Me.grpContainer.SuspendLayout()
+        CType(Me.DsContainerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DsContainerDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grpTrack.SuspendLayout()
+        CType(Me.bsTerminal, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.tabDocuments.SuspendLayout()
         CType(Me.DsDocumentDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabProtocol.SuspendLayout()
@@ -592,6 +656,132 @@ Partial Class frmMaininterface
         Label5.TabIndex = 103
         Label5.Text = "PO:"
         '
+        'HBL_NoLabel
+        '
+        HBL_NoLabel.AutoSize = True
+        HBL_NoLabel.Location = New System.Drawing.Point(218, 22)
+        HBL_NoLabel.Name = "HBL_NoLabel"
+        HBL_NoLabel.Size = New System.Drawing.Size(48, 13)
+        HBL_NoLabel.TabIndex = 0
+        HBL_NoLabel.Text = "HBL No:"
+        '
+        'STT_NoLabel1
+        '
+        STT_NoLabel1.AutoSize = True
+        STT_NoLabel1.Location = New System.Drawing.Point(8, 22)
+        STT_NoLabel1.Name = "STT_NoLabel1"
+        STT_NoLabel1.Size = New System.Drawing.Size(48, 13)
+        STT_NoLabel1.TabIndex = 2
+        STT_NoLabel1.Text = "STT No:"
+        '
+        'VesselLabel1
+        '
+        VesselLabel1.AutoSize = True
+        VesselLabel1.Location = New System.Drawing.Point(417, 21)
+        VesselLabel1.Name = "VesselLabel1"
+        VesselLabel1.Size = New System.Drawing.Size(41, 13)
+        VesselLabel1.TabIndex = 6
+        VesselLabel1.Text = "Vessel:"
+        '
+        'CarrierLabel1
+        '
+        CarrierLabel1.AutoSize = True
+        CarrierLabel1.Location = New System.Drawing.Point(32, 22)
+        CarrierLabel1.Name = "CarrierLabel1"
+        CarrierLabel1.Size = New System.Drawing.Size(40, 13)
+        CarrierLabel1.TabIndex = 8
+        CarrierLabel1.Text = "Carrier:"
+        '
+        'Contract_NoLabel1
+        '
+        Contract_NoLabel1.AutoSize = True
+        Contract_NoLabel1.Location = New System.Drawing.Point(15, 48)
+        Contract_NoLabel1.Name = "Contract_NoLabel1"
+        Contract_NoLabel1.Size = New System.Drawing.Size(67, 13)
+        Contract_NoLabel1.TabIndex = 10
+        Contract_NoLabel1.Text = "Contract No:"
+        '
+        'MBL_NoLabel
+        '
+        MBL_NoLabel.AutoSize = True
+        MBL_NoLabel.Location = New System.Drawing.Point(428, 22)
+        MBL_NoLabel.Name = "MBL_NoLabel"
+        MBL_NoLabel.Size = New System.Drawing.Size(49, 13)
+        MBL_NoLabel.TabIndex = 13
+        MBL_NoLabel.Text = "MBL No:"
+        '
+        'DtnATDLabel
+        '
+        DtnATDLabel.AutoSize = True
+        DtnATDLabel.Location = New System.Drawing.Point(245, 22)
+        DtnATDLabel.Name = "DtnATDLabel"
+        DtnATDLabel.Size = New System.Drawing.Size(32, 13)
+        DtnATDLabel.TabIndex = 107
+        DtnATDLabel.Text = "ATD:"
+        '
+        'DtnETALabel1
+        '
+        DtnETALabel1.AutoSize = True
+        DtnETALabel1.Location = New System.Drawing.Point(245, 48)
+        DtnETALabel1.Name = "DtnETALabel1"
+        DtnETALabel1.Size = New System.Drawing.Size(28, 13)
+        DtnETALabel1.TabIndex = 108
+        DtnETALabel1.Text = "ETA"
+        '
+        'TerminalLabel
+        '
+        TerminalLabel.AutoSize = True
+        TerminalLabel.Location = New System.Drawing.Point(417, 48)
+        TerminalLabel.Name = "TerminalLabel"
+        TerminalLabel.Size = New System.Drawing.Size(50, 13)
+        TerminalLabel.TabIndex = 109
+        TerminalLabel.Text = "Terminal:"
+        '
+        'Container_NoLabel
+        '
+        Container_NoLabel.AutoSize = True
+        Container_NoLabel.Location = New System.Drawing.Point(180, 22)
+        Container_NoLabel.Name = "Container_NoLabel"
+        Container_NoLabel.Size = New System.Drawing.Size(72, 13)
+        Container_NoLabel.TabIndex = 109
+        Container_NoLabel.Text = "Container No:"
+        '
+        'Container_SizeLabel
+        '
+        Container_SizeLabel.AutoSize = True
+        Container_SizeLabel.Location = New System.Drawing.Point(180, 48)
+        Container_SizeLabel.Name = "Container_SizeLabel"
+        Container_SizeLabel.Size = New System.Drawing.Size(78, 13)
+        Container_SizeLabel.TabIndex = 113
+        Container_SizeLabel.Text = "Container Size:"
+        '
+        'WeightLabel1
+        '
+        WeightLabel1.AutoSize = True
+        WeightLabel1.Location = New System.Drawing.Point(180, 100)
+        WeightLabel1.Name = "WeightLabel1"
+        WeightLabel1.Size = New System.Drawing.Size(44, 13)
+        WeightLabel1.TabIndex = 119
+        WeightLabel1.Text = "Weight:"
+        '
+        'VolumeLabel1
+        '
+        VolumeLabel1.AutoSize = True
+        VolumeLabel1.Location = New System.Drawing.Point(180, 126)
+        VolumeLabel1.Name = "VolumeLabel1"
+        VolumeLabel1.Size = New System.Drawing.Size(45, 13)
+        VolumeLabel1.TabIndex = 121
+        VolumeLabel1.Text = "Volume:"
+        '
+        'QuantityLabel
+        '
+        QuantityLabel.AutoSize = True
+        QuantityLabel.Location = New System.Drawing.Point(180, 74)
+        QuantityLabel.Name = "QuantityLabel"
+        QuantityLabel.Size = New System.Drawing.Size(49, 13)
+        QuantityLabel.TabIndex = 137
+        QuantityLabel.Text = "Quantity:"
+        '
         'subTabShipments
         '
         Me.subTabShipments.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -603,6 +793,7 @@ Partial Class frmMaininterface
         Me.subTabShipments.Controls.Add(Me.tabDispo)
         Me.subTabShipments.Controls.Add(Me.tabDocuments)
         Me.subTabShipments.Controls.Add(Me.tabProtocol)
+        Me.subTabShipments.Controls.Add(Me.TabPage1)
         Me.subTabShipments.Location = New System.Drawing.Point(145, 6)
         Me.subTabShipments.Name = "subTabShipments"
         Me.subTabShipments.SelectedIndex = 0
@@ -1612,6 +1803,10 @@ Partial Class frmMaininterface
         '
         'tabShipping
         '
+        Me.tabShipping.AutoScroll = True
+        Me.tabShipping.Controls.Add(Me.grpContainer)
+        Me.tabShipping.Controls.Add(Me.grpTrack)
+        Me.tabShipping.Controls.Add(Me.GroupBox1)
         Me.tabShipping.Location = New System.Drawing.Point(4, 22)
         Me.tabShipping.Name = "tabShipping"
         Me.tabShipping.Padding = New System.Windows.Forms.Padding(3)
@@ -1619,6 +1814,298 @@ Partial Class frmMaininterface
         Me.tabShipping.TabIndex = 2
         Me.tabShipping.Text = "Shipping"
         Me.tabShipping.UseVisualStyleBackColor = True
+        '
+        'grpContainer
+        '
+        Me.grpContainer.BackColor = System.Drawing.Color.White
+        Me.grpContainer.Controls.Add(QuantityLabel)
+        Me.grpContainer.Controls.Add(Me.QuantityTextBox)
+        Me.grpContainer.Controls.Add(Me.DsContainerDataGridView)
+        Me.grpContainer.Controls.Add(Me.btnAddContainer)
+        Me.grpContainer.Controls.Add(Container_NoLabel)
+        Me.grpContainer.Controls.Add(Me.Container_NoTextBox)
+        Me.grpContainer.Controls.Add(Container_SizeLabel)
+        Me.grpContainer.Controls.Add(Me.Container_SizeTextBox)
+        Me.grpContainer.Controls.Add(WeightLabel1)
+        Me.grpContainer.Controls.Add(Me.WeightTextBox1)
+        Me.grpContainer.Controls.Add(VolumeLabel1)
+        Me.grpContainer.Controls.Add(Me.VolumeTextBox1)
+        Me.grpContainer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.grpContainer.Location = New System.Drawing.Point(6, 213)
+        Me.grpContainer.Name = "grpContainer"
+        Me.grpContainer.Size = New System.Drawing.Size(1028, 436)
+        Me.grpContainer.TabIndex = 113
+        Me.grpContainer.TabStop = False
+        Me.grpContainer.Text = "Container Details"
+        '
+        'QuantityTextBox
+        '
+        Me.QuantityTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsContainerBindingSource, "Quantity", True))
+        Me.QuantityTextBox.Location = New System.Drawing.Point(291, 71)
+        Me.QuantityTextBox.Name = "QuantityTextBox"
+        Me.QuantityTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.QuantityTextBox.TabIndex = 14
+        '
+        'DsContainerBindingSource
+        '
+        Me.DsContainerBindingSource.DataMember = "dsShipmentsdsContainer"
+        Me.DsContainerBindingSource.DataSource = Me.DsShipmentsBindingSource
+        '
+        'DsContainerDataGridView
+        '
+        Me.DsContainerDataGridView.AllowUserToAddRows = False
+        Me.DsContainerDataGridView.AllowUserToDeleteRows = False
+        Me.DsContainerDataGridView.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.DsContainerDataGridView.AutoGenerateColumns = False
+        Me.DsContainerDataGridView.BackgroundColor = System.Drawing.SystemColors.Control
+        Me.DsContainerDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DsContainerDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.DsContainerDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        Me.DsContainerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DsContainerDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn2})
+        Me.DsContainerDataGridView.DataSource = Me.DsContainerBindingSource
+        Me.DsContainerDataGridView.EnableHeadersVisualStyles = False
+        Me.DsContainerDataGridView.GridColor = System.Drawing.SystemColors.Control
+        Me.DsContainerDataGridView.Location = New System.Drawing.Point(11, 19)
+        Me.DsContainerDataGridView.Name = "DsContainerDataGridView"
+        Me.DsContainerDataGridView.ReadOnly = True
+        Me.DsContainerDataGridView.RowHeadersVisible = False
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.DsContainerDataGridView.RowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.DsContainerDataGridView.ShowCellErrors = False
+        Me.DsContainerDataGridView.ShowCellToolTips = False
+        Me.DsContainerDataGridView.ShowEditingIcon = False
+        Me.DsContainerDataGridView.ShowRowErrors = False
+        Me.DsContainerDataGridView.Size = New System.Drawing.Size(163, 411)
+        Me.DsContainerDataGridView.TabIndex = 137
+        Me.DsContainerDataGridView.TabStop = False
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "Container_No"
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Container_No"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        '
+        'btnAddContainer
+        '
+        Me.btnAddContainer.Location = New System.Drawing.Point(183, 142)
+        Me.btnAddContainer.Name = "btnAddContainer"
+        Me.btnAddContainer.Size = New System.Drawing.Size(25, 25)
+        Me.btnAddContainer.TabIndex = 11
+        Me.btnAddContainer.Text = "+"
+        Me.btnAddContainer.UseVisualStyleBackColor = True
+        '
+        'Container_NoTextBox
+        '
+        Me.Container_NoTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.Container_NoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.Container_NoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsContainerBindingSource, "Container_No", True))
+        Me.Container_NoTextBox.Location = New System.Drawing.Point(291, 19)
+        Me.Container_NoTextBox.Name = "Container_NoTextBox"
+        Me.Container_NoTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.Container_NoTextBox.TabIndex = 12
+        '
+        'Container_SizeTextBox
+        '
+        Me.Container_SizeTextBox.AutoCompleteCustomSource.AddRange(New String() {"LCL", "20DC", "40DC", "40HQ"})
+        Me.Container_SizeTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.Container_SizeTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.Container_SizeTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.Container_SizeTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.Container_SizeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsContainerBindingSource, "Container_Size", True))
+        Me.Container_SizeTextBox.Location = New System.Drawing.Point(291, 45)
+        Me.Container_SizeTextBox.Name = "Container_SizeTextBox"
+        Me.Container_SizeTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.Container_SizeTextBox.TabIndex = 13
+        '
+        'WeightTextBox1
+        '
+        Me.WeightTextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsContainerBindingSource, "Weight", True))
+        Me.WeightTextBox1.Location = New System.Drawing.Point(291, 97)
+        Me.WeightTextBox1.Name = "WeightTextBox1"
+        Me.WeightTextBox1.Size = New System.Drawing.Size(200, 20)
+        Me.WeightTextBox1.TabIndex = 15
+        '
+        'VolumeTextBox1
+        '
+        Me.VolumeTextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsContainerBindingSource, "Volume", True))
+        Me.VolumeTextBox1.Location = New System.Drawing.Point(291, 123)
+        Me.VolumeTextBox1.Name = "VolumeTextBox1"
+        Me.VolumeTextBox1.Size = New System.Drawing.Size(200, 20)
+        Me.VolumeTextBox1.TabIndex = 16
+        '
+        'grpTrack
+        '
+        Me.grpTrack.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpTrack.Controls.Add(Me.dtnETAShipping)
+        Me.grpTrack.Controls.Add(Me.TerminalTextBox)
+        Me.grpTrack.Controls.Add(Me.dtnATD)
+        Me.grpTrack.Controls.Add(Me.CarrierTextBox1)
+        Me.grpTrack.Controls.Add(Me.btnTrackShipping)
+        Me.grpTrack.Controls.Add(VesselLabel1)
+        Me.grpTrack.Controls.Add(DtnATDLabel)
+        Me.grpTrack.Controls.Add(TerminalLabel)
+        Me.grpTrack.Controls.Add(DtnETALabel1)
+        Me.grpTrack.Controls.Add(Me.VesselTextBox1)
+        Me.grpTrack.Controls.Add(CarrierLabel1)
+        Me.grpTrack.Controls.Add(Me.Contract_NoTextBox1)
+        Me.grpTrack.Controls.Add(Contract_NoLabel1)
+        Me.grpTrack.Location = New System.Drawing.Point(6, 92)
+        Me.grpTrack.Name = "grpTrack"
+        Me.grpTrack.Size = New System.Drawing.Size(1034, 112)
+        Me.grpTrack.TabIndex = 112
+        Me.grpTrack.TabStop = False
+        Me.grpTrack.Text = "Tracking Details"
+        '
+        'dtnETAShipping
+        '
+        Me.dtnETAShipping.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "dtnETA", True))
+        Me.dtnETAShipping.Location = New System.Drawing.Point(311, 45)
+        Me.dtnETAShipping.Name = "dtnETAShipping"
+        Me.dtnETAShipping.Size = New System.Drawing.Size(100, 20)
+        Me.dtnETAShipping.TabIndex = 8
+        '
+        'TerminalTextBox
+        '
+        Me.TerminalTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.TerminalTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.TerminalTextBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.DsShipmentsBindingSource, "Terminal", True))
+        Me.TerminalTextBox.DataSource = Me.bsTerminal
+        Me.TerminalTextBox.DisplayMember = "PartnerName"
+        Me.TerminalTextBox.FormattingEnabled = True
+        Me.TerminalTextBox.Location = New System.Drawing.Point(474, 45)
+        Me.TerminalTextBox.Name = "TerminalTextBox"
+        Me.TerminalTextBox.Size = New System.Drawing.Size(204, 21)
+        Me.TerminalTextBox.TabIndex = 10
+        Me.TerminalTextBox.ValueMember = "Partner_ID"
+        '
+        'bsTerminal
+        '
+        Me.bsTerminal.DataMember = "dsPartner"
+        Me.bsTerminal.DataSource = Me.DsDemag_HUB
+        '
+        'dtnATD
+        '
+        Me.dtnATD.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "dtnATD", True))
+        Me.dtnATD.Location = New System.Drawing.Point(311, 18)
+        Me.dtnATD.Name = "dtnATD"
+        Me.dtnATD.Size = New System.Drawing.Size(100, 20)
+        Me.dtnATD.TabIndex = 7
+        '
+        'CarrierTextBox1
+        '
+        Me.CarrierTextBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CarrierTextBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CarrierTextBox1.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.DsShipmentsBindingSource, "Carrier", True))
+        Me.CarrierTextBox1.DataSource = Me.bsCarrier
+        Me.CarrierTextBox1.DisplayMember = "PartnerName"
+        Me.CarrierTextBox1.FormattingEnabled = True
+        Me.CarrierTextBox1.Location = New System.Drawing.Point(88, 18)
+        Me.CarrierTextBox1.Name = "CarrierTextBox1"
+        Me.CarrierTextBox1.Size = New System.Drawing.Size(151, 21)
+        Me.CarrierTextBox1.TabIndex = 5
+        Me.CarrierTextBox1.ValueMember = "Partner_ID"
+        '
+        'btnTrackShipping
+        '
+        Me.btnTrackShipping.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnTrackShipping.Location = New System.Drawing.Point(953, 16)
+        Me.btnTrackShipping.Name = "btnTrackShipping"
+        Me.btnTrackShipping.Size = New System.Drawing.Size(75, 48)
+        Me.btnTrackShipping.TabIndex = 111
+        Me.btnTrackShipping.TabStop = False
+        Me.btnTrackShipping.Text = "Track"
+        Me.btnTrackShipping.UseVisualStyleBackColor = True
+        '
+        'Contract_NoTextBox1
+        '
+        Me.Contract_NoTextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.Contract_NoTextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Contract_No", True))
+        Me.Contract_NoTextBox1.Location = New System.Drawing.Point(88, 45)
+        Me.Contract_NoTextBox1.Name = "Contract_NoTextBox1"
+        Me.Contract_NoTextBox1.Size = New System.Drawing.Size(151, 20)
+        Me.Contract_NoTextBox1.TabIndex = 6
+        '
+        'VesselTextBox1
+        '
+        Me.VesselTextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.VesselTextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Vessel", True))
+        Me.VesselTextBox1.Location = New System.Drawing.Point(474, 18)
+        Me.VesselTextBox1.Name = "VesselTextBox1"
+        Me.VesselTextBox1.Size = New System.Drawing.Size(204, 20)
+        Me.VesselTextBox1.TabIndex = 9
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.STT_NoTextBox1)
+        Me.GroupBox1.Controls.Add(STT_NoLabel1)
+        Me.GroupBox1.Controls.Add(Me.HBL_NoTextBox)
+        Me.GroupBox1.Controls.Add(HBL_NoLabel)
+        Me.GroupBox1.Controls.Add(Me.MBL_NoTextBox)
+        Me.GroupBox1.Controls.Add(MBL_NoLabel)
+        Me.GroupBox1.Controls.Add(Me.btnAddBL)
+        Me.GroupBox1.Controls.Add(Me.chkSurrenderedShipping)
+        Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(1034, 80)
+        Me.GroupBox1.TabIndex = 111
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "BL Details"
+        '
+        'STT_NoTextBox1
+        '
+        Me.STT_NoTextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "STT_No", True))
+        Me.STT_NoTextBox1.Location = New System.Drawing.Point(62, 19)
+        Me.STT_NoTextBox1.Name = "STT_NoTextBox1"
+        Me.STT_NoTextBox1.Size = New System.Drawing.Size(150, 20)
+        Me.STT_NoTextBox1.TabIndex = 1
+        '
+        'HBL_NoTextBox
+        '
+        Me.HBL_NoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.HBL_NoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "HBL_No", True))
+        Me.HBL_NoTextBox.Location = New System.Drawing.Point(272, 19)
+        Me.HBL_NoTextBox.Name = "HBL_NoTextBox"
+        Me.HBL_NoTextBox.Size = New System.Drawing.Size(150, 20)
+        Me.HBL_NoTextBox.TabIndex = 2
+        '
+        'MBL_NoTextBox
+        '
+        Me.MBL_NoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.MBL_NoTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "MBL_No", True))
+        Me.MBL_NoTextBox.Location = New System.Drawing.Point(483, 19)
+        Me.MBL_NoTextBox.Name = "MBL_NoTextBox"
+        Me.MBL_NoTextBox.Size = New System.Drawing.Size(150, 20)
+        Me.MBL_NoTextBox.TabIndex = 3
+        '
+        'btnAddBL
+        '
+        Me.btnAddBL.AllowDrop = True
+        Me.btnAddBL.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAddBL.Location = New System.Drawing.Point(898, 15)
+        Me.btnAddBL.Name = "btnAddBL"
+        Me.btnAddBL.Size = New System.Drawing.Size(130, 56)
+        Me.btnAddBL.TabIndex = 91
+        Me.btnAddBL.TabStop = False
+        Me.btnAddBL.Text = "Add BL"
+        Me.btnAddBL.UseVisualStyleBackColor = True
+        '
+        'chkSurrenderedShipping
+        '
+        Me.chkSurrenderedShipping.AutoSize = True
+        Me.chkSurrenderedShipping.Location = New System.Drawing.Point(639, 21)
+        Me.chkSurrenderedShipping.Name = "chkSurrenderedShipping"
+        Me.chkSurrenderedShipping.Size = New System.Drawing.Size(84, 17)
+        Me.chkSurrenderedShipping.TabIndex = 107
+        Me.chkSurrenderedShipping.TabStop = False
+        Me.chkSurrenderedShipping.Text = "Surrendered"
+        Me.chkSurrenderedShipping.UseVisualStyleBackColor = True
         '
         'tabDispo
         '
@@ -1757,6 +2244,16 @@ Partial Class frmMaininterface
         '
         Me.PtShipmentsBindingSource.DataMember = "dsShipmentsptShipments"
         Me.PtShipmentsBindingSource.DataSource = Me.DsShipmentsBindingSource
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(1046, 649)
+        Me.TabPage1.TabIndex = 7
+        Me.TabPage1.Text = "TabPage1"
+        Me.TabPage1.UseVisualStyleBackColor = True
         '
         'DsRoleBindingSource
         '
@@ -2371,6 +2868,14 @@ Partial Class frmMaininterface
         '
         Me.DsRoleTableAdapter.ClearBeforeFill = True
         '
+        'DsContainerTableAdapter
+        '
+        Me.DsContainerTableAdapter.ClearBeforeFill = True
+        '
+        'DsCommentTableAdapter1
+        '
+        Me.DsCommentTableAdapter1.ClearBeforeFill = True
+        '
         'frmMaininterface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2408,6 +2913,16 @@ Partial Class frmMaininterface
         CType(Me.bsUNLOC_POL, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bsPrincipal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.IncotermBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tabShipping.ResumeLayout(False)
+        Me.grpContainer.ResumeLayout(False)
+        Me.grpContainer.PerformLayout()
+        CType(Me.DsContainerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DsContainerDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grpTrack.ResumeLayout(False)
+        Me.grpTrack.PerformLayout()
+        CType(Me.bsTerminal, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.tabDocuments.ResumeLayout(False)
         CType(Me.DsDocumentDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabProtocol.ResumeLayout(False)
@@ -2442,7 +2957,6 @@ Partial Class frmMaininterface
     Friend WithEvents TableAdapterManager As dsDemag_HUBTableAdapters.TableAdapterManager
     Friend WithEvents subTabShipments As TabControl
     Friend WithEvents tabSettings As TabPage
-    Friend WithEvents tabShipping As TabPage
     Friend WithEvents tabDispo As TabPage
     Friend WithEvents btnSave As Button
     Friend WithEvents btnSearch As Button
@@ -2640,4 +3154,33 @@ Partial Class frmMaininterface
     Friend WithEvents Document_Type As DataGridViewTextBoxColumn
     Friend WithEvents DocumentNoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents LinkDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents DsContainerBindingSource As BindingSource
+    Friend WithEvents DsContainerTableAdapter As dsDemag_HUBTableAdapters.dsContainerTableAdapter
+    Friend WithEvents tabShipping As TabPage
+    Friend WithEvents btnAddBL As Button
+    Friend WithEvents MBL_NoTextBox As TextBox
+    Friend WithEvents Contract_NoTextBox1 As TextBox
+    Friend WithEvents VesselTextBox1 As TextBox
+    Friend WithEvents STT_NoTextBox1 As TextBox
+    Friend WithEvents HBL_NoTextBox As TextBox
+    Friend WithEvents chkSurrenderedShipping As CheckBox
+    Friend WithEvents grpContainer As GroupBox
+    Friend WithEvents grpTrack As GroupBox
+    Friend WithEvents btnTrackShipping As Button
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents CarrierTextBox1 As ComboBox
+    Friend WithEvents TerminalTextBox As ComboBox
+    Friend WithEvents bsTerminal As BindingSource
+    Friend WithEvents dtnETAShipping As TextBox
+    Friend WithEvents dtnATD As TextBox
+    Friend WithEvents btnAddContainer As Button
+    Friend WithEvents Container_NoTextBox As TextBox
+    Friend WithEvents Container_SizeTextBox As TextBox
+    Friend WithEvents WeightTextBox1 As TextBox
+    Friend WithEvents VolumeTextBox1 As TextBox
+    Friend WithEvents DsContainerDataGridView As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents QuantityTextBox As TextBox
+    Friend WithEvents DsCommentTableAdapter1 As dsDemag_HUBTableAdapters.dsCommentTableAdapter
 End Class

@@ -50,4 +50,13 @@ Public Class frmDocument
         txtDocumentNo.Text = ""
         txtDocumentNo.Focus()
     End Sub
+
+    Private Sub cmbDocType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDocType.SelectedIndexChanged
+        Select Case cmbDocType.Text
+            Case "BL"
+                If txtDocumentNo.Text = "" Then txtDocumentNo.Text = frmMaininterface.MBL_NoTextBox.Text
+            Case "HBL"
+                If txtDocumentNo.Text = "" Then txtDocumentNo.Text = frmMaininterface.HBL_NoTextBox.Text
+        End Select
+    End Sub
 End Class
