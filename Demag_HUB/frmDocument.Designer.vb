@@ -43,7 +43,7 @@ Partial Class frmDocument
         '
         Me.cmbDocType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbDocType.FormattingEnabled = True
-        Me.cmbDocType.Items.AddRange(New Object() {"INV", "PL", "BL", "HBL", "MISC", "SQE_Confirmation", "Booking_Confirmation"})
+        Me.cmbDocType.Items.AddRange(New Object() {"INV", "PL", "SO", "CO", "BL", "HBL", "MISC", "SQE_Confirmation", "Booking_Confirmation"})
         Me.cmbDocType.Location = New System.Drawing.Point(487, 11)
         Me.cmbDocType.Name = "cmbDocType"
         Me.cmbDocType.Size = New System.Drawing.Size(73, 21)

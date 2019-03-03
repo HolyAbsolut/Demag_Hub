@@ -1,4 +1,4 @@
-﻿'Option Strict On
+﻿Option Strict On
 
 Imports System.Text
 Imports System.IO
@@ -75,6 +75,9 @@ Public Class frmMaininterface
         PtShipmentsTableAdapter.Connection = CON
         DsRoleTableAdapter.Connection = CON
         DsContainerTableAdapter.Connection = CON
+        RtCharge_CodeTableAdapter.Connection = CON
+        RtShipments_ChargesTableAdapter.Connection = CON
+        RtRatesTableAdapter.Connection = CON
 
 
         'TODO:   Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsShipments". Sie können sie bei Bedarf verschieben oder entfernen.
@@ -107,6 +110,13 @@ Public Class frmMaininterface
         Me.DsRoleTableAdapter.Fill(Me.DsDemag_HUB.dsRole)
         'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.dsContainer". Sie können sie bei Bedarf verschieben oder entfernen.
         Me.DsContainerTableAdapter.Fill(Me.DsDemag_HUB.dsContainer)
+        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.rtCharge_Code". Sie können sie bei Bedarf verschieben oder entfernen.
+        Me.RtCharge_CodeTableAdapter.Fill(Me.DsDemag_HUB.rtCharge_Code)
+        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.rtShipments_Charges". Sie können sie bei Bedarf verschieben oder entfernen.
+        Me.RtShipments_ChargesTableAdapter.Fill(Me.DsDemag_HUB.rtShipments_Charges)
+        'TODO: Diese Codezeile lädt Daten in die Tabelle "DsDemag_HUB.rtRates". Sie können sie bei Bedarf verschieben oder entfernen.
+        Me.RtRatesTableAdapter.Fill(Me.DsDemag_HUB.rtRates)
+
 
         'MsgBox(DsShipmentsTableAdapter.Connection.ConnectionString.ToString)
     End Sub
@@ -130,7 +140,8 @@ Public Class frmMaininterface
 
 
         If rowActual.dtnETD < Date.Now Then
-            Me.subTabShipments.SelectedTab = tabShipping
+            Me.subTabShipments.SelectedTab = tabBooking
+            'Me.subTabShipments.SelectedTab = tabShipping 'Deaktiviert bis funktioniert
             Exit Sub
         End If
 
@@ -219,6 +230,7 @@ Public Class frmMaininterface
         Me.PoShipping_OrderBindingSource.EndEdit()
         Me.DsRoleBindingSource.EndEdit()
         Me.DsContainerBindingSource.EndEdit()
+        Me.RtShipments_ChargesBindingSource.EndEdit()
         'MsgBox("Arbeite")
 
 
@@ -235,6 +247,7 @@ Public Class frmMaininterface
         Me.PtShipmentsTableAdapter.Update(Me.DsDemag_HUB.ptShipments)
         Me.DsRoleTableAdapter.Update(Me.DsDemag_HUB.dsRole)
         Me.DsContainerTableAdapter.Update(Me.DsDemag_HUB.dsContainer)
+        Me.RtShipments_ChargesTableAdapter.Update(Me.DsDemag_HUB.rtShipments_Charges)
         'MsgBox("Fertig")
     End Sub
 
@@ -1367,7 +1380,7 @@ Public Class frmMaininterface
             Case "EORI"
                 Return parRow.EORI
             Case "WKV"
-                Return parRow.WKV
+                Return parRow.WKV.ToString
             Case "TrackingLink"
                 Return parRow.TrackingLink
             Case Else
@@ -1377,7 +1390,7 @@ Public Class frmMaininterface
 
     Private Sub btnPDF_Click(sender As Object, e As EventArgs) Handles btnPDF.Click
         Dim curRow As dsDemag_HUB.dsShipmentsRow
-
+        MsgBox(Shipment_IDTextBox.Text)
         curRow = DsDemag_HUB.dsShipments.FindByShipment_ID(Convert.ToInt32(Shipment_IDTextBox.Text))
 
         PDFCover.dtSipmentID = curRow.Shipment_ID.ToString
@@ -1518,10 +1531,12 @@ Public Class frmMaininterface
                 End If
                 PDFCover.dtCharge2Description = "Lizenzgebühren POT"
                 PDFCover.dtCharge2Value = "€ 17,-"
-                PDFCover.dtCharge3Description = ""
-                PDFCover.dtCharge3Value = ""
+                PDFCover.dtCharge3Description = "EBS"
+                PDFCover.dtCharge3Value = "$ 3,50 w/m"
                 PDFCover.dtCharge4Description = ""
                 PDFCover.dtCharge4Value = ""
+                PDFCover.dtCharge5Description = ""
+                PDFCover.dtCharge5Value = ""
             Case = "FCL"
                 PDFCover.dtCharge0Description = "T1"
                 PDFCover.dtCharge0Value = "€ 35,-"
@@ -1533,9 +1548,9 @@ Public Class frmMaininterface
                 PDFCover.dtCharge3Value = "€ 35,"
                 PDFCover.dtCharge4Description = "Lizenzgebühren POT"
                 PDFCover.dtCharge4Value = "€ 21,75"
+                PDFCover.dtCharge5Description = "EBS"
+                PDFCover.dtCharge5Value = "$ 62,50"
         End Select
-        PDFCover.dtCharge5Description = ""
-        PDFCover.dtCharge5Value = ""
         PDFCover.dtCharge6Description = ""
         PDFCover.dtCharge6Value = ""
         PDFCover.dtCharge7Description = ""
@@ -1704,7 +1719,7 @@ Public Class frmMaininterface
     Private Sub DsDocumentDataGridView_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DsDocumentDataGridView.CellDoubleClick
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then 'Dokument öffnen
             Dim selectedRow = DsDocumentDataGridView1.Rows(e.RowIndex)
-            Process.Start(selectedRow.Cells(4).Value.ToString)
+            Process.Start(selectedRow.Cells(3).Value.ToString)
         End If
     End Sub
 
@@ -1956,6 +1971,351 @@ Public Class frmMaininterface
 
     End Sub
 
+    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles btnAddRate.Click
+        RtShipments_ChargesBindingSource.AddNew()
+        cmbChargeCode.Focus()
+    End Sub
+
+    Private Sub MultiplierTextBox_SelectedIndexChanged(sender As Object, e As EventArgs)
+
+
+
+
+
+    End Sub
+
+
+    Private Sub MultiplierTextBox_TextChanged(sender As Object, e As EventArgs) Handles MultiplierTextBox.Leave
+        Select Case MultiplierTextBox.Text
+            Case "CONT"
+                _20DCTextBox.Enabled = True
+                _40DCTextBox.Enabled = True
+                _40HQTextBox.Enabled = True
+                MinimumTextBox.Enabled = False
+                ChargesTextBox.Enabled = False
+            Case "TEU"
+                _20DCTextBox.Enabled = True
+                _40DCTextBox.Enabled = True
+                _40HQTextBox.Enabled = True
+                MinimumTextBox.Enabled = False
+                ChargesTextBox.Enabled = False
+            Case "WM"
+                _20DCTextBox.Enabled = False
+                _40DCTextBox.Enabled = False
+                _40HQTextBox.Enabled = False
+                MinimumTextBox.Enabled = True
+                ChargesTextBox.Enabled = True
+            Case "KG"
+                _20DCTextBox.Enabled = False
+                _40DCTextBox.Enabled = False
+                _40HQTextBox.Enabled = False
+                MinimumTextBox.Enabled = True
+                ChargesTextBox.Enabled = True
+            Case "CBM"
+                _20DCTextBox.Enabled = False
+                _40DCTextBox.Enabled = False
+                _40HQTextBox.Enabled = False
+                MinimumTextBox.Enabled = True
+                ChargesTextBox.Enabled = True
+            Case "BL"
+                _20DCTextBox.Enabled = False
+                _40DCTextBox.Enabled = False
+                _40HQTextBox.Enabled = False
+                MinimumTextBox.Enabled = False
+                ChargesTextBox.Enabled = True
+            Case Else
+                _20DCTextBox.Enabled = True
+                _40DCTextBox.Enabled = True
+                _40HQTextBox.Enabled = True
+                MinimumTextBox.Enabled = True
+                ChargesTextBox.Enabled = True
+                MsgBox("Multiplier unknow")
+        End Select
+
+    End Sub
+
+
+
+    Private Sub Button3_Click_2(sender As Object, e As EventArgs) Handles Button3.Click
+
+        'MsgBox(getIncome(10, "EUR"))
+        getRates(10)
+
+    End Sub
+
+    Function getIncome(ByVal ShipmentID As Integer, ByVal Currency As String) As Double
+        getIncome = 0
+        Dim Weight As Double = 0
+        Dim CBM As Double = 0
+        Dim c20DC As Double = 0
+        Dim c20DCHeavy As Double = 0
+        Dim c40DC As Double = 0
+        Dim c40HQ As Double = 0
+        Dim TEU As Double = 0
+
+        'Heavy weight
+
+        DsDemag_HUB.dsContainer.DefaultView.RowFilter = "Shipment_ID = '" & ShipmentID & "'"
+        For Each Row As DataRowView In DsDemag_HUB.dsContainer.DefaultView
+            Select Case Row.Item("Container_Size").ToString
+                Case "20DC"
+                    c20DC += 1
+                    TEU += 1
+                Case "40DC"
+                    c40DC += 1
+                    TEU += 2
+                Case "40HQ"
+                    c40HQ += 1
+                    TEU += 2
+            End Select
+            If Row.Item("Weight").ToString <> "" Then Weight += Convert.ToDouble(Row.Item("Weight").ToString)
+            If Row.Item("Volume").ToString <> "" Then CBM += Convert.ToDouble(Row.Item("Volume").ToString)
+        Next
+        DsDemag_HUB.dsContainer.DefaultView.RowFilter = String.Empty
+
+
+
+        For Each Row As DataGridViewRow In RtShipments_ChargesDataGridView.Rows
+            Dim exCurrency As Double = 1
+            Dim rowCurrency As String = Row.Cells(7).Value.ToString
+            Dim row20DC As Double = 0
+            Dim row40DC As Double = 0
+            Dim row40HQ As Double = 0
+            Dim rowMin As Double = 0
+            Dim rowCharges As Double = 0
+
+
+            If Row.Cells(1).Value.ToString <> "" Then row20DC = Convert.ToDouble(Row.Cells(1).Value.ToString)
+            If Row.Cells(2).Value.ToString <> "" Then row40DC = Convert.ToDouble(Row.Cells(2).Value.ToString)
+            If Row.Cells(3).Value.ToString <> "" Then row40HQ = Convert.ToDouble(Row.Cells(3).Value.ToString)
+
+            If Row.Cells(4).Value.ToString <> "" Then rowMin = Convert.ToDouble(Row.Cells(4).Value.ToString)
+            If Row.Cells(5).Value.ToString <> "" Then rowCharges = Convert.ToDouble(Row.Cells(5).Value.ToString)
+
+            'Fals die Währung nicht der Anforderung entsprichen abrufen. Sonst gilt standard als 1
+            If Row.Cells(7).Value.ToString <> Currency Then getCurrency(1, Row.Cells(7).Value.ToString, Currency)
+
+            Select Case Row.Cells(6).Value.ToString
+                Case "CONT"
+                    getIncome += row20DC * c20DC * exCurrency
+                    getIncome += row40DC * c40DC * exCurrency
+                    getIncome += row40HQ * c40HQ * exCurrency
+                Case "TEU"
+                    getIncome += rowCharges * TEU * exCurrency
+                Case "WM"
+                    Dim calcWM As Double = 0
+                    If calcWM < rowCharges * Weight Then calcWM = rowCharges * Weight
+                    If calcWM < rowCharges * CBM Then calcWM = rowCharges * CBM
+                    If calcWM < rowMin Then calcWM = rowMin
+                    getIncome += calcWM * exCurrency
+                Case "KG"
+                    Dim calcWeight As Double = 0
+                    calcWeight = rowCharges * Weight
+                    If calcWeight < rowMin Then calcWeight = rowMin
+                    getIncome += calcWeight * exCurrency
+                Case "CBM"
+                    Dim calcCBM As Double = 0
+                    calcCBM = rowCharges * CBM
+                    If calcCBM < rowMin Then calcCBM = rowMin
+                    getIncome += calcCBM * exCurrency
+                Case "BL"
+                    getIncome += rowCharges * exCurrency
+                Case Else
+                    getIncome += 0
+            End Select
+
+
+        Next
+
+
+
+
+
+    End Function
+
+
+    Public Function getCurrency(ByVal amount As Decimal, ByVal fromCurrency As String, ByVal toCurrency As String) As Decimal
+        'https://stackoverflow.com/questions/3139879/how-do-i-get-currency-exchange-rates-via-an-api-such-as-google-finance
+        'European Central Bank Feed
+
+        getCurrency = 1
+
+
+    End Function
+
+
+    Sub getRates(ByVal ShipmentID As Integer)
+        Dim curRow As dsDemag_HUB.dsShipmentsRow = DsDemag_HUB.dsShipments.FindByShipment_ID(ShipmentID)
+        Dim stdFilter As String = "Size = '"
+        Dim dtlFilter As String = ""
+        Dim dtnValid As Date
+
+        If curRow.IsServiceNull = False Then
+            Select Case curRow.Service
+                Case "LCL"
+                    stdFilter += "LCL'"
+                Case "FCL"
+                    stdFilter += "FCL'"
+            End Select
+        End If
+
+        If curRow.IsdtnATDNull Then
+            dtnValid = Today
+        Else
+            dtnValid = curRow.dtnATD
+        End If
+
+        stdFilter += " AND Valid_From <= #" & dtnValid.ToString("yyyy/MM/dd").Replace(".", "/") & "# AND  Valid_Till >=#" & dtnValid.ToString("yyyy/MM/dd").Replace(".", "/") & "#"
+
+        Select Case curRow.Incoterm
+            Case "EXW"
+                'Generelle Kosten
+                dtlFilter += " AND From = ''"
+                dtlFilter += " AND To = ''"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+
+                'Vorlauf
+                dtlFilter += " AND From = '" & curRow.Incoterm_Loc & "'"
+                dtlFilter += " AND To = '" & curRow.POL & "'"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+
+                'POL Kosten
+                dtlFilter += " AND From = '" & curRow.POL & "'"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+                'Seefracht
+                dtlFilter += " AND From = '" & curRow.POL & "'"
+                dtlFilter += " AND To = '" & curRow.POD & "'"
+                dtlFilter += " AND Charge_Code = 'OFRT'"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+                'POD Kosten
+                dtlFilter += " AND From = '" & curRow.POL & "'"
+                dtlFilter += " AND To = ''"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+
+                'Nachlauf
+                dtlFilter += " AND From = '" & curRow.POD & "'"
+                dtlFilter += " AND To = 'DEHAG'"
+                dtlFilter += " AND Charge_Code = 'ODLV'"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+
+
+            Case "FOB"
+                'Generelle Kosten
+                dtlFilter += " AND From = ''"
+                dtlFilter += " AND To = ''"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+
+                'POL Kosten
+                dtlFilter += " AND From = '" & curRow.POL & "'"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+                'Seefracht
+                dtlFilter += " AND From = '" & curRow.POL & "'"
+                dtlFilter += " AND To = '" & curRow.POD & "'"
+                dtlFilter += " AND Charge_Code = 'OFRT'"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+                'POD Kosten
+                dtlFilter += " AND From = '" & curRow.POL & "'"
+                dtlFilter += " AND To = ''"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+                'Nachlauf
+                dtlFilter += " AND From = '" & curRow.POD & "'"
+                dtlFilter += " AND To = 'DEHAG'"
+                dtlFilter += " AND Charge_Code = 'ODLV'"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+            Case "CFR"
+                'Generelle Kosten
+                dtlFilter += " AND From = ''"
+                dtlFilter += " AND To = ''"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+                'POD Kosten
+                dtlFilter += " AND From = '" & curRow.POL & "'"
+                dtlFilter += " AND To = ''"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+                'Nachlauf
+                dtlFilter += " AND From = '" & curRow.POD & "'"
+                dtlFilter += " AND To = 'DEHAG'"
+                dtlFilter += " AND Charge_Code = 'ODLV'"
+                DsDemag_HUB.rtRates.DefaultView.RowFilter = stdFilter & dtlFilter
+                For Each Row As DataRowView In DsDemag_HUB.rtRates.DefaultView
+                    addShipmenCharge(Convert.ToInt32(Row.Item("ID").ToString), ShipmentID) 'Kosten hinterlegen
+                Next
+            Case Else
+                MsgBox("Incoterm ist noch nicht hinterlegt.")
+        End Select
+
+
+
+
+
+
+
+
+        DsDemag_HUB.rtRates.DefaultView.RowFilter = String.Empty
+    End Sub
+
+
+    Sub addShipmenCharge(ByVal idRates As Integer, ByVal ShipmentID As Integer)
+        Dim curRow As dsDemag_HUB.rtRatesRow = DsDemag_HUB.rtRates.FindByID(idRates)
+
+
+        Dim newRtRow As dsDemag_HUB.rtShipments_ChargesRow
+        newRtRow = DsDemag_HUB.rtShipments_Charges.NewrtShipments_ChargesRow
+        newRtRow.ShipmentID = ShipmentID
+        newRtRow.Created = Date.Now
+        If curRow.IsCharge_CodeNull = False Then newRtRow.Charge_Code = curRow.Charge_Code
+        If curRow.Is_20DCNull = False Then newRtRow._20DC = curRow._20DC
+        If curRow.Is_40DCNull = False Then newRtRow._40DC = curRow._40DC
+        If curRow.Is_40HQNull = False Then newRtRow._40HQ = curRow._40HQ
+        If curRow.IsMinimumNull = False Then newRtRow.Minimum = curRow.Minimum
+        If curRow.IsChargesNull = False Then newRtRow.Charges = curRow.Charges
+        If curRow.IsMultiplierNull = False Then newRtRow.Multiplier = curRow.Multiplier
+        If curRow.IsCurrencyNull = False Then newRtRow.Currency = curRow.Currency
+        If curRow.IsCommentNull = False Then newRtRow.Comment = curRow.Comment
+
+
+        DsDemag_HUB.rtShipments_Charges.Rows.Add(newRtRow)
+
+
+    End Sub
 
 
     'Private Sub BindingSource_BindingComplete(sender As Object, e As BindingCompleteEventArgs) Handles DsShipmentsBindingSource.BindingComplete

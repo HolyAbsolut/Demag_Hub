@@ -1,4 +1,10 @@
 ﻿Partial Class dsDemag_HUB
+    Partial Public Class rtShipments_ChargesDataTable
+        Private Sub dsContainerDataTable_TableNewRow(sender As Object, e As DataTableNewRowEventArgs) Handles Me.TableNewRow
+            DirectCast(e.Row, rtShipments_ChargesRow).Created = Date.Now
+        End Sub
+    End Class
+
     Partial Public Class dsContainerDataTable
         Private Sub dsContainerDataTable_TableNewRow(sender As Object, e As DataTableNewRowEventArgs) Handles Me.TableNewRow
             DirectCast(e.Row, dsContainerRow).Created = Date.Now

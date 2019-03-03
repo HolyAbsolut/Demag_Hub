@@ -66,6 +66,15 @@ Partial Class frmMaininterface
         Dim WeightLabel1 As System.Windows.Forms.Label
         Dim VolumeLabel1 As System.Windows.Forms.Label
         Dim QuantityLabel As System.Windows.Forms.Label
+        Dim CommentLabel As System.Windows.Forms.Label
+        Dim CurrencyLabel As System.Windows.Forms.Label
+        Dim MultiplierLabel As System.Windows.Forms.Label
+        Dim ChargesLabel As System.Windows.Forms.Label
+        Dim MinimumLabel As System.Windows.Forms.Label
+        Dim _40HQLabel As System.Windows.Forms.Label
+        Dim _40DCLabel As System.Windows.Forms.Label
+        Dim _20DCLabel As System.Windows.Forms.Label
+        Dim Charge_CodeLabel As System.Windows.Forms.Label
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMaininterface))
         Me.subTabShipments = New System.Windows.Forms.TabControl()
@@ -197,14 +206,58 @@ Partial Class frmMaininterface
         Me.dtnATD = New System.Windows.Forms.TextBox()
         Me.CarrierTextBox1 = New System.Windows.Forms.ComboBox()
         Me.btnTrackShipping = New System.Windows.Forms.Button()
-        Me.Contract_NoTextBox1 = New System.Windows.Forms.TextBox()
         Me.VesselTextBox1 = New System.Windows.Forms.TextBox()
+        Me.Contract_NoTextBox1 = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.STT_NoTextBox1 = New System.Windows.Forms.TextBox()
         Me.HBL_NoTextBox = New System.Windows.Forms.TextBox()
         Me.MBL_NoTextBox = New System.Windows.Forms.TextBox()
         Me.btnAddBL = New System.Windows.Forms.Button()
         Me.chkSurrenderedShipping = New System.Windows.Forms.CheckBox()
+        Me.tabRates = New System.Windows.Forms.TabPage()
+        Me.RtRatesDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn69 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn72 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn73 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn74 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn75 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn76 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn77 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn78 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn79 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn80 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn81 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn83 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn84 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn85 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RtRatesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.CurrencyTextBox = New System.Windows.Forms.TextBox()
+        Me.RtShipments_ChargesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.MultiplierTextBox = New System.Windows.Forms.TextBox()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.CommentTextBox = New System.Windows.Forms.RichTextBox()
+        Me.btnAddRate = New System.Windows.Forms.Button()
+        Me.cmbChargeCodeFull = New System.Windows.Forms.ComboBox()
+        Me.RtCharge_CodeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.cmbChargeCode = New System.Windows.Forms.ComboBox()
+        Me._20DCTextBox = New System.Windows.Forms.TextBox()
+        Me._40DCTextBox = New System.Windows.Forms.TextBox()
+        Me._40HQTextBox = New System.Windows.Forms.TextBox()
+        Me.MinimumTextBox = New System.Windows.Forms.TextBox()
+        Me.ChargesTextBox = New System.Windows.Forms.TextBox()
+        Me.RtShipments_ChargesDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn58 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn59 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn60 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn62 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn70 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn71 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tabDispo = New System.Windows.Forms.TabPage()
         Me.tabDocuments = New System.Windows.Forms.TabPage()
         Me.DsDocumentDataGridView1 = New System.Windows.Forms.DataGridView()
@@ -221,7 +274,6 @@ Partial Class frmMaininterface
         Me.DataGridViewTextBoxColumn66 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn67 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PtShipmentsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.DsRoleBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsContactBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DsPartnerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -297,6 +349,9 @@ Partial Class frmMaininterface
         Me.DsRoleTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsRoleTableAdapter()
         Me.DsContainerTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.dsContainerTableAdapter()
         Me.DsCommentTableAdapter1 = New Demag_HUB.dsDemag_HUBTableAdapters.dsCommentTableAdapter()
+        Me.RtShipments_ChargesTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.rtShipments_ChargesTableAdapter()
+        Me.RtCharge_CodeTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.rtCharge_CodeTableAdapter()
+        Me.RtRatesTableAdapter = New Demag_HUB.dsDemag_HUBTableAdapters.rtRatesTableAdapter()
         DtnETALabel = New System.Windows.Forms.Label()
         DtnETDLabel = New System.Windows.Forms.Label()
         DtnCRDLabel = New System.Windows.Forms.Label()
@@ -340,6 +395,15 @@ Partial Class frmMaininterface
         WeightLabel1 = New System.Windows.Forms.Label()
         VolumeLabel1 = New System.Windows.Forms.Label()
         QuantityLabel = New System.Windows.Forms.Label()
+        CommentLabel = New System.Windows.Forms.Label()
+        CurrencyLabel = New System.Windows.Forms.Label()
+        MultiplierLabel = New System.Windows.Forms.Label()
+        ChargesLabel = New System.Windows.Forms.Label()
+        MinimumLabel = New System.Windows.Forms.Label()
+        _40HQLabel = New System.Windows.Forms.Label()
+        _40DCLabel = New System.Windows.Forms.Label()
+        _20DCLabel = New System.Windows.Forms.Label()
+        Charge_CodeLabel = New System.Windows.Forms.Label()
         Me.subTabShipments.SuspendLayout()
         Me.tabOverview.SuspendLayout()
         CType(Me.DsShipmentsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -371,6 +435,12 @@ Partial Class frmMaininterface
         Me.grpTrack.SuspendLayout()
         CType(Me.bsTerminal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
+        Me.tabRates.SuspendLayout()
+        CType(Me.RtRatesDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RtRatesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RtShipments_ChargesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RtCharge_CodeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RtShipments_ChargesDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabDocuments.SuspendLayout()
         CType(Me.DsDocumentDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabProtocol.SuspendLayout()
@@ -782,6 +852,105 @@ Partial Class frmMaininterface
         QuantityLabel.TabIndex = 137
         QuantityLabel.Text = "Quantity:"
         '
+        'CommentLabel
+        '
+        CommentLabel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        CommentLabel.AutoSize = True
+        CommentLabel.Location = New System.Drawing.Point(686, 92)
+        CommentLabel.Name = "CommentLabel"
+        CommentLabel.Size = New System.Drawing.Size(54, 13)
+        CommentLabel.TabIndex = 25
+        CommentLabel.Text = "Comment:"
+        '
+        'CurrencyLabel
+        '
+        CurrencyLabel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        CurrencyLabel.AutoSize = True
+        CurrencyLabel.Location = New System.Drawing.Point(617, 73)
+        CurrencyLabel.Name = "CurrencyLabel"
+        CurrencyLabel.Size = New System.Drawing.Size(52, 13)
+        CurrencyLabel.TabIndex = 23
+        CurrencyLabel.Text = "Currency:"
+        '
+        'MultiplierLabel
+        '
+        MultiplierLabel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        MultiplierLabel.AutoSize = True
+        MultiplierLabel.Location = New System.Drawing.Point(9, 92)
+        MultiplierLabel.Name = "MultiplierLabel"
+        MultiplierLabel.Size = New System.Drawing.Size(51, 13)
+        MultiplierLabel.TabIndex = 19
+        MultiplierLabel.Text = "Multiplier:"
+        '
+        'ChargesLabel
+        '
+        ChargesLabel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        ChargesLabel.AutoSize = True
+        ChargesLabel.Location = New System.Drawing.Point(553, 73)
+        ChargesLabel.Name = "ChargesLabel"
+        ChargesLabel.Size = New System.Drawing.Size(49, 13)
+        ChargesLabel.TabIndex = 17
+        ChargesLabel.Text = "Charges:"
+        '
+        'MinimumLabel
+        '
+        MinimumLabel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        MinimumLabel.AutoSize = True
+        MinimumLabel.Location = New System.Drawing.Point(489, 73)
+        MinimumLabel.Name = "MinimumLabel"
+        MinimumLabel.Size = New System.Drawing.Size(51, 13)
+        MinimumLabel.TabIndex = 15
+        MinimumLabel.Text = "Minimum:"
+        '
+        '_40HQLabel
+        '
+        _40HQLabel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        _40HQLabel.AutoSize = True
+        _40HQLabel.Location = New System.Drawing.Point(425, 73)
+        _40HQLabel.Name = "_40HQLabel"
+        _40HQLabel.Size = New System.Drawing.Size(38, 13)
+        _40HQLabel.TabIndex = 13
+        _40HQLabel.Text = "40HQ:"
+        '
+        '_40DCLabel
+        '
+        _40DCLabel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        _40DCLabel.AutoSize = True
+        _40DCLabel.Location = New System.Drawing.Point(361, 73)
+        _40DCLabel.Name = "_40DCLabel"
+        _40DCLabel.Size = New System.Drawing.Size(37, 13)
+        _40DCLabel.TabIndex = 11
+        _40DCLabel.Text = "40DC:"
+        '
+        '_20DCLabel
+        '
+        _20DCLabel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        _20DCLabel.AutoSize = True
+        _20DCLabel.Location = New System.Drawing.Point(297, 73)
+        _20DCLabel.Name = "_20DCLabel"
+        _20DCLabel.Size = New System.Drawing.Size(37, 13)
+        _20DCLabel.TabIndex = 9
+        _20DCLabel.Text = "20DC:"
+        '
+        'Charge_CodeLabel
+        '
+        Charge_CodeLabel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Charge_CodeLabel.AutoSize = True
+        Charge_CodeLabel.Location = New System.Drawing.Point(9, 64)
+        Charge_CodeLabel.Name = "Charge_CodeLabel"
+        Charge_CodeLabel.Size = New System.Drawing.Size(72, 13)
+        Charge_CodeLabel.TabIndex = 7
+        Charge_CodeLabel.Text = "Charge Code:"
+        '
         'subTabShipments
         '
         Me.subTabShipments.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -790,10 +959,10 @@ Partial Class frmMaininterface
         Me.subTabShipments.Controls.Add(Me.tabOverview)
         Me.subTabShipments.Controls.Add(Me.tabBooking)
         Me.subTabShipments.Controls.Add(Me.tabShipping)
+        Me.subTabShipments.Controls.Add(Me.tabRates)
         Me.subTabShipments.Controls.Add(Me.tabDispo)
         Me.subTabShipments.Controls.Add(Me.tabDocuments)
         Me.subTabShipments.Controls.Add(Me.tabProtocol)
-        Me.subTabShipments.Controls.Add(Me.TabPage1)
         Me.subTabShipments.Location = New System.Drawing.Point(145, 6)
         Me.subTabShipments.Name = "subTabShipments"
         Me.subTabShipments.SelectedIndex = 0
@@ -2021,15 +2190,6 @@ Partial Class frmMaininterface
         Me.btnTrackShipping.Text = "Track"
         Me.btnTrackShipping.UseVisualStyleBackColor = True
         '
-        'Contract_NoTextBox1
-        '
-        Me.Contract_NoTextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.Contract_NoTextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Contract_No", True))
-        Me.Contract_NoTextBox1.Location = New System.Drawing.Point(88, 45)
-        Me.Contract_NoTextBox1.Name = "Contract_NoTextBox1"
-        Me.Contract_NoTextBox1.Size = New System.Drawing.Size(151, 20)
-        Me.Contract_NoTextBox1.TabIndex = 6
-        '
         'VesselTextBox1
         '
         Me.VesselTextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
@@ -2038,6 +2198,15 @@ Partial Class frmMaininterface
         Me.VesselTextBox1.Name = "VesselTextBox1"
         Me.VesselTextBox1.Size = New System.Drawing.Size(204, 20)
         Me.VesselTextBox1.TabIndex = 9
+        '
+        'Contract_NoTextBox1
+        '
+        Me.Contract_NoTextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.Contract_NoTextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.DsShipmentsBindingSource, "Contract_No", True))
+        Me.Contract_NoTextBox1.Location = New System.Drawing.Point(88, 45)
+        Me.Contract_NoTextBox1.Name = "Contract_NoTextBox1"
+        Me.Contract_NoTextBox1.Size = New System.Drawing.Size(151, 20)
+        Me.Contract_NoTextBox1.TabIndex = 6
         '
         'GroupBox1
         '
@@ -2106,6 +2275,381 @@ Partial Class frmMaininterface
         Me.chkSurrenderedShipping.TabStop = False
         Me.chkSurrenderedShipping.Text = "Surrendered"
         Me.chkSurrenderedShipping.UseVisualStyleBackColor = True
+        '
+        'tabRates
+        '
+        Me.tabRates.AutoScroll = True
+        Me.tabRates.Controls.Add(Me.RtRatesDataGridView)
+        Me.tabRates.Controls.Add(Me.CurrencyTextBox)
+        Me.tabRates.Controls.Add(Me.MultiplierTextBox)
+        Me.tabRates.Controls.Add(Me.Button3)
+        Me.tabRates.Controls.Add(Me.CommentTextBox)
+        Me.tabRates.Controls.Add(Me.btnAddRate)
+        Me.tabRates.Controls.Add(Me.cmbChargeCodeFull)
+        Me.tabRates.Controls.Add(Me.cmbChargeCode)
+        Me.tabRates.Controls.Add(Charge_CodeLabel)
+        Me.tabRates.Controls.Add(_20DCLabel)
+        Me.tabRates.Controls.Add(Me._20DCTextBox)
+        Me.tabRates.Controls.Add(_40DCLabel)
+        Me.tabRates.Controls.Add(Me._40DCTextBox)
+        Me.tabRates.Controls.Add(_40HQLabel)
+        Me.tabRates.Controls.Add(Me._40HQTextBox)
+        Me.tabRates.Controls.Add(MinimumLabel)
+        Me.tabRates.Controls.Add(Me.MinimumTextBox)
+        Me.tabRates.Controls.Add(ChargesLabel)
+        Me.tabRates.Controls.Add(Me.ChargesTextBox)
+        Me.tabRates.Controls.Add(MultiplierLabel)
+        Me.tabRates.Controls.Add(CurrencyLabel)
+        Me.tabRates.Controls.Add(CommentLabel)
+        Me.tabRates.Controls.Add(Me.RtShipments_ChargesDataGridView)
+        Me.tabRates.Location = New System.Drawing.Point(4, 22)
+        Me.tabRates.Name = "tabRates"
+        Me.tabRates.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabRates.Size = New System.Drawing.Size(1046, 649)
+        Me.tabRates.TabIndex = 7
+        Me.tabRates.Text = "Rates"
+        Me.tabRates.UseVisualStyleBackColor = True
+        '
+        'RtRatesDataGridView
+        '
+        Me.RtRatesDataGridView.AutoGenerateColumns = False
+        Me.RtRatesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.RtRatesDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn69, Me.DataGridViewTextBoxColumn72, Me.DataGridViewTextBoxColumn73, Me.DataGridViewTextBoxColumn74, Me.DataGridViewTextBoxColumn75, Me.DataGridViewTextBoxColumn76, Me.DataGridViewTextBoxColumn77, Me.DataGridViewTextBoxColumn78, Me.DataGridViewTextBoxColumn79, Me.DataGridViewTextBoxColumn80, Me.DataGridViewTextBoxColumn81, Me.DataGridViewTextBoxColumn83, Me.DataGridViewTextBoxColumn84, Me.DataGridViewTextBoxColumn85})
+        Me.RtRatesDataGridView.DataSource = Me.RtRatesBindingSource
+        Me.RtRatesDataGridView.Location = New System.Drawing.Point(527, 359)
+        Me.RtRatesDataGridView.Name = "RtRatesDataGridView"
+        Me.RtRatesDataGridView.Size = New System.Drawing.Size(300, 220)
+        Me.RtRatesDataGridView.TabIndex = 30
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "ID"
+        Me.DataGridViewTextBoxColumn1.HeaderText = "ID"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        '
+        'DataGridViewTextBoxColumn11
+        '
+        Me.DataGridViewTextBoxColumn11.DataPropertyName = "Created"
+        Me.DataGridViewTextBoxColumn11.HeaderText = "Created"
+        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
+        '
+        'DataGridViewTextBoxColumn12
+        '
+        Me.DataGridViewTextBoxColumn12.DataPropertyName = "Charge_Code"
+        Me.DataGridViewTextBoxColumn12.HeaderText = "Charge_Code"
+        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
+        '
+        'DataGridViewTextBoxColumn69
+        '
+        Me.DataGridViewTextBoxColumn69.DataPropertyName = "Size"
+        Me.DataGridViewTextBoxColumn69.HeaderText = "Size"
+        Me.DataGridViewTextBoxColumn69.Name = "DataGridViewTextBoxColumn69"
+        '
+        'DataGridViewTextBoxColumn72
+        '
+        Me.DataGridViewTextBoxColumn72.DataPropertyName = "From"
+        Me.DataGridViewTextBoxColumn72.HeaderText = "From"
+        Me.DataGridViewTextBoxColumn72.Name = "DataGridViewTextBoxColumn72"
+        '
+        'DataGridViewTextBoxColumn73
+        '
+        Me.DataGridViewTextBoxColumn73.DataPropertyName = "To"
+        Me.DataGridViewTextBoxColumn73.HeaderText = "To"
+        Me.DataGridViewTextBoxColumn73.Name = "DataGridViewTextBoxColumn73"
+        '
+        'DataGridViewTextBoxColumn74
+        '
+        Me.DataGridViewTextBoxColumn74.DataPropertyName = "20DC"
+        Me.DataGridViewTextBoxColumn74.HeaderText = "20DC"
+        Me.DataGridViewTextBoxColumn74.Name = "DataGridViewTextBoxColumn74"
+        '
+        'DataGridViewTextBoxColumn75
+        '
+        Me.DataGridViewTextBoxColumn75.DataPropertyName = "40DC"
+        Me.DataGridViewTextBoxColumn75.HeaderText = "40DC"
+        Me.DataGridViewTextBoxColumn75.Name = "DataGridViewTextBoxColumn75"
+        '
+        'DataGridViewTextBoxColumn76
+        '
+        Me.DataGridViewTextBoxColumn76.DataPropertyName = "40HQ"
+        Me.DataGridViewTextBoxColumn76.HeaderText = "40HQ"
+        Me.DataGridViewTextBoxColumn76.Name = "DataGridViewTextBoxColumn76"
+        '
+        'DataGridViewTextBoxColumn77
+        '
+        Me.DataGridViewTextBoxColumn77.DataPropertyName = "Minimum"
+        Me.DataGridViewTextBoxColumn77.HeaderText = "Minimum"
+        Me.DataGridViewTextBoxColumn77.Name = "DataGridViewTextBoxColumn77"
+        '
+        'DataGridViewTextBoxColumn78
+        '
+        Me.DataGridViewTextBoxColumn78.DataPropertyName = "Charges"
+        Me.DataGridViewTextBoxColumn78.HeaderText = "Charges"
+        Me.DataGridViewTextBoxColumn78.Name = "DataGridViewTextBoxColumn78"
+        '
+        'DataGridViewTextBoxColumn79
+        '
+        Me.DataGridViewTextBoxColumn79.DataPropertyName = "Multiplier"
+        Me.DataGridViewTextBoxColumn79.HeaderText = "Multiplier"
+        Me.DataGridViewTextBoxColumn79.Name = "DataGridViewTextBoxColumn79"
+        '
+        'DataGridViewTextBoxColumn80
+        '
+        Me.DataGridViewTextBoxColumn80.DataPropertyName = "Breakpoint"
+        Me.DataGridViewTextBoxColumn80.HeaderText = "Breakpoint"
+        Me.DataGridViewTextBoxColumn80.Name = "DataGridViewTextBoxColumn80"
+        '
+        'DataGridViewTextBoxColumn81
+        '
+        Me.DataGridViewTextBoxColumn81.DataPropertyName = "Currency"
+        Me.DataGridViewTextBoxColumn81.HeaderText = "Currency"
+        Me.DataGridViewTextBoxColumn81.Name = "DataGridViewTextBoxColumn81"
+        '
+        'DataGridViewTextBoxColumn83
+        '
+        Me.DataGridViewTextBoxColumn83.DataPropertyName = "Comment"
+        Me.DataGridViewTextBoxColumn83.HeaderText = "Comment"
+        Me.DataGridViewTextBoxColumn83.Name = "DataGridViewTextBoxColumn83"
+        '
+        'DataGridViewTextBoxColumn84
+        '
+        Me.DataGridViewTextBoxColumn84.DataPropertyName = "Valid_From"
+        Me.DataGridViewTextBoxColumn84.HeaderText = "Valid_From"
+        Me.DataGridViewTextBoxColumn84.Name = "DataGridViewTextBoxColumn84"
+        '
+        'DataGridViewTextBoxColumn85
+        '
+        Me.DataGridViewTextBoxColumn85.DataPropertyName = "Valid_Till"
+        Me.DataGridViewTextBoxColumn85.HeaderText = "Valid_Till"
+        Me.DataGridViewTextBoxColumn85.Name = "DataGridViewTextBoxColumn85"
+        '
+        'RtRatesBindingSource
+        '
+        Me.RtRatesBindingSource.DataMember = "rtRates"
+        Me.RtRatesBindingSource.DataSource = Me.DsDemag_HUB
+        '
+        'CurrencyTextBox
+        '
+        Me.CurrencyTextBox.AutoCompleteCustomSource.AddRange(New String() {"EUR", "USD"})
+        Me.CurrencyTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CurrencyTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.CurrencyTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.RtShipments_ChargesBindingSource, "Currency", True))
+        Me.CurrencyTextBox.Location = New System.Drawing.Point(620, 89)
+        Me.CurrencyTextBox.Name = "CurrencyTextBox"
+        Me.CurrencyTextBox.Size = New System.Drawing.Size(60, 20)
+        Me.CurrencyTextBox.TabIndex = 9
+        '
+        'RtShipments_ChargesBindingSource
+        '
+        Me.RtShipments_ChargesBindingSource.DataMember = "dsShipmentsrtShipments_Charges"
+        Me.RtShipments_ChargesBindingSource.DataSource = Me.DsShipmentsBindingSource
+        '
+        'MultiplierTextBox
+        '
+        Me.MultiplierTextBox.AutoCompleteCustomSource.AddRange(New String() {"CONT", "TEU", "WM", "KG", "BL"})
+        Me.MultiplierTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.MultiplierTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.MultiplierTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.RtShipments_ChargesBindingSource, "Multiplier", True))
+        Me.MultiplierTextBox.Location = New System.Drawing.Point(87, 88)
+        Me.MultiplierTextBox.Name = "MultiplierTextBox"
+        Me.MultiplierTextBox.Size = New System.Drawing.Size(200, 20)
+        Me.MultiplierTextBox.TabIndex = 3
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(12, 328)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 30
+        Me.Button3.Text = "Button3"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'CommentTextBox
+        '
+        Me.CommentTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.RtShipments_ChargesBindingSource, "Comment", True))
+        Me.CommentTextBox.Location = New System.Drawing.Point(746, 13)
+        Me.CommentTextBox.Name = "CommentTextBox"
+        Me.CommentTextBox.Size = New System.Drawing.Size(294, 96)
+        Me.CommentTextBox.TabIndex = 10
+        Me.CommentTextBox.Text = ""
+        '
+        'btnAddRate
+        '
+        Me.btnAddRate.Location = New System.Drawing.Point(6, 6)
+        Me.btnAddRate.Name = "btnAddRate"
+        Me.btnAddRate.Size = New System.Drawing.Size(75, 23)
+        Me.btnAddRate.TabIndex = 29
+        Me.btnAddRate.TabStop = False
+        Me.btnAddRate.Text = "+"
+        Me.btnAddRate.UseVisualStyleBackColor = True
+        '
+        'cmbChargeCodeFull
+        '
+        Me.cmbChargeCodeFull.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbChargeCodeFull.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbChargeCodeFull.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbChargeCodeFull.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.RtShipments_ChargesBindingSource, "Charge_Code", True))
+        Me.cmbChargeCodeFull.DataSource = Me.RtCharge_CodeBindingSource
+        Me.cmbChargeCodeFull.DisplayMember = "Charge_Code_Name_Full"
+        Me.cmbChargeCodeFull.FormattingEnabled = True
+        Me.cmbChargeCodeFull.Location = New System.Drawing.Point(167, 60)
+        Me.cmbChargeCodeFull.Name = "cmbChargeCodeFull"
+        Me.cmbChargeCodeFull.Size = New System.Drawing.Size(120, 21)
+        Me.cmbChargeCodeFull.TabIndex = 2
+        Me.cmbChargeCodeFull.ValueMember = "Charge_Code"
+        '
+        'RtCharge_CodeBindingSource
+        '
+        Me.RtCharge_CodeBindingSource.DataMember = "rtCharge_Code"
+        Me.RtCharge_CodeBindingSource.DataSource = Me.DsDemag_HUB
+        '
+        'cmbChargeCode
+        '
+        Me.cmbChargeCode.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbChargeCode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbChargeCode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbChargeCode.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.RtShipments_ChargesBindingSource, "Charge_Code", True))
+        Me.cmbChargeCode.DataSource = Me.RtCharge_CodeBindingSource
+        Me.cmbChargeCode.DisplayMember = "Charge_Code"
+        Me.cmbChargeCode.FormattingEnabled = True
+        Me.cmbChargeCode.Location = New System.Drawing.Point(87, 60)
+        Me.cmbChargeCode.Name = "cmbChargeCode"
+        Me.cmbChargeCode.Size = New System.Drawing.Size(74, 21)
+        Me.cmbChargeCode.TabIndex = 1
+        Me.cmbChargeCode.ValueMember = "Charge_Code"
+        '
+        '_20DCTextBox
+        '
+        Me._20DCTextBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me._20DCTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.RtShipments_ChargesBindingSource, "20DC", True))
+        Me._20DCTextBox.Location = New System.Drawing.Point(300, 89)
+        Me._20DCTextBox.Name = "_20DCTextBox"
+        Me._20DCTextBox.Size = New System.Drawing.Size(58, 20)
+        Me._20DCTextBox.TabIndex = 4
+        '
+        '_40DCTextBox
+        '
+        Me._40DCTextBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me._40DCTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.RtShipments_ChargesBindingSource, "40DC", True))
+        Me._40DCTextBox.Location = New System.Drawing.Point(364, 89)
+        Me._40DCTextBox.Name = "_40DCTextBox"
+        Me._40DCTextBox.Size = New System.Drawing.Size(58, 20)
+        Me._40DCTextBox.TabIndex = 5
+        '
+        '_40HQTextBox
+        '
+        Me._40HQTextBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me._40HQTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.RtShipments_ChargesBindingSource, "40HQ", True))
+        Me._40HQTextBox.Location = New System.Drawing.Point(428, 89)
+        Me._40HQTextBox.Name = "_40HQTextBox"
+        Me._40HQTextBox.Size = New System.Drawing.Size(58, 20)
+        Me._40HQTextBox.TabIndex = 6
+        '
+        'MinimumTextBox
+        '
+        Me.MinimumTextBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MinimumTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.RtShipments_ChargesBindingSource, "Minimum", True))
+        Me.MinimumTextBox.Location = New System.Drawing.Point(492, 89)
+        Me.MinimumTextBox.Name = "MinimumTextBox"
+        Me.MinimumTextBox.Size = New System.Drawing.Size(58, 20)
+        Me.MinimumTextBox.TabIndex = 7
+        '
+        'ChargesTextBox
+        '
+        Me.ChargesTextBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ChargesTextBox.AutoCompleteCustomSource.AddRange(New String() {"CONT", "TEU", "WM", "KG", "BL"})
+        Me.ChargesTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.RtShipments_ChargesBindingSource, "Charges", True))
+        Me.ChargesTextBox.Location = New System.Drawing.Point(556, 89)
+        Me.ChargesTextBox.Name = "ChargesTextBox"
+        Me.ChargesTextBox.Size = New System.Drawing.Size(58, 20)
+        Me.ChargesTextBox.TabIndex = 8
+        '
+        'RtShipments_ChargesDataGridView
+        '
+        Me.RtShipments_ChargesDataGridView.AllowUserToAddRows = False
+        Me.RtShipments_ChargesDataGridView.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RtShipments_ChargesDataGridView.AutoGenerateColumns = False
+        Me.RtShipments_ChargesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.RtShipments_ChargesDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn21, Me.DataGridViewTextBoxColumn23, Me.DataGridViewTextBoxColumn58, Me.DataGridViewTextBoxColumn59, Me.DataGridViewTextBoxColumn60, Me.DataGridViewTextBoxColumn62, Me.DataGridViewTextBoxColumn70, Me.DataGridViewTextBoxColumn71})
+        Me.RtShipments_ChargesDataGridView.DataSource = Me.RtShipments_ChargesBindingSource
+        Me.RtShipments_ChargesDataGridView.Location = New System.Drawing.Point(6, 116)
+        Me.RtShipments_ChargesDataGridView.Name = "RtShipments_ChargesDataGridView"
+        Me.RtShipments_ChargesDataGridView.ReadOnly = True
+        Me.RtShipments_ChargesDataGridView.Size = New System.Drawing.Size(1034, 194)
+        Me.RtShipments_ChargesDataGridView.TabIndex = 0
+        Me.RtShipments_ChargesDataGridView.TabStop = False
+        '
+        'DataGridViewTextBoxColumn13
+        '
+        Me.DataGridViewTextBoxColumn13.DataPropertyName = "Charge_Code"
+        Me.DataGridViewTextBoxColumn13.HeaderText = "Charge_Code"
+        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
+        Me.DataGridViewTextBoxColumn13.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn21
+        '
+        Me.DataGridViewTextBoxColumn21.DataPropertyName = "20DC"
+        Me.DataGridViewTextBoxColumn21.HeaderText = "20DC"
+        Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
+        Me.DataGridViewTextBoxColumn21.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn23
+        '
+        Me.DataGridViewTextBoxColumn23.DataPropertyName = "40DC"
+        Me.DataGridViewTextBoxColumn23.HeaderText = "40DC"
+        Me.DataGridViewTextBoxColumn23.Name = "DataGridViewTextBoxColumn23"
+        Me.DataGridViewTextBoxColumn23.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn58
+        '
+        Me.DataGridViewTextBoxColumn58.DataPropertyName = "40HQ"
+        Me.DataGridViewTextBoxColumn58.HeaderText = "40HQ"
+        Me.DataGridViewTextBoxColumn58.Name = "DataGridViewTextBoxColumn58"
+        Me.DataGridViewTextBoxColumn58.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn59
+        '
+        Me.DataGridViewTextBoxColumn59.DataPropertyName = "Minimum"
+        Me.DataGridViewTextBoxColumn59.HeaderText = "Minimum"
+        Me.DataGridViewTextBoxColumn59.Name = "DataGridViewTextBoxColumn59"
+        Me.DataGridViewTextBoxColumn59.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn60
+        '
+        Me.DataGridViewTextBoxColumn60.DataPropertyName = "Charges"
+        Me.DataGridViewTextBoxColumn60.HeaderText = "Charges"
+        Me.DataGridViewTextBoxColumn60.Name = "DataGridViewTextBoxColumn60"
+        Me.DataGridViewTextBoxColumn60.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn62
+        '
+        Me.DataGridViewTextBoxColumn62.DataPropertyName = "Multiplier"
+        Me.DataGridViewTextBoxColumn62.HeaderText = "Multiplier"
+        Me.DataGridViewTextBoxColumn62.Name = "DataGridViewTextBoxColumn62"
+        Me.DataGridViewTextBoxColumn62.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn70
+        '
+        Me.DataGridViewTextBoxColumn70.DataPropertyName = "Currency"
+        Me.DataGridViewTextBoxColumn70.HeaderText = "Currency"
+        Me.DataGridViewTextBoxColumn70.Name = "DataGridViewTextBoxColumn70"
+        Me.DataGridViewTextBoxColumn70.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn71
+        '
+        Me.DataGridViewTextBoxColumn71.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataGridViewTextBoxColumn71.DataPropertyName = "Comment"
+        Me.DataGridViewTextBoxColumn71.HeaderText = "Comment"
+        Me.DataGridViewTextBoxColumn71.Name = "DataGridViewTextBoxColumn71"
+        Me.DataGridViewTextBoxColumn71.ReadOnly = True
         '
         'tabDispo
         '
@@ -2244,16 +2788,6 @@ Partial Class frmMaininterface
         '
         Me.PtShipmentsBindingSource.DataMember = "dsShipmentsptShipments"
         Me.PtShipmentsBindingSource.DataSource = Me.DsShipmentsBindingSource
-        '
-        'TabPage1
-        '
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1046, 649)
-        Me.TabPage1.TabIndex = 7
-        Me.TabPage1.Text = "TabPage1"
-        Me.TabPage1.UseVisualStyleBackColor = True
         '
         'DsRoleBindingSource
         '
@@ -2876,6 +3410,18 @@ Partial Class frmMaininterface
         '
         Me.DsCommentTableAdapter1.ClearBeforeFill = True
         '
+        'RtShipments_ChargesTableAdapter
+        '
+        Me.RtShipments_ChargesTableAdapter.ClearBeforeFill = True
+        '
+        'RtCharge_CodeTableAdapter
+        '
+        Me.RtCharge_CodeTableAdapter.ClearBeforeFill = True
+        '
+        'RtRatesTableAdapter
+        '
+        Me.RtRatesTableAdapter.ClearBeforeFill = True
+        '
         'frmMaininterface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2923,6 +3469,13 @@ Partial Class frmMaininterface
         CType(Me.bsTerminal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.tabRates.ResumeLayout(False)
+        Me.tabRates.PerformLayout()
+        CType(Me.RtRatesDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RtRatesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RtShipments_ChargesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RtCharge_CodeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RtShipments_ChargesDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabDocuments.ResumeLayout(False)
         CType(Me.DsDocumentDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabProtocol.ResumeLayout(False)
@@ -3154,7 +3707,6 @@ Partial Class frmMaininterface
     Friend WithEvents Document_Type As DataGridViewTextBoxColumn
     Friend WithEvents DocumentNoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents LinkDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents TabPage1 As TabPage
     Friend WithEvents DsContainerBindingSource As BindingSource
     Friend WithEvents DsContainerTableAdapter As dsDemag_HUBTableAdapters.dsContainerTableAdapter
     Friend WithEvents tabShipping As TabPage
@@ -3183,4 +3735,51 @@ Partial Class frmMaininterface
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
     Friend WithEvents QuantityTextBox As TextBox
     Friend WithEvents DsCommentTableAdapter1 As dsDemag_HUBTableAdapters.dsCommentTableAdapter
+    Friend WithEvents RtShipments_ChargesBindingSource As BindingSource
+    Friend WithEvents RtShipments_ChargesTableAdapter As dsDemag_HUBTableAdapters.rtShipments_ChargesTableAdapter
+    Friend WithEvents tabRates As TabPage
+    Friend WithEvents _20DCTextBox As TextBox
+    Friend WithEvents _40DCTextBox As TextBox
+    Friend WithEvents _40HQTextBox As TextBox
+    Friend WithEvents MinimumTextBox As TextBox
+    Friend WithEvents ChargesTextBox As TextBox
+    Friend WithEvents RtShipments_ChargesDataGridView As DataGridView
+    Friend WithEvents RtCharge_CodeBindingSource As BindingSource
+    Friend WithEvents RtCharge_CodeTableAdapter As dsDemag_HUBTableAdapters.rtCharge_CodeTableAdapter
+    Friend WithEvents btnAddRate As Button
+    Friend WithEvents cmbChargeCodeFull As ComboBox
+    Friend WithEvents cmbChargeCode As ComboBox
+    Friend WithEvents CommentTextBox As RichTextBox
+    Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn21 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn23 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn58 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn59 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn60 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn62 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn70 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn71 As DataGridViewTextBoxColumn
+    Friend WithEvents Button3 As Button
+    Friend WithEvents MultiplierTextBox As TextBox
+    Friend WithEvents CurrencyTextBox As TextBox
+    Friend WithEvents RtRatesBindingSource As BindingSource
+    Friend WithEvents RtRatesTableAdapter As dsDemag_HUBTableAdapters.rtRatesTableAdapter
+    Friend WithEvents RtRatesDataGridView As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn12 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn69 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn72 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn73 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn74 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn75 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn76 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn77 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn78 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn79 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn80 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn81 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn83 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn84 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn85 As DataGridViewTextBoxColumn
 End Class
